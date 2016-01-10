@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "com.haramaty.zvika.milon"
+        versionCode = "10"
+        version     = "1.0.0" >
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>מילון הראיה</name>
+
+    <description>
+    </description>
+
+    <author href="https://build.phonegap.com" email="haramaty.zvika@gmail.com">
+        Zvika Haramaty
+    </author>
+
+    <platform name="android" />
+    <platform name="ios" />
+
+    <preference name="loadUrlTimeoutValue" value="700000" />
+
+    <preference name="permissions" value="none"/>
+
+</widget>

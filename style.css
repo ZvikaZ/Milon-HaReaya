@@ -1,0 +1,67 @@
+/* display: block; */
+/* color: green; */
+
+.subject {
+    font-size: 1.2em;
+}
+
+.sub-subject {
+    font-size: 1.15em;
+}
+
+.definition {
+    /*font-family: "Times New Roman", Times, serif;*/
+}
+
+.source {
+    font-size: 0.9em;
+}
+
+
+.subject_small {
+    font-size: 0.8em;
+}
+
+
+.definition_small {
+    font-size: 0.6em;
+}
+
+.source_small {
+    font-size: 0.5em;
+}
+
+
+.subject_light {
+    font-size: 1.4em;
+    color: gray;
+}
+
+.sub-subject_light {
+    font-size: 1.2em;
+    color: gray;
+}
+
+.definition_light {
+    color: gray;
+}
+
+.source_light {
+    font-size: 0.8em;
+    color: gray;
+}
+
+
+
+span {
+/*    dir: rtl !important;
+    padding: 0;
+    margins: 0;
+    margin-left: 0;
+
+    border: 0;
+    font-size: 3;
+    white-space-collapsing: discard;
+    color: red;
+    */
+}

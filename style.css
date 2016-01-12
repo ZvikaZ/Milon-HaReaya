@@ -1,16 +1,26 @@
 /* display: block; */
 /* color: green; */
 
+a {
+    color: inherit;
+}
+
 .subject {
     font-size: 1.2em;
+    font-weight: bold;
 }
 
 .sub-subject {
     font-size: 1.15em;
+    font-weight: bold;
 }
 
-.definition {
+.definition, .fake_subject_small {
     /*font-family: "Times New Roman", Times, serif;*/
+}
+
+.fake_subject_small {
+    font-weight: bold;
 }
 
 .source {
@@ -20,6 +30,7 @@
 
 .subject_small {
     font-size: 0.9em;
+    font-weight: bold;
 }
 
 
@@ -35,11 +46,13 @@
 .subject_light {
     font-size: 1.4em;
     color: gray;
+    font-weight: bold;
 }
 
 .sub-subject_light {
     font-size: 1.2em;
     color: gray;
+    font-weight: bold;
 }
 
 .definition_light {

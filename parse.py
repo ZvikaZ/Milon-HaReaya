@@ -22,10 +22,10 @@ import dominate
 import dominate.tags as tags
 import re
 import zipfile
+import os
 
-
-doc_file_name = 'dict.docx'
-#doc_file_name = 'dict_short.docx'
+#doc_file_name = 'dict.docx'
+doc_file_name = 'dict_short.docx'
 #doc_file_name = 'snippet2.docx'
 
 # word_doc = docx.Document(doc_file_name)
@@ -104,9 +104,24 @@ def is_subject(para, i, next=False):
     # print "is? ", type, text.strip()
     # if 'subject' in type and not re.search(r"\w", text, re.UNICODE):
     #     print "!", text
-    return 'subject' in type and re.search(r"\w", text, re.UNICODE)
+    # print "is?", type, text, i, ('subject' in type and re.search(r"\w", text, re.UNICODE))
 
+    # if 'subject' in type and re.search(r"\w", text, re.UNICODE) and i>0:
+    #     p_type, p_text = para[i-1]
+    #     print "?", i-1, p_type, p_text
+    return 'subject' in type and re.search(r"\w", text, re.UNICODE) and 'fake' not in type
 
+def is_prev_subject(para, i):
+    try:
+        return is_subject(para, i-2) and para[i-1][1].strip() == "-"
+    except:
+        return False
+
+def is_prev_newline(para, i):
+    try:
+        return para[i-2][0] == "new_line" and para[i-1][1] == ""
+    except:
+        return False
 
 def analyze_and_fix(para):
     # unite splitted adjacent similar types
@@ -123,11 +138,9 @@ def analyze_and_fix(para):
             prev_type, prev_text = type, text
     new_para.append((prev_type, prev_text))
 
+    # make new_lines stand on their own
     para = new_para
     new_para = []
-
-
-    # make new_lines stand on their own
     for (type, text) in para:
         lines = text.split("\n")
         if len(lines) > 1:
@@ -138,10 +151,27 @@ def analyze_and_fix(para):
         else:
             new_para.append((type, text))
 
+    # fix wrong subjects
     para = new_para
     new_para = []
+    for (index, (type, text)) in enumerate(para):
+        if 'subject' in type:
+            # real subject is either:
+            # first
+            # after new_line and empty
+            # after subject,"-"
+            if (index == 0) or \
+                    (is_prev_newline(para, index)) or (is_prev_subject(para, index)):
+                new_para.append((type, text))
+            else:
+                new_para.append(("fake_"+type, text))
+
+        else:
+            new_para.append((type, text))
 
     # fix wrong 'source's
+    para = new_para
+    new_para = []
     source_pattern = re.compile(r"(\[.*\])")
     for (type, text) in para:
         if type == 'source':
@@ -160,15 +190,15 @@ def analyze_and_fix(para):
         else:
             new_para.append((type, text))
 
+    with open('debug_fix.txt', 'a') as debug_file:
+        debug_file.write("---------------\n")
+        for (type, text) in para:
+            s = "%s:%s.\n" % (type, text)
+            debug_file.write(s.encode('utf8'))
 
     # fix
     return new_para
 
-def is_prev_subject(para, i):
-    try:
-        return is_subject(para, i-2) and para[i-1][1].strip() == "-"
-    except:
-        return False
 
 def add_to_output(para):
     # we shouldn't accept empty paragraph (?)
@@ -214,6 +244,11 @@ def bold_type(type):
             print "Unexpected bold!", type
             temp_l.append(type)
         return type
+
+try:
+    os.remove("debug_fix.txt")
+except:
+    pass
 
 html_doc = dominate.document(title=u"מילון הראיה")
 html_doc['dir'] = 'rtl'

@@ -7,6 +7,7 @@
 #TODO: do something with new-lines?
 #TODO: TOC, search
 #TODO: make footnotes to be superscript, without using ()
+#TODO: try to decrease footnotes counter
 
 #TODO: remove out 'styles' dict
 #TODO: icon
@@ -23,15 +24,15 @@ import re
 import zipfile
 
 
-#doc_file_name = 'dict.docx'
-doc_file_name = 'dict_short.docx'
+doc_file_name = 'dict.docx'
+#doc_file_name = 'dict_short.docx'
 #doc_file_name = 'snippet2.docx'
 
 # word_doc = docx.Document(doc_file_name)
 # word_doc_footnotes = docx_fork_ludoo.Document(doc_file_name)
 
-#word_doc = docx.Document(doc_file_name)
-word_doc =  docx_fork_ludoo.Document(doc_file_name)
+word_doc = docx.Document(doc_file_name)
+word_doc_footnotes = docx_fork_ludoo.Document(doc_file_name)
 
 
 # support old and new version of docx
@@ -93,14 +94,16 @@ def regular(type, text):
         with tags.a("(%s)" % text.strip()):
             tags.attr(cls="ptr")
     else:
+        if "\n" in text:
+            print "New:", text
         with tags.span(text):
             tags.attr(cls=type)
 
 def is_subject(para, i, next=False):
     type, text = para[i]
     # print "is? ", type, text.strip()
-    if 'subject' in type and not re.search(r"\w", text, re.UNICODE):
-        print "!", text
+    # if 'subject' in type and not re.search(r"\w", text, re.UNICODE):
+    #     print "!", text
     return 'subject' in type and re.search(r"\w", text, re.UNICODE)
 
 
@@ -123,6 +126,21 @@ def analyze_and_fix(para):
     para = new_para
     new_para = []
 
+
+    # make new_lines stand on their own
+    for (type, text) in para:
+        lines = text.split("\n")
+        if len(lines) > 1:
+            for (i, line) in enumerate(lines):
+                new_para.append((type, line))
+                if i+1 < len(lines):
+                    new_para.append(("new_line", "\n"))
+        else:
+            new_para.append((type, text))
+
+    para = new_para
+    new_para = []
+
     # fix wrong 'source's
     source_pattern = re.compile(r"(\[.*\])")
     for (type, text) in para:
@@ -141,6 +159,7 @@ def analyze_and_fix(para):
                 # re.split(r"(\[.*\])", s)
         else:
             new_para.append((type, text))
+
 
     # fix
     return new_para
@@ -166,13 +185,14 @@ def add_to_output(para):
                 tags.br()
             elif is_subject(para, i):
                 if not is_prev_subject(para, i):
-                    tags.p()
+                    # tags.p()
                     #tags.br()
+                    pass
                 subject(type, text)
             else:
                 regular(type, text)
 
-        tags.br()
+        # tags.br()
 
 def add_footnote_to_output(id, paragraphs):
     text = ""
@@ -204,12 +224,12 @@ with html_doc.head:
 
 with open('debug.txt', 'w') as debug_file:
     with html_doc:
-        for (paragraph) in word_doc.paragraphs:
+        for (paragraph, footnote_paragraph) in zip(word_doc.paragraphs, word_doc_footnotes.paragraphs):
             if paragraph.text.strip():
                 # print "Paragraph:", paragraph.text, "$"
                 para = []
                 debug_file.write("\n\nNEW_PARA:\n------\n")
-                for (run) in paragraph.runs:
+                for (run, footnote_run) in zip(paragraph.runs, footnote_paragraph.runs):
                     s = "!%s:%s$" % (styles.get(run_style_id(run), run_style_id(run)), run.text)
                     # print "!%s:%s$" % (styles.get(run.style.style_id, run.style.style_id), run.text)
                     debug_file.write(s.encode('utf8'))
@@ -227,25 +247,38 @@ with open('debug.txt', 'w') as debug_file:
                             print s
                             debug_file.write(s.encode('utf8'))
 
-                    if run.footnote_references:
-                        for (note) in run.footnote_references:
-                            para.append(('footnote', str(note.id)))
+                    try:
+                        # if run.footnote_references:
+                        footnote_references = footnote_run.footnote_references
+                        if footnote_references:
+                            for (note) in footnote_references:
+                                para.append(('footnote', str(note.id)))
+                    except:
+                        print "Failed footnote_references"
 
-                    para.append(("new_line", ""))
+                    # para.append(("new_line", "\n"))
 
-
+                # tags.br()
+                para.append(("new_line", "\n"))
                 para = analyze_and_fix(para)
                 add_to_output(para)
             else:
                 # print paragraph
                 tags.p()
+                # tags.br()
+                # tags.hr()
 
+            # para.append(("new_line", "\n"))
+            # tags.br()
         # tags.hr()
 
-        with tags.ol(id="footnotes"):
-            for footnote in word_doc.footnotes_part.notes:
-                if footnote.id >= 1:
-                    add_footnote_to_output(footnote.id, footnote.paragraphs)
+        try:
+            with tags.ol(id="footnotes"):
+                for footnote in word_doc_footnotes.footnotes_part.notes:
+                    if footnote.id >= 1:
+                        add_footnote_to_output(footnote.id, footnote.paragraphs)
+        except:
+            print "Failed footnotes part"
 
 
 

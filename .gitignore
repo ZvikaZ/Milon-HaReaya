@@ -1,0 +1,8 @@
+.idea
+*~
+*.pyc
+*.doc
+*.docx
+*.html
+debug*
+*.zip

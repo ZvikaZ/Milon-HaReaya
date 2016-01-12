@@ -1,30 +1,30 @@
 # -*- coding: utf-8 -*-
 
-# do something with new-lines?
-#TODO: zip index,css,config.xml
-#TODO: remove out 'styles' dict
-#TODO: handle footnotes
-#TODO: TOC
+#TODO: fix wrong subjects
+#TODO: make circles to links
+#TODO: split into smaller HTML files
+#TODO: handle footnotes' fonts
+#TODO: do something with new-lines?
+#TODO: TOC, search
+#TODO: make footnotes to be superscript, without using ()
 
+#TODO: remove out 'styles' dict
 #TODO: icon
 #TODO: automate build
 #TODO: iphone?
 
 
 
-# from docx import Document
 import docx
 import docx_fork_ludoo
 import dominate
-from dominate.tags import *
-import sys
-#
-# import docx2txt
-# text = docx2txt.process("snippet2.docx")
-# print text
+import dominate.tags as tags
+import re
+import zipfile
 
-doc_file_name = 'dict.docx'
-# doc_file_name = 'snippet1.docx'
+
+#doc_file_name = 'dict.docx'
+doc_file_name = 'dict_short.docx'
 #doc_file_name = 'snippet2.docx'
 
 # word_doc = docx.Document(doc_file_name)
@@ -45,30 +45,6 @@ def run_style_id(run):
             return run.style
         else:
             return 'DefaultParagraphFont'
-
-#
-# for (i, para) in enumerate(word_doc.paragraphs):
-#     old_para = word_doc_footnotes.paragraphs[i]
-#     for (j, run) in enumerate(para.runs):
-#         old_run = old_para.runs[j]
-#         if run.text.split() != old_run.text.split():
-#             print "!! DIFF text!!"
-#             print "new:", run.text,"!"
-#             print "old:", old_run.text,"!"
-#         if run_style_id(run) != run_style_id(old_run) and run_style_id(run) != "DefaultParagraphFont":
-#             print "!! DIFF style!!"
-#             print "new:", run_style_id(run),"!"
-#             print "old:", run_style_id(old_run),"!"
-#
-#     # if para.text != word_doc_footnotes.paragraphs[i].text:
-#     #     print "!! DIFF !!"
-#     #     print "new:", para.text,"!"
-#     #     print "old:", word_doc_footnotes.paragraphs[i].text,"!"
-
-# print "passed sanity check"
-
-# xml = word_doc.part.blob
-# print xml
 
 
 styles = {
@@ -107,48 +83,29 @@ styles = {
 
 unknown_list = []
 
-# def add_to_output(type, orig_text):
-#     text = orig_text   # .strip()
-#     if text != "" and text != "\n":
-#         if type == 'subject':
-#             p()
-#             # a(name=text)
-#             with span(a(text, href="#%s" % text, id=text)):
-#                 attr(cls=type)
-#         else:
-#             with span(text):
-#                 attr(cls=type)
 
-def subject(text):
-    type = 'subject'
-    with span(a(text, href="#%s" % text, id=text)):
-        attr(cls=type)
+def subject(type, text):
+    with tags.span(tags.a(text, href="#%s" % text, id=text)):
+        tags.attr(cls=type)
 
 def regular(type, text):
-    with span(text):
-        attr(cls=type)
+    if type == 'footnote':
+        with tags.a("(%s)" % text.strip()):
+            tags.attr(cls="ptr")
+    else:
+        with tags.span(text):
+            tags.attr(cls=type)
 
-# by default, check if 'para[i]' is 'subject'
-# if Next=True --> check if next index is 'subject', bypassing all 'empty' values
 def is_subject(para, i, next=False):
-    # try:
-    #     continue_loop = True
-    #     while continue_loop:
-    #         type, text = para[i]
-    #         continue_loop = next and text.strip() == ""
-    #         i += 1
-    #     print "is? ", type, text.strip()
-    #     return type == 'subject'
-    # except:
-    #     print "is? out of index"
-    #     return False
-
     type, text = para[i]
     # print "is? ", type, text.strip()
-    return 'subject' in type
+    if 'subject' in type and not re.search(r"\w", text, re.UNICODE):
+        print "!", text
+    return 'subject' in type and re.search(r"\w", text, re.UNICODE)
 
 
-def analyze(para):
+
+def analyze_and_fix(para):
     # unite splitted adjacent similar types
     prev_type, prev_text = None, ""
     new_para = []
@@ -162,6 +119,28 @@ def analyze(para):
         else:
             prev_type, prev_text = type, text
     new_para.append((prev_type, prev_text))
+
+    para = new_para
+    new_para = []
+
+    # fix wrong 'source's
+    source_pattern = re.compile(r"(\[.*\])")
+    for (type, text) in para:
+        if type == 'source':
+            small = False
+            l = source_pattern.split(text)
+            for (chunk) in source_pattern.split(text):
+                if source_pattern.match(chunk):
+                    if small:
+                        new_para.append(('source_small', chunk))
+                    else:
+                        new_para.append((type, chunk))
+                elif chunk.strip() != "":
+                    new_para.append(('definition_small', chunk))
+                    small = True
+                # re.split(r"(\[.*\])", s)
+        else:
+            new_para.append((type, text))
 
     # fix
     return new_para
@@ -180,18 +159,27 @@ def add_to_output(para):
     first_type, first_text = para[0]
     if len(para) == 1 and first_type == 'subject':
         # take the 'text' of the first item
-        h3(first_text)
+        tags.h3(first_text)
     else:
         for (i, (type, text)) in enumerate(para):
-            if is_subject(para, i):
+            if type == "new_line":
+                tags.br()
+            elif is_subject(para, i):
                 if not is_prev_subject(para, i):
-                    p()
-                subject(text)
+                    tags.p()
+                    #tags.br()
+                subject(type, text)
             else:
                 regular(type, text)
-        # if is_subject(para, i, next=True):
-        #     p()
-        p()
+
+        tags.br()
+
+def add_footnote_to_output(id, paragraphs):
+    text = ""
+    for (para) in paragraphs:
+        text += para.text
+    tags.li(text)
+
 
 temp_l = []
 def bold_type(type):
@@ -210,7 +198,9 @@ def bold_type(type):
 html_doc = dominate.document(title=u"מילון הראיה")
 html_doc['dir'] = 'rtl'
 with html_doc.head:
-    link(rel='stylesheet', href='style.css')
+    tags.link(rel='stylesheet', href='style.css')
+    tags.link(rel='stylesheet', href='html_demos-gh-pages/footnotes.css')
+    tags.script(src="html_demos-gh-pages/footnotes.js")
 
 with open('debug.txt', 'w') as debug_file:
     with html_doc:
@@ -237,12 +227,25 @@ with open('debug.txt', 'w') as debug_file:
                             print s
                             debug_file.write(s.encode('utf8'))
 
-                para = analyze(para)
+                    if run.footnote_references:
+                        for (note) in run.footnote_references:
+                            para.append(('footnote', str(note.id)))
+
+                    para.append(("new_line", ""))
+
+
+                para = analyze_and_fix(para)
                 add_to_output(para)
+            else:
+                # print paragraph
+                tags.p()
 
+        # tags.hr()
 
-        # for footnote in word_doc_footnotes.footnotes_part.notes:
-        #     print footnote
+        with tags.ol(id="footnotes"):
+            for footnote in word_doc.footnotes_part.notes:
+                if footnote.id >= 1:
+                    add_footnote_to_output(footnote.id, footnote.paragraphs)
 
 
 
@@ -257,3 +260,15 @@ with open('debug.html', 'w') as debug_file:
 with open('index.html', 'w') as debug_file:
     debug_file.write(html_doc.render(inline=True).encode('utf8'))
     print "Created index.html"
+
+with zipfile.ZipFile('milon.zip', 'w', zipfile.ZIP_DEFLATED) as myzip:
+    for (filename) in (
+        'config.xml',
+        'index.html',
+        'style.css',
+        'html_demos-gh-pages/footnotes.css',
+        'html_demos-gh-pages/footnotes.js',
+    ):
+        myzip.write(filename)
+
+    print "Created milon.zip"

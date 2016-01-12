@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 
-#TODO: make circles to links
 #TODO: split into smaller HTML files
-#TODO: handle footnotes' fonts
-#TODO: do something with new-lines?
+#TODO: handle footnotes' styles
 #TODO: TOC, search
 #TODO: make footnotes to be superscript, without using ()
 #TODO: try to decrease footnotes counter
+#TODO: make smart links on circles (identify BAKHLAM, etc.)
 
 #TODO: remove out 'styles' dict
 #TODO: icon
@@ -95,8 +94,14 @@ def regular(type, text):
     else:
         if "\n" in text:
             print "New:", text
-        with tags.span(text):
-            tags.attr(cls=type)
+        if u"°" in text:
+            href = re.sub(u"°", "", text)
+            href = re.sub(u"־", " ", href)
+            with tags.span(tags.a(text, href="#"+href)):
+                tags.attr(cls=type)
+        else:
+            with tags.span(text):
+                tags.attr(cls=type)
 
 def is_subject(para, i, next=False):
     type, text = para[i]
@@ -175,7 +180,6 @@ def analyze_and_fix(para):
     for (type, text) in para:
         if type == 'source':
             small = False
-            l = source_pattern.split(text)
             for (chunk) in source_pattern.split(text):
                 if source_pattern.match(chunk):
                     if small:
@@ -189,9 +193,23 @@ def analyze_and_fix(para):
         else:
             new_para.append((type, text))
 
+    # make links from circles - °
+    para = new_para
+    new_para = []
+    pattern = re.compile(u"([\S־]*\S+°)", re.UNICODE)
+    for (type, text) in para:
+        # don't do this for subjects - it complicates their own link name...
+        if u"°" in text and 'subject' not in type:
+            for (chunk) in pattern.split(text):
+                new_para.append((type, chunk))
+        else:
+            new_para.append((type, text))
+
+
+
     with open('debug_fix.txt', 'a') as debug_file:
         debug_file.write("---------------\n")
-        for (type, text) in para:
+        for (type, text) in new_para:
             s = "%s:%s.\n" % (type, text)
             debug_file.write(s.encode('utf8'))
 

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-#TODO: fix wrong subjects
 #TODO: make circles to links
 #TODO: split into smaller HTML files
 #TODO: handle footnotes' fonts
@@ -86,7 +85,7 @@ unknown_list = []
 
 
 def subject(type, text):
-    with tags.span(tags.a(text, href="#%s" % text, id=text)):
+    with tags.span(tags.a(text, href="#%s" % text.strip(), id=text.strip())):
         tags.attr(cls=type)
 
 def regular(type, text):
@@ -256,6 +255,11 @@ with html_doc.head:
     tags.link(rel='stylesheet', href='style.css')
     tags.link(rel='stylesheet', href='html_demos-gh-pages/footnotes.css')
     tags.script(src="html_demos-gh-pages/footnotes.js")
+    tags.script(src="milon.js")
+    with tags.div():
+        tags.attr(cls="fixbar")
+        tags.input(type="search", id="subject_search", onchange='search()')
+        tags.button(u"חפש הגדרה", type="button", onclick='search()')
 
 with open('debug.txt', 'w') as debug_file:
     with html_doc:
@@ -336,6 +340,7 @@ with zipfile.ZipFile('milon.zip', 'w', zipfile.ZIP_DEFLATED) as myzip:
         'style.css',
         'html_demos-gh-pages/footnotes.css',
         'html_demos-gh-pages/footnotes.js',
+        'milon.js',
     ):
         myzip.write(filename)
 

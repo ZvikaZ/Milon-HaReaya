@@ -22,18 +22,8 @@ h5 {
     font-size: 2em;
 }
 
-.fixbar {
-    margin: 0;
-    padding: 0.3em;
-    overflow: hidden;
-    background-color: white; /*#333;*/
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-
 body {
-    margin-top: 2.3em;
+    margin-top: 3.8em;
  }
 
 a {

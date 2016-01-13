@@ -27,13 +27,12 @@ import re
 import zipfile
 import os
 import shutil
+import glob
 
 doc_file_name = 'dict.docx'
 #doc_file_name = 'dict_short.docx'
 #doc_file_name = 'snippet2.docx'
 
-# word_doc = docx.Document(doc_file_name)
-# word_doc_footnotes = docx_fork_ludoo.Document(doc_file_name)
 
 word_doc = docx.Document(doc_file_name)
 word_doc_footnotes = docx_fork_ludoo.Document(doc_file_name)
@@ -259,6 +258,16 @@ def analyze_and_fix(para):
 
 
 def fix_links(html_docs_l):
+    for (doc) in html_docs_l:
+        fixbar = doc.head.children[-1]
+        assert fixbar['class'] == 'fixbar'
+        dropdown = fixbar.children[0]
+        assert dropdown['class'] == 'dropdown'
+        dropdown_content = dropdown.children[-1]
+        assert dropdown_content['class'] == 'dropdown-content'
+        with dropdown_content:
+            for (html_doc) in html_docs_l:
+                tags.a(html_doc.name, href=clean_name(html_doc.name)+".html")
     return html_docs_l
 
 def add_to_output(html_doc, para):
@@ -313,11 +322,24 @@ def open_html_doc(name):
     html_doc['dir'] = 'rtl'
     with html_doc.head:
         tags.link(rel='stylesheet', href='style.css')
+        tags.link(rel='stylesheet', href='fixed_bar.css')
         tags.link(rel='stylesheet', href='html_demos-gh-pages/footnotes.css')
         tags.script(src="html_demos-gh-pages/footnotes.js")
         tags.script(src="milon.js")
         with tags.div():
             tags.attr(cls="fixbar")
+
+            with tags.div():
+                tags.attr(cls="dropdown")
+                with tags.button(u"מדורים"):
+                    tags.attr(cls="dropbtn")
+                with tags.div():
+                    tags.attr(cls="dropdown-content")
+
+            with tags.button(u"הקודם", onclick='prev_section()'):
+                tags.attr(cls="dropbtn")
+            with tags.button(u"הבא", onclick='next_section()'):
+                tags.attr(cls="dropbtn")
             tags.input(type="search", id="subject_search", onchange='search()')
             tags.button(u"חפש הגדרה", type="button", onclick='search()')
 
@@ -392,6 +414,7 @@ os.mkdir("output")
 os.mkdir("output/html_demos-gh-pages")
 for (f) in (
     'style.css',
+    'fixed_bar.css',
     'html_demos-gh-pages/footnotes.css',
     'html_demos-gh-pages/footnotes.js',
     'milon.js',
@@ -438,8 +461,9 @@ with open('output/debug.txt', 'w') as debug_file:
                     footnote_references = footnote_run.footnote_references
                     if footnote_references:
                         for (note) in footnote_references:
-                            para.append(('footnote', str(note.id)))
                             html_doc.footnote_ids_of_this_html_doc.append(note.id)
+                            relative_note_id = note.id - html_doc.footnote_ids_of_this_html_doc[0] + 1
+                            para.append(('footnote', str(relative_note_id)))
                 except:
                     print "Failed footnote_references"
 
@@ -464,15 +488,29 @@ if unknown_list:
     print "\n\nMissing:"
     print unknown_list
 
-with zipfile.ZipFile('output/milon.zip', 'w', zipfile.ZIP_DEFLATED) as myzip:
-    for (filename) in (
-        'config.xml',
-        'index.html',
-        'style.css',
-        'html_demos-gh-pages/footnotes.css',
-        'html_demos-gh-pages/footnotes.js',
-        'milon.js',
-    ):
-        myzip.write(filename)
 
-    print "Created milon.zip"
+#TODO: just recursive zip all output/ dir (excluding debug*, if possible)
+
+# with zipfile.ZipFile('output/milon.zip', 'w', zipfile.ZIP_DEFLATED) as myzip:
+#     files =  [
+#         'config.xml',
+#         'index.html',
+#         'style.css',
+#         'fixed_bar.css',
+#         'html_demos-gh-pages/footnotes.css',
+#         'html_demos-gh-pages/footnotes.js',
+#         'milon.js',
+#     ]
+#     files.append(glob.glob(outp))
+#     for (filename) in (
+#         'config.xml',
+#         'index.html',
+#         'style.css',
+#         'fixed_bar.css',
+#         'html_demos-gh-pages/footnotes.css',
+#         'html_demos-gh-pages/footnotes.js',
+#         'milon.js',
+#     ):
+#         myzip.write(filename)
+#
+#     print "Created milon.zip"

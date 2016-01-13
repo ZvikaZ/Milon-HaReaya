@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+# check note 78 in Tora
+
 #TODO: make headings to links
 #TODO: split into smaller HTML files: title opens, section opens if not first
 #TODO: handle footnotes' styles
@@ -24,6 +26,7 @@ import dominate.tags as tags
 import re
 import zipfile
 import os
+import shutil
 
 doc_file_name = 'dict.docx'
 #doc_file_name = 'dict_short.docx'
@@ -245,7 +248,7 @@ def analyze_and_fix(para):
 
 
 
-    with open('debug_fix.txt', 'a') as debug_file:
+    with open('output/debug_fix.txt', 'a') as debug_file:
         debug_file.write("---------------\n")
         for (type, text) in new_para:
             s = "%s:%s.\n" % (type, text)
@@ -254,6 +257,9 @@ def analyze_and_fix(para):
     # fix
     return new_para
 
+
+def fix_links(html_docs_l):
+    return html_docs_l
 
 def add_to_output(html_doc, para):
     # we shouldn't accept empty paragraph (?)
@@ -265,7 +271,7 @@ def add_to_output(html_doc, para):
                 tags.p()
                 tags.p()
                 heading = sizes.get_heading_type(size_kind)
-                print type, str(heading)[-2:], text
+                print type, text
                 heading(text)
             elif type == "new_line":
                 tags.br()
@@ -301,12 +307,8 @@ def bold_type(type):
             temp_l.append(type)
         return type
 
-try:
-    os.remove("debug_fix.txt")
-except:
-    pass
 
-def open_html_doc():
+def open_html_doc(name):
     html_doc = dominate.document(title=u"מילון הראיה")
     html_doc['dir'] = 'rtl'
     with html_doc.head:
@@ -320,28 +322,85 @@ def open_html_doc():
             tags.button(u"חפש הגדרה", type="button", onclick='search()')
 
     html_doc.footnote_ids_of_this_html_doc = []
+    html_doc.name = name
+
     return html_doc
+
+
+def clean_name(s):
+    return re.sub(r'[^\w\s]', '', s, flags=re.UNICODE)
+
 
 def close_html_doc(html_doc):
     with html_doc:
-        # add footnotes content of this paragraph:
+        # add footnotes content of this section:
         with tags.ol(id="footnotes"):
             for (id) in html_doc.footnote_ids_of_this_html_doc:
                 footnote = word_doc_footnotes.footnotes_part.notes[id + 1]
                 assert footnote.id == id
                 add_footnote_to_output(footnote.paragraphs)
 
-    with open('debug.html', 'w') as debug_file:
-        debug_file.write(html_doc.render(inline=False).encode('utf8'))
-        print "Created debug.html"
+    html_doc_name = clean_name(html_doc.name)
+    name = "debug_%s.html" % html_doc_name
+    with open("output/" + name, 'w') as f:
+        f.write(html_doc.render(inline=False).encode('utf8'))
 
-    with open('index.html', 'w') as debug_file:
-        debug_file.write(html_doc.render(inline=True).encode('utf8'))
-        print "Created index.html"
+    name = "%s.html" % html_doc_name
+    with open("output/" + name, 'w') as f:
+        f.write(html_doc.render(inline=True).encode('utf8'))
+        print "Created ", name
+
+heading_back_to_back = False
+pattern = re.compile(r"\W", re.UNICODE)
+def is_need_new_html_doc(para):
+    global heading_back_to_back
+    for (type, text) in para:
+        #TODO: think of a way to nicely combine first 'section' into 'title'
+        if type in ("heading_title", "heading_section"):
+            if not heading_back_to_back:
+                heading_back_to_back = True
+                return text.strip()
+            else:
+                # the previous, and this, are headings - unite them
+                result = html_docs_l[-1].name + " " + text.strip()
+                return ('UPDATE_NAME', result)
+
+    # if we're here - we didn't 'return text' with a heading
+    heading_back_to_back = False
+
+html_docs_l = []
+def get_active_html_doc(para):
+    name = is_need_new_html_doc(para)
+    if name:
+        if isinstance(name, tuple):
+            op, new = name
+            assert op == 'UPDATE_NAME'
+            print "Updating ", new
+            html_docs_l[-1].name = new
+        else:
+            html_docs_l.append(open_html_doc(name))
+            print "Opening ", name
+    return html_docs_l[-1]
 
 
-with open('debug.txt', 'w') as debug_file:
-    html_doc = open_html_doc()
+try:
+    shutil.rmtree("output")
+except:
+    pass
+
+os.mkdir("output")
+os.mkdir("output/html_demos-gh-pages")
+for (f) in (
+    'style.css',
+    'html_demos-gh-pages/footnotes.css',
+    'html_demos-gh-pages/footnotes.js',
+    'milon.js',
+    'index.html',
+):
+    shutil.copyfile(f, os.path.join("output", f))
+
+
+with open('output/debug.txt', 'w') as debug_file:
     for (paragraph, footnote_paragraph) in zip(word_doc.paragraphs, word_doc_footnotes.paragraphs):
         if paragraph.text.strip():
             # print "Paragraph:", paragraph.text, "$"
@@ -373,6 +432,7 @@ with open('debug.txt', 'w') as debug_file:
                         print s
                         debug_file.write(s.encode('utf8'))
 
+
                 try:
                     # if run.footnote_references:
                     footnote_references = footnote_run.footnote_references
@@ -388,34 +448,23 @@ with open('debug.txt', 'w') as debug_file:
             # tags.br()
             para.append(("new_line", "\n"))
             para = analyze_and_fix(para)
+            html_doc = get_active_html_doc(para)
             add_to_output(html_doc, para)
         else:
-            # print paragraph
-            html_doc.add(tags.p())
-            # tags.br()
-            # tags.hr()
-
-        # para.append(("new_line", "\n"))
-        # tags.br()
-    # tags.hr()
-
-    # try:
-    #     with tags.ol(id="footnotes"):
-    #         for footnote in word_doc_footnotes.footnotes_part.notes:
-    #             if footnote.id >= 1:
-    #                 add_footnote_to_output(html_doc, footnote.paragraphs)
-    # except:
-    #     print "Failed footnotes part"
+            # html_doc.add(tags.p())
+            pass
 
 
+html_docs_l = fix_links(html_docs_l)
 
-close_html_doc(html_doc)
+for (html_doc) in html_docs_l:
+    close_html_doc(html_doc)
 
 if unknown_list:
     print "\n\nMissing:"
     print unknown_list
 
-with zipfile.ZipFile('milon.zip', 'w', zipfile.ZIP_DEFLATED) as myzip:
+with zipfile.ZipFile('output/milon.zip', 'w', zipfile.ZIP_DEFLATED) as myzip:
     for (filename) in (
         'config.xml',
         'index.html',

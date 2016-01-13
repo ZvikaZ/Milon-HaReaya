@@ -1,6 +1,27 @@
 /* display: block; */
 /* color: green; */
 
+h1 {
+    font-size: 4em;
+    /* center? */
+}
+
+h2 {
+    font-size: 3em;
+}
+
+h3 {
+    font-size: 2.5em;
+}
+
+h4 {
+    font-size: 2.4em;
+}
+
+h5 {
+    font-size: 2em;
+}
+
 .fixbar {
     margin: 0;
     padding: 0.3em;

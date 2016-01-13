@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 
-#TODO: split into smaller HTML files
+#TODO: make headings to links
+#TODO: split into smaller HTML files: title opens, section opens if not first
 #TODO: handle footnotes' styles
 #TODO: TOC, search
 #TODO: make footnotes to be superscript, without using ()
 #TODO: try to decrease footnotes counter
-#TODO: make smart links on circles (identify BAKHLAM, etc.)
+#TODO: make smart links on circles (identify BAKHLAM, 'zohama' with Alef or He, etc.)
+#TODO: double footnote, like #8 - recognize also the second
+#TODO: splitted bubject, like "אמר לו הקדוש ברוך הוא (לגבריאל° שבקש להציל את אברהם־אבינו° מכבשן האש) אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד"
 
 #TODO: remove out 'styles' dict
 #TODO: icon
@@ -22,8 +25,8 @@ import re
 import zipfile
 import os
 
-#doc_file_name = 'dict.docx'
-doc_file_name = 'dict_short.docx'
+doc_file_name = 'dict.docx'
+#doc_file_name = 'dict_short.docx'
 #doc_file_name = 'snippet2.docx'
 
 # word_doc = docx.Document(doc_file_name)
@@ -79,6 +82,41 @@ styles = {
     'FootnoteReference': 'FootnoteReference',
     'EndnoteReference': 'EndnoteReference', #?
 }
+
+# if the actual size is greater
+class Sizes:
+    my_dict = {
+        381000: 'heading_title',
+        330200: 'heading_section',              # e.g., "Tora"
+        279400: 'heading_sub-section-bigger',   # e.g., "Mehkarim Beurim"
+        215900: 'heading_sub-section',          # e.g., "Avraham Yitzhak VeYaakov"
+        177800: 'heading_letter',
+        165100: 'normal',               # 152400
+    }
+
+    # yeah, it's not nice and programmaticish to have this twice
+    # but it's more efficient :)
+    normal = 165100
+
+    def match(self, size):
+        if size > self.normal:
+            return self.my_dict.get(size, "unknown")
+        else:
+            return 'normal'
+
+    def get_heading_type(self, kind):
+        if kind == 'heading_title':
+            return tags.h1
+        elif kind == 'heading_section':
+            return tags.h2
+        elif kind == 'heading_sub-section-bigger':
+            return tags.h3
+        elif kind == 'heading_sub-section':
+            return tags.h4
+        elif kind == 'heading_letter':
+            return tags.h5
+
+sizes = Sizes()
 
 unknown_list = []
 
@@ -217,18 +255,19 @@ def analyze_and_fix(para):
     return new_para
 
 
-def add_to_output(para):
+def add_to_output(html_doc, para):
     # we shouldn't accept empty paragraph (?)
     assert len(para) > 0
 
-    # if there is only 1 'subject' item in the paragraph, it's probably a heading
-    first_type, first_text = para[0]
-    if len(para) == 1 and first_type == 'subject':
-        # take the 'text' of the first item
-        tags.h3(first_text)
-    else:
+    with html_doc:
         for (i, (type, text)) in enumerate(para):
-            if type == "new_line":
+            if 'heading' in type and text.strip():
+                tags.p()
+                tags.p()
+                heading = sizes.get_heading_type(size_kind)
+                print type, str(heading)[-2:], text
+                heading(text)
+            elif type == "new_line":
                 tags.br()
             elif is_subject(para, i):
                 if not is_prev_subject(para, i):
@@ -241,7 +280,7 @@ def add_to_output(para):
 
         # tags.br()
 
-def add_footnote_to_output(id, paragraphs):
+def add_footnote_to_output(paragraphs):
     text = ""
     for (para) in paragraphs:
         text += para.text
@@ -267,89 +306,114 @@ try:
 except:
     pass
 
-html_doc = dominate.document(title=u"מילון הראיה")
-html_doc['dir'] = 'rtl'
-with html_doc.head:
-    tags.link(rel='stylesheet', href='style.css')
-    tags.link(rel='stylesheet', href='html_demos-gh-pages/footnotes.css')
-    tags.script(src="html_demos-gh-pages/footnotes.js")
-    tags.script(src="milon.js")
-    with tags.div():
-        tags.attr(cls="fixbar")
-        tags.input(type="search", id="subject_search", onchange='search()')
-        tags.button(u"חפש הגדרה", type="button", onclick='search()')
+def open_html_doc():
+    html_doc = dominate.document(title=u"מילון הראיה")
+    html_doc['dir'] = 'rtl'
+    with html_doc.head:
+        tags.link(rel='stylesheet', href='style.css')
+        tags.link(rel='stylesheet', href='html_demos-gh-pages/footnotes.css')
+        tags.script(src="html_demos-gh-pages/footnotes.js")
+        tags.script(src="milon.js")
+        with tags.div():
+            tags.attr(cls="fixbar")
+            tags.input(type="search", id="subject_search", onchange='search()')
+            tags.button(u"חפש הגדרה", type="button", onclick='search()')
+
+    html_doc.footnote_ids_of_this_html_doc = []
+    return html_doc
+
+def close_html_doc(html_doc):
+    with html_doc:
+        # add footnotes content of this paragraph:
+        with tags.ol(id="footnotes"):
+            for (id) in html_doc.footnote_ids_of_this_html_doc:
+                footnote = word_doc_footnotes.footnotes_part.notes[id + 1]
+                assert footnote.id == id
+                add_footnote_to_output(footnote.paragraphs)
+
+    with open('debug.html', 'w') as debug_file:
+        debug_file.write(html_doc.render(inline=False).encode('utf8'))
+        print "Created debug.html"
+
+    with open('index.html', 'w') as debug_file:
+        debug_file.write(html_doc.render(inline=True).encode('utf8'))
+        print "Created index.html"
+
 
 with open('debug.txt', 'w') as debug_file:
-    with html_doc:
-        for (paragraph, footnote_paragraph) in zip(word_doc.paragraphs, word_doc_footnotes.paragraphs):
-            if paragraph.text.strip():
-                # print "Paragraph:", paragraph.text, "$"
-                para = []
-                debug_file.write("\n\nNEW_PARA:\n------\n")
-                for (run, footnote_run) in zip(paragraph.runs, footnote_paragraph.runs):
-                    s = "!%s:%s$" % (styles.get(run_style_id(run), run_style_id(run)), run.text)
-                    # print "!%s:%s$" % (styles.get(run.style.style_id, run.style.style_id), run.text)
-                    debug_file.write(s.encode('utf8'))
-                    type = styles.get(run_style_id(run), "unknown")
-                    if run.bold:
-                        type = bold_type(type)
-                    # add_to_output(type, run.text)
-                    para.append((type, run.text))
+    html_doc = open_html_doc()
+    for (paragraph, footnote_paragraph) in zip(word_doc.paragraphs, word_doc_footnotes.paragraphs):
+        if paragraph.text.strip():
+            # print "Paragraph:", paragraph.text, "$"
+            para = []
+            debug_file.write("\n\nNEW_PARA:\n------\n")
+            for (run, footnote_run) in zip(paragraph.runs, footnote_paragraph.runs):
+                s = "!%s:%s$" % (styles.get(run_style_id(run), run_style_id(run)), run.text)
+                # print "!%s:%s$" % (styles.get(run.style.style_id, run.style.style_id), run.text)
+                debug_file.write(s.encode('utf8'))
+                type = styles.get(run_style_id(run), "unknown")
 
-                    if type == "unknown":
-                        if run_style_id(run) not in unknown_list:
-                            unknown_list.append(run_style_id(run))
-                            print paragraph.text
-                            s = "\nMissing: !%s:%s$\n\n" % (run_style_id(run), run.text)
-                            print s
-                            debug_file.write(s.encode('utf8'))
+                if run.bold:
+                    type = bold_type(type)
 
-                    try:
-                        # if run.footnote_references:
-                        footnote_references = footnote_run.footnote_references
-                        if footnote_references:
-                            for (note) in footnote_references:
-                                para.append(('footnote', str(note.id)))
-                    except:
-                        print "Failed footnote_references"
+                if run.font.size and run.text.strip():
+                    size_kind = sizes.match(run.font.size)
+                    if size_kind == 'unknown':
+                        print "!%s. Size: %d, Bool: %s, %s:%s$" % (size_kind, run.font.size, run.bold, type, run.text)
+                    if size_kind not in ('normal', 'unknown'):
+                        type = size_kind
 
-                    # para.append(("new_line", "\n"))
+                para.append((type, run.text))
 
-                # tags.br()
-                para.append(("new_line", "\n"))
-                para = analyze_and_fix(para)
-                add_to_output(para)
-            else:
-                # print paragraph
-                tags.p()
-                # tags.br()
-                # tags.hr()
+                if type == "unknown":
+                    if run_style_id(run) not in unknown_list:
+                        unknown_list.append(run_style_id(run))
+                        print paragraph.text
+                        s = "\nMissing: !%s:%s$\n\n" % (run_style_id(run), run.text)
+                        print s
+                        debug_file.write(s.encode('utf8'))
 
-            # para.append(("new_line", "\n"))
+                try:
+                    # if run.footnote_references:
+                    footnote_references = footnote_run.footnote_references
+                    if footnote_references:
+                        for (note) in footnote_references:
+                            para.append(('footnote', str(note.id)))
+                            html_doc.footnote_ids_of_this_html_doc.append(note.id)
+                except:
+                    print "Failed footnote_references"
+
+                # para.append(("new_line", "\n"))
+
             # tags.br()
-        # tags.hr()
+            para.append(("new_line", "\n"))
+            para = analyze_and_fix(para)
+            add_to_output(html_doc, para)
+        else:
+            # print paragraph
+            html_doc.add(tags.p())
+            # tags.br()
+            # tags.hr()
 
-        try:
-            with tags.ol(id="footnotes"):
-                for footnote in word_doc_footnotes.footnotes_part.notes:
-                    if footnote.id >= 1:
-                        add_footnote_to_output(footnote.id, footnote.paragraphs)
-        except:
-            print "Failed footnotes part"
+        # para.append(("new_line", "\n"))
+        # tags.br()
+    # tags.hr()
+
+    # try:
+    #     with tags.ol(id="footnotes"):
+    #         for footnote in word_doc_footnotes.footnotes_part.notes:
+    #             if footnote.id >= 1:
+    #                 add_footnote_to_output(html_doc, footnote.paragraphs)
+    # except:
+    #     print "Failed footnotes part"
 
 
+
+close_html_doc(html_doc)
 
 if unknown_list:
     print "\n\nMissing:"
     print unknown_list
-
-with open('debug.html', 'w') as debug_file:
-    debug_file.write(html_doc.render(inline=False).encode('utf8'))
-    print "Created debug.html"
-
-with open('index.html', 'w') as debug_file:
-    debug_file.write(html_doc.render(inline=True).encode('utf8'))
-    print "Created index.html"
 
 with zipfile.ZipFile('milon.zip', 'w', zipfile.ZIP_DEFLATED) as myzip:
     for (filename) in (

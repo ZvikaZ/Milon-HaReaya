@@ -3,15 +3,14 @@
 # check note 78 in Tora
 
 #TODO: make headings to links
-#TODO: split into smaller HTML files: title opens, section opens if not first
 #TODO: handle footnotes' styles
 #TODO: TOC, search
 #TODO: make footnotes to be superscript, without using ()
-#TODO: try to decrease footnotes counter
 #TODO: make smart links on circles (identify BAKHLAM, 'zohama' with Alef or He, etc.)
 #TODO: double footnote, like #8 - recognize also the second
 #TODO: splitted bubject, like "אמר לו הקדוש ברוך הוא (לגבריאל° שבקש להציל את אברהם־אבינו° מכבשן האש) אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד"
 #TODO: increase/decrease font size
+#TODO: "Avnet" - new paragraph?
 
 #TODO: remove out 'styles' dict
 #TODO: icon
@@ -28,11 +27,9 @@ import re
 import zipfile
 import os
 import shutil
-import glob
 
-#doc_file_name = 'dict.docx'
-doc_file_name = 'dict_short.docx'
-#doc_file_name = 'snippet2.docx'
+doc_file_name = 'dict.docx'
+#doc_file_name = 'dict_short.docx'
 
 
 word_doc = docx.Document(doc_file_name)
@@ -169,6 +166,12 @@ def is_prev_newline(para, i):
     except:
         return False
 
+def make_sub_subject(subj):
+    if subj == 'subject_small':
+        return 'sub-subject_normal'
+    else:
+        return subj
+
 def analyze_and_fix(para):
     # unite splitted adjacent similar types
     prev_type, prev_text = None, ""
@@ -206,9 +209,10 @@ def analyze_and_fix(para):
             # first
             # after new_line and empty
             # after subject,"-"
-            if (index == 0) or \
-                    (is_prev_newline(para, index)) or (is_prev_subject(para, index)):
+            if (index == 0) or (is_prev_newline(para, index)):
                 new_para.append((type, text))
+            elif (is_prev_subject(para, index)):
+                new_para.append((make_sub_subject(type), text))
             else:
                 new_para.append(("fake_"+type, text))
 
@@ -396,7 +400,11 @@ def is_need_new_html_doc(para):
                 return text.strip()
             else:
                 # the previous, and this, are headings - unite them
-                result = html_docs_l[-1].name + " " + text.strip()
+                if html_docs_l[-1].name != u"מדורים":
+                    result = html_docs_l[-1].name + " " + text.strip()
+                else:
+                    # in the special case of 'Section' heading - we don't need it
+                    result = text.strip()
                 return ('UPDATE_NAME', result)
 
     # if we're here - we didn't 'return text' with a heading

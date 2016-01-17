@@ -1,22 +1,25 @@
 # -*- coding: utf-8 -*-
 
-# check note 78 in Tora
-
+#TODO: make current section bold, and not link
+#TODO: inter section links
+#TODO: "Mehkarim" - make links
 #TODO: make headings to links
 #TODO: handle footnotes' styles
-#TODO: TOC, search
+#TODO: MENU: TOC, search, current section, about
+#TODO: add letters to TOC
 #TODO: make footnotes to be superscript, without using ()
 #TODO: make smart links on circles (identify BAKHLAM, 'zohama' with Alef or He, etc.)
 #TODO: double footnote, like #8 - recognize also the second
 #TODO: splitted bubject, like "אמר לו הקדוש ברוך הוא (לגבריאל° שבקש להציל את אברהם־אבינו° מכבשן האש) אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד"
 #TODO: increase/decrease font size
 #TODO: "Avnet" - new paragraph?
+#TODO: handle new lines in the beginning
+#TODO: make definition in new line?
 
 #TODO: remove out 'styles' dict
 #TODO: icon
 #TODO: automate build
 #TODO: iphone?
-
 
 
 import docx
@@ -251,6 +254,42 @@ def analyze_and_fix(para):
         else:
             new_para.append((type, text))
 
+
+    # fix new lines inside headings
+    para = new_para
+    new_para = []
+    ignore_new_line = False
+    for (type, text) in para:
+        if 'heading' in type:
+            ignore_new_line = True
+            new_para.append((type, text))
+        elif type == "new_line" and ignore_new_line:
+            pass
+        else:
+            new_para.append((type, text))
+
+
+    # scan for 'empty subjects' ...
+    has_subject = False
+    has_definition = False
+    for (type, text) in para:
+        if 'subject' in type and 'fake' not in type and text.strip():
+            has_subject = True
+            has_definition = False
+        elif 'definition' in type:
+            has_definition = True
+
+    # ... and fix 'em if required
+    if has_subject and not has_definition:
+        # empty subject
+        #TODO - might be caused by 'heading' interpreted as subject
+        para = new_para
+        new_para = []
+        for (type, text) in para:
+            if 'subject' in type and 'fake' not in type:
+                new_para.append(('fake_'+type, text))
+            else:
+                new_para.append((type, text))
 
 
     with open('output/debug_fix.txt', 'a') as debug_file:

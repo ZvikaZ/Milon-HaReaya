@@ -11,6 +11,7 @@
 #TODO: make smart links on circles (identify BAKHLAM, 'zohama' with Alef or He, etc.)
 #TODO: double footnote, like #8 - recognize also the second
 #TODO: splitted bubject, like "אמר לו הקדוש ברוך הוא (לגבריאל° שבקש להציל את אברהם־אבינו° מכבשן האש) אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד"
+#TODO: increase/decrease font size
 
 #TODO: remove out 'styles' dict
 #TODO: icon
@@ -29,8 +30,8 @@ import os
 import shutil
 import glob
 
-doc_file_name = 'dict.docx'
-#doc_file_name = 'dict_short.docx'
+#doc_file_name = 'dict.docx'
+doc_file_name = 'dict_short.docx'
 #doc_file_name = 'snippet2.docx'
 
 
@@ -52,15 +53,15 @@ def run_style_id(run):
 
 
 styles = {
-    's01': 'subject',
-    's11': 'sub-subject',
-    's02': 'definition',
-    's03': 'source',
-    'Heading3Char': 'definition',
-    '1': 'definition',   #?
-    'FootnoteTextChar1': 'definition',   #?
-    'HebrewChar': 'definition',   #?
-    'DefaultParagraphFont': 'source',    #?
+    's01': 'subject_normal',
+    's11': 'sub-subject_normal',
+    's02': 'definition_normal',
+    's03': 'source_normal',
+    'Heading3Char': 'definition_normal',
+    '1': 'definition_normal',   #?
+    'FootnoteTextChar1': 'definition_normal',   #?
+    'HebrewChar': 'definition_normal',   #?
+    'DefaultParagraphFont': 'source_normal',    #?
 
     's15': 'subject_small',
     's17': 'subject_small',
@@ -69,6 +70,7 @@ styles = {
     's038': 'source_small',
     's0590': 'source_small',
     's050': 'source_small',
+    '050': 'source_small',
 
     's149': 'subject_light',
     's16': 'subject_light',
@@ -218,7 +220,7 @@ def analyze_and_fix(para):
     new_para = []
     source_pattern = re.compile(r"(\[.*\])")
     for (type, text) in para:
-        if type == 'source':
+        if type == 'source_normal':
             small = False
             for (chunk) in source_pattern.split(text):
                 if source_pattern.match(chunk):
@@ -267,7 +269,7 @@ def fix_links(html_docs_l):
         assert dropdown_content['class'] == 'dropdown-content'
         with dropdown_content:
             for (html_doc) in html_docs_l:
-                tags.a(html_doc.name, href=clean_name(html_doc.name)+".html")
+                tags.a(html_doc.name, href=str(html_doc.index)+".html")
     return html_docs_l
 
 def add_to_output(html_doc, para):
@@ -277,8 +279,8 @@ def add_to_output(html_doc, para):
     with html_doc:
         for (i, (type, text)) in enumerate(para):
             if 'heading' in type and text.strip():
-                tags.p()
-                tags.p()
+                # tags.p()
+                # tags.p()
                 heading = sizes.get_heading_type(size_kind)
                 print type, text
                 heading(text)
@@ -303,11 +305,17 @@ def add_footnote_to_output(paragraphs):
 
 
 temp_l = []
-def bold_type(type):
-    if type == 'definition':
+def bold_type(s, type, run):
+    if type == 'definition_normal':
         return 'subject_small'
-    elif type == 'source':
-        return 'sub-subject'
+    elif type == 'source_normal' and run.style.style_id == "s03":
+        return 'sub-subject_small'
+    elif type == 'source_normal' and run.style.style_id == "DefaultParagraphFont" and run.font.size == 139700:
+        return 'subject_normal'
+    elif type == 'source_normal' and run.style.style_id == "DefaultParagraphFont" and run.font.size != 139700:
+        return 'sub-subject_normal'
+    elif type == 'source_normal':
+        print "Strange 'source_normal' bold!"
     elif 'subject' in type:
         return type
     else:
@@ -321,6 +329,8 @@ def open_html_doc(name):
     html_doc = dominate.document(title=u"מילון הראיה")
     html_doc['dir'] = 'rtl'
     with html_doc.head:
+        with tags.meta():
+            tags.attr(charset="utf-8")
         tags.link(rel='stylesheet', href='style.css')
         tags.link(rel='stylesheet', href='fixed_bar.css')
         tags.link(rel='stylesheet', href='html_demos-gh-pages/footnotes.css')
@@ -331,26 +341,28 @@ def open_html_doc(name):
 
             with tags.div():
                 tags.attr(cls="dropdown")
-                with tags.button(u"מדורים"):
+                with tags.button(u"תוכן"):
                     tags.attr(cls="dropbtn")
                 with tags.div():
                     tags.attr(cls="dropdown-content")
 
-            with tags.button(u"הקודם", onclick='prev_section()'):
-                tags.attr(cls="dropbtn")
-            with tags.button(u"הבא", onclick='next_section()'):
-                tags.attr(cls="dropbtn")
-            tags.input(type="search", id="subject_search", onchange='search()')
-            tags.button(u"חפש הגדרה", type="button", onclick='search()')
+            # with tags.button(u"הקודם", onclick='prev_section()'):
+            #     tags.attr(cls="dropbtn")
+            # with tags.button(u"הבא", onclick='next_section()'):
+            #     tags.attr(cls="dropbtn")
+            # tags.input(type="search", id="subject_search", onchange='search()')
+            # tags.button(u"חפש הגדרה", type="button", onclick='search()')
 
     html_doc.footnote_ids_of_this_html_doc = []
     html_doc.name = name
+    html_doc.index = len(html_docs_l) + 1
 
     return html_doc
 
 
-def clean_name(s):
-    return re.sub(r'[^\w\s]', '', s, flags=re.UNICODE)
+# def clean_name(s):
+#     result = re.sub(r'[^\w\s]', '', s, flags=re.UNICODE)
+#     return result.encode('utf8')
 
 
 def close_html_doc(html_doc):
@@ -362,7 +374,7 @@ def close_html_doc(html_doc):
                 assert footnote.id == id
                 add_footnote_to_output(footnote.paragraphs)
 
-    html_doc_name = clean_name(html_doc.name)
+    html_doc_name = html_doc.index
     name = "debug_%s.html" % html_doc_name
     with open("output/" + name, 'w') as f:
         f.write(html_doc.render(inline=False).encode('utf8'))
@@ -413,6 +425,7 @@ except:
 os.mkdir("output")
 os.mkdir("output/html_demos-gh-pages")
 for (f) in (
+    'config.xml',
     'style.css',
     'fixed_bar.css',
     'html_demos-gh-pages/footnotes.css',
@@ -430,13 +443,16 @@ with open('output/debug.txt', 'w') as debug_file:
             para = []
             debug_file.write("\n\nNEW_PARA:\n------\n")
             for (run, footnote_run) in zip(paragraph.runs, footnote_paragraph.runs):
-                s = "!%s:%s$" % (styles.get(run_style_id(run), run_style_id(run)), run.text)
+                s = "!%s.%s:%s$" % (run.style.style_id, styles.get(run_style_id(run), run_style_id(run)), run.text)
                 # print "!%s:%s$" % (styles.get(run.style.style_id, run.style.style_id), run.text)
                 debug_file.write(s.encode('utf8'))
                 type = styles.get(run_style_id(run), "unknown")
 
+                # if run.style.style_id == "DefaultParagraphFont":
+                #     print paragraph.style.style_id, paragraph.style.type, paragraph.style.font.size, run.font.size, s
+
                 if run.bold:
-                    type = bold_type(type)
+                    type = bold_type(s, type, run)
 
                 if run.font.size and run.text.strip():
                     size_kind = sizes.match(run.font.size)
@@ -489,28 +505,12 @@ if unknown_list:
     print unknown_list
 
 
-#TODO: just recursive zip all output/ dir (excluding debug*, if possible)
+with zipfile.ZipFile("milon.zip", "w", zipfile.ZIP_DEFLATED) as zf:
+    for dirname, subdirs, files in os.walk("output"):
+        zf.write(dirname)
+        for filename in files:
+            if not 'debug' in filename:
+                zf.write(os.path.join(dirname, filename))
+    print "Created milon.zip"
 
-# with zipfile.ZipFile('output/milon.zip', 'w', zipfile.ZIP_DEFLATED) as myzip:
-#     files =  [
-#         'config.xml',
-#         'index.html',
-#         'style.css',
-#         'fixed_bar.css',
-#         'html_demos-gh-pages/footnotes.css',
-#         'html_demos-gh-pages/footnotes.js',
-#         'milon.js',
-#     ]
-#     files.append(glob.glob(outp))
-#     for (filename) in (
-#         'config.xml',
-#         'index.html',
-#         'style.css',
-#         'fixed_bar.css',
-#         'html_demos-gh-pages/footnotes.css',
-#         'html_demos-gh-pages/footnotes.js',
-#         'milon.js',
-#     ):
-#         myzip.write(filename)
-#
-#     print "Created milon.zip"
+shutil.move("milon.zip", "output/")

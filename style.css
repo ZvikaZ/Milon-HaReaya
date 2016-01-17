@@ -23,8 +23,13 @@ h5 {
 }
 
 body {
-    margin-top: 3.8em;
- }
+    /*margin-top: 3.8em;*/
+    padding: 2px;
+	margin: 1em; 
+  	text-align: justify;
+    letter-spacing: 0.25px;
+    line-height: 1.4;
+}
 
 a {
     /* disable default blue color of links */
@@ -56,6 +61,11 @@ a {
 
 .subject_small {
     font-size: 0.9em;
+    font-weight: bold;
+}
+
+.sub-subject_small {
+    font-size: 0.85em;
     font-weight: bold;
 }
 

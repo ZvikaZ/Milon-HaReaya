@@ -2,8 +2,7 @@
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.haramaty.zvika.milon"
-        versionCode = "10"
-        version     = "1.0.0" >
+        version     = "1.0.1" >
 
     <!-- versionCode is optional and Android only -->
 
@@ -17,7 +16,7 @@
     </author>
 
     <platform name="android" />
-    <platform name="ios" />
+    <!--platform name="ios" /-->
 
     <preference name="loadUrlTimeoutValue" value="700000" />
 

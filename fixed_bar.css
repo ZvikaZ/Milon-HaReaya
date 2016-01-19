@@ -4,12 +4,18 @@
     /*background-color: white; /*#333;*/
     position: fixed;
     top: 0;
-    width: 100%;
+	left: 0;
+
+    list-style-type: none;
+}
+
+li {
+    display: inline;
 }
 
 
-/* Style The Dropdown Button */
-.dropbtn {
+/* Style The Dropdown Buttons */
+button {
     background-color: #4CAF50;
     color: white;
     padding: 12px;
@@ -17,13 +23,22 @@
     border: none;
     cursor: pointer;
     margin: 4px;
+	font-family:inherit;
+}
+
+input {
+    padding: 12px;
+    font-size: 16px;
+    margin: 4px;
+	font-family:inherit;
+	width: 6em;
 }
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
     position: relative;
     display: inline-block;
-    float:left;
+    /*float:left;*/
 	margin-left: 2em;
 }
 
@@ -33,7 +48,6 @@
 	left: 0;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 

@@ -1,24 +1,25 @@
 # -*- coding: utf-8 -*-
 
-#TODO: circles support multi definitions
-#TODO: split further the HTMLs?
-#TODO: "Mehkarim" - make links
-#TODO: make headings to links
-#TODO: handle footnotes' styles
-#TODO: MENU: TOC, search, current section, about
-#TODO: add letters to TOC
-#TODO: make smart links on circles (identify BAKHLAM, 'zohama' with Alef or He, etc.)
-#TODO: double footnote, like #8 - recognize also the second
-#TODO: splitted bubject, like "אמר לו הקדוש ברוך הוא (לגבריאל° שבקש להציל את אברהם־אבינו° מכבשן האש) אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד"
-#TODO: increase/decrease font size
-#TODO: "Avnet" - new paragraph?
-#TODO: handle new lines in the beginning
-#TODO: make definition in new line? (without ' - ')
+# TODO: search - better results page
+# TODO: circles support multi definitions
+# TODO: split further the HTMLs?
+# TODO: "Mehkarim" - make links
+# TODO: make headings to links
+# TODO: handle footnotes' styles
+# TODO: MENU: add current section, about
+# TODO: add letters to TOC
+# TODO: make smart links on circles (identify BAKHLAM, 'zohama' with Alef or He, etc.)
+# TODO: double footnote, like #8 - recognize also the second
+# TODO: splitted bubject, like "אמר לו הקדוש ברוך הוא (לגבריאל° שבקש להציל את אברהם־אבינו° מכבשן האש) אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד"
+# TODO: increase/decrease font size
+# TODO: "Avnet" - new paragraph?
+# TODO: handle new lines in the beginning
+# TODO: make definition in new line? (without ' - ')
 
-#TODO: remove out 'styles' dict
-#TODO: icon
-#TODO: automate build
-#TODO: iphone?
+# TODO: remove out 'styles' dict
+# TODO: icon
+# TODO: automate build
+# TODO: iphone?
 
 
 import docx
@@ -30,14 +31,21 @@ import zipfile
 import os
 import shutil
 import HTMLParser
+import json
 
 import build_phonegap
 import upload_google_play
 
+
 html_parser = HTMLParser.HTMLParser()
 
-doc_file_name = 'dict.docx'
-#doc_file_name = 'dict_short.docx'
+#full_process = False
+full_process = True
+
+if full_process:
+    doc_file_name = 'dict.docx'
+else:
+    doc_file_name = 'dict_short.docx'
 
 
 word_doc = docx.Document(doc_file_name)
@@ -130,13 +138,14 @@ sizes = Sizes()
 unknown_list = []
 
 # dictionary mapping subjects to list of pointers
-# each pointer is a tuple of html_doc and text
+# each pointer is a tuple of html_doc's index and text
 subjects_db = {}
 
 def subject(html_doc, type, text):
-    new_subject_l = subjects_db.get(text, [])
-    new_subject_l.append((html_doc, text))
-    subjects_db[text] = new_subject_l
+    clean_text = clean_name(text)
+    new_subject_l = subjects_db.get(clean_text, [])
+    new_subject_l.append((html_doc.index, text))
+    subjects_db[clean_text] = new_subject_l
 
     with tags.span(tags.a(text, href="#%s" % text.strip(), id=text.strip())):
         tags.attr(cls=type)
@@ -318,8 +327,8 @@ def update_values_for_href(child, href):
     values = subjects_db.get(href)
     #TODO: support showing more than 1 result
     if values:
-        html_doc, old_href = values[0]
-        s = str(html_doc.index) + ".html" + "#" + old_href
+        html_doc_index, old_href = values[0]
+        s = str(html_doc_index) + ".html" + "#" + old_href
         child.children[0]['href'] = s
         return True
 
@@ -344,8 +353,7 @@ def fix_links(html_docs_l):
                 if href:
                     # first, strip it of weird chars
                     try:
-                        m = re.search(u"([\w ]*\w+)", href, flags=re.UNICODE)
-                        href = m.group(0)
+                        href = clean_name(href)
 
                         updated = False
                         if update_values_for_href(child, href):
@@ -367,7 +375,7 @@ def fix_links(html_docs_l):
     for (doc) in html_docs_l:
         fixbar = doc.head.children[-1]
         assert fixbar['class'] == 'fixbar'
-        dropdown = fixbar.children[0]
+        dropdown = fixbar.children[0].children[-1]  # fixbar.children[0]
         assert dropdown['class'] == 'dropdown'
         dropdown_content = dropdown.children[-1]
         assert dropdown_content['class'] == 'dropdown-content'
@@ -443,22 +451,21 @@ def open_html_doc(name):
         tags.link(rel='stylesheet', href='html_demos-gh-pages/footnotes.css')
         tags.script(src="html_demos-gh-pages/footnotes.js")
         tags.script(src="milon.js")
+        tags.script(src="subjects_db.json")
+
+        #TODO: MENU: TOC, search, current section, about
         with tags.div():
             tags.attr(cls="fixbar")
-
-            with tags.div():
-                tags.attr(cls="dropdown")
-                with tags.button(u"תוכן"):
-                    tags.attr(cls="dropbtn")
+            with tags.ul():
+                tags.input(type="search", id="subject_search", onchange='search()')
+                tags.button(u"חיפוש", type="button", onclick='search()')
                 with tags.div():
-                    tags.attr(cls="dropdown-content")
+                    tags.attr(cls="dropdown")
+                    with tags.button(u"תוכן"):
+                        tags.attr(cls="dropbtn")
+                    with tags.div():
+                        tags.attr(cls="dropdown-content")
 
-            # with tags.button(u"הקודם", onclick='prev_section()'):
-            #     tags.attr(cls="dropbtn")
-            # with tags.button(u"הבא", onclick='next_section()'):
-            #     tags.attr(cls="dropbtn")
-            # tags.input(type="search", id="subject_search", onchange='search()')
-            # tags.button(u"חפש הגדרה", type="button", onclick='search()')
 
     html_doc.footnote_ids_of_this_html_doc = []
     html_doc.name = name
@@ -467,9 +474,9 @@ def open_html_doc(name):
     return html_doc
 
 
-# def clean_name(s):
-#     result = re.sub(r'[^\w\s]', '', s, flags=re.UNICODE)
-#     return result.encode('utf8')
+def clean_name(s):
+    m = re.search(u"([\w ]*\w+)", s, flags=re.UNICODE)
+    return m.group(0)
 
 
 def close_html_doc(html_doc):
@@ -610,6 +617,11 @@ html_docs_l = fix_links(html_docs_l)
 for (html_doc) in html_docs_l:
     close_html_doc(html_doc)
 
+with open('output/subjects_db.json', 'wb') as fp:
+    s = json.dumps(subjects_db, encoding='utf8')
+    fp.write("data = " + s)
+
+
 if unknown_list:
     print "\n\nMissing:"
     print unknown_list
@@ -625,5 +637,6 @@ with zipfile.ZipFile("milon.zip", "w", zipfile.ZIP_DEFLATED) as zf:
 
 shutil.move("milon.zip", "output/")
 
-build_phonegap.push_to_phonegap("output/milon.zip")
-upload_google_play.main()
+if full_process:
+    build_phonegap.push_to_phonegap("output/milon.zip")
+    upload_google_play.main()

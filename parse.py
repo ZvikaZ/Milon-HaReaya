@@ -1,20 +1,19 @@
 # -*- coding: utf-8 -*-
 
-#TODO: make current section bold, and not link
-#TODO: inter section links
+#TODO: circles support multi definitions
+#TODO: split further the HTMLs?
 #TODO: "Mehkarim" - make links
 #TODO: make headings to links
 #TODO: handle footnotes' styles
 #TODO: MENU: TOC, search, current section, about
 #TODO: add letters to TOC
-#TODO: make footnotes to be superscript, without using ()
 #TODO: make smart links on circles (identify BAKHLAM, 'zohama' with Alef or He, etc.)
 #TODO: double footnote, like #8 - recognize also the second
 #TODO: splitted bubject, like "אמר לו הקדוש ברוך הוא (לגבריאל° שבקש להציל את אברהם־אבינו° מכבשן האש) אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד"
 #TODO: increase/decrease font size
 #TODO: "Avnet" - new paragraph?
 #TODO: handle new lines in the beginning
-#TODO: make definition in new line?
+#TODO: make definition in new line? (without ' - ')
 
 #TODO: remove out 'styles' dict
 #TODO: icon
@@ -30,6 +29,9 @@ import re
 import zipfile
 import os
 import shutil
+import HTMLParser
+
+html_parser = HTMLParser.HTMLParser()
 
 doc_file_name = 'dict.docx'
 #doc_file_name = 'dict_short.docx'
@@ -124,8 +126,15 @@ sizes = Sizes()
 
 unknown_list = []
 
+# dictionary mapping subjects to list of pointers
+# each pointer is a tuple of html_doc and text
+subjects_db = {}
 
-def subject(type, text):
+def subject(html_doc, type, text):
+    new_subject_l = subjects_db.get(text, [])
+    new_subject_l.append((html_doc, text))
+    subjects_db[text] = new_subject_l
+
     with tags.span(tags.a(text, href="#%s" % text.strip(), id=text.strip())):
         tags.attr(cls=type)
 
@@ -301,8 +310,57 @@ def analyze_and_fix(para):
     # fix
     return new_para
 
+# return True if updated
+def update_values_for_href(child, href):
+    values = subjects_db.get(href)
+    #TODO: support showing more than 1 result
+    if values:
+        html_doc, old_href = values[0]
+        s = str(html_doc.index) + ".html" + "#" + old_href
+        child.children[0]['href'] = s
+        return True
+
+def update_href_no_link(child):
+    assert len(child.children[0].children) == 1
+    text = html_parser.unescape(child.children[0].children[0])
+    child.children[0] = tags.span(text)
 
 def fix_links(html_docs_l):
+    # fix outbound links
+    print "Fixing links"
+    for (doc) in html_docs_l:
+        for (child) in doc.body.children:
+            if 'definition' in child.attributes.get('class', ()):
+                href = ""
+                try:
+                    href = child.children[0].attributes.get("href")
+                except AttributeError as e:
+                    pass
+
+                # it's a link - try to update it
+                if href:
+                    # first, strip it of weird chars
+                    try:
+                        m = re.search(u"([\w ]*\w+)", href, flags=re.UNICODE)
+                        href = m.group(0)
+
+                        updated = False
+                        if update_values_for_href(child, href):
+                            updated = True
+                        else:
+                            if href[0] in (u"ה", u"ו", u"ש"):
+                                updated = update_values_for_href(child, href[1:])
+                        if not updated:
+                            # failed to update - it's not a real link...
+                            update_href_no_link(child)
+
+                    except:
+                        pass
+                        #TODO - investigate why it happens? (it's a single corner case, I think)
+
+
+
+    # update sections menu
     for (doc) in html_docs_l:
         fixbar = doc.head.children[-1]
         assert fixbar['class'] == 'fixbar'
@@ -312,7 +370,10 @@ def fix_links(html_docs_l):
         assert dropdown_content['class'] == 'dropdown-content'
         with dropdown_content:
             for (html_doc) in html_docs_l:
-                tags.a(html_doc.name, href=str(html_doc.index)+".html")
+                if doc != html_doc:
+                    tags.a(html_doc.name, href=str(html_doc.index)+".html")
+                else:
+                    tags.strong(html_doc.name)
     return html_docs_l
 
 def add_to_output(html_doc, para):
@@ -334,7 +395,7 @@ def add_to_output(html_doc, para):
                     # tags.p()
                     #tags.br()
                     pass
-                subject(type, text)
+                subject(html_doc, type, text)
             else:
                 regular(type, text)
 
@@ -432,7 +493,6 @@ pattern = re.compile(r"\W", re.UNICODE)
 def is_need_new_html_doc(para):
     global heading_back_to_back
     for (type, text) in para:
-        #TODO: think of a way to nicely combine first 'section' into 'title'
         if type in ("heading_title", "heading_section"):
             if not heading_back_to_back:
                 heading_back_to_back = True

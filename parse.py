@@ -31,6 +31,9 @@ import os
 import shutil
 import HTMLParser
 
+import build_phonegap
+import upload_google_play
+
 html_parser = HTMLParser.HTMLParser()
 
 doc_file_name = 'dict.docx'
@@ -621,3 +624,6 @@ with zipfile.ZipFile("milon.zip", "w", zipfile.ZIP_DEFLATED) as zf:
     print "Created milon.zip"
 
 shutil.move("milon.zip", "output/")
+
+build_phonegap.push_to_phonegap("output/milon.zip")
+upload_google_play.main()

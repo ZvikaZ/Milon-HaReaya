@@ -8,3 +8,7 @@ OLD
 *.html
 debug*
 *.zip
+*.apk
+key/
+key.p12
+secret.py

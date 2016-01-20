@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
+# TODO: Yud and Lamed in Psukim
+# TODO: Add "Ptiha"
+# TODO: What's wrong with "Teva"?
 # TODO: search - better results page
 # TODO: circles support multi definitions
-# TODO: split further the HTMLs?
 # TODO: "Mehkarim" - make links
 # TODO: make headings to links
 # TODO: handle footnotes' styles
@@ -45,7 +47,8 @@ full_process = True
 if full_process:
     doc_file_name = 'dict.docx'
 else:
-    doc_file_name = 'dict_short.docx'
+    #doc_file_name = 'dict_short.docx'
+    doc_file_name = 'dict.docx'
 
 
 word_doc = docx.Document(doc_file_name)
@@ -359,7 +362,7 @@ def fix_links(html_docs_l):
                         if update_values_for_href(child, href):
                             updated = True
                         else:
-                            if href[0] in (u"ה", u"ו", u"ש"):
+                            if href[0] in (u"ה", u"ו", u"ש", u"ב", u"כ", u"ל", u"מ"):
                                 updated = update_values_for_href(child, href[1:])
                         if not updated:
                             # failed to update - it's not a real link...
@@ -373,6 +376,7 @@ def fix_links(html_docs_l):
 
     # update sections menu
     for (doc) in html_docs_l:
+        letters_l = []
         fixbar = doc.head.children[-1]
         assert fixbar['class'] == 'fixbar'
         dropdown = fixbar.children[0].children[-1]  # fixbar.children[0]
@@ -381,10 +385,26 @@ def fix_links(html_docs_l):
         assert dropdown_content['class'] == 'dropdown-content'
         with dropdown_content:
             for (html_doc) in html_docs_l:
-                if doc != html_doc:
-                    tags.a(html_doc.name, href=str(html_doc.index)+".html")
+                # Only if this a 'high' heading, and not just a letter - include it in the TOC
+                if html_doc.name != "NEW_LETTER":
+                    if doc.section != html_doc.section:
+                        tags.a(html_doc.name, href=str(html_doc.index)+".html")
+                    else:
+                        tags.strong(html_doc.name)
                 else:
-                    tags.strong(html_doc.name)
+                    # it's a letter - if it's related to me, save it
+                    if doc.section == html_doc.section:
+                        letters_l.append(html_doc)
+
+        with doc.body:
+            with tags.ul():
+                tags.attr(cls="letters_navbar")
+                for (html_doc) in letters_l:
+                    with tags.li(tags.a(html_doc.letter, href=str(html_doc.index)+".html")):
+                        tags.attr(cls="letters_links")
+
+
+
     return html_docs_l
 
 def add_to_output(html_doc, para):
@@ -440,7 +460,7 @@ def bold_type(s, type, run):
         return type
 
 
-def open_html_doc(name):
+def open_html_doc(name, letter=None):
     html_doc = dominate.document(title=u"מילון הראיה")
     html_doc['dir'] = 'rtl'
     with html_doc.head:
@@ -457,7 +477,7 @@ def open_html_doc(name):
         with tags.div():
             tags.attr(cls="fixbar")
             with tags.ul():
-                tags.input(type="search", id="subject_search", onchange='search()')
+                tags.input(type="search", id="subject_search", placeholder = (u"ערך לחיפוש"), onchange='search()')
                 tags.button(u"חיפוש", type="button", onclick='search()')
                 with tags.div():
                     tags.attr(cls="dropdown")
@@ -469,6 +489,11 @@ def open_html_doc(name):
 
     html_doc.footnote_ids_of_this_html_doc = []
     html_doc.name = name
+    if letter:
+        html_doc.letter = letter
+        html_doc.section = html_docs_l[-1].section
+    else:
+        html_doc.section = name
     html_doc.index = len(html_docs_l) + 1
 
     return html_doc
@@ -500,6 +525,12 @@ def close_html_doc(html_doc):
 
 heading_back_to_back = False
 pattern = re.compile(r"\W", re.UNICODE)
+
+# returns:
+#  None - if no need for new html_doc
+#  string - with name of new required html_doc
+#  ('UPDATE_NAME', string) - to replace the name of newly opend html_doc
+#  ('NEW_LETTER', string) - if needs a new html_doc, but w/o putting it in the main TOC
 def is_need_new_html_doc(para):
     global heading_back_to_back
     for (type, text) in para:
@@ -515,6 +546,8 @@ def is_need_new_html_doc(para):
                     # in the special case of 'Section' heading - we don't need it
                     result = text.strip()
                 return ('UPDATE_NAME', result)
+        elif type == "heading_letter":
+            return ('NEW_LETTER', text.strip())
 
     # if we're here - we didn't 'return text' with a heading
     heading_back_to_back = False
@@ -525,12 +558,14 @@ def get_active_html_doc(para):
     if name:
         if isinstance(name, tuple):
             op, new = name
-            assert op == 'UPDATE_NAME'
-            print "Updating ", new
-            html_docs_l[-1].name = new
+            if op == 'NEW_LETTER':
+                html_docs_l.append(open_html_doc(op, letter=new))
+            else:
+                assert op == 'UPDATE_NAME'
+                print "Updating ", new
+                html_docs_l[-1].name = new
         else:
             html_docs_l.append(open_html_doc(name))
-            print "Opening ", name
     return html_docs_l[-1]
 
 
@@ -543,6 +578,7 @@ os.mkdir("output")
 os.mkdir("output/html_demos-gh-pages")
 for (f) in (
     'config.xml',
+    'icon.png',
     'style.css',
     'fixed_bar.css',
     'html_demos-gh-pages/footnotes.css',

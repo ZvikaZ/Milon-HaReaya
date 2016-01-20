@@ -2,10 +2,12 @@
 OUTPUT
 OLD
 *~
+*.swp
 *.pyc
 *.doc
 *.docx
 *.html
+!index.html
 debug*
 *.zip
 *.apk

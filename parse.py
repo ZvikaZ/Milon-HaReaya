@@ -2,6 +2,8 @@
 
 # TODO: Yud and Lamed in Psukim
 # TODO: Add "Ptiha"
+# TODO: save current location
+# TODO: Subjects with Nikud are hard to read, like Zekher
 # TODO: What's wrong with "Teva"?
 # TODO: search - better results page
 # TODO: circles support multi definitions

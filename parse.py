@@ -1,4 +1,13 @@
 # -*- coding: utf-8 -*-
+""" Currently, this is the 'main' module of this project.
+By default, it parses 'dict.docx' (that contains Milon HaReaya's source Word file,
+creates 'html_docs_l' - internal representation of all the Milon,
+'subjects_db' which is used for searching (and is written as JSON file for the JS)
+and then creates 'output/' with a working HTML/CSS/JS site, and zips it to 'milon.zip'
+
+If 'secret.py' exists, it then uploads the .zip file to PhoneGap Build, waits for the .apk
+to be ready, downloads it (to output/) and pushes everything (automatically) to Google Play.
+"""
 
 # TODO: Yud and Lamed in Psukim
 # TODO: Add "Ptiha"
@@ -589,7 +598,7 @@ for (f) in (
 ):
     shutil.copyfile(f, os.path.join("output", f))
 
-
+# Here starts the action!
 with open('output/debug.txt', 'w') as debug_file:
     for (paragraph, footnote_paragraph) in zip(word_doc.paragraphs, word_doc_footnotes.paragraphs):
         if paragraph.text.strip():

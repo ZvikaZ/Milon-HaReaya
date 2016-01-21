@@ -1,3 +1,8 @@
+"""
+push_to_phonegap(zipfile)
+ sends the zipfile to PhoneGap Build, using credentials found in secret.py
+ polls for APK file to be ready, and downloads it
+"""
 import requests
 import json
 import sys
@@ -12,7 +17,7 @@ except:
     # auth = ('your@mail.com', "password")
     # key_json = 'data={"key_pw":"password","keystore_pw":"password"}'
 
-# ##
+# ## Optional HTTP logging
 # import logging
 #
 # # These two lines enable debugging at httplib level (requests->urllib3->http.client)

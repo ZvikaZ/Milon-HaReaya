@@ -9,6 +9,11 @@ If 'secret.py' exists, it then uploads the .zip file to PhoneGap Build, waits fo
 to be ready, downloads it (to output/) and pushes everything (automatically) to Google Play.
 """
 
+# TODO: Fake subject on Hasya - lahasot Tahat Kanfei HaShkhina
+# TODO: "Avnet" - new paragraph?
+# TODO: double footnote, like #8 - recognize also the second
+# TODO: handle footnotes' styles
+
 # TODO: Yud and Lamed in Psukim
 # TODO: Add "Ptiha"
 # TODO: save current location (and history?, with back and forward?)
@@ -18,20 +23,18 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: circles support multi definitions
 # TODO: "Mehkarim" - make links
 # TODO: make headings to links
-# TODO: handle footnotes' styles
 # TODO: MENU: add current section, about
 # TODO: add letters to TOC
 # TODO: make smarter links on circles ('Oneg' with and w/o Vav, 'zohama' with Alef or He, etc.)
-# TODO: double footnote, like #8 - recognize also the second
 # TODO: splitted bubject, like "אמר לו הקדוש ברוך הוא (לגבריאל° שבקש להציל את אברהם־אבינו° מכבשן האש) אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד"
 # TODO: increase/decrease font size
-# TODO: "Avnet" - new paragraph?
 # TODO: handle new lines in the beginning
 # TODO: make definition in new line? (without ' - ')
 
 # TODO: Split this file...
 # TODO: better icon
 # TODO: iphone?
+# TODO: GUI
 
 
 import docx

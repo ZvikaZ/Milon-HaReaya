@@ -1,3 +1,8 @@
+"""
+Uploads APK file to Google Play, using credentials in secret.py and key.p12
+"""
+
+
 import apiclient
 import httplib2
 from oauth2client import client

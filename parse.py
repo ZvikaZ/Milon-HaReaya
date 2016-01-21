@@ -2,7 +2,7 @@
 
 # TODO: Yud and Lamed in Psukim
 # TODO: Add "Ptiha"
-# TODO: save current location
+# TODO: save current location (and history?, with back and forward?)
 # TODO: Subjects with Nikud are hard to read, like Zekher
 # TODO: What's wrong with "Teva"?
 # TODO: search - better results page
@@ -12,7 +12,7 @@
 # TODO: handle footnotes' styles
 # TODO: MENU: add current section, about
 # TODO: add letters to TOC
-# TODO: make smart links on circles (identify BAKHLAM, 'zohama' with Alef or He, etc.)
+# TODO: make smarter links on circles ('Oneg' with and w/o Vav, 'zohama' with Alef or He, etc.)
 # TODO: double footnote, like #8 - recognize also the second
 # TODO: splitted bubject, like "אמר לו הקדוש ברוך הוא (לגבריאל° שבקש להציל את אברהם־אבינו° מכבשן האש) אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד"
 # TODO: increase/decrease font size
@@ -20,9 +20,8 @@
 # TODO: handle new lines in the beginning
 # TODO: make definition in new line? (without ' - ')
 
-# TODO: remove out 'styles' dict
-# TODO: icon
-# TODO: automate build
+# TODO: Split this file...
+# TODO: better icon
 # TODO: iphone?
 
 
@@ -676,5 +675,9 @@ with zipfile.ZipFile("milon.zip", "w", zipfile.ZIP_DEFLATED) as zf:
 shutil.move("milon.zip", "output/")
 
 if full_process:
-    build_phonegap.push_to_phonegap("output/milon.zip")
-    upload_google_play.main()
+    try:
+        build_phonegap.push_to_phonegap("output/milon.zip")
+        upload_google_play.main()
+    except Exception as e:
+        print "Build process failed!"
+        print e

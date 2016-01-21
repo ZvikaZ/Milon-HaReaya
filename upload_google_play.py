@@ -2,7 +2,15 @@ import apiclient
 import httplib2
 from oauth2client import client
 
-from secret import SERVICE_ACCOUNT_EMAIL
+try:
+    from secret import SERVICE_ACCOUNT_EMAIL
+except:
+    print "Missing 'secret.py'. Cannot upload to Google Play"
+    # you probably need also key.p12
+    # secret.py should contain something like:
+    # SERVICE_ACCOUNT_EMAIL = (
+    # 'service-...@api-...gserviceaccount.com')
+
 
 package_name = "com.haramaty.zvika.milon"
 apk_file = "output/milon.apk"

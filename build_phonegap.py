@@ -4,7 +4,13 @@ import sys
 import time
 import shutil
 
-from secret import *
+try:
+    from secret import *
+except:
+    print "Missing 'secret.py'. Cannot build with Phonegap"
+    # secret.py should contain these:
+    # auth = ('your@mail.com', "password")
+    # key_json = 'data={"key_pw":"password","keystore_pw":"password"}'
 
 # ##
 # import logging

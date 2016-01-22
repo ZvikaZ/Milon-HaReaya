@@ -9,24 +9,25 @@ If 'secret.py' exists, it then uploads the .zip file to PhoneGap Build, waits fo
 to be ready, downloads it (to output/) and pushes everything (automatically) to Google Play.
 """
 
-# TODO: Fake subject on Hasya - lahasot Tahat Kanfei HaShkhina
+# TODO: HaAhava HeElyona - wrong Subject
+# TODO: Hiloni - links not working
 # TODO: "Avnet" - new paragraph?
 # TODO: double footnote, like #8 - recognize also the second
-# TODO: handle footnotes' styles
-
+# TODO: Comma inside a subject, like "Kvodi, Tehilati"
 # TODO: Yud and Lamed in Psukim
+# TODO: "Mehkarim" - make links, check styles!
 # TODO: Add "Ptiha"
-# TODO: save current location (and history?, with back and forward?)
+# TODO: handle footnotes' styles
 # TODO: Subjects with Nikud are hard to read, like Zekher
-# TODO: What's wrong with "Teva"?
+
+# TODO: splitted bubject, like "אמר לו הקדוש ברוך הוא (לגבריאל° שבקש להציל את אברהם־אבינו° מכבשן האש) אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד"
+# TODO: make headings to links
+# TODO: save current location (and history?, with back and forward?)
 # TODO: search - better results page
 # TODO: circles support multi definitions
-# TODO: "Mehkarim" - make links
-# TODO: make headings to links
 # TODO: MENU: add current section, about
 # TODO: add letters to TOC
 # TODO: make smarter links on circles ('Oneg' with and w/o Vav, 'zohama' with Alef or He, etc.)
-# TODO: splitted bubject, like "אמר לו הקדוש ברוך הוא (לגבריאל° שבקש להציל את אברהם־אבינו° מכבשן האש) אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד"
 # TODO: increase/decrease font size
 # TODO: handle new lines in the beginning
 # TODO: make definition in new line? (without ' - ')
@@ -60,8 +61,9 @@ full_process = True
 if full_process:
     doc_file_name = 'dict.docx'
 else:
+    doc_file_name = 'dict_check.docx'
     #doc_file_name = 'dict_short.docx'
-    doc_file_name = 'dict.docx'
+    #doc_file_name = 'dict.docx'
 
 
 word_doc = docx.Document(doc_file_name)
@@ -90,11 +92,13 @@ styles = {
     '1': 'definition_normal',   #?
     'FootnoteTextChar1': 'definition_normal',   #?
     'HebrewChar': 'definition_normal',   #?
-    'DefaultParagraphFont': 'source_normal',    #?
+
+    # this is problematic! has its own function to handle it
+    'DefaultParagraphFont': 'DefaultParagraphFont',
 
     's15': 'subject_small',
     's17': 'subject_small',
-    's1510': 'unknown_small',
+    's1510': 'subject_small',
     's05': 'definition_small',
     's038': 'source_small',
     's0590': 'source_small',
@@ -252,6 +256,8 @@ def analyze_and_fix(para):
             if (index == 0) or (is_prev_newline(para, index)):
                 new_para.append((type, text))
             elif (is_prev_subject(para, index)):
+                new_para.append((make_sub_subject(type), text))
+            elif new_para[index-1][0] == 'sub-subject_normal':
                 new_para.append((make_sub_subject(type), text))
             else:
                 new_para.append(("fake_"+type, text))
@@ -452,23 +458,63 @@ def add_footnote_to_output(paragraphs):
     tags.li(text)
 
 
+def fix_DefaultParagraphFont(run):
+    # only if it's really a text
+    if run.text.strip() and run.text.strip() not in ("-", "(", ")", "[", "]", "'", '"', ","):
+        if run.font.size == 152400 and not run.bold:
+            return 'subject_normal'
+        if run.font.size == 139700 and run.bold:
+            return 'subject_normal'
+        elif run.font.size == 127000:
+            return 'definition_normal'
+        elif run.font.size == 114300:
+            return 'source_normal'
+        elif run.font.size == 101600:
+            return 'source_small'
+        elif run.font.size == 88900:
+            return 'source_small'
+        elif run.font.size is None and run.bold:
+            return 'sub-subject_normal'
+        elif run.font.size is None and not run.bold:
+            return 'definition_normal'
+        else:
+            print "AH!", ":",run.text.strip(),".", run.font.size, run.bold
+            assert False
+    else:
+        return 'DefaultParagraphFont'
+
 temp_l = []
 def bold_type(s, type, run):
     if type == 'definition_normal':
         return 'subject_small'
     elif type == 'source_normal' and run.style.style_id == "s03":
         return 'sub-subject_small'
+    elif type == "definition_small" and run.style.style_id == "s05":
+        return 'sub-subject_small'
     elif type == 'source_normal' and run.style.style_id == "DefaultParagraphFont" and run.font.size == 139700:
         return 'subject_normal'
     elif type == 'source_normal' and run.style.style_id == "DefaultParagraphFont" and run.font.size != 139700:
         return 'sub-subject_normal'
+    elif type == 'unknown_light' and run.style.style_id == "s04" and run.font.size == 114300:
+        return 'subject_light'
+    elif type == 'unknown_light' and run.style.style_id == "s04" and run.font.size == 101600:
+        return 'sub-subject_light'
+    elif type == 'definition_light' and run.style.style_id == "s12" and run.font.size == 101600:
+        return 'sub-subject_light'
+    elif type == 'definition_light' and run.style.style_id == "s12" and run.font.size is None:
+        # TODO - verify that it's always OK
+        return 'sub-subject_light'
     elif type == 'source_normal':
         print "Strange 'source_normal' bold!"
-    elif 'subject' in type:
+    elif 'subject' in type or 'heading' in type:
+        return type
+    elif run.text.strip() in (u"◊", "-", ""):
         return type
     else:
         if type not in temp_l:
             print "Unexpected bold!", type
+            print s, type, run.text, run.font.size
+            assert False
             temp_l.append(type)
         return type
 
@@ -614,18 +660,19 @@ with open('output/debug.txt', 'w') as debug_file:
                 debug_file.write(s.encode('utf8'))
                 type = styles.get(run_style_id(run), "unknown")
 
-                # if run.style.style_id == "DefaultParagraphFont":
-                #     print paragraph.style.style_id, paragraph.style.type, paragraph.style.font.size, run.font.size, s
-
-                if run.bold:
-                    type = bold_type(s, type, run)
-
                 if run.font.size and run.text.strip():
                     size_kind = sizes.match(run.font.size)
                     if size_kind == 'unknown':
                         print "!%s. Size: %d, Bool: %s, %s:%s$" % (size_kind, run.font.size, run.bold, type, run.text)
                     if size_kind not in ('normal', 'unknown'):
                         type = size_kind
+
+                if type == "DefaultParagraphFont":
+                    type = fix_DefaultParagraphFont(run)
+                    # print paragraph.style.style_id, run.bold, run.font.size, s
+
+                elif run.bold:
+                    type = bold_type(s, type, run)
 
                 para.append((type, run.text))
 

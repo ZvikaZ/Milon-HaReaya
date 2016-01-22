@@ -41,7 +41,7 @@ a {
     font-weight: bold;
 }
 
-.sub-subject_normal {
+.sub-subject_normal, .subject_small {
     font-size: 1.15em;
     font-weight: bold;
 }
@@ -59,23 +59,18 @@ a {
 }
 
 
-.subject_small {
-    font-size: 0.9em;
-    font-weight: bold;
-}
-
 .sub-subject_small {
-    font-size: 0.85em;
+    font-size: 1em;
     font-weight: bold;
 }
 
 
 .definition_small {
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
 
 .source_small {
-    font-size: 0.7em;
+    font-size: 0.82em;
 }
 
 

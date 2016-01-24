@@ -14,7 +14,6 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: "Mehkarim" - make links, check styles!
 # TODO: Add "Ptiha"
 # TODO: handle footnotes' styles
-# TODO: Subjects with Nikud are hard to read, like Zekher - consider un-hrefing the subjects!
 # TODO: "Ayen", "Re'e" - see mail from 22.1.16
 
 # TODO: splitted bubject, like "אמר לו הקדוש ברוך הוא (לגבריאל° שבקש להציל את אברהם־אבינו° מכבשן האש) אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד"
@@ -62,9 +61,10 @@ full_process = False
 if full_process:
     doc_file_name = 'dict.docx'
 else:
-    #doc_file_name = 'dict_check.docx'
+    #doc_file_name = 'dict_few.docx'
+    doc_file_name = 'dict_check.docx'
     #doc_file_name = 'dict_short.docx'
-    doc_file_name = 'dict.docx'
+    #doc_file_name = 'dict.docx'
 
 
 word_doc = docx.Document(doc_file_name)
@@ -159,17 +159,20 @@ sizes = Sizes()
 unknown_list = []
 
 # dictionary mapping subjects to list of pointers
-# each pointer is a tuple of html_doc's index and text
+# each pointer is a tuple of html_doc's section name and url
 subjects_db = {}
 
 def subject(html_doc, type, text):
-    clean_text = clean_name(text)
+    clean_text = clean_name(text.strip())
     new_subject_l = subjects_db.get(clean_text, [])
-    new_subject_l.append((html_doc.index, text))
+    new_subject_l.append((html_doc.section, "%s.html#%s" % (html_doc.index, text.strip())))
     subjects_db[clean_text] = new_subject_l
 
-    with tags.span(tags.a(text, href="#%s" % text.strip(), id=text.strip())):
+    with tags.span(text, id=text.strip()):
         tags.attr(cls=type)
+
+    # with tags.span(tags.a(text, href="#%s" % text.strip(), id=text.strip())):
+    #     tags.attr(cls=type)
 
 def regular(type, text):
     if type == 'footnote':
@@ -352,9 +355,8 @@ def update_values_for_href(child, href):
     values = subjects_db.get(href)
     #TODO: support showing more than 1 result
     if values:
-        html_doc_index, old_href = values[0]
-        s = str(html_doc_index) + ".html" + "#" + old_href
-        child.children[0]['href'] = s
+        _, url = values[0]
+        child.children[0]['href'] = url
         return True
 
 def update_href_no_link(child):
@@ -619,8 +621,8 @@ def open_html_doc(name, letter=None):
 
 
 def clean_name(s):
-    m = re.search(u"([\w ]*\w+)", s, flags=re.UNICODE)
-    return m.group(0)
+    s = re.sub(u"־", " ", s, flags=re.UNICODE)
+    return re.sub(r"[^\w ]", "", s, flags=re.UNICODE)
 
 
 def close_html_doc(html_doc):

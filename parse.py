@@ -9,16 +9,13 @@ If 'secret.py' exists, it then uploads the .zip file to PhoneGap Build, waits fo
 to be ready, downloads it (to output/) and pushes everything (automatically) to Google Play.
 """
 
-# TODO: HaAhava HeElyona - wrong Subject
-# TODO: Hiloni - links not working
-# TODO: "Avnet" - new paragraph?
 # TODO: double footnote, like #8 - recognize also the second
-# TODO: Comma inside a subject, like "Kvodi, Tehilati"
 # TODO: Yud and Lamed in Psukim
 # TODO: "Mehkarim" - make links, check styles!
 # TODO: Add "Ptiha"
 # TODO: handle footnotes' styles
-# TODO: Subjects with Nikud are hard to read, like Zekher
+# TODO: Subjects with Nikud are hard to read, like Zekher - consider un-hrefing the subjects!
+# TODO: "Ayen", "Re'e" - see mail from 22.1.16
 
 # TODO: splitted bubject, like "אמר לו הקדוש ברוך הוא (לגבריאל° שבקש להציל את אברהם־אבינו° מכבשן האש) אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד"
 # TODO: make headings to links
@@ -29,7 +26,6 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: add letters to TOC
 # TODO: make smarter links on circles ('Oneg' with and w/o Vav, 'zohama' with Alef or He, etc.)
 # TODO: increase/decrease font size
-# TODO: handle new lines in the beginning
 # TODO: make definition in new line? (without ' - ')
 
 # TODO: Split this file...
@@ -37,6 +33,11 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: iphone?
 # TODO: GUI
 
+# hopefully, I will get a new delivery of python-docx supporting szCs
+# (see https://github.com/python-openxml/python-docx/issues/248 )
+# in the meanwhile, I've hacked it locally
+import sys
+sys.path.insert(0, r'C:\Users\zharamax\PycharmProjects\python-docx')
 
 import docx
 import docx_fork_ludoo
@@ -55,15 +56,15 @@ import upload_google_play
 
 html_parser = HTMLParser.HTMLParser()
 
-#full_process = False
-full_process = True
+full_process = False
+#full_process = True
 
 if full_process:
     doc_file_name = 'dict.docx'
 else:
-    doc_file_name = 'dict_check.docx'
+    #doc_file_name = 'dict_check.docx'
     #doc_file_name = 'dict_short.docx'
-    #doc_file_name = 'dict.docx'
+    doc_file_name = 'dict.docx'
 
 
 word_doc = docx.Document(doc_file_name)
@@ -220,9 +221,10 @@ def analyze_and_fix(para):
     # unite splitted adjacent similar types
     prev_type, prev_text = None, ""
     new_para = []
-    for (type, text) in para:
+    for (type, text_raw) in para:
+        text = text_raw.replace("@", "")
         if prev_type:
-            if type == prev_type or text.strip() in ("", u"°"):
+            if type == prev_type or text.strip() in ("", u"°", u"־", ","):
                 prev_text += text
             else:
                 new_para.append((prev_type, prev_text))
@@ -248,7 +250,8 @@ def analyze_and_fix(para):
     para = new_para
     new_para = []
     for (index, (type, text)) in enumerate(para):
-        if 'subject' in type:
+        # if 'subject' in type:
+        if is_subject(para, index):
             # real subject is either:
             # first
             # after new_line and empty
@@ -257,7 +260,7 @@ def analyze_and_fix(para):
                 new_para.append((type, text))
             elif (is_prev_subject(para, index)):
                 new_para.append((make_sub_subject(type), text))
-            elif new_para[index-1][0] == 'sub-subject_normal':
+            elif new_para[index-1][0] in ('sub-subject_normal', 'subject_small'):
                 new_para.append((make_sub_subject(type), text))
             else:
                 new_para.append(("fake_"+type, text))
@@ -426,7 +429,9 @@ def fix_links(html_docs_l):
 
     return html_docs_l
 
+new_lines_in_raw = 0
 def add_to_output(html_doc, para):
+    global new_lines_in_raw
     # we shouldn't accept empty paragraph (?)
     assert len(para) > 0
 
@@ -439,7 +444,13 @@ def add_to_output(html_doc, para):
                 print type, text
                 heading(text)
             elif type == "new_line":
-                tags.br()
+                new_lines_in_raw += 1
+                if new_lines_in_raw == 1:
+                    tags.br()
+                elif new_lines_in_raw == 2:
+                    tags.p()
+                else:
+                    pass
             elif is_subject(para, i):
                 if not is_prev_subject(para, i):
                     # tags.p()
@@ -449,6 +460,9 @@ def add_to_output(html_doc, para):
             else:
                 regular(type, text)
 
+            if type != "new_line":
+                new_lines_in_raw = 0
+
         # tags.br()
 
 def add_footnote_to_output(paragraphs):
@@ -456,6 +470,52 @@ def add_footnote_to_output(paragraphs):
     for (para) in paragraphs:
         text += para.text
     tags.li(text)
+
+
+def fix_sz_cs(run, type):
+    result = type
+    szCs = run.element.rPr.szCs.attrib.values()[0]
+    if szCs == "20" and 'subject' in type:
+        if run.style.style_id == "s01":
+            s = "!Fixed!szCs=%s:%s." % (szCs, run.text)
+            # print s
+            debug_file.write(s.encode('utf8'))
+            return 'subject_small'
+    elif szCs == "22" and type == 'definition_normal':
+        return 'subject_normal'
+    elif szCs == "16" and type == 'source_normal':
+        return 'source_small'
+    else:
+        pass
+    return result
+
+def fix_b_cs(run, type):
+    result = type
+    try:
+        bCs = run.element.rPr.bCs.attrib.values()[0]
+        if bCs == "0" and 'subject' in type:
+            if type in ('subject_small', 'sub-subject_normal'):
+                return 'definition_normal'
+            else:
+                pass
+                # print "Unknown b_cs=0"
+    except:
+        pass
+    return result
+
+def fix_unknown(run):
+    if run.font.size == 114300 and run.style.style_id == 's04':
+        return 'subject_light'
+    elif run.font.size == 101600 and run.style.style_id == 's04' and run.font.cs_bold:
+        return 'sub-subject_light'
+    elif run.font.size == 101600 and run.style.style_id == 's04' and not run.font.cs_bold:
+        return 'definition_light'
+    elif run.font.size is None and run.style.style_id == 's04':
+        return 'definition_light'
+    elif run.font.size == 88900 and run.style.style_id == 's04':
+        return 'source_light'
+    else:
+        return 'unknown_light'
 
 
 def fix_DefaultParagraphFont(run):
@@ -667,12 +727,25 @@ with open('output/debug.txt', 'w') as debug_file:
                     if size_kind not in ('normal', 'unknown'):
                         type = size_kind
 
-                if type == "DefaultParagraphFont":
+                if 'unknown' in type and run.text.strip():
+                    type = fix_unknown(run)
+
+                elif type == "DefaultParagraphFont":
                     type = fix_DefaultParagraphFont(run)
                     # print paragraph.style.style_id, run.bold, run.font.size, s
 
                 elif run.bold:
                     type = bold_type(s, type, run)
+
+                try:
+                    if run.element.rPr.szCs is not None and run.text.strip():
+                        type = fix_sz_cs(run, type)
+
+                    if run.element.rPr.bCs is not None and run.text.strip():
+                        type = fix_b_cs(run, type)
+                except:
+                    pass
+
 
                 para.append((type, run.text))
 
@@ -696,17 +769,21 @@ with open('output/debug.txt', 'w') as debug_file:
                 except:
                     print "Failed footnote_references"
 
-                # para.append(("new_line", "\n"))
 
-            # tags.br()
             para.append(("new_line", "\n"))
             para = analyze_and_fix(para)
             html_doc = get_active_html_doc(para)
             add_to_output(html_doc, para)
         else:
-            # html_doc.add(tags.p())
-            pass
-
+            try:
+                # if there is a 'html_doc' - add to id new_line for the paragraph ended
+                # if there isn't - it doesn't matter, we're just at the beginning - ignore it
+                para = []
+                para.append(("new_line", "\n"))
+                html_doc = html_docs_l[-1]
+                add_to_output(html_doc, para)
+            except:
+                pass
 
 html_docs_l = fix_links(html_docs_l)
 

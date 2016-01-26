@@ -15,10 +15,11 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: Add "Ptiha"
 # TODO: handle footnotes' styles
 # TODO: "Ayen", "Re'e" - see mail from 22.1.16
+# TODO: "all subjects" page
 
 # TODO: splitted bubject, like "אמר לו הקדוש ברוך הוא (לגבריאל° שבקש להציל את אברהם־אבינו° מכבשן האש) אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד"
 # TODO: make headings to links
-# TODO: save current location (and history?, with back and forward?)
+# TODO: save current location (and history?, with back and forward?) - use HTML5 local storage
 # TODO: search - better results page
 # TODO: circles support multi definitions
 # TODO: MENU: add current section, about
@@ -31,6 +32,9 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: better icon
 # TODO: iphone?
 # TODO: GUI
+
+# remember:
+# http://stackoverflow.com/questions/10752055/cross-origin-requests-are-only-supported-for-http-error-when-loading-a-local
 
 # hopefully, I will get a new delivery of python-docx supporting szCs
 # (see https://github.com/python-openxml/python-docx/issues/248 )
@@ -55,16 +59,17 @@ import upload_google_play
 
 html_parser = HTMLParser.HTMLParser()
 
-full_process = False
-#full_process = True
+process = "Full"
+#process = "APK"
+#process = "ZIP"
 
-if full_process:
+if process == "Full":
     doc_file_name = 'dict.docx'
 else:
     #doc_file_name = 'dict_few.docx'
-    doc_file_name = 'dict_check.docx'
+    #doc_file_name = 'dict_check.docx'
     #doc_file_name = 'dict_short.docx'
-    #doc_file_name = 'dict.docx'
+    doc_file_name = 'dict.docx'
 
 
 word_doc = docx.Document(doc_file_name)
@@ -159,16 +164,26 @@ sizes = Sizes()
 unknown_list = []
 
 # dictionary mapping subjects to list of pointers
-# each pointer is a tuple of html_doc's section name and url
+# each pointer is a tuple of (subject, html_doc's section name, url)
 subjects_db = {}
+
+def calc_subject_id(text, cnt):
+    # subject_id = "subject_%d" % len(subjects_db)
+    # subject_id = text.strip()
+    if cnt == 0:
+        return text
+    else:
+        return "%s%d" % (text, cnt)
+
 
 def subject(html_doc, type, text):
     clean_text = clean_name(text.strip())
     new_subject_l = subjects_db.get(clean_text, [])
-    new_subject_l.append((html_doc.section, "%s.html#%s" % (html_doc.index, text.strip())))
+    subject_id = calc_subject_id(text.strip(), len(new_subject_l))
+    new_subject_l.append((text.strip(), html_doc.section, "%s.html#%s" % (html_doc.index, subject_id)))
     subjects_db[clean_text] = new_subject_l
 
-    with tags.span(text, id=text.strip()):
+    with tags.span(text, id=subject_id):
         tags.attr(cls=type)
 
     # with tags.span(tags.a(text, href="#%s" % text.strip(), id=text.strip())):
@@ -355,7 +370,7 @@ def update_values_for_href(child, href):
     values = subjects_db.get(href)
     #TODO: support showing more than 1 result
     if values:
-        _, url = values[0]
+        _, _, url = values[0]
         child.children[0]['href'] = url
         return True
 
@@ -599,7 +614,7 @@ def open_html_doc(name, letter=None):
             tags.attr(cls="fixbar")
             with tags.ul():
                 tags.input(type="search", id="subject_search", placeholder = (u"ערך לחיפוש"), onchange='search()')
-                tags.button(u"חיפוש", type="button", onclick='search()')
+
                 with tags.div():
                     tags.attr(cls="dropdown")
                     with tags.button(u"תוכן"):
@@ -615,7 +630,12 @@ def open_html_doc(name, letter=None):
         html_doc.section = html_docs_l[-1].section
     else:
         html_doc.section = name
+
     html_doc.index = len(html_docs_l) + 1
+    with html_doc.body:
+        # TODO: call page_loaded to update saved URL also in other links
+        tags.script("page_loaded('%s.html')" % html_doc.index)
+
 
     return html_doc
 
@@ -706,6 +726,7 @@ for (f) in (
     'html_demos-gh-pages/footnotes.js',
     'milon.js',
     'index.html',
+    'search.html',
 ):
     shutil.copyfile(f, os.path.join("output", f))
 
@@ -812,10 +833,11 @@ with zipfile.ZipFile("milon.zip", "w", zipfile.ZIP_DEFLATED) as zf:
 
 shutil.move("milon.zip", "output/")
 
-if full_process:
+if process != "ZIP":
     try:
         build_phonegap.push_to_phonegap("output/milon.zip")
-        upload_google_play.main()
+        if process == "Full":
+            upload_google_play.main()
     except Exception as e:
         print "Build process failed!"
         print e

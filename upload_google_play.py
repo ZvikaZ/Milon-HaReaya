@@ -1,5 +1,12 @@
 """
 Uploads APK file to Google Play, using credentials in secret.py and key.p12
+
+In order to work, I had to manually modify C:\Python27\Lib\site-packages\googleapiclient\discovery.py:
+        if media_mime_type is None:
+          # 19.1.16 - Zvika - bypass this stupid MIME problem
+          #D raise UnknownFileType(media_filename)
+          media_mime_type = u'application/vnd.android.package-archive'
+
 """
 
 

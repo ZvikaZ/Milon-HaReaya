@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
+    	xmlns:android="http://schemas.android.com/apk/res/android"
         id          = "com.haramaty.zvika.milon"
         version     = "1.0.2" >
 
     <!-- versionCode is optional and Android only -->
 
 
-    <access origin="mailto:*" launch-external="yes"/>
 
+    <gap:plugin name="cordova-plugin-appversion" source="npm"/>
+    <!--<plugin name="wellbload.cordova.appversion" spec="0.1.4" source="pgb" />-->
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
+
     <allow-intent href="mailto:*" />
+    <access origin="mailto:*" launch-external="yes"/>
 
     <name>מילון הראיה</name>
 	
@@ -29,5 +33,10 @@
     <preference name="loadUrlTimeoutValue" value="700000" />
 
     <preference name="permissions" value="none"/>
+
+    <gap:config-file platform="android" parent="/manifest">
+         <application android:debuggable="true" />
+    </gap:config-file>
+
 
 </widget>

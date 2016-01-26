@@ -4,6 +4,28 @@
 		<title>מילון הראיה</title>
 		<meta charset="utf-8">
 		<link href="fixed_bar.css" rel="stylesheet">
+		<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+		<script type="text/javascript" charset="utf-8">
+
+		// Call onDeviceReady when PhoneGap is loaded.
+		document.addEventListener("deviceready", onDeviceReady, false);
+
+		// PhoneGap is loaded and it is now safe to make calls PhoneGap methods
+		function onDeviceReady() {
+			//alert(AppVersion.version);
+			//alert(AppVersion.build);
+
+			// jump to last location - if it's valid, and user already saw this version of index.html
+			if ((localStorage.last_build == AppVersion.build) && (localStorage.last_url != null)) {
+				console.log("localStorage.get last_url = " + localStorage.getItem("last_url"))
+				window.location.href = localStorage.getItem("last_url");
+			};
+			localStorage.last_build = AppVersion.build;
+
+		}
+
+		</script>
+
 	</head>
 	<body>
 		<h2>מילון הראיה</h2>
@@ -18,12 +40,37 @@
 		לפניך גרסה ראשונית של אפליקצית מילון הראיה. היא עדיין בפיתוח, כך שכנראה ישנן בעיות מוזרות שאנו עדיין לא מכירים... <br> נשמח לקבל משוב והערות.
 
 <p>
-<button class="goto_milon_btn" onclick="goto_milon()">מעבר למילון</button>
 <script>
-function goto_milon() {
-	window.location.href = "1.html";
-}
+//	if (typeof(Storage) !== "undefined") {
+//
+//		var url = "index.html";
+//		var http = new XMLHttpRequest();
+//		http.open('HEAD', url);
+//		http.onreadystatechange = function() {
+//			if (this.readyState == this.DONE) {
+//				// http_callback(this);
+//			}
+//		};
+//		http.send();
+//	};
+
+//	function http_callback(http_request) {
+//	    alert(http_request.getAllResponseHeaders());
+//	    var last_modified = http_request.getResponseHeader('Last-Modified');
+//	    alert("From http:" + last_modified + "\nFrom local:" + localStorage.lastModifiedIndexHtml + "\nlast_url:" + localStorage.last_url)
+//	    // jump to last location - if it's valid, and user already saw this version of index.html
+//		if ((localStorage.lastModifiedIndexHtml == last_modified) && (localStorage.getItem("last_url") != null)) {
+//			console.log("localStorage.get last_url = " + localStorage.getItem("last_url"))
+//			window.location.href = localStorage.getItem("last_url");
+//		};
+//		localStorage.lastModifiedIndexHtml = last_modified;
+//	}
+
+	function goto_milon() {
+		window.location.href = "1.html";
+	}
 </script>
+<button class="goto_milon_btn" onclick="goto_milon()">מעבר למילון</button>
 
 		
 		<h4>שימוש באפליקציה</h4>
@@ -49,14 +96,14 @@ function goto_milon() {
 		<ul>
 			<li>חסרה הפתיחה לספר</li>
 			<li>חסר מפתח הערכים</li>
-			<li>חיפוש, ועיגולון, מביאים רק את התוצאה הראשונה</li>
+			<li><del>חיפוש, ו</del>עיגולון, מביא<del>ים</del> רק את התוצאה הראשונה</li>
 			<li>חיפוש עובד רק בשמות הערכים</li>
 			<li>לא ניתן לחפש ביטוי חלקי, או חלק ממילה</li>
 			<li>במדור 'פסוקים', חסרה ההפניה לאותיות <strong>י</strong> ו<strong>ל</strong></li>
 			<li>צריך לשפר את הדף הזה :-)</li>
 			<li>העיצוב עוד צריך עבודה</li>
 			<li>חסר עיצוב בהערות השוליים</li>
-			<li>הניקוד מוסתר על ידי הקו התחתי של שמות הערכים</li>
+			<li><del>הניקוד מוסתר על ידי הקו התחתי של שמות הערכים</del></li>
 			<li><del>לא ניתן לחפש ביטוי מנוקד</del></li>
 			<li><del>לא ניתן לחפש מילה עם גרשיים פנימיים</del></li>
 			<li><del>ישנם ערכים צמודים, כגון 'אבנט'</del></li>

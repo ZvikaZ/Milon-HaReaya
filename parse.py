@@ -68,8 +68,8 @@ if process == "Full":
 else:
     #doc_file_name = 'dict_few.docx'
     #doc_file_name = 'dict_check.docx'
-    #doc_file_name = 'dict_short.docx'
-    doc_file_name = 'dict.docx'
+    doc_file_name = 'dict_short.docx'
+    #doc_file_name = 'dict.docx'
 
 
 word_doc = docx.Document(doc_file_name)
@@ -369,10 +369,19 @@ def analyze_and_fix(para):
 def update_values_for_href(child, href):
     values = subjects_db.get(href)
     #TODO: support showing more than 1 result
-    if values:
+    if values is None:
+        return False
+    if len(values) == 1:
         _, _, url = values[0]
         child.children[0]['href'] = url
         return True
+    elif len(values) > 1:
+        # # tuple of (subject, html_doc's section name, url)
+        # subject, section, url = values[]
+        child.children[0]['href'] = "search.html?"+href
+        return True
+    else:
+        assert False
 
 def update_href_no_link(child):
     assert len(child.children[0].children) == 1
@@ -407,8 +416,9 @@ def fix_links(html_docs_l):
                             # failed to update - it's not a real link...
                             update_href_no_link(child)
 
-                    except:
+                    except Exception as e:
                         pass
+                        print e, "Exception of HREF update", href
                         #TODO - investigate why it happens? (it's a single corner case, I think)
 
 

@@ -9,6 +9,7 @@ If 'secret.py' exists, it then uploads the .zip file to PhoneGap Build, waits fo
 to be ready, downloads it (to output/) and pushes everything (automatically) to Google Play.
 """
 
+# search for "Hohmat Israel" not working
 # TODO: double footnote, like #8 - recognize also the second
 # TODO: Yud and Lamed in Psukim
 # TODO: "Mehkarim" - make links, check styles!
@@ -59,8 +60,8 @@ import upload_google_play
 
 html_parser = HTMLParser.HTMLParser()
 
-process = "Full"
-#process = "APK"
+#process = "Full"
+process = "APK"
 #process = "ZIP"
 
 if process == "Full":
@@ -68,8 +69,8 @@ if process == "Full":
 else:
     #doc_file_name = 'dict_few.docx'
     #doc_file_name = 'dict_check.docx'
-    doc_file_name = 'dict_short.docx'
-    #doc_file_name = 'dict.docx'
+    #doc_file_name = 'dict_short.docx'
+    doc_file_name = 'dict.docx'
 
 
 word_doc = docx.Document(doc_file_name)
@@ -167,9 +168,9 @@ unknown_list = []
 # each pointer is a tuple of (subject, html_doc's section name, url)
 subjects_db = {}
 
-def calc_subject_id(text, cnt):
+def calc_subject_id(text_orig, cnt):
     # subject_id = "subject_%d" % len(subjects_db)
-    # subject_id = text.strip()
+    text = text_orig.replace(" ", "-")
     if cnt == 0:
         return text
     else:

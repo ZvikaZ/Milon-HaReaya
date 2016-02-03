@@ -9,7 +9,7 @@ If 'secret.py' exists, it then uploads the .zip file to PhoneGap Build, waits fo
 to be ready, downloads it (to output/) and pushes everything (automatically) to Google Play.
 """
 
-# search for "Hohmat Israel" not working
+# TODO: Or HaGaluy (see check.docx)
 # TODO: double footnote, like #8 - recognize also the second
 # TODO: Yud and Lamed in Psukim
 # TODO: "Mehkarim" - make links, check styles!
@@ -22,7 +22,6 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: make headings to links
 # TODO: save current location (and history?, with back and forward?) - use HTML5 local storage
 # TODO: search - better results page
-# TODO: circles support multi definitions
 # TODO: MENU: add current section, about
 # TODO: add letters to TOC
 # TODO: make smarter links on circles ('Oneg' with and w/o Vav, 'zohama' with Alef or He, etc.)
@@ -226,7 +225,7 @@ def is_prev_subject(para, i):
 
 def is_prev_newline(para, i):
     try:
-        return para[i-2][0] == "new_line" and para[i-1][1] == ""
+        return para[i-1][0] == "new_line" or (para[i-2][0] == "new_line" and para[i-1][1] == "")
     except:
         return False
 
@@ -259,7 +258,8 @@ def analyze_and_fix(para):
         lines = text.split("\n")
         if len(lines) > 1:
             for (i, line) in enumerate(lines):
-                new_para.append((type, line))
+                if line:
+                    new_para.append((type, line))
                 if i+1 < len(lines):
                     new_para.append(("new_line", "\n"))
         else:
@@ -615,6 +615,7 @@ def open_html_doc(name, letter=None):
             tags.attr(charset="utf-8")
         tags.link(rel='stylesheet', href='style.css')
         tags.link(rel='stylesheet', href='fixed_bar.css')
+        # tags.link(rel='stylesheet', href='bootstrap-3.3.6-dist/css/bootstrap.min.css')
         tags.link(rel='stylesheet', href='html_demos-gh-pages/footnotes.css')
         tags.script(src="html_demos-gh-pages/footnotes.js")
         tags.script(src="milon.js")
@@ -716,6 +717,7 @@ def get_active_html_doc(para):
                 assert op == 'UPDATE_NAME'
                 print "Updating ", new
                 html_docs_l[-1].name = new
+                html_docs_l[-1].section = new
         else:
             html_docs_l.append(open_html_doc(name))
     return html_docs_l[-1]
@@ -740,6 +742,11 @@ for (f) in (
     'search.html',
 ):
     shutil.copyfile(f, os.path.join("output", f))
+
+for (d) in (
+    'bootstrap-3.3.6-dist',
+):
+    shutil.copytree(d, os.path.join("output", d))
 
 # Here starts the action!
 with open('output/debug.txt', 'w') as debug_file:
@@ -771,6 +778,14 @@ with open('output/debug.txt', 'w') as debug_file:
                 elif run.bold:
                     type = bold_type(s, type, run)
 
+                # single run & alignment is CENTER and ...-> letter heading
+                elif len(paragraph.runs) == 1 and paragraph.alignment is not None and int(paragraph.alignment) == 1\
+                        and "heading" not in type and run.text.isalpha():
+                    # print "NEW heading letter!", s
+                    size_kind = "heading_letter"
+                    type = size_kind
+
+
                 try:
                     if run.element.rPr.szCs is not None and run.text.strip():
                         type = fix_sz_cs(run, type)
@@ -799,6 +814,7 @@ with open('output/debug.txt', 'w') as debug_file:
                         for (note) in footnote_references:
                             html_doc.footnote_ids_of_this_html_doc.append(note.id)
                             relative_note_id = note.id - html_doc.footnote_ids_of_this_html_doc[0] + 1
+                            # print "footnote", relative_note_id
                             para.append(('footnote', str(relative_note_id)))
                 except:
                     print "Failed footnote_references"

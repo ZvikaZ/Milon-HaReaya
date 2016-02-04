@@ -1,3 +1,17 @@
+.input-group .input-group-addon {
+     line-height:0!important;
+ }
+ 
+.fixed_top_left {
+    position: fixed;
+	left: 5px;
+	top: 5px;
+    width: auto;
+	max-width: 25%;
+	display: inline;
+}
+
+
 h1 {
     font-size: 4em;
     /* center? */
@@ -19,21 +33,23 @@ h5 {
     font-size: 2em;
 }
 
-
-
 body {
-    /*margin-top: 3.8em;*/
+  	text-align: justify;
+}
+/*
+body {
+    /*margin-top: 3.8em;* /
     padding: 2px;
 	margin: 1em; 
-  	text-align: justify;
     letter-spacing: 0.25px;
     line-height: 1.4;
 }
 
 a {
-    /* disable default blue color of links */
+    /* disable default blue color of links * /
     color: inherit;
 }
+*/
 
 .subject_normal {
     font-size: 1.3em;
@@ -101,7 +117,7 @@ a {
 }
 
 
-
+/*
 .letters_navbar {
     list-style-type: none;
     margin: 0;
@@ -126,7 +142,7 @@ a {
 
 
 
-/* Change the link color on hover */
+/* Change the link color on hover * /
 li letters_links:hover {
     background-color: #555;
     color: white;
@@ -137,3 +153,4 @@ li letters_links:hover {
     font-size: 1.3em;
 }
 
+*/

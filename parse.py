@@ -60,16 +60,16 @@ import upload_google_play
 html_parser = HTMLParser.HTMLParser()
 
 #process = "Full"
-process = "APK"
-#process = "ZIP"
+#process = "APK"
+process = "ZIP"
 
 if process == "Full":
     doc_file_name = 'dict.docx'
 else:
     #doc_file_name = 'dict_few.docx'
-    #doc_file_name = 'dict_check.docx'
+    doc_file_name = 'dict_check.docx'
     #doc_file_name = 'dict_short.docx'
-    doc_file_name = 'dict.docx'
+    #doc_file_name = 'dict.docx'
 
 
 word_doc = docx.Document(doc_file_name)
@@ -427,26 +427,25 @@ def fix_links(html_docs_l):
     # update sections menu
     for (doc) in html_docs_l:
         letters_l = []
-        fixbar = doc.head.children[-1]
-        assert fixbar['class'] == 'fixbar'
-        dropdown = fixbar.children[0].children[-1]  # fixbar.children[0]
-        assert dropdown['class'] == 'dropdown'
-        dropdown_content = dropdown.children[-1]
-        assert dropdown_content['class'] == 'dropdown-content'
-        with dropdown_content:
+
+        content_menu = doc.body.children[0].children[1].children[0].children[0].children[0].children[-1].children[0].children[1]
+        assert content_menu['class'] == 'dropdown-menu dropdown-menu-left nav-pills'
+
+        with content_menu:
             for (html_doc) in html_docs_l:
                 # Only if this a 'high' heading, and not just a letter - include it in the TOC
                 if html_doc.name != "NEW_LETTER":
-                    if doc.section != html_doc.section:
+                    with tags.li():
                         tags.a(html_doc.name, href=str(html_doc.index)+".html")
-                    else:
-                        tags.strong(html_doc.name)
+                        if doc.section == html_doc.section:
+                            tags.attr(cls="active")
                 else:
                     # it's a letter - if it's related to me, save it
                     if doc.section == html_doc.section:
                         letters_l.append(html_doc)
 
-        with doc.body:
+        with html_doc.body.children[-1]:
+            assert html_doc.body.children[-1]['class'] == 'container-fluid';
             with tags.ul():
                 tags.attr(cls="letters_navbar")
                 for (html_doc) in letters_l:
@@ -463,7 +462,8 @@ def add_to_output(html_doc, para):
     # we shouldn't accept empty paragraph (?)
     assert len(para) > 0
 
-    with html_doc:
+    with html_doc.body.children[-1]:
+        assert html_doc.body.children[-1]['class'] == 'container-fluid';
         for (i, (type, text)) in enumerate(para):
             if 'heading' in type and text.strip():
                 # tags.p()
@@ -613,26 +613,19 @@ def open_html_doc(name, letter=None):
     with html_doc.head:
         with tags.meta():
             tags.attr(charset="utf-8")
+
+        #TODO: <meta name="viewport" content="width=device-width, initial-scale=1">
+        tags.script(src="jquery/dist/jquery.min.js")
+        tags.link(rel='stylesheet', href='bootstrap-3.3.6-dist/css/bootstrap.min.css')
         tags.link(rel='stylesheet', href='style.css')
-        tags.link(rel='stylesheet', href='fixed_bar.css')
-        # tags.link(rel='stylesheet', href='bootstrap-3.3.6-dist/css/bootstrap.min.css')
+        tags.script(src="bootstrap-3.3.6-dist/js/bootstrap.min.js")
+        tags.link(rel='stylesheet', href="bootstrap-rtl-3.3.4/dist/css/bootstrap-rtl.css")
         tags.link(rel='stylesheet', href='html_demos-gh-pages/footnotes.css')
         tags.script(src="html_demos-gh-pages/footnotes.js")
         tags.script(src="milon.js")
         tags.script(src="subjects_db.json")
 
-        #TODO: MENU: TOC, search, current section, about
-        with tags.div():
-            tags.attr(cls="fixbar")
-            with tags.ul():
-                tags.input(type="search", id="subject_search", placeholder = (u"ערך לחיפוש"), onchange='search()')
 
-                with tags.div():
-                    tags.attr(cls="dropdown")
-                    with tags.button(u"תוכן"):
-                        tags.attr(cls="dropbtn")
-                    with tags.div():
-                        tags.attr(cls="dropdown-content")
 
 
     html_doc.footnote_ids_of_this_html_doc = []
@@ -645,8 +638,40 @@ def open_html_doc(name, letter=None):
 
     html_doc.index = len(html_docs_l) + 1
     with html_doc.body:
-        # TODO: call page_loaded to update saved URL also in other links
-        tags.script("page_loaded('%s.html')" % html_doc.index)
+        with tags.div():
+            tags.attr(cls="container-fluid")
+            # TODO: call page_loaded to update saved URL also in other links
+            tags.script("page_loaded('%s.html')" % html_doc.index)
+
+            #TODO: MENU: TOC, current section, about
+            with tags.div():
+                tags.attr(cls="fixed_top_left", id="menu_bar")
+                with tags.form():
+                    with tags.div():
+                        tags.attr(cls="form-group")
+                        with tags.div():
+                            tags.attr(cls="input-group")
+                            with tags.input(type="search"):
+                                tags.attr(cls="form-control", placeholder = u"ערך לחיפוש" , onfocus="search_focused(true)", onblur="search_focused(false)")
+                            with tags.span(id="search_icon"):
+                                tags.attr(cls="input-group-addon")
+                                with tags.button(type="submit"):
+                                    with tags.span():
+                                        tags.attr(cls="glyphicon glyphicon-search")
+                            with tags.span():
+                                tags.attr(cls="input-group-addon")
+                                with tags.div():
+                                    tags.attr(cls="dropdown")
+                                    with tags.button() as b:
+                                        tags.attr(href="#", cls="dropdown-toggle")
+                                        with tags.span():
+                                            tags.attr(cls="glyphicon glyphicon-menu-hamburger")
+                                            b['data-toggle'] = "dropdown"
+                                    with tags.ul():
+                                        tags.attr(cls="dropdown-menu dropdown-menu-left nav-pills")
+
+
+
 
 
     return html_doc
@@ -734,7 +759,6 @@ for (f) in (
     'config.xml',
     'icon.png',
     'style.css',
-    'fixed_bar.css',
     'html_demos-gh-pages/footnotes.css',
     'html_demos-gh-pages/footnotes.js',
     'milon.js',
@@ -745,6 +769,8 @@ for (f) in (
 
 for (d) in (
     'bootstrap-3.3.6-dist',
+    'bootstrap-rtl-3.3.4',
+    'jquery',
 ):
     shutil.copytree(d, os.path.join("output", d))
 

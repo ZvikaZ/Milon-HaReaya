@@ -49,3 +49,15 @@ function page_loaded(url) {
 		localStorage.setItem("last_url", url);
 	};
 }
+
+window.onload = function() {
+    search_focused(false);
+}
+
+function search_focused(focus) {
+    console.log("got focus?", focus);
+    document.getElementById("menu_bar").style.maxWidth = focus ? "100%" : "";
+    console.log(document.getElementById("search_icon").style.display);
+    document.getElementById("search_icon").style.display = focus ? "" : "none";
+//    document.getElementById("search_icon").style.fontSize = focus ? "20" : "0";
+}

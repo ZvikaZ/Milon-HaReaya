@@ -9,8 +9,15 @@ If 'secret.py' exists, it then uploads the .zip file to PhoneGap Build, waits fo
 to be ready, downloads it (to output/) and pushes everything (automatically) to Google Play.
 """
 
+# TODO: "ziv HaHaim" - partially not subject because of reference
+# TODO: breadcrumbs
+# TODO: if search fail - put BS alert, dismiss with JS after few secs
+
+# TODO: references numbering
+# TODO: search "Natziv" not working
 # TODO: Or HaGaluy (see check.docx)
 # TODO: double footnote, like #8 - recognize also the second
+# TODO: decrease size of app
 # TODO: Yud and Lamed in Psukim
 # TODO: "Mehkarim" - make links, check styles!
 # TODO: Add "Ptiha"
@@ -52,6 +59,7 @@ import os
 import shutil
 import HTMLParser
 import json
+import copy
 
 import build_phonegap
 import upload_google_play
@@ -60,16 +68,16 @@ import upload_google_play
 html_parser = HTMLParser.HTMLParser()
 
 #process = "Full"
-#process = "APK"
-process = "ZIP"
+process = "APK"
+#process = "ZIP"
 
 if process == "Full":
     doc_file_name = 'dict.docx'
 else:
     #doc_file_name = 'dict_few.docx'
-    doc_file_name = 'dict_check.docx'
+    #doc_file_name = 'dict_check.docx'
     #doc_file_name = 'dict_short.docx'
-    #doc_file_name = 'dict.docx'
+    doc_file_name = 'dict.docx'
 
 
 word_doc = docx.Document(doc_file_name)
@@ -300,7 +308,7 @@ def analyze_and_fix(para):
                         new_para.append(('source_small', chunk))
                     else:
                         new_para.append((type, chunk))
-                elif chunk.strip() != "":
+                elif chunk != "":
                     new_para.append(('definition_small', chunk))
                     small = True
                 # re.split(r"(\[.*\])", s)
@@ -393,7 +401,7 @@ def fix_links(html_docs_l):
     # fix outbound links
     print "Fixing links"
     for (doc) in html_docs_l:
-        for (child) in doc.body.children:
+        for (child) in doc.body.children[0].children:
             if 'definition' in child.attributes.get('class', ()):
                 href = ""
                 try:
@@ -428,10 +436,14 @@ def fix_links(html_docs_l):
     for (doc) in html_docs_l:
         letters_l = []
 
-        content_menu = doc.body.children[0].children[1].children[0].children[0].children[0].children[-1].children[0].children[1]
-        assert content_menu['class'] == 'dropdown-menu dropdown-menu-left nav-pills'
+        content_menu = doc.body.children[0].children[1].children[0].children[0].children[-1].children[0].children[1]
+        assert content_menu['class'] == 'dropdown-menu dropdown-menu-left scrollable-menu'
 
         with content_menu:
+            with tags.li():
+                tags.a(u"אודות", href="index.html")
+            with tags.li():
+                tags.attr(cls="divider")
             for (html_doc) in html_docs_l:
                 # Only if this a 'high' heading, and not just a letter - include it in the TOC
                 if html_doc.name != "NEW_LETTER":
@@ -444,13 +456,12 @@ def fix_links(html_docs_l):
                     if doc.section == html_doc.section:
                         letters_l.append(html_doc)
 
-        with html_doc.body.children[-1]:
-            assert html_doc.body.children[-1]['class'] == 'container-fluid';
+        with doc.body.children[-1]:
+            assert doc.body.children[-1]['class'] == 'container-fluid'
             with tags.ul():
-                tags.attr(cls="letters_navbar")
+                tags.attr(cls="pagination")
                 for (html_doc) in letters_l:
-                    with tags.li(tags.a(html_doc.letter, href=str(html_doc.index)+".html")):
-                        tags.attr(cls="letters_links")
+                    tags.li(tags.a(html_doc.letter, href=str(html_doc.index)+".html"))
 
 
 
@@ -613,16 +624,17 @@ def open_html_doc(name, letter=None):
     with html_doc.head:
         with tags.meta():
             tags.attr(charset="utf-8")
+        with tags.meta():
+            tags.attr(name="viewport", content="width=device-width, initial-scale=1")
 
-        #TODO: <meta name="viewport" content="width=device-width, initial-scale=1">
         tags.script(src="jquery/dist/jquery.min.js")
         tags.link(rel='stylesheet', href='bootstrap-3.3.6-dist/css/bootstrap.min.css')
         tags.link(rel='stylesheet', href='style.css')
         tags.script(src="bootstrap-3.3.6-dist/js/bootstrap.min.js")
         tags.link(rel='stylesheet', href="bootstrap-rtl-3.3.4/dist/css/bootstrap-rtl.css")
         tags.link(rel='stylesheet', href='html_demos-gh-pages/footnotes.css')
-        tags.script(src="html_demos-gh-pages/footnotes.js")
         tags.script(src="milon.js")
+        tags.script(src="html_demos-gh-pages/footnotes.js")
         tags.script(src="subjects_db.json")
 
 
@@ -643,32 +655,32 @@ def open_html_doc(name, letter=None):
             # TODO: call page_loaded to update saved URL also in other links
             tags.script("page_loaded('%s.html')" % html_doc.index)
 
-            #TODO: MENU: TOC, current section, about
             with tags.div():
                 tags.attr(cls="fixed_top_left", id="menu_bar")
-                with tags.form():
+                # with tags.form():
+                with tags.div():
+                    tags.attr(cls="form-group")
                     with tags.div():
-                        tags.attr(cls="form-group")
-                        with tags.div():
-                            tags.attr(cls="input-group")
-                            with tags.input(type="search"):
-                                tags.attr(cls="form-control", placeholder = u"ערך לחיפוש" , onfocus="search_focused(true)", onblur="search_focused(false)")
-                            with tags.span(id="search_icon"):
-                                tags.attr(cls="input-group-addon")
-                                with tags.button(type="submit"):
+                        tags.attr(cls="input-group")
+                        with tags.input(type="search", id="subject_search"):
+                            tags.attr(cls="form-control", placeholder = u"חפש", onchange="search()", onfocus="search_focused(true)", onblur="search_focused(false)")
+                        with tags.span(id="search_icon"):
+                            tags.attr(cls="input-group-addon")
+                            with tags.button(type="button"):
+                                tags.attr(onclick="search()")
+                                with tags.span():
+                                    tags.attr(cls="glyphicon glyphicon-search")
+                        with tags.span():
+                            tags.attr(cls="input-group-addon")
+                            with tags.div():
+                                tags.attr(cls="dropdown")
+                                with tags.button(type="button") as b:
+                                    tags.attr(href="#") #, cls="dropdown-toggle")
                                     with tags.span():
-                                        tags.attr(cls="glyphicon glyphicon-search")
-                            with tags.span():
-                                tags.attr(cls="input-group-addon")
-                                with tags.div():
-                                    tags.attr(cls="dropdown")
-                                    with tags.button() as b:
-                                        tags.attr(href="#", cls="dropdown-toggle")
-                                        with tags.span():
-                                            tags.attr(cls="glyphicon glyphicon-menu-hamburger")
-                                            b['data-toggle'] = "dropdown"
-                                    with tags.ul():
-                                        tags.attr(cls="dropdown-menu dropdown-menu-left nav-pills")
+                                        tags.attr(cls="glyphicon glyphicon-menu-hamburger")
+                                        # b['data-toggle'] = "dropdown"
+                                with tags.ul():
+                                    tags.attr(cls="dropdown-menu dropdown-menu-left scrollable-menu")
 
 
 
@@ -683,6 +695,12 @@ def clean_name(s):
 
 
 def close_html_doc(html_doc):
+    with html_doc.body.children[-1]:
+        assert html_doc.body.children[-1]['class'] == 'container-fluid'
+        with tags.div(id="search_modal"):
+            tags.attr(cls="modal fade")
+
+
     with html_doc:
         # add footnotes content of this section:
         with tags.ol(id="footnotes"):
@@ -861,7 +879,35 @@ with open('output/debug.txt', 'w') as debug_file:
             except:
                 pass
 
+def replace_in_file(file_name, orig_str, new_str):
+    with open(file_name, 'r') as file:
+        filedata = file.read()
+
+    filedata = filedata.replace(orig_str, new_str)
+
+    with open(file_name, 'w') as file:
+        file.write(filedata)
+
+def add_menu_to_apriory_htmls(html_docs_l):
+    # add menus to index.html and search.html
+    menu_bar = copy.deepcopy(html_docs_l[0].body.children[0].children[1])
+    assert menu_bar['id'] == 'menu_bar'
+    content = menu_bar.children[0].children[0].children[-1].children[0].children[1].children
+    del(content[2].attributes['class'])
+
+    place_holder = "<!--menu_bar-->"
+
+    menu_bar_html = menu_bar.render(inline=True).encode('utf8')
+    replace_in_file('output/search.html', place_holder, menu_bar_html)
+
+    content[0].attributes['class'] = 'active'
+    menu_bar_html = menu_bar.render(inline=True).encode('utf8')
+    replace_in_file('output/index.html', place_holder, menu_bar_html)
+
+
+
 html_docs_l = fix_links(html_docs_l)
+add_menu_to_apriory_htmls(html_docs_l)
 
 for (html_doc) in html_docs_l:
     close_html_doc(html_doc)
@@ -877,12 +923,16 @@ if unknown_list:
 
 
 with zipfile.ZipFile("milon.zip", "w", zipfile.ZIP_DEFLATED) as zf:
-    for dirname, subdirs, files in os.walk("output"):
+    os.chdir("output")
+    for dirname, subdirs, files in os.walk("."):
+        # avoid creating 'output' directory as first hierrarchy
+        # suddenly causes problem with phonegap - makes garbages APKs...
         zf.write(dirname)
         for filename in files:
             if not 'debug' in filename:
                 zf.write(os.path.join(dirname, filename))
     print "Created milon.zip"
+os.chdir("..")
 
 shutil.move("milon.zip", "output/")
 

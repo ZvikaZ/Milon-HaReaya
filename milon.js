@@ -1,17 +1,17 @@
 ﻿function show_search_modal(val) {
-  document.getElementById("search_modal").innerHTML = `
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h4>חיפוש</h4>
-            </div>
-            <div class="modal-body">
-                הערך '`+ val + `' לא נמצא
-            </div>
-        </div>
-    </div>
-    `;
+  document.getElementById("search_modal").innerHTML = '\
+    <div class="modal-dialog">\
+        <div class="modal-content">\
+            <div class="modal-header">\
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>\
+                <h4>חיפוש</h4>\
+            </div>\
+            <div class="modal-body">\
+                הערך "'+ val + '" לא נמצא\
+            </div>\
+        </div>\
+    </div>\
+    ';
  $("#search_modal").modal('show');
 
 };
@@ -90,7 +90,6 @@ window.onload = function() {
 function search_focused(focus) {
     console.log("got focus?", focus);
     document.getElementById("menu_bar").style.maxWidth = focus ? "95%" : "";
-    console.log(document.getElementById("search_icon").style.display);
     document.getElementById("search_icon").style.display = focus ? "" : "none";
 //    document.getElementById("search_icon").style.fontSize = focus ? "20" : "0";
 }

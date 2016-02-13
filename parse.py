@@ -9,27 +9,34 @@ If 'secret.py' exists, it then uploads the .zip file to PhoneGap Build, waits fo
 to be ready, downloads it (to output/) and pushes everything (automatically) to Google Play.
 """
 
-# TODO: "ziv HaHaim" - partially not subject because of reference
-# TODO: breadcrumbs
-# TODO: if search fail - put BS alert, dismiss with JS after few secs
+# TODO: Psukim - Alef - Even Di Lo Vidyan - missing sub-subject, and through paragraph
+# TODO: animate search bar width changing
+# TODO: milon - Klali
+# TODO: otiyot - stam font
+# TODO: pagination at end
+# TODO: "Yoru" - sizes changing
 
+# TODO: subjects size in Mehkarim
+# TODO: subject_light vs sub-subjet_light - wait for Rav's response
 # TODO: references numbering
 # TODO: search "Natziv" not working
 # TODO: Or HaGaluy (see check.docx)
+# TODO: Yud and Lamed in Psukim
+# TODO: splitted bubject, like "אמר לו הקדוש ברוך הוא (לגבריאל° שבקש להציל את אברהם־אבינו° מכבשן האש) אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד"
+
+# TODO: circles shouldn't be part of subjects (and whata about parantheses?)
 # TODO: double footnote, like #8 - recognize also the second
 # TODO: decrease size of app
-# TODO: Yud and Lamed in Psukim
+# TODO: breadcrumbs
 # TODO: "Mehkarim" - make links, check styles!
 # TODO: Add "Ptiha"
 # TODO: handle footnotes' styles
 # TODO: "Ayen", "Re'e" - see mail from 22.1.16
 # TODO: "all subjects" page
 
-# TODO: splitted bubject, like "אמר לו הקדוש ברוך הוא (לגבריאל° שבקש להציל את אברהם־אבינו° מכבשן האש) אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד"
 # TODO: make headings to links
 # TODO: save current location (and history?, with back and forward?) - use HTML5 local storage
-# TODO: search - better results page
-# TODO: MENU: add current section, about
+# TODO: search - results page - write first words of definition
 # TODO: add letters to TOC
 # TODO: make smarter links on circles ('Oneg' with and w/o Vav, 'zohama' with Alef or He, etc.)
 # TODO: increase/decrease font size
@@ -76,8 +83,8 @@ if process == "Full":
 else:
     #doc_file_name = 'dict_few.docx'
     #doc_file_name = 'dict_check.docx'
-    #doc_file_name = 'dict_short.docx'
-    doc_file_name = 'dict.docx'
+    doc_file_name = 'dict_short.docx'
+    #doc_file_name = 'dict.docx'
 
 
 word_doc = docx.Document(doc_file_name)
@@ -120,8 +127,8 @@ styles = {
     '050': 'source_small',
 
     's149': 'subject_light',
-    's16': 'subject_light',
     's14': 'subject_light',
+    's16': 'sub-subject_light',
     's168': 'sub-subject_light',
     's048': 'definition_light',
     's12': 'definition_light',
@@ -227,7 +234,8 @@ def is_subject(para, i, next=False):
 
 def is_prev_subject(para, i):
     try:
-        return is_subject(para, i-2) and para[i-1][1].strip() == "-"
+        return (is_subject(para, i-2) and
+                (para[i-1][1].strip() == "-") or (para[i-1][0] == "footnote"))
     except:
         return False
 
@@ -237,20 +245,37 @@ def is_prev_newline(para, i):
     except:
         return False
 
+def is_prev_meuyan(para, i):
+    try:
+        return para[i-1][0] == "s02Symbol"
+    except:
+        return False
+
+
+
 def make_sub_subject(subj):
     if subj == 'subject_small':
         return 'sub-subject_normal'
     else:
         return subj
 
+def is_subject_small_or_sub_subject(s):
+    return s in ['subject_small', 'sub-subject_normal']
+
 def analyze_and_fix(para):
     # unite splitted adjacent similar types
     prev_type, prev_text = None, ""
     new_para = []
-    for (type, text_raw) in para:
+    for (raw_type, text_raw) in para:
         text = text_raw.replace("@", "")
+        if text == u"◊":
+            type = "s02Symbol"
+        else:
+            type = raw_type
         if prev_type:
-            if type == prev_type or text.strip() in ("", u"°", u"־", ","):
+            if (type == prev_type) or \
+                    (is_subject_small_or_sub_subject(type) and is_subject_small_or_sub_subject(prev_type)) or \
+                    (prev_type != "footnote" and text.strip() in ("", u"°", u"־", ",")):
                 prev_text += text
             else:
                 new_para.append((prev_type, prev_text))
@@ -283,7 +308,8 @@ def analyze_and_fix(para):
             # first
             # after new_line and empty
             # after subject,"-"
-            if (index == 0) or (is_prev_newline(para, index)):
+            # after Meuyan
+            if (index == 0) or (is_prev_newline(para, index)) or (is_prev_meuyan(para, index)):
                 new_para.append((type, text))
             elif (is_prev_subject(para, index)):
                 new_para.append((make_sub_subject(type), text))
@@ -291,14 +317,16 @@ def analyze_and_fix(para):
                 new_para.append((make_sub_subject(type), text))
             else:
                 new_para.append(("fake_"+type, text))
-
+        elif 'subject' in type:
+            # it's got a subject, but 'is_subject' failed
+            new_para.append(("fake_"+type, text))
         else:
             new_para.append((type, text))
 
     # fix wrong 'source's
     para = new_para
     new_para = []
-    source_pattern = re.compile(r"(\[.*\])")
+    source_pattern = re.compile(r"(\s*\[.*\]\s*)")
     for (type, text) in para:
         if type == 'source_normal':
             small = False

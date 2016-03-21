@@ -1,17 +1,17 @@
 ﻿function show_search_modal(val) {
-  document.getElementById("search_modal").innerHTML = `
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h4>חיפוש</h4>
-            </div>
-            <div class="modal-body">
-                הערך '`+ val + `' לא נמצא
-            </div>
-        </div>
-    </div>
-    `;
+  document.getElementById("search_modal").innerHTML = '\
+    <div class="modal-dialog">\
+        <div class="modal-content">\
+            <div class="modal-header">\
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>\
+                <h4>חיפוש</h4>\
+            </div>\
+            <div class="modal-body">\
+                הערך "'+ val + '" לא נמצא\
+            </div>\
+        </div>\
+    </div>\
+    ';
  $("#search_modal").modal('show');
 
 };
@@ -87,10 +87,22 @@ window.onload = function() {
     search_focused(false);
 }
 
+function tcm_menu_bar_width_change(i, stop, delta) {
+	document.getElementById("menu_bar").style.maxWidth = i.toString() + "%";
+	if (i != stop) {
+		setTimeout(function() {tcm_menu_bar_width_change(i + delta, stop, delta)}, 1);
+	}
+}
+
 function search_focused(focus) {
     console.log("got focus?", focus);
-    document.getElementById("menu_bar").style.maxWidth = focus ? "95%" : "";
-    console.log(document.getElementById("search_icon").style.display);
+    var menu_bar_min_width = 40;
+    var menu_bar_max_width = 96;
+    if (focus) {
+		tcm_menu_bar_width_change(menu_bar_min_width, menu_bar_max_width, +2);
+    } else {
+		tcm_menu_bar_width_change(menu_bar_max_width, menu_bar_min_width, -2);
+	}
+//    document.getElementById("menu_bar").style.maxWidth = focus ? "95%" : "";
     document.getElementById("search_icon").style.display = focus ? "" : "none";
-//    document.getElementById("search_icon").style.fontSize = focus ? "20" : "0";
 }

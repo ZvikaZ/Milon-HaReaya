@@ -9,22 +9,20 @@ If 'secret.py' exists, it then uploads the .zip file to PhoneGap Build, waits fo
 to be ready, downloads it (to output/) and pushes everything (automatically) to Google Play.
 """
 
-# TODO: Psukim - Alef - Even Di Lo Vidyan - missing sub-subject, and through paragraph
-# TODO: animate search bar width changing
-# TODO: milon - Klali
+# TODO: change 'is_prev_subject(..)' to correctly handle "Toar Shem Tov" - should be more freely checking
+# TODO: "Yoru" - sizes changing
 # TODO: otiyot - stam font
 # TODO: pagination at end
-# TODO: "Yoru" - sizes changing
+# TODO: subject_light vs sub-subjet_light - wait for Rav's response
 
 # TODO: subjects size in Mehkarim
-# TODO: subject_light vs sub-subjet_light - wait for Rav's response
 # TODO: references numbering
 # TODO: search "Natziv" not working
 # TODO: Or HaGaluy (see check.docx)
 # TODO: Yud and Lamed in Psukim
 # TODO: splitted bubject, like "אמר לו הקדוש ברוך הוא (לגבריאל° שבקש להציל את אברהם־אבינו° מכבשן האש) אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד"
 
-# TODO: circles shouldn't be part of subjects (and whata about parantheses?)
+# TODO: circles shouldn't be part of subjects (and what about parentheses?)
 # TODO: double footnote, like #8 - recognize also the second
 # TODO: decrease size of app
 # TODO: breadcrumbs
@@ -75,15 +73,15 @@ import upload_google_play
 html_parser = HTMLParser.HTMLParser()
 
 #process = "Full"
-process = "APK"
-#process = "ZIP"
+#process = "APK"
+process = "ZIP"
 
 if process == "Full":
     doc_file_name = 'dict.docx'
 else:
-    #doc_file_name = 'dict_few.docx'
+    doc_file_name = 'dict_few.docx'
     #doc_file_name = 'dict_check.docx'
-    doc_file_name = 'dict_short.docx'
+    #doc_file_name = 'dict_short.docx'
     #doc_file_name = 'dict.docx'
 
 
@@ -235,7 +233,7 @@ def is_subject(para, i, next=False):
 def is_prev_subject(para, i):
     try:
         return (is_subject(para, i-2) and
-                (para[i-1][1].strip() == "-") or (para[i-1][0] == "footnote"))
+                (para[i-1][1].replace('"','').strip() == "-") or (para[i-1][0] == "footnote"))
     except:
         return False
 
@@ -776,6 +774,12 @@ def is_need_new_html_doc(para):
     # if we're here - we didn't 'return text' with a heading
     heading_back_to_back = False
 
+def fix_html_doc_name(name):
+    if name == u"מילון הראיה":
+        return u"כללי"
+    else:
+        return name
+
 html_docs_l = []
 def get_active_html_doc(para):
     name = is_need_new_html_doc(para)
@@ -790,7 +794,8 @@ def get_active_html_doc(para):
                 html_docs_l[-1].name = new
                 html_docs_l[-1].section = new
         else:
-            html_docs_l.append(open_html_doc(name))
+            fixed_name = fix_html_doc_name(name)
+            html_docs_l.append(open_html_doc(fixed_name))
     return html_docs_l[-1]
 
 

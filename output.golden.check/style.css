@@ -1,6 +1,17 @@
-.jumbotron {
+.my_background {
     /*background-color:  !important;*/
-    background-color: #dff0d8;
+    background-color: #4d79ff;
+	color: white;
+}
+
+#subject_search {
+	border-color: black;
+}
+
+#info_well {
+    padding-top: 0;
+    background-color: white;
+	color: black;
 }
 
 /* from http://stackoverflow.com/questions/16214326/bootstrap-dropdown-with-hover
@@ -102,7 +113,7 @@ a {
     /*font-family: "Times New Roman", Times, serif;*/
 }
 
-.fake_subject_small {
+.fake_subject_small, .fake_sub-subject_normal {
     font-weight: bold;
 }
 

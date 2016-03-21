@@ -113,7 +113,7 @@ a {
     /*font-family: "Times New Roman", Times, serif;*/
 }
 
-.fake_subject_small {
+.fake_subject_small, .fake_sub-subject_normal {
     font-weight: bold;
 }
 

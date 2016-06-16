@@ -72,22 +72,23 @@ import upload_google_play
 
 html_parser = HTMLParser.HTMLParser()
 
-#process = "Full"
+process = "Full"
 #process = "APK"
-process = "ZIP"
+#process = "ZIP"
 
 if process == "Full":
     doc_file_name = 'dict.docx'
     create_html = True
-    create_latex = True
+    #create_latex = True
+    create_latex = False
 else:
     #doc_file_name = 'dict_few.docx'
     #doc_file_name = 'dict_check.docx'
-    doc_file_name = 'dict_short.docx'
-    #doc_file_name = 'dict.docx'
+    #doc_file_name = 'dict_short.docx'
+    doc_file_name = 'dict.docx'
 
-    create_html = False
-    create_latex = True
+    create_html = True
+    create_latex = False
 
 
 
@@ -828,6 +829,10 @@ def latex_type(type):
         return u"צמקור"
     elif type == "footnote":
         return "footnote"    #TODO: improve footnote
+    elif type == "s02Symbol":
+        return u"מעוין"
+    #elif type == "DefaultParagraphFont":
+    #    return #TODO: what??
     else:
         return u"תקלה"
 

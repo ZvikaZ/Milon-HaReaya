@@ -23,8 +23,9 @@
 % restart footnotes at sections (?)
 % what happens with footnotes in case of both create_html & _latex ?
 
-\documentclass{book}
+\documentclass{scrbook}
 
+\usepackage{nag}
 % should be loaded before polyglossia, but defined after...
 \usepackage[center]{titlesec}
 
@@ -44,7 +45,7 @@
 \fancyhead[RE]{\thepage\PolythumbWrapperRight}
 
 \pagenumbering{alph}			% change page numbers to Hebrew letters
-\setcounter{page}{1}			% make page 1 first
+\setcounter{page}{-1}			% make page 1 first
 
 
 %%%%%%%%%%%        COLUMNS        %%%%%%%%%%%
@@ -105,12 +106,21 @@
 {0.5ex} % sep
 {
 \centering
+\textbf
 } % before-code
 [
 ] % after-code
 %%%%%%%%%%%        UNINDENT        %%%%%%%%%%%
-\usepackage[hang,flushmargin]{footmisc} 	% un-indent footnotes
 \setlength{\parindent}{0pt}		% avoid space at beginning of paragraph
+
+\deffootnote[1.5em]{1em}{1em}{\thefootnotemark.\space}	% unindent footnotes, change footnote marker
+
+%\usepackage[flushmargin]{footmisc} 	% un-indent footnotes
+%\setlength{\footnotemargin}{0.2em}
+
+% good, but may improve...
+%\usepackage[hang,flushmargin]{footmisc} 	% un-indent footnotes
+%\setlength{\footnotemargin}{0.7em}
 
 %%%%%%%%%%%        MISC        %%%%%%%%%%%
 \renewcommand\thesection{}	 % remove sections' numbers
@@ -118,9 +128,16 @@
 %D\renewcommand{\chaptername}{}
 
 
-\linespread{1.3}		 %  increase lince spacing
+\linespread{1.3}		 %  increase lines spacing
 
 \setlength{\footnotesep}{0.2cm}	% vertical space between footnotes
+\setlength{\skip\footins}{1.5em} % vertical space between text body and footnote ruler
+
+% based on http://tex.stackexchange.com/questions/59501/how-do-i-add-a-blank-line-between-the-footnote-line-and-the-footnotes?rq=1
+\let\oldfootnoterule\footnoterule
+\def\footnoterule{\oldfootnoterule \vskip1em\relax}      % vertical space between ruler and footnotes
+
+
 %\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}		% increase spacing between paragraphs
 
 %%%%%%%%%%%        FONTS        %%%%%%%%%%%
@@ -132,16 +149,22 @@
 
 
 %%%%%%%%%%%        COMMANDS        %%%%%%%%%%%
-\newcommand{\ערך}[1]{\textbf{\large{#1}}}
-\newcommand{\משנה}[1]{\textbf{\normalsize{#1}}}
-\newcommand{\הגדרה}[1]{\normalsize{#1}}
+\newcommand\mylarge{\fontsize{11}{12}\selectfont}
+\newcommand\mynormalsize{\fontsize{10}{12}\selectfont}
+\newcommand\mysmall{\fontsize{9}{12}\selectfont}
+\newcommand\myfootnotesize{\fontsize{8}{12}\selectfont}
+
+
+\newcommand{\ערך}[1]{\textbf{\mylarge{#1}}}
+\newcommand{\משנה}[1]{\textbf{\mynormalsize{#1}}}
+\newcommand{\הגדרה}[1]{\mynormalsize{#1}}
 % what about fakes? (bolded)
-\newcommand{\מקור}[1]{\small{#1}}
+\newcommand{\מקור}[1]{\mysmall{#1}}
 
 \newcommand{\צערך}[1]{\משנה{#1}}
-\newcommand{\צמשנה}[1]{\textbf{\normalsize{#1}}}
-\newcommand{\צהגדרה}[1]{\small{#1}}
-\newcommand{\צמקור}[1]{\footnotesize{#1}}
+\newcommand{\צמשנה}[1]{\textbf{\mynormalsize{#1}}}
+\newcommand{\צהגדרה}[1]{\mysmall{#1}}
+\newcommand{\צמקור}[1]{\myfootnotesize{#1}}
 
 
 \newcommand{\תערך}[1]{\texttt{\ערך{#1}}}
@@ -149,7 +172,10 @@
 \newcommand{\תהגדרה}[1]{\texttt{\הגדרה{#1}}}
 \newcommand{\תמקור}[1]{\texttt{\מקור{#1}}}
 
-\newcommand{\תקלה}[1]{\הגדרה{#1}}
+\newcommand{\מעוין}[1]{\mynormalsize{#1}}
+
+%\newcommand{\תקלה}[1]{\הגדרה{#1}}
+\newcommand{\תקלה}[1]{#1}
 %%%%%%%%%%%        DATA        %%%%%%%%%%%
 
 \begin{document}

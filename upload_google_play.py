@@ -26,7 +26,7 @@ except:
 
 package_name = "com.haramaty.zvika.milon"
 apk_file = "output/milon.apk"
-TRACK = 'beta'  # Can be 'alpha', beta', 'production' or 'rollout'
+TRACK = 'production'  # Can be 'alpha', beta', 'production' or 'rollout'
 
 def main():
     # Load the key in PKCS 12 format that you downloaded from the Google APIs

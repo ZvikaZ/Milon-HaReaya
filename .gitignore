@@ -8,6 +8,8 @@ OLD
 *.doc
 *.docx
 *.html
+!search.html
+!opening.html
 !index.html
 debug*
 *.zip

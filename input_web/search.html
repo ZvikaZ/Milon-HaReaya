@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html dir="rtl">
+	<head>
+		<title>חיפוש</title>
+		<meta charset="utf-8"><script src="jquery/dist/jquery.min.js"></script>
+		<link href="bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="style.css" rel="stylesheet">
+		<script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+		<link href="bootstrap-rtl-3.3.4/dist/css/bootstrap-rtl.css" rel="stylesheet">
+		<link href="html_demos-gh-pages/footnotes.css" rel="stylesheet">
+		<script src="milon.js"></script>
+		<script src="html_demos-gh-pages/footnotes.js"></script>
+		<script src="subjects_db.json"></script>
+	</head>
+
+	<body>
+		<script>
+	      var clean_val = decodeURI(location.search).slice(1);
+	      item = data[clean_val];
+		  show_subjects(item);
+        </script>
+		
+		<div class="container-fluid">
+			<!--menu_bar-->
+	        <div class="modal fade" id="search_modal"></div>
+		</div>
+
+    </body>
+ </html> 

@@ -1,0 +1,597 @@
+---------------
+heading_title:מילון הראיה.
+---------------
+new_line:
+.
+heading_letter:א.
+---------------
+subject_small:"יורו" שנאמר ביחס ל"בין קדש לח.
+definition_normal:ֹ.
+fake_subject_small:ל" לעומת "יוֹדִעֻם" שנאמר ביחס ל"בין טמא לטהור".
+footnote:1.
+fake_subject_small: .
+definition_small:- לפי שיש הבדל במצב.
+new_line:
+.
+---------------
+subject_normal:שכינה .
+definition_normal:- ".
+sub-subject_normal:ענן השכינה".
+footnote:2.
+definition_normal: - .
+definition_normal:הוד°.
+definition_normal: .
+definition_normal:הכבוד־העליון°.
+definition_normal:, המעולף בענני ערפל לרדת ללב בני האדם להחיותם חיי .
+definition_normal:עד°.
+definition_normal: .
+source_normal:[ע"ר א פח].
+definition_small:. .
+new_line:
+.
+new_line:
+.
+---------------
+subject_normal:אֶבֶן דִי לָא בִיְדַיִן.
+footnote:3.
+fake_subject_normal: .
+definition_normal:- .
+fake_sub-subject_normal:די לא בידין .
+definition_normal:- .
+s02Symbol:◊.
+definition_normal: אם היה רצון .
+definition_normal:השי"ת°.
+definition_normal: לעכב את ישראל עד שישלימו הם בעצמם במעשיהם הטובים את הכשרם אל .
+definition_normal:הגאולה°.
+definition_normal:, היתה האבן נקראת .
+fake_sub-subject_normal:אבן די בידין.
+definition_normal:, שבידים שהיו ישראל עושים את תיקוני שלמותם, בזה .
+fake_sub-subject_normal:ימחו לצלמא°.
+definition_normal:, שהוא כח הרע והקלקול שבמציאות שאינו נותן מקום לגדולת ישראל. אבל כיון שרצון השי"ת הוא רק שיהיו ישראל מוכנים קצת ואז השי"ת ינטלם וינשאם אל קדושת המעלה הראויה להם אחרי .
+definition_normal:שימורק°.
+definition_normal: .
+definition_normal:עונם°.
+definition_normal: ויקבלו איזו שלמות להכנה של מעלתם, אע"פ שלא יהיו עדיין מוכנים לגמרי, א"כ תהיה השבירה של הצלם ע"י .
+fake_sub-subject_normal:אבן די לא בידין .
+definition_normal:שלא עשו ישראל בידיהם זאת המעלה .
+source_normal:[מ"ש רעז־ח].
+definition_small:..
+new_line:
+.
+---------------
+subject_normal:זיו אלהי .
+definition_normal:- .
+sub-subject_normal:מעוז הזיו האלהי שממעל לכל גבולי־עולמים .
+definition_normal:- .
+definition_normal:הגודל־העליון°.
+definition_normal: .
+source_normal:[ע"ר א כ, ועפ"י שם ב עד].
+definition_small:..
+new_line:
+.
+---------------
+definition_normal:.
+definition_normal:שכינתא°.
+definition_normal:.
+source_normal: [א"ק ג יט].
+definition_small:. .
+new_line:
+.
+subject_normal:זיו.
+footnote:4.
+subject_normal: אור אלהים .
+definition_normal:- .
+sub-subject_normal:זיו החיים .
+definition_normal:- .
+definition_normal:שכינת־אל°.
+definition_normal:. .
+definition_normal:אור־אלהים°.
+definition_normal:, הממלא את .
+definition_normal:העולמים°.
+definition_normal: כולם.
+new_line:
+.
+---------------
+subject_normal:זמן .
+definition_normal:- .
+sub-subject_normal:(לעומת נצח°) .
+definition_normal:- ההוה התדירי .
+source_normal:[ע"ר א סד].
+definition_small:. .
+new_line:
+.
+new_line:
+.
+---------------
+subject_normal:גשמים.
+footnote:5.
+subject_normal:, הבאים מיסוד המים .
+definition_normal:- מורים על עצם ההויה הגופנית, שֶׂכֶל הגוף .
+source_normal:[ע"ר ב קעו].
+definition_small:. .
+new_line:
+.
+---------------
+s02Symbol:◊ .
+sub-subject_normal:תאר מלך.
+definition_normal: ראוי להאמר מצד הכרתינו את .
+definition_normal:דעת־האלהים°.
+definition_normal: מצד הנבראים כפי ערכינו .
+source_normal:[ע"א ב ח ו].
+definition_small:. .
+new_line:
+.
+---------------
+definition_normal:ע"ע אור עליון. ע"ע אור ד'..
+footnote:6.
+definition_normal: ע' במדור שמות כינויים ותארים אלהיים, אלהי, המקור האלהי. .
+new_line:
+.
+new_line:
+.
+---------------
+subject_normal:תורה.
+definition_normal:60 - .
+fake_subject_small:בעצמיות מהות הפנימית, הצורתית של התורה.
+footnote:7.
+definition_normal: - עצמיות טבע נשמתם של ישראל .
+source_normal:[ע"א ד ט עו].
+definition_small:..
+new_line:
+.
+---------------
+subject_small:תורה .
+definition_small:- .
+sub-subject_normal:מהותה המיוחדת של תורה לעומת הנבואה° .
+definition_small:- השראת .
+definition_small:השכינה°.
+definition_small: הכוללת, הקבועה, המוחלטת, "ואתה פה עמד עמדי", לעומת .
+fake_subject_small:הנבואה .
+definition_small:המכוונת אל עניני הדורות ותמורות מאורעותיהם "לפי צרך השעה, הדור והמעשה".
+footnote:8.
+definition_small: .
+source_small:[עפ"י ל"י א מז]. .
+new_line:
+.
+new_line:
+.
+---------------
+subject_light:טבע .
+definition_normal:- .
+sub-subject_light:(במובן המדעי הרגיל) .
+definition_small:-.
+definition_light: חוקי ברזל, החוקיות .
+definition_light:העיוורת°.
+definition_light: השולטת במציאות .
+definition_light:(שהקדושה°.
+definition_light: לוחמת כנגדה) [עפ"י ב"ר שצז]. .
+new_line:
+.
+subject_small:טבעיות .
+definition_small:- היציבות המסודרת של התופעות .
+source_small:[ב"א 10]. .
+new_line:
+.
+---------------
+subject_normal:חילה .
+definition_normal:- הידיעה במה שאין ראוי .
+definition_normal:לצייר°.
+definition_normal:, כמו חלל פנוי במשפט הכרתו .
+definition_normal:מיראת־ד'°.
+definition_normal: .
+source_normal:[ע"ר א רנו].
+definition_small:. .
+new_line:
+.
+new_line:
+.
+---------------
+subject_normal:זָכָר .
+definition_normal:- היסוד העקרי שבתולדה והמשכת החיים, .
+definition_normal:הסגולה°.
+definition_normal: המפעלית .
+source_normal:[עפ"י ע"ר א מ].
+definition_small:..
+new_line:
+.
+new_line:
+.
+---------------
+subject_normal:אור חַי־העולמים° .
+definition_normal:- .
+definition_normal:אור־עליון°.
+definition_normal:, מקור מקורות, חיי החיים .
+source_normal:[קובץ ה צט].
+definition_small:..
+new_line:
+.
+---------------
+s02Symbol:◊.
+new_line:
+.
+---------------
+subject_normal:אור הגלוי .
+definition_normal:- .
+sub-subject_normal:האור .
+definition_normal:.
+definition_normal:הגלוי°.
+definition_normal: - האור הנראה של .
+definition_normal:אור־התורה°.
+definition_normal: וחכמת ישראל כולה .
+definition_normal:בקדושתה°.
+definition_normal: .
+definition_normal:וטהרתה°.
+definition_normal:, בבינתה והכרתה, בכבודה וישרותה, בעושר סעיפיה בעומק הגיונותיה ובאומץ מגמותיה. תלמודה של תורה בכל הרחבתה והסתעפו(יו)תיה, בדעת וכשרון, ברגש חי וקדוש, וברצון אדיר .
+definition_normal:וחסון°.
+definition_normal: לחיות את אותם החיים הטהורים והקדושים אשר האור המלא הזה מתאר אותם לפנינו. .
+definition_normal:(אור־הקודש־החבוי°.
+definition_normal:) בהיותו מתקרב מאד אל מושגינו, אל צרכינו הזמניים, ואל מאויינו הלאומיים .
+source_normal:[מא"ה ג (מהדורת תשס"ד) קכג, קכה].
+definition_small:. .
+new_line:
+.
+definition_normal:ע"ע אור קודש חבוי. .
+new_line:
+.
+new_line:
+.
+---------------
+heading_section:מונחי קבלה ונסתר.
+---------------
+new_line:
+.
+subject_light:חילוני .
+definition_normal:- .
+sub-subject_light:נשמה חילונית .
+definition_normal:-.
+definition_light: זרם ההויה הבא מצד המשך ההויה שאנחנו קוראים .
+definition_light:טבע°.
+definition_light:, ההשגה של אוה"ע, הזרם הבא מהאמצעים .
+definition_light:מהסיבות°.
+definition_light: .
+source_light:[נ"א ה 31]..
+new_line:
+.
+---------------
+definition_normal:ע' במדור פסוקים ובטויי חז"ל, שכינה, גילוי שכינה..
+new_line:
+.
+---------------
+subject_light:טבע .
+definition_normal:-.
+definition_light: החוקיות הכוללת את האדם והעולם. חוקיות החורזת את כל סדרי המציאות .
+definition_small:-.
+definition_light: האדם, הדורות, ההויה וההסתוריה, שמים וארץ. חוקיות המארגנת את כל הברואים והיצורים לחטיבה אחת [עפ"י ב"ר שצז]. .
+new_line:
+.
+new_line:
+.
+---------------
+subject_normal:אב .
+definition_normal:- המקים את הבית, המדריך את התולדות, המאיר את ארחות חייהם בהשפעתו הרוחנית .
+source_normal:[שם קיח].
+definition_small:. .
+new_line:
+.
+---------------
+new_line:
+.
+subject_normal:הא .
+definition_normal:- מורה על המוכן ומוכשר להושטה .
+source_normal:[עפ"י ר"מ פה].
+definition_small:. .
+new_line:
+.
+new_line:
+.
+---------------
+subject_normal:האדרת שם ד'.
+DefaultParagraphFont: -.
+definition_normal: גלוי .
+definition_normal:עז°.
+definition_normal: .
+definition_normal:הגבורה־האלהית°.
+definition_normal: הפועלת את הכל למען הרוממות האצילית, המסוקרת אך לפני .
+definition_normal:כסא־כבודו°.
+definition_normal: של בורא כל העולמים ברוך הוא. ההופעה העזיזה החודרת מרום הגובה העליון עד שפל המדרגה של אדם על .
+definition_normal:הארץ°.
+definition_normal: .
+source_normal:[עפ"י ע"א ד ט קד].
+definition_small:. .
+new_line:
+.
+---------------
+subject_normal:האח .
+definition_normal:- קריאת .
+definition_normal:השמחה°.
+definition_normal: .
+definition_normal:והחדוה°.
+definition_normal: .
+source_normal:[ר"מ קכ].
+definition_small:. .
+new_line:
+.
+new_line:
+.
+---------------
+sub-subject_normal:אהבת צור־העולמים°.
+definition_normal: - זיו .
+definition_normal:השכינה°.
+definition_normal:, הכרה שכלית והרגשית, ללכת .
+definition_normal:בדרכי־ד'°.
+definition_normal: באהבת אמת והכרה עמוקה .
+definition_normal:פנימית°.
+definition_normal: .
+source_normal:[עפ"י ע"א ג ב נ].
+definition_small:. .
+new_line:
+.
+new_line:
+.
+---------------
+subject_small:האהבה העליונה .
+definition_small:- .
+definition_small:אהבת־עולם°.
+definition_small: .
+definition_small:ואהבה־רבה°.
+definition_small:, אשר לישראל את ד' אלהיהם .
+definition_small:ואביהם־שבשמים°.
+definition_small: מלך־עולמים, הבוחר בעמו ומלמדו ומדריכו .
+source_small:[ל"י א (מהדורת בית אל תשס"ב) צג]. .
+new_line:
+.
+---------------
+subject_normal:אור חֵי־העולמים° .
+definition_normal:- .
+definition_normal:הענין־האלהי°.
+definition_normal:.
+source_normal: [א' סו].
+definition_small:..
+new_line:
+.
+---------------
+definition_normal:.
+definition_normal:הטוב־הכללי°.
+definition_normal:, הטוב האלהי השורה .
+definition_normal:בעולמות°.
+definition_normal: כולם. נשמת־כל, האצילית, .
+definition_normal:בהודה°.
+definition_normal: .
+definition_normal:וקדושתה°.
+definition_normal: .
+source_normal:[עפ"י א"ש פרק ב].
+definition_small:. .
+new_line:
+.
+new_line:
+.
+---------------
+subject_normal:אור ד' המהוה הישות .
+definition_normal:- .
+definition_normal:זרוע־ד'°.
+definition_normal: אשר נגלתה, יסוד ההשתלמות הבלתי פוסקת .
+source_normal:[עפ"י א"ק ב תקל].
+definition_small:. .
+new_line:
+.
+sub-subject_normal:אור ד' וכבודו .
+definition_normal:- אמיתת .
+definition_normal:הרצון־הכללי°.
+definition_normal: אשר .
+definition_normal:בנשמת°.
+definition_normal: היקום כולו .
+source_normal:[שם ג לט].
+definition_small:. .
+new_line:
+.
+subject_small:אור ד' .
+definition_normal:- המגמה האלהית היותר ברורה ותהומית לאין חקר .
+source_normal:[פנק' ג שלא].
+definition_small:..
+new_line:
+.
+---------------
+definition_normal:.
+definition_normal:נשמת־העולמים°.
+definition_normal: .
+fake_sub-subject_small:[קבצ' ב קנה.
+fake_sub-subject_normal:].
+definition_small:..
+new_line:
+.
+---------------
+subject_normal:אב .
+definition_normal:- הרועה הנאמן. מדריך, העומד במעלות נפשו הרבה יותר גבוה מהמעלה של הצעירות של .
+definition_normal:הבנים°.
+definition_normal:, הצריכה לקבל את .
+definition_normal:השפעתו°.
+definition_normal: .
+source_normal:[עפ"י ע"ר ב סה].
+definition_small:..
+new_line:
+.
+---------------
+subject_normal:אבנט.
+definition_normal: - מכוון בתור אמצעי, בין החלק העליון מקום הכחות הנפשיים, לבין החלק התחתון שבגוף, מקום הכחות הגופניים השפלים, שמורה אמנם על היחש החזק שיש לכחות השפלים אל הכחות הנפשיים, עד .
+definition_normal:שהקדושה°.
+definition_normal: המעלה את הנטיות הנפשיות, פועלת להגביל יפה את סדרי הפעולות הטבעיות לצד המעלה והקדושה.
+DefaultParagraphFont: [.
+definition_normal:ע.
+DefaultParagraphFont:".
+definition_normal:א ג ב ד.
+DefaultParagraphFont:].
+definition_normal:..
+new_line:
+.
+---------------
+definition_normal:ע"ע חגורה, יסוד הויתה..
+new_line:
+.
+---------------
+sub-subject_normal:עבודת ד' וכל מעגל טוב מאהבה .
+definition_normal:- מידיעת .
+definition_normal:הטוב°.
+definition_normal: הגנוז בהם .
+source_normal:[עפ"י ע"ר א רפו].
+definition_small:. .
+new_line:
+.
+new_line:
+.
+---------------
+subject_normal:חסיה .
+definition_normal:- .
+sub-subject_normal:"לחסות תחת כנפי־השכינה°".
+footnote:1.
+definition_normal: - שע"י .
+definition_normal:הקדושה°.
+definition_normal: הנמשכת עליו .
+definition_normal:מקבלת־עול־מלכות־שמים°.
+definition_normal: מתחדשת בקרבו רוח חדשה להיות למגן לו מכל המוני הדעות הרעות .
+source_normal:[ע"א ג ב קנא].
+definition_small:. .
+new_line:
+.
+new_line:
+.
+---------------
+subject_normal:אהבה .
+definition_normal:- .
+sub-subject_normal:שמרי האהבה .
+definition_normal:- ע"ע תאוות. .
+new_line:
+.
+new_line:
+.
+---------------
+subject_small:שלימות האהבה.
+definition_normal: - השמחה הגמורה ואור הנפש, שעמה כל טוב ואושר ובה כלולים נועם החכמה וההשגה ואהבתה .
+source_normal:[ע"א א ד לו].
+definition_small:..
+new_line:
+.
+---------------
+s02Symbol:◊.
+definition_normal: .
+definition_normal:האמונה°.
+definition_normal: והאהבה הן עצם החיים בעוה"ז .
+definition_normal:ובעוה"ב°.
+definition_normal: .
+source_normal:[א' סט].
+definition_small:. .
+new_line:
+.
+new_line:
+.
+---------------
+sub-subject_normal:באהבה.
+DefaultParagraphFont: - .
+definition_normal:בדרך חפץ פנימי והכרה עצמית .
+source_normal:[ל"ה 55].
+definition_small:. .
+new_line:
+.
+subject_small:כח העבודה מאהבה.
+definition_normal: - .
+s02Symbol:◊ .
+definition_normal:אינו בא כי אם לפי מדת הידיעה הבאה בלימוד של קביעות ועשירות רבה במקצעות השונים של תורת .
+definition_normal:המוסר°.
+definition_normal: .
+definition_normal:והיראה°.
+definition_normal:, שאי אפשר כלל להמצא מבלעדי לימוד בסדר נכון, למגרס תחילה בבקיאות מלמטה למעלה, ואחר כך למסבר בעומק עיון ודעה שלמה .
+source_normal:[ל"ה 188].
+definition_small:..
+new_line:
+.
+definition_normal:ע"ע עבודה מאהבה, עבודת ד' מאהבה ותלמוד תורה־לשמה..
+new_line:
+.
+---------------
+subject_normal:אמר .
+definition_normal:לו .
+fake_subject_normal:הקדוש ברוך הוא .
+definition_normal:.
+definition_normal:(לגבריאל°.
+definition_normal: שבקש להציל את .
+definition_normal:אברהם־אבינו°.
+definition_normal: מכבשן האש) .
+fake_subject_normal:אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד.
+footnote:2.
+fake_subject_small: .
+definition_normal:- אברהם כדאי הוא בזכותו שיושפע עליו זה השפע של השווית רצונו עם רצוני, שישכיל בכל כוחותיו, ויושפע זה גם על נפשו המרגשת והצומחת, לדעת שאין שום דבר ראוי לרצון כ"א רצונו של הקב"ה, וממילא הכל מתייחדים בהשווי' אחת, ואין כאן ניגוד - .
+fake_subject_small:נאה ליחיד להציל את היחיד .
+source_normal:[עפ"י פנק' ג ריג].
+definition_small:..
+new_line:
+.
+---------------
+definition_normal:ע' במדור מלאכים ושדים, גבריאל מציל מן הכבשן. ושם, יורקמו שר הברד מצנן את הכבשן להציל לצדיקים..
+new_line:
+.
+---------------
+subject_normal:אתרא דיראה־עילאה°.
+footnote:3.
+definition_normal: - .
+definition_normal:השגוב°.
+definition_normal: .
+definition_normal:העליון°.
+definition_normal: של השלמות האלהית הנוראה, שהוא .
+definition_normal:האידיאל°.
+definition_normal: של הבריאה, היסוד של ההויה כולה .
+source_normal:[עפ"י א"ק ב תקלב־ג].
+definition_small:..
+new_line:
+.
+---------------
+heading_letter:ב.
+---------------
+subject_normal:""בבגדו בה" בגין דבגדו בעבודה זרה".
+footnote:1.
+fake_subject_normal: .
+definition_normal:- ההסרה .
+definition_normal:מעבודה־זרה°.
+definition_normal: שבתכונה החפצה בחיי .
+definition_normal:צדק°.
+definition_normal: .
+definition_normal:ויושר°.
+definition_normal:, משפט־אמת וטהרת־משפחה. הטוהר המוסרי האידיאלי, שהוא תולדת .
+definition_normal:האורה°.
+definition_normal: .
+definition_normal:האלהית°.
+definition_normal: .
+definition_normal:שבנשמה°.
+definition_normal: הבאה לסדר את החיים כולם ע"פ מבט בהיר, בטהרת רגש .
+definition_normal:הכרת־הטובה°.
+definition_normal: החברתית המעשית הנובעת ממנו; וברוממות להבת האהבה אל הטוב והיושר בעצמו .
+definition_small:[עפ"י מ"ר .
+source_small:285.
+definition_small:]..
+new_line:
+.
+---------------
+subject_small:לימוד .
+definition_small:- .
+sub-subject_normal:חמשת חלקי עסק הלימוד .
+definition_small:- .
+sub-subject_normal:א. שיטה .
+definition_small:- שיטה מחשבית, בלא הגבלה, בלא ערך קצוב, הכל לפי גודל הרעיון, לפי אומץ השכל ולפי חריפות הבינה, עם זיכוך כח הדמיון ועומק הרגש. והיא מקפלת בקרבה ענינים לאין חקר, דנה עליהם בסקירה מהירה, לא יאומן כי יסופר, מעלה פנינים מזהירים מקרקעות ימים, מגלה אוצרות חושך ומטמוני מסתרים..
+footnote:2.
+new_line:
+.
+subject_small:ב. ריהטא .
+definition_small:- מין גירסא במרוצה גדולה, ברפרוף על הענינים, כמה שאפשר לקלוט, רק שהרבה ענינים יעברו דרך הפה והמחשבה. ולפעמים מדלגים איזה תיבות וענינים וקולטים אותם דרך המחשבה, מעשרים בזה את הידיעה בעושר כמותי, ומעודדים את חיי הרוח לחפץ של גדלות ורוחב התפשטות..
+footnote:3.
+definition_small: .
+new_line:
+.
+---------------
+subject_small:ג. גירסא .
+definition_small:- היא כבר מוגבלת, לדעת את הפירוש הפשוט, בלא עיון ובירור, מ"מ הרצאת הענין באה בהגבלה, ובמהירות האפשרית. .
+new_line:
+.
+subject_small:ד. לימוד .
+definition_small:- הולך במתינות ומלבן את הענין בהגבלתו המקומית יפה. .
+new_line:
+.
+new_line:
+.

@@ -72,8 +72,8 @@ import upload_google_play
 
 html_parser = HTMLParser.HTMLParser()
 
-process = "Full"
-#process = "APK"
+#process = "Full"
+process = "APK"
 #process = "ZIP"
 
 if process == "Full":
@@ -464,6 +464,13 @@ def fix_links(html_docs_l):
                         #TODO - investigate why it happens? (it's a single corner case, I think)
 
 
+    def sorter(html_doc):
+        if html_doc.name in [u"ערכים כלליים",]:
+            return "FIRST"
+        if html_doc.name in [u"נספחות",]:
+            return u"תתתתתתתתתת"    #last
+        else:
+            return html_doc.name
 
     # update sections menu
     for (doc) in html_docs_l:
@@ -476,8 +483,20 @@ def fix_links(html_docs_l):
             with tags.li():
                 tags.a(u"אודות", href="index.html")
             with tags.li():
+                tags.a(u"הקדמות", href="opening_intros.html")
+            with tags.li():
+                tags.a(u"הסכמות", href="opening_haskamot.html")
+            with tags.li():
+                tags.a(u"קיצורים", href="opening_abbrev.html")
+            with tags.li():
+                tags.a(u"סימנים", href="opening_signs.html")
+            # if you add more entries here, please update add_menu_to_apriory_htmls(..)
+            with tags.li():
                 tags.attr(cls="divider")
-            for (html_doc) in html_docs_l:
+
+            sorted_html_docs_l = sorted(html_docs_l, key=sorter)
+
+            for (html_doc) in sorted_html_docs_l:
                 # Only if this a 'high' heading, and not just a letter - include it in the TOC
                 if html_doc.name != "NEW_LETTER":
                     with tags.li():
@@ -783,7 +802,7 @@ def is_need_new_html_doc(para):
 
 def fix_html_doc_name(name):
     if name == u"מילון הראיה":
-        return u"כללי"
+        return u"ערכים כלליים"
     else:
         return name
 
@@ -929,6 +948,8 @@ except:
 os.mkdir("tex")
 os.mkdir("output")
 os.mkdir("output/html_demos-gh-pages")
+
+os.chdir("input_web")
 for (f) in (
     'config.xml',
     'icon.png',
@@ -937,22 +958,28 @@ for (f) in (
     'html_demos-gh-pages/footnotes.js',
     'milon.js',
     'index.html',
+    'opening_abbrev.html',
+    'opening_haskamot.html',
+    'opening_intros.html',
+    'opening_signs.html',
     'search.html',
 ):
-    shutil.copyfile(f, os.path.join("output", f))
+    shutil.copyfile(f, os.path.join("../output", f))
 
 for (d) in (
     'bootstrap-3.3.6-dist',
     'bootstrap-rtl-3.3.4',
     'jquery',
 ):
-    shutil.copytree(d, os.path.join("output", d))
+    shutil.copytree(d, os.path.join("../output", d))
 
+os.chdir("../input_tex")
 for (f) in (
     "milon.tex",
     "polythumbs.sty",
 ):
-    shutil.copyfile(f, os.path.join("tex", f))
+    shutil.copyfile(f, os.path.join("../tex", f))
+os.chdir("../")
 
 
 open_latex()
@@ -1069,16 +1096,24 @@ def add_menu_to_apriory_htmls(html_docs_l):
     menu_bar = copy.deepcopy(html_docs_l[0].body.children[0].children[1])
     assert menu_bar['id'] == 'menu_bar'
     content = menu_bar.children[0].children[0].children[-1].children[0].children[1].children
-    del(content[2].attributes['class'])
+    del(content[6].attributes['class'])
 
     place_holder = "<!--menu_bar-->"
 
     menu_bar_html = menu_bar.render(inline=True).encode('utf8')
     replace_in_file('output/search.html', place_holder, menu_bar_html)
 
-    content[0].attributes['class'] = 'active'
-    menu_bar_html = menu_bar.render(inline=True).encode('utf8')
-    replace_in_file('output/index.html', place_holder, menu_bar_html)
+    for index, filename in enumerate((
+            'index.html',
+            "opening_intros.html",
+            "opening_haskamot.html",
+            "opening_abbrev.html",
+            "opening_signs.html",
+    )):
+        content[index].attributes['class'] = 'active'
+        menu_bar_html = menu_bar.render(inline=True).encode('utf8')
+        replace_in_file('output/%s' % filename, place_holder, menu_bar_html)
+        del content[index].attributes['class']
 
 
 if create_html:

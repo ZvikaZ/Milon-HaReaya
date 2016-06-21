@@ -7,11 +7,8 @@ OLD
 *.pyc
 *.doc
 *.docx
-*.html
-!search.html
-!opening.html
-!index.html
 debug*
+!output.golden.check/*
 *.zip
 *.apk
 key/

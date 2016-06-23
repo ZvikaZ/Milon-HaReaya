@@ -74,9 +74,9 @@ import upload_google_play
 
 html_parser = HTMLParser.HTMLParser()
 
-#process = "Full"
+process = "Full"
 #process = "APK"
-process = "ZIP"
+#process = "ZIP"
 
 if process == "Full":
     doc_file_name = 'dict.docx'

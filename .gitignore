@@ -7,6 +7,8 @@ OLD
 *.pyc
 *.doc
 *.docx
+!dict_check.docx
+!rejects.docx
 debug*
 !output.golden.check/*
 *.zip

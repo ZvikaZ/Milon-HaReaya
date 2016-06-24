@@ -9,12 +9,14 @@ If 'secret.py' exists, it then uploads the .zip file to PhoneGap Build, waits fo
 to be ready, downloads it (to output/) and pushes everything (automatically) to Google Play.
 """
 
+# TODO: Wrap each definition with <div> tag
 # TODO: change 'is_prev_subject(..)' to correctly handle "Toar Shem Tov" - should be more freely checking
 # TODO: "Yoru" - sizes changing
 # TODO: otiyot - stam font
 # TODO: pagination at end
 # TODO: subject_light vs sub-subjet_light - wait for Rav's response
 
+# TODO: "Mishkan UMikdash" - "Korbanot" - "Par" - some are not subjects, and one is a long link
 # TODO: subjects size in Mehkarim
 # TODO: references numbering
 # TODO: search "Natziv" not working
@@ -27,7 +29,7 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: decrease size of app
 # TODO: breadcrumbs
 # TODO: "Mehkarim" - make links, check styles!
-# TODO: Add "Ptiha"
+# TODO: Change "opening_abbrev.html" styling
 # TODO: handle footnotes' styles
 # TODO: "Ayen", "Re'e" - see mail from 22.1.16
 # TODO: "all subjects" page
@@ -73,9 +75,15 @@ import upload_google_play
 
 html_parser = HTMLParser.HTMLParser()
 
+<<<<<<< HEAD
 #process = "Full"
 #process = "APK"
 process = "ZIP"
+=======
+process = "Full"
+#process = "APK"
+#process = "ZIP"
+>>>>>>> refs/remotes/ZvikaZ/master
 
 if process == "Full":
     doc_file_name = 'dict.docx'
@@ -83,8 +91,13 @@ if process == "Full":
     #create_latex = True
     create_latex = False
 else:
+<<<<<<< HEAD
     doc_file_name = 'dict_few.docx'
     #doc_file_name = 'dict_check.docx'
+=======
+    #doc_file_name = 'dict_few.docx'
+    doc_file_name = 'dict_check.docx'
+>>>>>>> refs/remotes/ZvikaZ/master
     #doc_file_name = 'dict_short.docx'
     #doc_file_name = 'dict.docx'
 
@@ -485,7 +498,8 @@ def fix_links(html_docs_l):
     for (doc) in html_docs_l:
         letters_l = []
 
-        content_menu = doc.body.children[0].children[1].children[0].children[0].children[-1].children[0].children[1]
+        # content_menu = doc.body.children[0].children[1].children[0].children[0].children[-1].children[0].children[1]
+        content_menu = doc.body.children[0].children[1].children[0].children[1].children[-1]
         assert content_menu['class'] == 'dropdown-menu dropdown-menu-left scrollable-menu'
 
         with content_menu:
@@ -718,30 +732,20 @@ def open_html_doc(name, letter=None):
 
             with tags.div():
                 tags.attr(cls="fixed_top_left", id="menu_bar")
-                # with tags.form():
                 with tags.div():
-                    tags.attr(cls="form-group")
-                    with tags.div():
-                        tags.attr(cls="input-group")
-                        with tags.input(type="search", id="subject_search"):
-                            tags.attr(cls="form-control", placeholder = u"חפש", onchange="search()", onfocus="search_focused(true)", onblur="search_focused(false)")
-                        with tags.span(id="search_icon"):
-                            tags.attr(cls="input-group-addon")
-                            with tags.button(type="button"):
-                                tags.attr(onclick="search()")
-                                with tags.span():
-                                    tags.attr(cls="glyphicon glyphicon-search")
+                    with tags.button(type="button"):
+                        tags.attr(id="search_icon_button", type="button", cls="btn btn-default")
                         with tags.span():
-                            tags.attr(cls="input-group-addon")
-                            with tags.div():
-                                tags.attr(cls="dropdown")
-                                with tags.button(type="button") as b:
-                                    tags.attr(href="#") #, cls="dropdown-toggle")
-                                    with tags.span():
-                                        tags.attr(cls="glyphicon glyphicon-menu-hamburger")
-                                        # b['data-toggle'] = "dropdown"
-                                with tags.ul():
-                                    tags.attr(cls="dropdown-menu dropdown-menu-left scrollable-menu")
+                            tags.attr(cls="glyphicon glyphicon-search")
+                    with tags.span():
+                        tags.attr(cls="dropdown")
+                        with tags.button(type="button", cls="btn btn-primary") as b:
+                            tags.attr(href="#") #, cls="dropdown-toggle")
+                            with tags.span():
+                                tags.attr(cls="glyphicon glyphicon-menu-hamburger")
+                                # b['data-toggle'] = "dropdown"
+                        with tags.ul():
+                            tags.attr(cls="dropdown-menu dropdown-menu-left scrollable-menu")
 
 
 
@@ -770,15 +774,25 @@ def close_html_doc(html_doc):
                 assert footnote.id == id
                 add_footnote_to_output(footnote.paragraphs)
 
+        # add placeholder for searching
+        tags.comment("search_placeholder")
+
+    place_holder = "<!--search_placeholder-->"
+    with open("input_web/stub_search.html", 'r') as file:
+        search_html = file.read()
+
     html_doc_name = html_doc.index
     name = "debug_%s.html" % html_doc_name
     with open("output/" + name, 'w') as f:
         f.write(html_doc.render(inline=False).encode('utf8'))
+    replace_in_file("output/" + name, place_holder, search_html)
 
     name = "%s.html" % html_doc_name
     with open("output/" + name, 'w') as f:
         f.write(html_doc.render(inline=True).encode('utf8'))
         print "Created ", name
+    replace_in_file("output/" + name, place_holder, search_html)
+
 
 heading_back_to_back = False
 pattern = re.compile(r"\W", re.UNICODE)
@@ -1106,16 +1120,21 @@ def replace_in_file(file_name, orig_str, new_str):
     with open(file_name, 'w') as file:
         file.write(filedata)
 
+
 def add_menu_to_apriory_htmls(html_docs_l):
     # add menus to index.html and search.html
     menu_bar = copy.deepcopy(html_docs_l[0].body.children[0].children[1])
     assert menu_bar['id'] == 'menu_bar'
-    content = menu_bar.children[0].children[0].children[-1].children[0].children[1].children
+    content = menu_bar.children[0].children[-1].children[1].children
     del(content[6].attributes['class'])
 
     place_holder = "<!--menu_bar-->"
 
     menu_bar_html = menu_bar.render(inline=True).encode('utf8')
+
+    with open("input_web/stub_search.html", 'r') as file:
+        menu_bar_html += file.read()
+
     replace_in_file('output/search.html', place_holder, menu_bar_html)
 
     for index, filename in enumerate((
@@ -1127,6 +1146,9 @@ def add_menu_to_apriory_htmls(html_docs_l):
     )):
         content[index].attributes['class'] = 'active'
         menu_bar_html = menu_bar.render(inline=True).encode('utf8')
+        with open("input_web/stub_search.html", 'r') as file:
+            menu_bar_html += file.read()
+
         replace_in_file('output/%s' % filename, place_holder, menu_bar_html)
         del content[index].attributes['class']
 

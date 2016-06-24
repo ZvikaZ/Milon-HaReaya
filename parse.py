@@ -75,15 +75,9 @@ import upload_google_play
 
 html_parser = HTMLParser.HTMLParser()
 
-<<<<<<< HEAD
 #process = "Full"
 #process = "APK"
 process = "ZIP"
-=======
-process = "Full"
-#process = "APK"
-#process = "ZIP"
->>>>>>> refs/remotes/ZvikaZ/master
 
 if process == "Full":
     doc_file_name = 'dict.docx'
@@ -91,13 +85,8 @@ if process == "Full":
     #create_latex = True
     create_latex = False
 else:
-<<<<<<< HEAD
     doc_file_name = 'dict_few.docx'
     #doc_file_name = 'dict_check.docx'
-=======
-    #doc_file_name = 'dict_few.docx'
-    doc_file_name = 'dict_check.docx'
->>>>>>> refs/remotes/ZvikaZ/master
     #doc_file_name = 'dict_short.docx'
     #doc_file_name = 'dict.docx'
 

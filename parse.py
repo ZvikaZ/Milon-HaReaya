@@ -229,8 +229,8 @@ def regular(type, text):
 def is_footnote_reoccurance(run, type):
     # a number in superscript, that's not defined as a footnote
     return \
-        and run.element.rPr.vertAlign is not None \
-        type != 'footnote' \
+        run.element.rPr.vertAlign is not None \
+        and type != 'footnote' \
         and run.text.strip().isdigit() \
         and run.element.rPr.vertAlign.values()[0] == 'superscript'
 

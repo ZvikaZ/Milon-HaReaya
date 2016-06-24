@@ -1037,7 +1037,7 @@ with open('output/debug.txt', 'w') as debug_file:
                     if run.element.rPr.bCs is not None and run.text.strip():
                         type = fix_b_cs(run, type)
 
-                    # this footnote number need no fix.
+                    # NOTE: this footnote number need no fix.
                     # it is a recurrance, therefore it has no id.
                     if is_footnote_recurrence(run, type):
                         type = 'footnote_recurrence'

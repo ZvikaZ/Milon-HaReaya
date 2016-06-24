@@ -211,7 +211,7 @@ def subject(html_doc, type, text):
     #     tags.attr(cls=type)
 
 def regular(type, text):
-    if type in ['footnote', 'footnote_reoccurance']:
+    if type in ['footnote', 'footnote_recurrence']:
         with tags.a("(%s)" % text.strip()):
             tags.attr(cls="ptr")
     else:
@@ -226,7 +226,7 @@ def regular(type, text):
             with tags.span(text):
                 tags.attr(cls=type)
 
-def is_footnote_reoccurance(run, type):
+def is_footnote_recurrence(run, type):
     # a number in superscript, that's not defined as a footnote
     return \
         run.element.rPr.vertAlign is not None \
@@ -1038,9 +1038,9 @@ with open('output/debug.txt', 'w') as debug_file:
                         type = fix_b_cs(run, type)
 
                     # this footnote number need no fix.
-                    # it is a reoccuance, therefore it has no id.
-                    if is_footnote_reoccurance(run, type):
-                        type = 'footnote_reoccurance'
+                    # it is a recurrance, therefore it has no id.
+                    if is_footnote_recurrence(run, type):
+                        type = 'footnote_recurrence'
             
                 except:
                     pass

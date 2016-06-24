@@ -16,12 +16,12 @@
 	<body>
 		<script>
 	      var clean_val = decodeURI(location.search).slice(1);
-	      item = data[clean_val];
-		  show_subjects(item);
+		  show_subjects(clean_val);
         </script>
 		
 		<div class="container-fluid">
 			<!--menu_bar-->
+			<!--/div-->
 	        <div class="modal fade" id="search_modal"></div>
 		</div>
 

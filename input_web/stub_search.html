@@ -1,0 +1,46 @@
+﻿  <!-- Modal -->
+  <div class="modal fade" id="searchDialogModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+	   <form>
+        <div class="modal-body" style="padding:10px 14px;">
+			<div class="form-group">
+  			    <label for="subject_search">חיפוש ברשימת הערכים <span class="glyphicon glyphicon-search"></span></label>
+			    <input type="search" class="form-control" id="subject_search" placeholder="ביטוי לחיפוש ברשימת הערכים" autofocus>
+			</div>
+			<div class="form-group" >
+				<div class="input-group">
+					<div class="radio">
+						<label><input type="radio" name="searchRadio" id="exact_expr">חיפוש שם ערך מדויק</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="searchRadio" id="whold_word" checked="checked">חיפוש מילה שלמה, שמופיעה בשם הערך</label>
+					</div>				
+					<div class="radio">
+						<label><input type="radio" name="searchRadio" id="partial">חיפוש רצף אותיות משם הערך</label>
+					</div>				
+				</div>				
+			</div>				
+
+        </div>
+        <div class="modal-footer">
+			<button type="submit" onclick="search()" class="btn btn-primary" data-dismiss="modal">חיפוש</button>
+        </div>
+       </form>
+	  </div>
+      
+    </div>
+
+  </div>
+
+  <script>
+  $(document).ready(function(){
+      $("#search_icon_button").click(function(){
+          $("#searchDialogModal").modal();
+      });
+  });
+  </script>
+  
+				

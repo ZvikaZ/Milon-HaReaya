@@ -54,7 +54,8 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # (see https://github.com/python-openxml/python-docx/issues/248 )
 # in the meanwhile, I've hacked it locally
 import sys
-sys.path.insert(0, r'C:\Users\zharamax\PycharmProjects\python-docx')
+#sys.path.insert(0, r'C:\Users\zharamax\PycharmProjects\python-docx')
+sys.path.insert(0, r'C:\Users\sdaudi\Github\python-docx')
 
 import docx
 import docx_fork_ludoo
@@ -74,9 +75,9 @@ import upload_google_play
 
 html_parser = HTMLParser.HTMLParser()
 
-process = "Full"
+#process = "Full"
 #process = "APK"
-#process = "ZIP"
+process = "ZIP"
 
 if process == "Full":
     doc_file_name = 'dict.docx'
@@ -84,8 +85,8 @@ if process == "Full":
     #create_latex = True
     create_latex = False
 else:
-    #doc_file_name = 'dict_few.docx'
-    doc_file_name = 'dict_check.docx'
+    doc_file_name = 'dict_few.docx'
+    #doc_file_name = 'dict_check.docx'
     #doc_file_name = 'dict_short.docx'
     #doc_file_name = 'dict.docx'
 
@@ -212,7 +213,7 @@ def subject(html_doc, type, text):
     #     tags.attr(cls=type)
 
 def regular(type, text):
-    if type == 'footnote':
+    if type in ['footnote', 'footnote_recurrence']:
         with tags.a("(%s)" % text.strip()):
             tags.attr(cls="ptr")
     else:
@@ -226,6 +227,14 @@ def regular(type, text):
         else:
             with tags.span(text):
                 tags.attr(cls=type)
+
+def is_footnote_recurrence(run, type):
+    # a number in superscript, that's not defined as a footnote
+    return \
+        run.element.rPr.vertAlign is not None \
+        and type != 'footnote' \
+        and run.text.strip().isdigit() \
+        and run.element.rPr.vertAlign.values()[0] == 'superscript'
 
 def is_subject(para, i, next=False):
     type, text = para[i]
@@ -404,7 +413,7 @@ def analyze_and_fix(para):
         debug_file.write("---------------\n")
         for (type, text) in new_para:
             s = "%s:%s.\n" % (type, text)
-            debug_file.write(s.encode('utf8'))
+            debug_file.write(s.encode('utf8') + ' ')
 
     # fix
     return new_para
@@ -573,7 +582,7 @@ def fix_sz_cs(run, type):
         if run.style.style_id == "s01":
             s = "!Fixed!szCs=%s:%s." % (szCs, run.text)
             # print s
-            debug_file.write(s.encode('utf8'))
+            debug_file.write(s.encode('utf8') + ' ')
             return 'subject_small'
     elif szCs == "22" and type == 'definition_normal':
         return 'subject_normal'
@@ -996,7 +1005,7 @@ with open('output/debug.txt', 'w') as debug_file:
             for (run, footnote_run) in zip(paragraph.runs, footnote_paragraph.runs):
                 s = "!%s.%s:%s$" % (run.style.style_id, styles.get(run_style_id(run), run_style_id(run)), run.text)
                 # print "!%s:%s$" % (styles.get(run.style.style_id, run.style.style_id), run.text)
-                debug_file.write(s.encode('utf8'))
+                debug_file.write(s.encode('utf8') + ' ')
                 type = styles.get(run_style_id(run), "unknown")
 
                 if run.font.size and run.text.strip():
@@ -1030,6 +1039,12 @@ with open('output/debug.txt', 'w') as debug_file:
 
                     if run.element.rPr.bCs is not None and run.text.strip():
                         type = fix_b_cs(run, type)
+
+                    # NOTE: this footnote number need no fix.
+                    # it is a recurrance, therefore it has no id.
+                    if is_footnote_recurrence(run, type):
+                        type = 'footnote_recurrence'
+            
                 except:
                     pass
 
@@ -1042,7 +1057,7 @@ with open('output/debug.txt', 'w') as debug_file:
                         print paragraph.text
                         s = "\nMissing: !%s:%s$\n\n" % (run_style_id(run), run.text)
                         print s
-                        debug_file.write(s.encode('utf8'))
+                        debug_file.write(s.encode('utf8') + ' ')
 
 
                 try:

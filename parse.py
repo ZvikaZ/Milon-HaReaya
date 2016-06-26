@@ -25,7 +25,6 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: splitted bubject, like "אמר לו הקדוש ברוך הוא (לגבריאל° שבקש להציל את אברהם־אבינו° מכבשן האש) אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד"
 
 # TODO: circles shouldn't be part of subjects (and what about parentheses?)
-# TODO: double footnote, like #8 - recognize also the second
 # TODO: decrease size of app
 # TODO: breadcrumbs
 # TODO: "Mehkarim" - make links, check styles!
@@ -54,7 +53,7 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # (see https://github.com/python-openxml/python-docx/issues/248 )
 # in the meanwhile, I've hacked it locally
 import sys
-#sys.path.insert(0, r'C:\Users\zharamax\PycharmProjects\python-docx')
+sys.path.insert(0, r'C:\Users\zharamax\PycharmProjects\python-docx')
 sys.path.insert(0, r'C:\Users\sdaudi\Github\python-docx')
 
 import docx
@@ -85,8 +84,8 @@ if process == "Full":
     #create_latex = True
     create_latex = False
 else:
-    doc_file_name = 'dict_few.docx'
-    #doc_file_name = 'dict_check.docx'
+    #doc_file_name = 'dict_few.docx'
+    doc_file_name = 'dict_check.docx'
     #doc_file_name = 'dict_short.docx'
     #doc_file_name = 'dict.docx'
 

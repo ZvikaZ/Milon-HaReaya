@@ -1,2 +1,48 @@
 <!DOCTYPE html>
-<html dir="rtl"><head><title>מילון הראיה</title><meta charset="utf-8"><meta content="width=device-width, initial-scale=1" name="viewport"><script src="jquery/dist/jquery.min.js"></script><link href="bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet"><link href="style.css" rel="stylesheet"><script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script><link href="bootstrap-rtl-3.3.4/dist/css/bootstrap-rtl.css" rel="stylesheet"><link href="html_demos-gh-pages/footnotes.css" rel="stylesheet"><script src="milon.js"></script><script src="html_demos-gh-pages/footnotes.js"></script><script src="subjects_db.json"></script></head><body><div class="container-fluid"><script>page_loaded('1.html')</script><div class="fixed_top_left" id="menu_bar"><div class="form-group"><div class="input-group"><input class="form-control" id="subject_search" onblur="search_focused(false)" onchange="search()" onfocus="search_focused(true)" placeholder="חפש" type="search"><span class="input-group-addon" id="search_icon"><button onclick="search()" type="button"><span class="glyphicon glyphicon-search"></span></button></span><span class="input-group-addon"><div class="dropdown"><button href="#" type="button"><span class="glyphicon glyphicon-menu-hamburger"></span></button><ul class="dropdown-menu dropdown-menu-left scrollable-menu"><li><a href="index.html">אודות</a></li><li class="divider"></li><li class="active"><a href="1.html">כללי</a></li><li><a href="3.html">מונחי קבלה ונסתר</a></li></ul></div></span></div></div></div><h1>מילון הראיה</h1><br><p></p><ul class="pagination"><li><a href="2.html">א</a></li></ul><div class="modal fade" id="search_modal"></div></div><ol id="footnotes"></ol></body></html>
+<html dir="rtl"><head><title>מילון הראיה</title><meta charset="utf-8"><meta content="width=device-width, initial-scale=1" name="viewport"><script src="jquery/dist/jquery.min.js"></script><link href="bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet"><link href="style.css" rel="stylesheet"><script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script><link href="bootstrap-rtl-3.3.4/dist/css/bootstrap-rtl.css" rel="stylesheet"><link href="html_demos-gh-pages/footnotes.css" rel="stylesheet"><script src="milon.js"></script><script src="html_demos-gh-pages/footnotes.js"></script><script src="subjects_db.json"></script></head><body><div class="container-fluid"><script>page_loaded('1.html')</script><div class="fixed_top_left" id="menu_bar"><div><button class="btn btn-default" id="search_icon_button" type="button"><span class="glyphicon glyphicon-search"></span></button><span class="dropdown"><button class="btn btn-primary" href="#" type="button"><span class="glyphicon glyphicon-menu-hamburger"></span></button><ul class="dropdown-menu dropdown-menu-left scrollable-menu"><li><a href="index.html">אודות</a></li><li><a href="opening_intros.html">הקדמות</a></li><li><a href="opening_haskamot.html">הסכמות</a></li><li><a href="opening_abbrev.html">קיצורים</a></li><li><a href="opening_signs.html">סימנים</a></li><li class="divider"></li><li class="active"><a href="1.html">ערכים כלליים</a></li><li><a href="5.html">מדרגות והערכות אישיותיות</a></li><li><a href="3.html">מונחי קבלה ונסתר</a></li></ul></span></div></div><h1>מילון הראיה</h1><br><p></p><ul class="pagination"><li><a href="2.html">א</a></li></ul><div class="modal fade" id="search_modal"></div></div><ol id="footnotes"></ol>﻿  <!-- Modal -->
+  <div class="modal fade" id="searchDialogModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+	   <form>
+        <div class="modal-body" style="padding:10px 14px;">
+			<div class="form-group">
+  			    <label for="subject_search">חיפוש ברשימת הערכים <span class="glyphicon glyphicon-search"></span></label>
+			    <input type="search" class="form-control" id="subject_search" placeholder="ביטוי לחיפוש ברשימת הערכים" autofocus>
+			</div>
+			<div class="form-group" >
+				<div class="input-group">
+					<div class="radio">
+						<label><input type="radio" name="searchRadio" id="exact_expr">חיפוש שם ערך מדויק</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="searchRadio" id="whold_word" checked="checked">חיפוש מילה שלמה, שמופיעה בשם הערך</label>
+					</div>				
+					<div class="radio">
+						<label><input type="radio" name="searchRadio" id="partial">חיפוש רצף אותיות משם הערך</label>
+					</div>				
+				</div>				
+			</div>				
+
+        </div>
+        <div class="modal-footer">
+			<button type="submit" onclick="search()" class="btn btn-primary" data-dismiss="modal">חיפוש</button>
+        </div>
+       </form>
+	  </div>
+      
+    </div>
+
+  </div>
+
+  <script>
+  $(document).ready(function(){
+      $("#search_icon_button").click(function(){
+          $("#searchDialogModal").modal();
+      });
+  });
+  </script>
+  
+				
+</body></html>

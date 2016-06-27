@@ -71,6 +71,8 @@ import subprocess
 
 import build_phonegap
 import upload_google_play
+from text_segments import MilonTextSegments as TS
+from docx2abstract_doc import *
 
 html_parser = HTMLParser.HTMLParser()
 
@@ -110,43 +112,6 @@ def run_style_id(run):
         else:
             return 'DefaultParagraphFont'
 
-
-styles = {
-    's01': 'subject_normal',
-    's11': 'sub-subject_normal',
-    's02': 'definition_normal',
-    's03': 'source_normal',
-    'Heading3Char': 'definition_normal',
-    '1': 'definition_normal',   #?
-    'FootnoteTextChar1': 'definition_normal',   #?
-    'HebrewChar': 'definition_normal',   #?
-
-    # this is problematic! has its own function to handle it
-    'DefaultParagraphFont': 'DefaultParagraphFont',
-
-    's15': 'subject_small',
-    's17': 'subject_small',
-    's1510': 'subject_small',
-    's05': 'definition_small',
-    's038': 'source_small',
-    's0590': 'source_small',
-    's050': 'source_small',
-    '050': 'source_small',
-
-    's149': 'subject_light',
-    's14': 'subject_light',
-    's16': 'sub-subject_light',
-    's168': 'sub-subject_light',
-    's048': 'definition_light',
-    's12': 'definition_light',
-    's04': 'unknown_light',
-    's127': 'source_light',
-
-    's02Symbol': 's02Symbol',   # MeUyan
-
-    'FootnoteReference': 'FootnoteReference',
-    'EndnoteReference': 'EndnoteReference', #?
-}
 
 # if the actual size is greater
 class Sizes:
@@ -212,7 +177,7 @@ def subject(html_doc, type, text):
     #     tags.attr(cls=type)
 
 def regular(type, text):
-    if type in ['footnote', 'footnote_recurrence']:
+    if type in [TS.footnote, TS.footnoteRecc]:
         with tags.a("(%s)" % text.strip()):
             tags.attr(cls="ptr")
     else:
@@ -231,7 +196,7 @@ def is_footnote_recurrence(run, type):
     # a number in superscript, that's not defined as a footnote
     return \
         run.element.rPr.vertAlign is not None \
-        and type != 'footnote' \
+        and type != TS.footnote \
         and run.text.strip().isdigit() \
         and run.element.rPr.vertAlign.values()[0] == 'superscript'
 
@@ -269,13 +234,13 @@ def is_prev_meuyan(para, i):
 
 
 def make_sub_subject(subj):
-    if subj == 'subject_small':
-        return 'sub-subject_normal'
+    if subj == TS.subjectSmall:
+        return TS.subSubjectNormal
     else:
         return subj
 
 def is_subject_small_or_sub_subject(s):
-    return s in ['subject_small', 'sub-subject_normal']
+    return s in [TS.subjectSmall, TS.subSubjectNormal]
 
 def analyze_and_fix(para):
     # unite splitted adjacent similar types
@@ -328,7 +293,7 @@ def analyze_and_fix(para):
                 new_para.append((type, text))
             elif (is_prev_subject(para, index)):
                 new_para.append((make_sub_subject(type), text))
-            elif new_para[index-1][0] in ('sub-subject_normal', 'subject_small'):
+            elif new_para[index-1][0] in (TS.subSubjectNormal, TS.subjectSmall):
                 new_para.append((make_sub_subject(type), text))
             else:
                 new_para.append(("fake_"+type, text))
@@ -343,16 +308,16 @@ def analyze_and_fix(para):
     new_para = []
     source_pattern = re.compile(r"(\s*\[.*\]\s*)")
     for (type, text) in para:
-        if type == 'source_normal':
+        if type == TS.sourceNormal:
             small = False
             for (chunk) in source_pattern.split(text):
                 if source_pattern.match(chunk):
                     if small:
-                        new_para.append(('source_small', chunk))
+                        new_para.append((TS.sourceSmall, chunk))
                     else:
                         new_para.append((type, chunk))
                 elif chunk != "":
-                    new_para.append(('definition_small', chunk))
+                    new_para.append((TS.definitionSmall, chunk))
                     small = True
                 # re.split(r"(\[.*\])", s)
         else:
@@ -582,11 +547,11 @@ def fix_sz_cs(run, type):
             s = "!Fixed!szCs=%s:%s." % (szCs, run.text)
             # print s
             debug_file.write(s.encode('utf8') + ' ')
-            return 'subject_small'
-    elif szCs == "22" and type == 'definition_normal':
-        return 'subject_normal'
-    elif szCs == "16" and type == 'source_normal':
-        return 'source_small'
+            return TS.subjectSmall
+    elif szCs == "22" and type == TS.definitionNormal:
+        return TS.subjectNormal
+    elif szCs == "16" and type == TS.sourceNormal:
+        return TS.sourceSmall
     else:
         pass
     return result
@@ -596,8 +561,8 @@ def fix_b_cs(run, type):
     try:
         bCs = run.element.rPr.bCs.attrib.values()[0]
         if bCs == "0" and 'subject' in type:
-            if type in ('subject_small', 'sub-subject_normal'):
-                return 'definition_normal'
+            if type in (TS.subjectSmall, TS.subSubjectNormal):
+                return TS.definitionNormal
             else:
                 pass
                 # print "Unknown b_cs=0"
@@ -607,67 +572,67 @@ def fix_b_cs(run, type):
 
 def fix_unknown(run):
     if run.font.size == 114300 and run.style.style_id == 's04':
-        return 'subject_light'
+        return TS.subjectLight
     elif run.font.size == 101600 and run.style.style_id == 's04' and run.font.cs_bold:
-        return 'sub-subject_light'
+        return TS.subSubjectLight
     elif run.font.size == 101600 and run.style.style_id == 's04' and not run.font.cs_bold:
-        return 'definition_light'
+        return TS.definitionLight
     elif run.font.size is None and run.style.style_id == 's04':
-        return 'definition_light'
+        return TS.definitionLight
     elif run.font.size == 88900 and run.style.style_id == 's04':
-        return 'source_light'
+        return TS.sourceLight
     else:
-        return 'unknown_light'
+        return TS.unknownLight
 
 
 def fix_DefaultParagraphFont(run):
     # only if it's really a text
     if run.text.strip() and run.text.strip() not in ("-", "(", ")", "[", "]", "'", '"', ","):
         if run.font.size == 152400 and not run.bold:
-            return 'subject_normal'
+            return TS.subjectNormal
         if run.font.size == 139700 and run.bold:
-            return 'subject_normal'
+            return TS.subjectNormal
         elif run.font.size == 127000:
-            return 'definition_normal'
+            return TS.definitionNormal
         elif run.font.size == 114300:
-            return 'source_normal'
+            return TS.sourceNormal
         elif run.font.size == 101600:
-            return 'source_small'
+            return TS.sourceSmall
         elif run.font.size == 88900:
-            return 'source_small'
+            return TS.sourceSmall
         elif run.font.size is None and run.bold:
-            return 'sub-subject_normal'
+            return TS.subSubjectNormal
         elif run.font.size is None and not run.bold:
-            return 'definition_normal'
+            return TS.definitionNormal
         else:
             print "AH!", ":",run.text.strip(),".", run.font.size, run.bold
             assert False
     else:
-        return 'DefaultParagraphFont'
+        return TS.defaultParagraph
 
 temp_l = []
 def bold_type(s, type, run):
-    if type == 'definition_normal':
-        return 'subject_small'
-    elif type == 'source_normal' and run.style.style_id == "s03":
+    if type == TS.definitionNormal:
+        return TS.subjectSmall
+    elif type == TS.sourceNormal and run.style.style_id == "s03":
         return 'sub-subject_small'
     elif type == "definition_small" and run.style.style_id == "s05":
         return 'sub-subject_small'
-    elif type == 'source_normal' and run.style.style_id == "DefaultParagraphFont" and run.font.size == 139700:
-        return 'subject_normal'
-    elif type == 'source_normal' and run.style.style_id == "DefaultParagraphFont" and run.font.size != 139700:
-        return 'sub-subject_normal'
-    elif type == 'unknown_light' and run.style.style_id == "s04" and run.font.size == 114300:
-        return 'subject_light'
-    elif type == 'unknown_light' and run.style.style_id == "s04" and run.font.size == 101600:
-        return 'sub-subject_light'
-    elif type == 'definition_light' and run.style.style_id == "s12" and run.font.size == 101600:
-        return 'sub-subject_light'
-    elif type == 'definition_light' and run.style.style_id == "s12" and run.font.size is None:
+    elif type == TS.sourceNormal and run.style.style_id == "DefaultParagraphFont" and run.font.size == 139700:
+        return TS.subjectNormal
+    elif type == TS.sourceNormal and run.style.style_id == "DefaultParagraphFont" and run.font.size != 139700:
+        return TS.subSubjectNormal
+    elif type == TS.unknownLight and run.style.style_id == "s04" and run.font.size == 114300:
+        return TS.subjectLight
+    elif type == TS.unknownLight and run.style.style_id == "s04" and run.font.size == 101600:
+        return TS.subSubjectLight
+    elif type == TS.definitionLight and run.style.style_id == "s12" and run.font.size == 101600:
+        return TS.subSubjectLight
+    elif type == TS.definitionLight and run.style.style_id == "s12" and run.font.size is None:
         # TODO - verify that it's always OK
-        return 'sub-subject_light'
-    elif type == 'source_normal':
-        print "Strange 'source_normal' bold!"
+        return TS.subSubjectLight
+    elif type == TS.sourceNormal:
+        print "Strange TS.sourceNormal bold!"
     elif 'subject' in type or 'heading' in type:
         return type
     elif run.text.strip() in (u"◊", "-", ""):
@@ -1002,10 +967,10 @@ with open('output/debug.txt', 'w') as debug_file:
             para = []
             debug_file.write("\n\nNEW_PARA:\n------\n")
             for (run, footnote_run) in zip(paragraph.runs, footnote_paragraph.runs):
-                s = "!%s.%s:%s$" % (run.style.style_id, styles.get(run_style_id(run), run_style_id(run)), run.text)
-                # print "!%s:%s$" % (styles.get(run.style.style_id, run.style.style_id), run.text)
+                s = "!%s.%s:%s$" % (run.style.style_id, docxCode2segType.get(run_style_id(run), run_style_id(run)), run.text)
+                # print "!%s:%s$" % (docxCode2segType.get(run.style.style_id, run.style.style_id), run.text)
                 debug_file.write(s.encode('utf8') + ' ')
-                type = styles.get(run_style_id(run), "unknown")
+                type = docxCode2segType.get(run_style_id(run), "unknown")
 
                 if run.font.size and run.text.strip():
                     size_kind = sizes.match(run.font.size)
@@ -1042,7 +1007,7 @@ with open('output/debug.txt', 'w') as debug_file:
                     # NOTE: this footnote number need no fix.
                     # it is a recurrance, therefore it has no id.
                     if is_footnote_recurrence(run, type):
-                        type = 'footnote_recurrence'
+                        type = TS.footnoteRecc
             
                 except:
                     pass
@@ -1068,11 +1033,11 @@ with open('output/debug.txt', 'w') as debug_file:
                                 html_doc.footnote_ids_of_this_html_doc.append(note.id)
                                 relative_note_id = note.id - html_doc.footnote_ids_of_this_html_doc[0] + 1
                                 # print "footnote", relative_note_id
-                                para.append(('footnote', str(relative_note_id)))
+                                para.append((TS.footnote, str(relative_note_id)))
                             elif create_latex:
                                 #TODO:  we have a problem here!
                                 #what happens in case of both html & latex??
-                                para.append(('footnote', str(note.id)))
+                                para.append((TS.footnote, str(note.id)))
 
                 except:
                     print "Failed footnote_references"

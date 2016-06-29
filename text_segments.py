@@ -16,6 +16,7 @@ class MilonTextSegments:
 
     # 'small' segments
 	subjectSmall = 'subject_small'
+	subSubjectSmall = 'sub-subject_small'
 	definitionSmall = 'definition_small'
 	sourceSmall = 'source_small'
 
@@ -28,12 +29,16 @@ class MilonTextSegments:
 
 	# footnote segments
 	footnote = 'footnote'
-	footnoteRecc = 'footnote_reccurence'
+	footnoteRec = 'footnote_recurrence'
 
     # misc.
 	MeUyan = 's02Symbol',   # ◊
 	footnoteRef = 'FootnoteReference'
 	endnoteRef = 'EndnoteReference' #?
+    unknown = 'unknown'
     
     # this is problematic! has its own function to handle it
 	defaultParagraph = 'DefaultParagraphFont'
+
+def fake(segment=''):
+	return "fake_" + segment

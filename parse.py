@@ -71,7 +71,7 @@ import subprocess
 
 import build_phonegap
 import upload_google_play
-from text_segments import MilonTextSegments as TS
+from text_segments import MilonTextSegments as TS, fake
 from docx2abstract_doc import *
 
 html_parser = HTMLParser.HTMLParser()
@@ -87,9 +87,9 @@ if process == "Full":
     create_latex = False
 else:
     #doc_file_name = 'dict_few.docx'
-    doc_file_name = 'dict_check.docx'
+    #doc_file_name = 'dict_check.docx'
     #doc_file_name = 'dict_short.docx'
-    #doc_file_name = 'dict.docx'
+    doc_file_name = 'dict.docx'
 
     create_html = True
     create_latex = False
@@ -130,7 +130,7 @@ class Sizes:
 
     def match(self, size):
         if size > self.normal:
-            return self.my_dict.get(size, "unknown")
+            return self.my_dict.get(size, TS.unknown)
         else:
             return 'normal'
 
@@ -177,7 +177,7 @@ def subject(html_doc, type, text):
     #     tags.attr(cls=type)
 
 def regular(type, text):
-    if type in [TS.footnote, TS.footnoteRecc]:
+    if type in [TS.footnote, TS.footnoteRec]:
         with tags.a("(%s)" % text.strip()):
             tags.attr(cls="ptr")
     else:
@@ -215,7 +215,7 @@ def is_subject(para, i, next=False):
 def is_prev_subject(para, i):
     try:
         return (is_subject(para, i-2) and
-                (para[i-1][1].replace('"','').strip() == "-") or (para[i-1][0] == "footnote"))
+                (para[i-1][1].replace('"','').strip() == "-") or (para[i-1][0] == TS.foonote))
     except:
         return False
 
@@ -227,7 +227,7 @@ def is_prev_newline(para, i):
 
 def is_prev_meuyan(para, i):
     try:
-        return para[i-1][0] == "s02Symbol"
+        return para[i-1][0] == TS.MeUyan
     except:
         return False
 
@@ -249,13 +249,13 @@ def analyze_and_fix(para):
     for (raw_type, text_raw) in para:
         text = text_raw.replace("@", "")
         if text == u"◊":
-            type = "s02Symbol"
+            type = TS.MeUyan
         else:
             type = raw_type
         if prev_type:
             if (type == prev_type) or \
                     (is_subject_small_or_sub_subject(type) and is_subject_small_or_sub_subject(prev_type)) or \
-                    (prev_type != "footnote" and text.strip() in ("", u"°", u"־", ",")):
+                    (prev_type != TS.foonote and text.strip() in ("", u"°", u"־", ",")):
                 prev_text += text
             else:
                 new_para.append((prev_type, prev_text))
@@ -377,7 +377,7 @@ def analyze_and_fix(para):
         debug_file.write("---------------\n")
         for (type, text) in new_para:
             s = "%s:%s.\n" % (type, text)
-            debug_file.write(s.encode('utf8') + ' ')
+            debug_file.write(s.encode('utf8'))
 
     # fix
     return new_para
@@ -546,7 +546,7 @@ def fix_sz_cs(run, type):
         if run.style.style_id == "s01":
             s = "!Fixed!szCs=%s:%s." % (szCs, run.text)
             # print s
-            debug_file.write(s.encode('utf8') + ' ')
+            debug_file.write(s.encode('utf8'))
             return TS.subjectSmall
     elif szCs == "22" and type == TS.definitionNormal:
         return TS.subjectNormal
@@ -615,9 +615,9 @@ def bold_type(s, type, run):
     if type == TS.definitionNormal:
         return TS.subjectSmall
     elif type == TS.sourceNormal and run.style.style_id == "s03":
-        return 'sub-subject_small'
-    elif type == "definition_small" and run.style.style_id == "s05":
-        return 'sub-subject_small'
+        return TS.subSubjectSmall
+    elif type == TS.definitionSmall and run.style.style_id == "s05":
+        return TS.subSubjectSmall
     elif type == TS.sourceNormal and run.style.style_id == "DefaultParagraphFont" and run.font.size == 139700:
         return TS.subjectNormal
     elif type == TS.sourceNormal and run.style.style_id == "DefaultParagraphFont" and run.font.size != 139700:
@@ -808,23 +808,23 @@ def open_latex():
 
 
 def latex_type(type):
-    if type == "subject_normal":
+    if type == TS.subjectNormal:
         return u"ערך"
-    elif type in ("sub-subject_normal", "subject_small", "fake_subject_small", "fake_sub-subject_normal"):
+    elif type in (TS.subSubjectNormal, TS.subjectNormal, fake(TS.subjectSmall), fake(TS.subSubjectNormal)):
         return u"משנה"
-    elif type in ("definition_normal", "fake_subject_small_normal"):
+    elif type in (TS.definitionNormal, "fake_subject_small_normal"):
         return u"הגדרה"
-    elif type == "source_normal":
+    elif type == TS.sourceNormal:
         return u"מקור"
-    elif type == "sub-subject_small":
+    elif type == TS.subSubjectSmall:
         return u"צמשנה"
-    elif type == "definition_small":
+    elif type == TS.definitionSmall:
         return u"צהגדרה"
-    elif type == "source_small":
+    elif type == TS.sourceSmall:
         return u"צמקור"
-    elif type == "footnote":
-        return "footnote"    #TODO: improve footnote
-    elif type == "s02Symbol":
+    elif type == TS.foonote:
+        return TS.foonote    #TODO: improve footnote
+    elif type == TS.MeUyan:
         return u"מעוין"
     #elif type == "DefaultParagraphFont":
     #    return #TODO: what??
@@ -875,7 +875,7 @@ def add_to_latex(para):
             else:
                 pass
 
-        elif type == "footnote":
+        elif type == TS.foonote:
             id = int(text)
             footnote = word_doc_footnotes.footnotes_part.notes[id + 1]
             assert footnote.id == id
@@ -969,14 +969,14 @@ with open('output/debug.txt', 'w') as debug_file:
             for (run, footnote_run) in zip(paragraph.runs, footnote_paragraph.runs):
                 s = "!%s.%s:%s$" % (run.style.style_id, docxCode2segType.get(run_style_id(run), run_style_id(run)), run.text)
                 # print "!%s:%s$" % (docxCode2segType.get(run.style.style_id, run.style.style_id), run.text)
-                debug_file.write(s.encode('utf8') + ' ')
-                type = docxCode2segType.get(run_style_id(run), "unknown")
+                debug_file.write(s.encode('utf8'))
+                type = docxCode2segType.get(run_style_id(run), TS.unknown)
 
                 if run.font.size and run.text.strip():
                     size_kind = sizes.match(run.font.size)
-                    if size_kind == 'unknown':
+                    if size_kind == TS.unknown:
                         print "!%s. Size: %d, Bool: %s, %s:%s$" % (size_kind, run.font.size, run.bold, type, run.text)
-                    if size_kind not in ('normal', 'unknown'):
+                    if size_kind not in ('normal', TS.unknown):
                         type = size_kind
 
                 if 'unknown' in type and run.text.strip():
@@ -1007,7 +1007,7 @@ with open('output/debug.txt', 'w') as debug_file:
                     # NOTE: this footnote number need no fix.
                     # it is a recurrance, therefore it has no id.
                     if is_footnote_recurrence(run, type):
-                        type = TS.footnoteRecc
+                        type = TS.footnoteRec
             
                 except:
                     pass
@@ -1015,13 +1015,13 @@ with open('output/debug.txt', 'w') as debug_file:
 
                 para.append((type, run.text))
 
-                if type == "unknown":
+                if type == TS.unknown:
                     if run_style_id(run) not in unknown_list:
                         unknown_list.append(run_style_id(run))
                         print paragraph.text
                         s = "\nMissing: !%s:%s$\n\n" % (run_style_id(run), run.text)
                         print s
-                        debug_file.write(s.encode('utf8') + ' ')
+                        debug_file.write(s.encode('utf8'))
 
 
                 try:
@@ -1032,7 +1032,7 @@ with open('output/debug.txt', 'w') as debug_file:
                             if create_html:
                                 html_doc.footnote_ids_of_this_html_doc.append(note.id)
                                 relative_note_id = note.id - html_doc.footnote_ids_of_this_html_doc[0] + 1
-                                # print "footnote", relative_note_id
+                                # print TS.foonote, relative_note_id
                                 para.append((TS.footnote, str(relative_note_id)))
                             elif create_latex:
                                 #TODO:  we have a problem here!

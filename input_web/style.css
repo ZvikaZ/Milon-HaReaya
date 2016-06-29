@@ -1,3 +1,11 @@
+a {
+  /* from https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
+  On devices with small screen, the index.html would get horizontal Scroll Bar.
+  It appears because of links getting out of line.
+  This one forces them to wrap around */
+  word-wrap: break-word;
+}
+
 .my_background {
     /*background-color:  !important;*/
     background-color: #4d79ff;

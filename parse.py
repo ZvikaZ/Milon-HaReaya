@@ -9,6 +9,8 @@ If 'secret.py' exists, it then uploads the .zip file to PhoneGap Build, waits fo
 to be ready, downloads it (to output/) and pushes everything (automatically) to Google Play.
 """
 
+# TODO: Investigate "Intel Crosswalk" ARM/Intel implications
+
 # TODO: Wrap each definition with <div> tag
 # TODO: change 'is_prev_subject(..)' to correctly handle "Toar Shem Tov" - should be more freely checking
 # TODO: "Yoru" - sizes changing
@@ -41,6 +43,8 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: increase/decrease font size
 # TODO: make definition in new line? (without ' - ')
 
+# TODO: replace menu with Bootstrap style menu
+# TODO: Make index.html's links clickable, or copyable
 # TODO: Split this file...
 # TODO: better icon
 # TODO: iphone?

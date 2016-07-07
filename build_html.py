@@ -41,21 +41,26 @@ def subject(html_doc, type, text):
     # with tags.span(tags.a(text, href="#%s" % text.strip(), id=text.strip())):
     #     tags.attr(cls=type)
 
-def regular(type, text):
-    if type in [TS.footnote, TS.footnoteRec]:
-        with tags.a("(%s)" % text.strip()):
-            tags.attr(cls="ptr")
-    else:
-        if "\n" in text:
-            print "New:", text
-        if u"°" in text:
-            href = re.sub(u"°", "", text)
-            href = re.sub(u"־", " ", href)
-            with tags.span(tags.a(text, href="#"+href)):
-                tags.attr(cls=type)
-        else:
-            with tags.span(text):
-                tags.attr(cls=type)
+def regular(html_doc, type, text):
+	if type in [TS.footnote, TS.footnoteRec]:
+		###############################################
+		# find the relative note id of this footnote.
+		if type == TS.footnote and html_doc.footnote_ids_of_this_html_doc:
+			text = str(int(text) - html_doc.footnote_ids_of_this_html_doc[0] + 1)
+		################################################
+		with tags.a("(%s)" % text.strip()):
+			tags.attr(cls="ptr")
+	else:
+		if "\n" in text:
+			print "New:", text
+		if u"°" in text:
+			href = re.sub(u"°", "", text)
+			href = re.sub(u"־", " ", href)
+			with tags.span(tags.a(text, href="#"+href)):
+				tags.attr(cls=type)
+		else:
+			with tags.span(text):
+				tags.attr(cls=type)
 
 
 # return True if updated
@@ -201,7 +206,7 @@ def add_to_output(html_doc, para, size_kind):
                     pass
                 subject(html_doc, type, text)
             else:
-                regular(type, text)
+                regular(html_doc, type, text)
 
             if type != TS.newLine:
                 new_lines_in_raw = 0
@@ -233,9 +238,6 @@ def open_html_doc(name, letter=None):
         tags.script(src="milon.js")
         tags.script(src="html_demos-gh-pages/footnotes.js")
         tags.script(src="subjects_db.json")
-
-
-
 
     html_doc.footnote_ids_of_this_html_doc = []
     html_doc.name = name
@@ -406,10 +408,23 @@ def add_menu_to_apriory_htmls(html_docs_l):
         replace_in_file('output/%s' % filename, place_holder, menu_bar_html)
         del content[index].attributes['class']
 
-def add(para, size_kind): # TODO 'size_kind' should be removed after I'll find a way to not needing it.
+def add(para, footnotes, size_kind): # TODO 'size_kind' should be removed after I'll find a way to not needing it.
 	html_doc = get_active_html_doc(para)
+	# the next two lines should always come in this order:
+	html_doc.footnote_ids_of_this_html_doc.extend(footnotes)
 	add_to_output(html_doc, para, size_kind)
 	return html_doc
+
+def begin_add(para, size_kind): # TODO this function should be removed at the end.
+	try:
+		# if there is a 'html_doc' - add to id new_line for the paragraph ended
+		# if there isn't - it doesn't matter, we're just at the beginning - ignore it
+		para = []
+		para.append((TS.newLine, "\n"))
+		html_doc = html_docs_l[-1]
+		add_to_output(html_doc, para, size_kind)
+	except:
+		pass
 
 def finish(word_doc_footnotes):
 	global html_docs_l

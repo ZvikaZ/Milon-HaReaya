@@ -1,5 +1,5 @@
 '''
-This module takes care of all the issue of sizes in the document.
+This module takes care of the issue of sizes in the document.
 '''
 from text_segments import MilonTextSegments as TS, fake
 import dominate

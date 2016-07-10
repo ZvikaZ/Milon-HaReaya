@@ -62,13 +62,11 @@ sys.path.insert(0, r'C:\Users\sdaudi\Github\python-docx')
 
 import docx
 import docx_fork_ludoo
-import re
 import zipfile
 import os
 import shutil
 import json
 import copy
-import subprocess
 
 import build_phonegap
 import upload_google_play
@@ -76,9 +74,9 @@ from text_segments import MilonTextSegments as TS, fake
 import text_segments as ts
 from docx2abstract_doc import *
 import docxparser as parse
-import fixes
 import build_html as bhtml
 import build_latex as blatex
+import multi_build as mbuild
 
 
 #process = "Full"
@@ -100,101 +98,31 @@ else:
     create_latex = False
 
 
-word_doc = docx.Document(doc_file_name)
-word_doc_footnotes = docx_fork_ludoo.Document(doc_file_name)
+parser = parse.MilonDocxParser(doc_file_name, 'output/debug.txt')
 
-try:
-    shutil.rmtree("output")
-except:
-    pass
+#####################################################################################
+## create the builders ##############################################################
+html_builder = bhtml.MilonHTMLBuilder('input_web', 'output')
+html_builder.set_word_doc_footnotes(parser.word_doc_footnotes)
+latex_builder = blatex.MilonLatexBuilder('input_tex', 'tex')
+#####################################################################################
 
-try:
-    shutil.rmtree("tex")
-except:
-    pass
+#####################################################################################
+## add the builders to the multi-builder ############################################
+## this is where you should comment-out the builders you don't need #################
+builder = mbuild.MilonMultiBuilder()
+builder.addBuilder(html_builder)
+#builder.addBuilder(latex_builder)
+#####################################################################################
 
-os.mkdir("tex")
-os.mkdir("output")
-os.mkdir("output/html_demos-gh-pages")
-
-os.chdir("input_web")
-for (f) in (
-    'config.xml',
-    'icon.png',
-    'style.css',
-    'html_demos-gh-pages/footnotes.css',
-    'html_demos-gh-pages/footnotes.js',
-    'milon.js',
-    'index.html',
-    'opening_abbrev.html',
-    'opening_haskamot.html',
-    'opening_intros.html',
-    'opening_signs.html',
-    'search.html',
-):
-    shutil.copyfile(f, os.path.join("../output", f))
-
-for (d) in (
-    'bootstrap-3.3.6-dist',
-    'bootstrap-rtl-3.3.4',
-    'jquery',
-):
-    shutil.copytree(d, os.path.join("../output", d))
-
-os.chdir("../input_tex")
-for (f) in (
-    "milon.tex",
-    "polythumbs.sty",
-):
-    shutil.copyfile(f, os.path.join("../tex", f))
-os.chdir("../")
-
-blatex.open_latex()
 # Here starts the action!
-# TODO - we should get all the code up to here OUT of this file into modules
-with open('output/debug.txt', 'w') as debug_file:
-    # para = []
-    for (paragraph, footnote_paragraph) in zip(word_doc.paragraphs, word_doc_footnotes.paragraphs):
-        if paragraph.text.strip():
-            para, size_kind, footnotes = parse.parse_runs(paragraph, footnote_paragraph, debug_file)
-            para.append((TS.newLine, "\n"))
-            # parser until here
-            para = fixes.analyze_and_fix(para)
-            # fixes until here
-            if create_html:
-                #html_doc = bhtml.add(para, footnotes, size_kind)
-                bhtml.add(para, footnotes, size_kind)
-            if create_latex:
-                blatex.add_to_latex(para)
-            # builder(s) until here
-        else:
-            try:
-                # if there is a 'html_doc' - add to id new_line for the paragraph ended
-                # if there isn't - it doesn't matter, we're just at the beginning - ignore it
-                para = []
-                para.append((TS.newLine, "\n"))
-                if create_html:
-                    bhtml.begin_add(para, size_kind)
-                if create_latex:
-                    blatex.add_to_latex(para)
-            except:
-                pass
+builder.start()
+for para, footnotes, size_kind in parser.paragraphs():
+    builder.add(para, footnotes, size_kind)
 
-# TODO move this block to build_html
-if create_html:
-    bhtml.finish(word_doc_footnotes)
+parser.finish()
+builder.finish()
 
-if parse.unknown_list:
-    print "\n\nMissing:"
-    print parse.unknown_list
-
-# TODO move this block to build_latex
-if create_latex:
-    blatex.close_latex()
-
-with open('output/subjects_db.json', 'wb') as fp:
-    s = json.dumps(bhtml.subjects_db, encoding='utf8')
-    fp.write("data = " + s)
 
 with zipfile.ZipFile("milon.zip", "w", zipfile.ZIP_DEFLATED) as zf:
     os.chdir("output")

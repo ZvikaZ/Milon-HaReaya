@@ -5,8 +5,9 @@ You should add all the builders to this builder, and they all should have start(
 Then you can use this builder aggregator as it was a single builder, and simply add paragraphs, one by one to this builder.
 All the corner cases and exceptions should be delt with internally by the builders aggregated by this builder.
 '''
+from build import *
 
-class MilonMultiBuilder():
+class MilonMultiBuilder(MilonBuilder):
 	def __init__(self):
 		self.builders = []
 

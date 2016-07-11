@@ -63,7 +63,7 @@ try:
     parser.finish()
     builder.finish()
 
-#    ulgp.main() # uncomment to upload the .apk file to google play
+#    ulgp.main() # uncomment this line to upload the .apk file to google play
 except Exception as e:
     print "Build process failed!"
     print e

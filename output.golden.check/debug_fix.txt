@@ -250,6 +250,25 @@ subject_normal:אור הגלוי .
  new_line:
 .
  ---------------
+fake_sub-subject_small:◊◊◊.
+ new_line:
+.
+ ---------------
+fake_subject_normal:פרצופים: .
+ new_line:
+.
+ ---------------
+subject_small:פרצופים.
+ definition_small: - .
+ sub-subject_normal:עיקר ענינם .
+ definition_small:- .
+ definition_small:החיות האלהית העולמית והאחדות הכוללת .
+ source_small:[ק"ה רכ]. .
+ new_line:
+.
+ new_line:
+.
+ ---------------
 heading_section:מונחי קבלה ונסתר.
  ---------------
 new_line:

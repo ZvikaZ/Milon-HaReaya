@@ -1,4 +1,37 @@
-﻿function show_failed_search_modal(val) {
+﻿// called on index.html's BODY
+function init() {
+    document.addEventListener("deviceready", onDeviceReady, false);
+	console.log("Hi");
+}
+
+// PhoneGap is loaded and it is now safe to make calls PhoneGap methods
+function onDeviceReady() {
+	//alert(AppVersion.version);
+	//alert(AppVersion.build);
+	console.log("device ready");
+//	console.log(localStorage.last_build);
+//	console.log(AppVersion.build);
+//
+//	// jump to last location - if it's valid, and user already saw this version of index.html
+//	if (localStorage.last_build == AppVersion.build) {
+//		//console.log("localStorage.get last_url = " + localStorage.getItem("last_url"))
+//		//window.location.replace = localStorage.getItem("last_url");
+//
+//		//console.log("Going back");
+//		// copied from http://stackoverflow.com/questions/16542118/phonegap-navigator-app-backhistory-not-working-on-html-back-button
+//		//history.go(-1);
+//	    //navigator.app.backHistory();
+//
+//	};
+//	localStorage.last_build = AppVersion.build;
+
+	$(".hidden-on-mobile").hide();
+
+
+}
+
+
+function show_failed_search_modal(val) {
   document.getElementById("search_modal").innerHTML = '\
     <div class="modal-dialog">\
         <div class="modal-content">\

@@ -107,6 +107,7 @@ def push_to_phonegap(zipfile):
 
     print "Compiling APK"
     while check_app_status() == 'pending':
+        print "Pending"
         time.sleep(1)
 
 

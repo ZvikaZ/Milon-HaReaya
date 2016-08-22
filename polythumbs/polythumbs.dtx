@@ -1,0 +1,93 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2016 by Zvika Haramaty
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3 of this license or (at your option) any later
+% version. The latest version of this license is in:
+%
+% http://www.latex-project.org/lppl.txt
+%
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2005/12/01 or later.
+%
+% \fi
+
+
+
+% \iffalse
+%<package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
+%<package>\ProvidesPackage{polythumbs}
+%<package>    [2016/03/27 v1.0 Thumbs Index, compatible with RTL language and polyglossia]
+%
+
+
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage{polythumbs}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{polythumbs.dtx}
+\end{document}
+%</driver>
+% \fi
+
+% \CheckSum{0}
+
+% \changes{v1.0}{2016/03/27}{Initial version}
+
+% \GetFileInfo{polythumbs.sty}
+% \DoNotIndex{\#,\$,\%,\&,\@,\\,\{,\},\^,\_,\~,\ }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\RequirePackage{fancytabs}    %TODO: require specific version [2016/3/..]
+
+\usepackage{fancytabs}
+
+% default style, can be easily overriden
+\fancytabsStyle{\Large\color{white}}
+\fancytabsWidth{1.5cm}
+\fancytabsHeight{0.8cm}
+\fancytabsCount{30}
+\fancytabsLeftColor{black}
+\fancytabsRightColor{black}
+\fancytabsGap{1mm}
+\fancytabsRotate{0}
+\fancytabsTop{1cm}
+
+% thumbs counter
+\newcounter{PolythumbCounter}
+\setcounter{PolythumbCounter}{1}
+
+
+% commands
+\newcommand{\PolythumbWrapperLeft}{}
+\newcommand{\PolythumbWrapperRight}{}
+
+\newcommand{\addPolythumb}[1]{
+	\replacePolythumb{#1}
+	\stepcounter{PolythumbCounter}
+}
+
+
+\newcommand{\replacePolythumb}[1]{
+    \renewcommand{\PolythumbWrapperLeft}{
+	    \fancytab[LEFT]{#1}{\value{PolythumbCounter}}
+	}
+    \renewcommand{\PolythumbWrapperRight}{
+	    \fancytab[RIGHT]{#1}{\value{PolythumbCounter}}
+	}
+}
+
+\newcommand{\skipPolythumb}{
+	\stepcounter{PolythumbCounter}
+}
+
+\endinput

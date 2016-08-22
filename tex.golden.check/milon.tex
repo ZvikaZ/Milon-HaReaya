@@ -1,0 +1,187 @@
+% missing:
+% thumbs
+% modify רע to  ער:  http://tex.stackexchange.com/questions/300008/modify-specific-hebrew-alpha-numerals-on-page-number
+% increase margin above and below footnotes ruler
+% fix redundant page between chapter and section - http://tex.stackexchange.com/questions/300320/when-2-newpages-in-raw-are-joined-and-when-not
+
+% fix new chapter/section
+% footnote - the number should be regular location, "." after number
+% debug warning messages
+% footnote in wrong place - use \clearpage (maybe automatically? with 2 rounds?)
+% Stam font
+
+%%% Questions to the Rav:
+% verify spacing, margins
+% verify page size
+% Medurim? Should appear?
+
+%%% to do in Python:
+% change " to ``
+% update 'NewPageForLetter' value during run
+% correct header section
+% footnotes Styles
+% restart footnotes at sections (?)
+% what happens with footnotes in case of both create_html & _latex ?
+
+\documentclass{scrbook}
+
+\usepackage{nag}
+% should be loaded before polyglossia, but defined after...
+\usepackage[center]{titlesec}
+
+%%%%%%%%%%%        PAGE SIZE        %%%%%%%%%%%
+\usepackage[paperheight=10.7in, paperwidth=8.3in, top=2cm, bottom=1.8cm]{geometry}
+
+%%%%%%%%%%%        THUMBS        %%%%%%%%%%%
+\usepackage{polythumbs}
+
+%%%%%%%%%%%        HEADING        %%%%%%%%%%%
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[LO]{\thepage\PolythumbWrapperLeft}
+\fancyhead[RE]{\thepage\PolythumbWrapperRight}
+
+\pagenumbering{alph}			% change page numbers to Hebrew letters
+\setcounter{page}{-1}			% make page 1 first
+
+
+%%%%%%%%%%%        COLUMNS        %%%%%%%%%%%
+\usepackage{multicol}		% allow using 2 columns
+\setlength{\columnsep}{1.5pc}	% increase space between columns
+
+
+%%%%%%%%%%%        HEBREW        %%%%%%%%%%%
+\usepackage{polyglossia}		% allow Hebrew
+\setdefaultlanguage{hebrew}	
+\rightfootnoterule   			% move footnote ruler to the right, until https://github.com/reutenauer/polyglossia/issues/5 will be fixed
+
+
+%%%%%%%%%%%    EMPTY CHAPTER PAGE %%%%%%%%%%%
+% from http://www.tex.ac.uk/FAQ-reallyblank.html
+\let\origdoublepage\cleardoublepage
+\newcommand{\clearemptydoublepage}{%
+  \clearpage
+  {\pagestyle{empty}\origdoublepage}%
+}
+\let\cleardoublepage\clearemptydoublepage
+
+
+%%%%%%%%%%%    CHAPTERS %%%%%%%%%%%
+% requires `\usepackage{titlesec}` --> but before loading polyglossia
+\titleformat
+{\chapter} % command
+[block] % shape
+{\huge} % format
+{} % label
+{0.5ex} % sep
+{
+% add code to start on even pages
+    \centering
+} % before-code
+[
+\cleardoublepage
+] % after-code
+\assignpagestyle{\chapter}{empty}
+
+
+%%%%%%%%%%%    LETTERS %%%%%%%%%%%
+\newtoggle{NewPageForLetter}
+\toggletrue{NewPageForLetter}
+%\togglefalse{NewPageForLetter}
+
+\titleformat
+{\subsubsection} % command
+[block] % shape
+{
+    \iftoggle{NewPageForLetter}{%
+      % Chapters that need new page for each letter
+      \clearpage
+      }
+      \large
+} % format
+{} % label
+{0.5ex} % sep
+{
+\centering
+\textbf
+} % before-code
+[
+] % after-code
+%%%%%%%%%%%        UNINDENT        %%%%%%%%%%%
+\setlength{\parindent}{0pt}		% avoid space at beginning of paragraph
+
+\deffootnote[1.5em]{1em}{1em}{\thefootnotemark.\space}	% unindent footnotes, change footnote marker
+
+%\usepackage[flushmargin]{footmisc} 	% un-indent footnotes
+%\setlength{\footnotemargin}{0.2em}
+
+% good, but may improve...
+%\usepackage[hang,flushmargin]{footmisc} 	% un-indent footnotes
+%\setlength{\footnotemargin}{0.7em}
+
+%%%%%%%%%%%        MISC        %%%%%%%%%%%
+\renewcommand\thesection{}	 % remove sections' numbers
+%D\renewcommand\thechapter{}	 %
+%D\renewcommand{\chaptername}{}
+
+
+\linespread{1.3}		 %  increase lines spacing
+
+\setlength{\footnotesep}{0.2cm}	% vertical space between footnotes
+\setlength{\skip\footins}{1.5em} % vertical space between text body and footnote ruler
+
+% based on http://tex.stackexchange.com/questions/59501/how-do-i-add-a-blank-line-between-the-footnote-line-and-the-footnotes?rq=1
+\let\oldfootnoterule\footnoterule
+\def\footnoterule{\oldfootnoterule \vskip1em\relax}      % vertical space between ruler and footnotes
+
+
+%\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}		% increase spacing between paragraphs
+
+%%%%%%%%%%%        FONTS        %%%%%%%%%%%
+% Font chosing
+\usepackage{fontspec}
+\newfontfamily\hebrewfont{Times New Roman}[Script=Hebrew]
+\newfontfamily\hebrewfonttt{Miriam}[Script=Hebrew]
+%\setmainfont{Arial} 			%  reference, working alone, w/o any other font command
+
+
+%%%%%%%%%%%        COMMANDS        %%%%%%%%%%%
+\newcommand\mylarge{\fontsize{11}{12}\selectfont}
+\newcommand\mynormalsize{\fontsize{10}{12}\selectfont}
+\newcommand\mysmall{\fontsize{9}{12}\selectfont}
+\newcommand\myfootnotesize{\fontsize{8}{12}\selectfont}
+
+
+\newcommand{\ערך}[1]{\textbf{\mylarge{#1}}}
+\newcommand{\משנה}[1]{\textbf{\mynormalsize{#1}}}
+\newcommand{\הגדרה}[1]{\mynormalsize{#1}}
+% what about fakes? (bolded)
+\newcommand{\מקור}[1]{\mysmall{#1}}
+
+\newcommand{\צערך}[1]{\משנה{#1}}
+\newcommand{\צמשנה}[1]{\textbf{\mynormalsize{#1}}}
+\newcommand{\צהגדרה}[1]{\mysmall{#1}}
+\newcommand{\צמקור}[1]{\myfootnotesize{#1}}
+
+
+\newcommand{\תערך}[1]{\texttt{\ערך{#1}}}
+\newcommand{\תמשנה}[1]{\texttt{\משנה{#1}}}
+\newcommand{\תהגדרה}[1]{\texttt{\הגדרה{#1}}}
+\newcommand{\תמקור}[1]{\texttt{\מקור{#1}}}
+
+\newcommand{\מעוין}[1]{\mynormalsize{#1}}
+
+%\newcommand{\תקלה}[1]{\הגדרה{#1}}
+\newcommand{\תקלה}[1]{#1}
+%%%%%%%%%%%        DATA        %%%%%%%%%%%
+
+\begin{document}
+\begin{multicols}{2}
+
+\include{content}
+
+\end{multicols}
+\end{document}

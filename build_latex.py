@@ -3,6 +3,7 @@
 Module for creating the latex document of the milon.
 '''
 from build import *
+from text_segments import MilonTextSegments as TS, fake
 import shutil
 
 

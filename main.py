@@ -29,7 +29,7 @@ import upload_google_play as ulgp
 #doc_file_name = 'dict_few.docx'
 doc_file_name = 'dict_check.docx'
 #doc_file_name = 'dict_short.docx'
-doc_file_name = 'dict.docx'
+#doc_file_name = 'dict.docx'
 
 
 parser = MilonDocxParser(doc_file_name, 'output/debug.txt')
@@ -50,8 +50,8 @@ latex_builder = MilonLatexBuilder('input_tex', 'tex')
 ## this is where you should comment-out the builders you don't need #################
 #####################################################################################
 builder = MilonMultiBuilder()
-builder.addBuilder(html_builder)
-#builder.addBuilder(latex_builder)
+#builder.addBuilder(html_builder)
+builder.addBuilder(latex_builder)
 #####################################################################################
 
 # Here starts the action!

@@ -17,6 +17,8 @@ import sys
 sys.path.insert(0, r'C:\Users\zharamax\PycharmProjects\python-docx')
 sys.path.insert(0, r'C:\Users\sdaudi\Github\python-docx')
 
+import traceback
+
 from docxparser import MilonDocxParser
 from build_html import MilonHTMLBuilder
 from build_latex import MilonLatexBuilder
@@ -43,6 +45,7 @@ html_builder = MilonZipper(html_builder, 'milon.zip') # this will zip the milon 
 # html_builder = bpg.MilonPhoneGapBuilder(html_builder) # this will create the .apk
 # latex
 latex_builder = MilonLatexBuilder('input_tex', 'tex')
+latex_builder.set_word_doc_footnotes(parser.word_doc_footnotes)
 #####################################################################################
 
 #####################################################################################
@@ -67,6 +70,7 @@ try:
 except Exception as e:
     print "Build process failed!"
     print e
+    print traceback.print_tb(sys.exc_traceback)
 
 
 #####################################################################################

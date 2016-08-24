@@ -4,6 +4,8 @@ Module for creating the latex document of the milon.
 '''
 from build import *
 from text_segments import MilonTextSegments as TS, fake
+import subprocess
+import os
 import shutil
 
 
@@ -37,6 +39,10 @@ class MilonLatexBuilder(MilonBuilder):
 		subprocess.call(['xelatex', 'milon.tex'])
 		os.startfile("milon.pdf")
 		os.chdir("..")
+
+	def set_word_doc_footnotes(self, word_doc_footnotes):
+		# for the 'add' method.
+		self.word_doc_footnotes = word_doc_footnotes
 
 	def add(self, para, f, sk): # f and sk have no use
 		data = ""
@@ -80,7 +86,7 @@ class MilonLatexBuilder(MilonBuilder):
 
 			elif type == TS.footnote:
 				id = int(text)
-				footnote = word_doc_footnotes.footnotes_part.notes[id + 1]
+				footnote = self.word_doc_footnotes.footnotes_part.notes[id + 1]
 				assert footnote.id == id
 				foot_text = ""
 				for (para) in footnote.paragraphs:
@@ -103,4 +109,27 @@ class MilonLatexBuilder(MilonBuilder):
 
 		with open(self.output_dir + "/content.tex", 'a') as latex_file:
 			latex_file.write(data.encode('utf8'))
-			
+	
+def latex_type(type):
+	if type == TS.subjectNormal:
+		return u"ערך"
+	elif type in (TS.subSubjectNormal, TS.subjectSmall, fake(TS.subjectSmall), fake(TS.subSubjectNormal)):
+		return u"משנה"
+	elif type in (TS.definitionNormal, fake(TS.subjectSmallNormal)):
+		return u"הגדרה"
+	elif type == TS.sourceNormal:
+		return u"מקור"
+	elif type == TS.subSubjectSmall:
+		return u"צמשנה"
+	elif type == TS.definitionSmall:
+		return u"צהגדרה"
+	elif type == TS.sourceSmall:
+		return u"צמקור"
+	elif type == TS.footnote:
+		return "footnote"    #TODO: improve footnote
+	elif type == TS.MeUyan:
+		return u"מעוין"
+	#elif type == "DefaultParagraphFont":
+	#    return #TODO: what??
+	else:
+		return u"תקלה"

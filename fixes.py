@@ -41,7 +41,7 @@ def analyze_and_fix(para):
                 if line:
                     new_para.append((type, line))
                 if i+1 < len(lines):
-                    new_para.append(("new_line", "\n"))
+                    new_para.append((TS.newLine, "\n"))
         else:
             new_para.append((type, text))
 
@@ -63,10 +63,10 @@ def analyze_and_fix(para):
             elif new_para[index-1][0] in (TS.subSubjectNormal, TS.subjectSmall):
                 new_para.append((make_sub_subject(type), text))
             else:
-                new_para.append(("fake_"+type, text))
+                new_para.append((fake(type), text))
         elif 'subject' in type:
             # it's got a subject, but 'is_subject' failed
-            new_para.append(("fake_"+type, text))
+            new_para.append((fake(type), text))
         else:
             new_para.append((type, text))
 
@@ -111,7 +111,7 @@ def analyze_and_fix(para):
         if 'heading' in type:
             ignore_new_line = True
             new_para.append((type, text))
-        elif type == "new_line" and ignore_new_line:
+        elif type == TS.newLine and ignore_new_line:
             pass
         else:
             new_para.append((type, text))
@@ -144,7 +144,7 @@ def analyze_and_fix(para):
         debug_file.write("---------------\n")
         for (type, text) in new_para:
             s = "%s:%s.\n" % (type, text)
-            debug_file.write(s.encode('utf8'))
+            debug_file.write(s.encode('utf8') + ' ')
 
     # fix
     return new_para
@@ -163,14 +163,14 @@ def is_subject_small_or_sub_subject(s):
 # run fixes ######################################
 ##################################################
 
-def fix_sz_cs(run, type):
+def fix_sz_cs(run, type, debug_file):
     result = type
     szCs = run.element.rPr.szCs.attrib.values()[0]
     if szCs == "20" and 'subject' in type:
         if run.style.style_id == "s01":
             s = "!Fixed!szCs=%s:%s." % (szCs, run.text)
             # print s
-            debug_file.write(s.encode('utf8'))
+            debug_file.write(s.encode('utf8') + ' ')
             return TS.subjectSmall
     elif szCs == "22" and type == TS.definitionNormal:
         return TS.subjectNormal

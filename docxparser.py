@@ -45,7 +45,7 @@ class MilonDocxParser():
 		for (run, footnote_run) in zip(paragraph.runs, footnote_paragraph.runs):
 			s = "!%s.%s:%s$" % (run.style.style_id, docxCode2segType.get(run_style_id(run), run_style_id(run)), run.text)
 			# print "!%s:%s$" % (docxCode2segType.get(run.style.style_id, run.style.style_id), run.text)
-			debug_file.write(s.encode('utf8'))
+			debug_file.write(s.encode('utf8') + ' ')
 			type = docxCode2segType.get(run_style_id(run), TS.unknown)
 
 			if run.font.size and run.text.strip():
@@ -75,7 +75,7 @@ class MilonDocxParser():
 
 			try:
 				if run.element.rPr.szCs is not None and run.text.strip():
-					type = fixes.fix_sz_cs(run, type)
+					type = fixes.fix_sz_cs(run, type, debug_file)
 
 				if run.element.rPr.bCs is not None and run.text.strip():
 					type = fixes.fix_b_cs(run, type)
@@ -97,7 +97,7 @@ class MilonDocxParser():
 					print paragraph.text
 					s = "\nMissing: !%s:%s$\n\n" % (run_style_id(run), run.text)
 					print s
-					debug_file.write(s.encode('utf8'))
+					debug_file.write(s.encode('utf8') + ' ')
 
 			footnote_references = footnote_run.footnote_references
 			if footnote_references:
@@ -105,7 +105,7 @@ class MilonDocxParser():
 					para.append((TS.footnote, str(note.id)))
 					footnotes.append(note.id)
 
-		#para.append((TS.newLine, '\n'))
+		para.append((TS.newLine, '\n'))
 		para = fixes.analyze_and_fix(para)
 		return para, footnotes, size_kind # TODO this should be changed. size_kind shouldn't be returned and moved to other functions. it makes no sence.
 

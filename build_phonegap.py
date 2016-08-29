@@ -8,6 +8,7 @@ import json
 import sys
 import time
 import shutil
+from milon_zip import MilonZipper
 
 try:
     from secret import *
@@ -37,6 +38,21 @@ except:
 # requests_log.setLevel(logging.DEBUG)
 # requests_log.propagate = True
 # ##
+
+
+class MilonPhoneGapBuilder(MilonZipper):
+    def __init__(self, zipper):
+        self.zipper = zipper
+
+    def start(self):
+        self.zipper.start()
+
+    def add(self, paragraph, footnotes, size_kind):
+        self.zipper.add(paragraph, footnotes, size_kind)
+
+    def finish(self):
+        self.zipper.finish()
+        push_to_phonegap(self.zipper.get_zip_path())
 
 
 base_url = 'https://build.phonegap.com/'

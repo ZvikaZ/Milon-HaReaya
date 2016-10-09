@@ -65,7 +65,7 @@ def check_app_status():
     return status
 
 
-def push_to_phonegap(zipfile):
+def push_to_phonegap(zipfile, cpu='arm'):
     # # get my info w/o token
     # r = requests.get(base_url + "api/v1/me", verify=False,
     #                  auth=auth)
@@ -102,24 +102,26 @@ def push_to_phonegap(zipfile):
     # upload zip file
     files = {'file': open(zipfile, 'rb')}
     r = requests.put(app_url, files=files, verify=False, auth=auth)
-    assert r.status_code == 200
+    assert r.status_code == 200, r.content
     # print "Upload status: ", r.status_code, r.text
 
-    print "Compiling APK"
+    print "Compiling %s APK" % cpu
     while check_app_status() == 'pending':
         print "Pending"
-        time.sleep(1)
+        time.sleep(2)
 
 
     # download the APK
-    print "Downloading APK"
+    print "Downloading %s APK" % cpu
     r = requests.get(app_url+"android", verify=False, auth=auth)
     assert r.status_code == 200
 
-    with open('milon.apk', 'wb') as f:
+    apk_name = "milon.%s.apk" % cpu
+
+    with open(apk_name, 'wb') as f:
         f.write(r.content)
-    shutil.move("milon.apk", "output/")
-    print "milon.apk downloaded"
+    shutil.move(apk_name, "output/")
+    print "%s downloaded" % apk_name
 
 
 

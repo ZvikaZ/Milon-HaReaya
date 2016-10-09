@@ -78,9 +78,9 @@ import upload_google_play
 
 html_parser = HTMLParser.HTMLParser()
 
-#process = "Full"
-#process = "APK"
-process = "ZIP"
+process = "Full"
+# process = "APK"
+#process = "ZIP"
 
 if process == "Full":
     doc_file_name = 'dict.docx'
@@ -89,9 +89,9 @@ if process == "Full":
     create_latex = False
 else:
     #doc_file_name = 'dict_few.docx'
-    doc_file_name = 'dict_check.docx'
+    #doc_file_name = 'dict_check.docx'
     #doc_file_name = 'dict_short.docx'
-    #doc_file_name = 'dict.docx'
+    doc_file_name = 'dict.docx'
 
     create_html = True
     create_latex = False
@@ -1165,25 +1165,44 @@ if unknown_list:
     print unknown_list
 
 
-with zipfile.ZipFile("milon.zip", "w", zipfile.ZIP_DEFLATED) as zf:
-    os.chdir("output")
-    for dirname, subdirs, files in os.walk("."):
-        # avoid creating 'output' directory as first hierrarchy
-        # suddenly causes problem with phonegap - makes garbages APKs...
-        zf.write(dirname)
-        for filename in files:
-            if not 'debug' in filename:
-                zf.write(os.path.join(dirname, filename))
-    print "Created milon.zip"
-os.chdir("..")
+def create_zip():
+    with zipfile.ZipFile("milon.zip", "w", zipfile.ZIP_DEFLATED) as zf:
+        os.chdir("output")
+        for dirname, subdirs, files in os.walk("."):
+            # avoid creating 'output' directory as first hierrarchy
+            # suddenly causes problem with phonegap - makes garbages APKs...
+            zf.write(dirname)
+            for filename in files:
+                if not 'debug' in filename and not '.apk' in filename:
+                    zf.write(os.path.join(dirname, filename))
+        print "Created milon.zip"
+    os.chdir("..")
+    shutil.move("milon.zip", "output/")
 
-shutil.move("milon.zip", "output/")
+
+# because of "https://github.com/MBuchalik/cordova-build-architecture.git#v1.0.1"
+# the version code we give here is multiplied by 10, and adds either 2 or 4 (for ARM or Intel)
+# here we do the opposite, and advance the version
+playAPISession = upload_google_play.PlayAPISession()
+version_code = playAPISession.get_last_apk() / 10 + 1
+replace_in_file('output/config.xml', 'UPDATED_BY_SCRIPT_VERSION_CODE', str(version_code))
+
+create_zip()
+
+def update_zip_to_x86():
+    os.remove('output/milon.zip')
+    replace_in_file('output/config.xml', '!--UPDATED_BY_SCRIPT ', '')
+    replace_in_file('output/config.xml', '/UPDATED_BY_SCRIPT--', '/')
+    create_zip()
 
 if process != "ZIP":
     try:
-        build_phonegap.push_to_phonegap("output/milon.zip")
+        build_phonegap.push_to_phonegap("output/milon.zip", 'arm')
+        update_zip_to_x86()
+        build_phonegap.push_to_phonegap("output/milon.zip", 'x86')
         if process == "Full":
-            upload_google_play.main()
+            playAPISession.main(["output/milon.x86.apk", "output/milon.arm.apk"])
+
     except Exception as e:
         print "Build process failed!"
         print e

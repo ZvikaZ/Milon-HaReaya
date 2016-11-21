@@ -10,6 +10,7 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 """
 
 # TODO: Investigate "Intel Crosswalk" ARM/Intel implications
+# TODO: Clean 'UNKNOWN's and 'fix_sz_cs'
 
 # TODO: Wrap each definition with <div> tag
 # TODO: change 'is_prev_subject(..)' to correctly handle "Toar Shem Tov" - should be more freely checking
@@ -80,7 +81,7 @@ html_parser = HTMLParser.HTMLParser()
 
 process = "Full"
 # process = "APK"
-#process = "ZIP"
+# process = "ZIP"
 
 if process == "Full":
     doc_file_name = 'dict.docx'
@@ -89,8 +90,7 @@ if process == "Full":
     create_latex = False
 else:
     #doc_file_name = 'dict_few.docx'
-    #doc_file_name = 'dict_check.docx'
-    #doc_file_name = 'dict_short.docx'
+    # doc_file_name = 'dict_check.docx'
     doc_file_name = 'dict.docx'
 
     create_html = True
@@ -106,19 +106,25 @@ word_doc_footnotes = docx_fork_ludoo.Document(doc_file_name)
 # new is preferred, because, well, it's new...
 # old is preferred because I'm using a branch with footnotes support
 def run_style_id(run):
+    bold = ""
+    if run.text.strip() and run.font.cs_bold:
+        # print "BOLD: ", run.bold, run.font.bold, run.font.cs_bold, ": ", run.text
+        bold = "_bold"
     try:
-        return run.style.style_id
+        return run.style.style_id + bold
     except:
         if run.style:
-            return run.style
+            return run.style + bold
         else:
-            return 'DefaultParagraphFont'
+            return 'DefaultParagraphFont' + bold
 
 
 styles = {
     's01': 'subject_normal',
     's11': 'sub-subject_normal',
+    's03_bold': 'sub-subject_small',    #?Fixing appendix  ?
     's02': 'definition_normal',
+    's02_bold': 'definition_normal',     #?Fixing appendix
     's03': 'source_normal',
     'Heading3Char': 'definition_normal',
     '1': 'definition_normal',   #?
@@ -127,11 +133,14 @@ styles = {
 
     # this is problematic! has its own function to handle it
     'DefaultParagraphFont': 'DefaultParagraphFont',
+    'DefaultParagraphFont_bold': 'DefaultParagraphFont',    #TODO: correct?
 
     's15': 'subject_small',
     's17': 'subject_small',
     's1510': 'subject_small',
+    's1510_bold': 'subject_small',
     's05': 'definition_small',
+    's05_bold': 'sub-subject_small',    #?Fixing appendix
     's038': 'source_small',
     's0590': 'source_small',
     's050': 'source_small',
@@ -591,6 +600,16 @@ def fix_sz_cs(run, type):
         return 'subject_normal'
     elif szCs == "16" and type == 'source_normal':
         return 'source_small'
+    elif szCs == "18" and type == 'definition_normal':
+        return 'source_normal'
+    elif szCs == "18" and type == 'sub-subject_normal':
+        # return 'sub-subject_normal'             #20.11.16 - Trying to fix Appendix' bold and fonts
+        return 'sub-subject_small'
+    elif szCs == "20" and type == 'unknown_light':
+        return 'definition_normal'
+    elif run.text.strip():
+        # print "fix_sz_cs::Unsupported value: ", szCs, "type:", type, ". At: ", run.text    #TODO: clean this!!!
+        pass
     else:
         pass
     return result
@@ -621,6 +640,7 @@ def fix_unknown(run):
     elif run.font.size == 88900 and run.style.style_id == 's04':
         return 'source_light'
     else:
+        print "UNKNOWN: ", run.text
         return 'unknown_light'
 
 
@@ -1025,7 +1045,8 @@ with open('output/debug.txt', 'w') as debug_file:
                     type = fix_DefaultParagraphFont(run)
                     # print paragraph.style.style_id, run.bold, run.font.size, s
 
-                elif run.bold:
+                # elif run.bold:          #20.11.16 - Trying to fix 'fake' bold in Appendix
+                elif run.font.cs_bold:
                     type = bold_type(s, type, run)
 
                 # single run & alignment is CENTER and ...-> letter heading
@@ -1180,12 +1201,16 @@ def create_zip():
     shutil.move("milon.zip", "output/")
 
 
-# because of "https://github.com/MBuchalik/cordova-build-architecture.git#v1.0.1"
-# the version code we give here is multiplied by 10, and adds either 2 or 4 (for ARM or Intel)
-# here we do the opposite, and advance the version
-playAPISession = upload_google_play.PlayAPISession()
-version_code = playAPISession.get_last_apk() / 10 + 1
-replace_in_file('output/config.xml', 'UPDATED_BY_SCRIPT_VERSION_CODE', str(version_code))
+try:
+    # because of "https://github.com/MBuchalik/cordova-build-architecture.git#v1.0.1"
+    # the version code we give here is multiplied by 10, and adds either 2 or 4 (for ARM or Intel)
+    # here we do the opposite, and advance the version
+    playAPISession = upload_google_play.PlayAPISession()
+    version_code = playAPISession.get_last_apk() / 10 + 1
+    replace_in_file('output/config.xml', 'UPDATED_BY_SCRIPT_VERSION_CODE', str(version_code))
+except Exception as e:
+    print "Couldn't connect to Google Play - .apk version not updated!"
+    print e
 
 create_zip()
 

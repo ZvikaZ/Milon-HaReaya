@@ -11,6 +11,8 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 
 # TODO: Investigate "Intel Crosswalk" ARM/Intel implications
 # TODO: Clean 'UNKNOWN's and 'fix_sz_cs'
+# TODO: verify that it's running on clean GIT clone
+# TODO: why play fails on FULL ?
 
 # TODO: Wrap each definition with <div> tag
 # TODO: change 'is_prev_subject(..)' to correctly handle "Toar Shem Tov" - should be more freely checking
@@ -19,7 +21,7 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: pagination at end
 # TODO: subject_light vs sub-subjet_light - wait for Rav's response
 
-# TODO: "Mishkan UMikdash" - "Korbanot" - "Par" - some are not subjects, and one is a long link
+# TODO: "Mishkan UMikdash" - "Korbanot" - "Par" - some are not subjects
 # TODO: subjects size in Mehkarim
 # TODO: references numbering
 # TODO: search "Natziv" not working
@@ -80,8 +82,8 @@ import upload_google_play
 html_parser = HTMLParser.HTMLParser()
 
 # process = "APK"
-# process = "Full"
-process = "ZIP"
+process = "Full"
+# process = "ZIP"
 
 if process == "Full":
     doc_file_name = 'dict.docx'
@@ -1228,6 +1230,7 @@ if process != "ZIP":
         update_zip_to_x86()
         build_phonegap.push_to_phonegap("output/milon.zip", 'x86')
         if process == "Full":
+            playAPISession = upload_google_play.PlayAPISession()
             playAPISession.main(["output/milon.x86.apk", "output/milon.arm.apk"])
 
     except Exception as e:

@@ -14,6 +14,19 @@ subject_small:"יורו" שנאמר ביחס ל"בין קדש לח.
  new_line:
 .
  ---------------
+subject_normal:לי .
+ DefaultParagraphFont:- .
+ subject_normal:("להקריב לי" וכד') .
+ definition_normal:- אל .
+ definition_normal:הרום־העליון°.
+ definition_normal:, .
+ definition_normal:לאור־פני־מלך־חיים°.
+ definition_normal: .
+ DefaultParagraphFont:[.
+ definition_small:ע"ר א קכט]..
+ new_line:
+.
+ ---------------
 subject_normal:שם טוב.
  footnote:2.
  fake_subject_normal: .
@@ -27,10 +40,66 @@ subject_normal:שם טוב.
  new_line:
 .
  ---------------
+sub-subject_normal:אז .
+ definition_small:- במאמרי הראיה .
+ source_small:165: .
+ definition_small:"כי .
+ fake_sub-subject_small:אז, דוקא אז.
+ definition_small:, כאשר עוד הפעם כיום צאתינו ממצרים נעמוד על רגלי עצמנו בעצמה הנשמתית, להיות דורכים על במתי ארץ בגאון ד' צור ישראל, אז יראו כל העמים צדקנו, ומשפט חירותינו יגלה ויראה על פני כל מלא עולם". ובש"ק, קובץ א תפח: בעלי הפנימיות משתוממים הם בעת שהחיצוניות נושאת את דגלה ברמה בחיים. אבל עליהם לדעת, כי הפנימיות היא .
+ fake_sub-subject_small:אז, רק אז,.
+ definition_small: מנצחת, כשהיא מוצאה לפניה עולם ערוך ומסודר, אברים בריאים, ולב אמיץ, חושים מפותחים, וסדרי יופי, נקיות וטהרה, מוסר נימוסי, ודרך ארץ, ומרץ, ואהבה לחיים ולעולם. .
+ fake_sub-subject_small:אז.
+ definition_small: תוכל הפנימיות לשלוט על ממלכה מלאה אונים.
+ DefaultParagraphFont:".
+ definition_small:. וביחס לחידוש הסנהדרין, עיכובים שבזמננו, בא"ה ב לח:.
+ DefaultParagraphFont: ".
+ definition_small:ישיבה המאוחדת שתהי' מאוגדת ביחד מגדולי רבני אה"ק וגדולי רבני הגולה תהי' האספה הגדולה הזאת נקראת "הרבנות הכוללת", והמובן יהי' הרבנות של כל ישראל, הגוי כולו. ואם חפץ השי"ת בידינו יצליח והכינוס הזה ואיגודו יבואו על נכון, ופעולות לטובה בין לחיזוק מצב התורה בכל עניני הדת, בין לפתרונן של השאלות היותר גדולות וכלליות הקשורות בחיי האומה בארץ ובגולה, ובין לתיקון מצב הכלל ביחש החיצוני כלפי האומות, בקשר עם חיזוק ידים של מליצינו ואוהבינו שבהן, בין להפרת עצת רשעי עולם שונאינו ומקטריגינו, בין בנוגע לחיי ישראל בארץ ובין בנוגע לחייו בכל תפוצות הגולה - כשכל אלה הדרכים יעוטרו באיזה מדרגה של הצלחה וכבוד, .
+ fake_sub-subject_small:אז, רק אז,.
+ definition_small: תוכל לעלות על הפרק גם כן שאלה זו של השבת שבותינו בדבר ערכה של הסמיכה ואפשרותה. ורק דוקא לאחר כל המעשים הגדולים אשר ייראו מקיבוצינו וסידורינו, כי .
+ fake_sub-subject_small:אז.
+ definition_small: יוכלו הדברים להיות במדרגה "מידי דקיימא לשאלה"". אמנם, במקומות רבים בהם משתמש הרב ב.
+ fake_sub-subject_small:"אז".
+ definition_small:, כוונתו .
+ fake_sub-subject_small:"דוקא אז".
+ definition_small:. בשם מו"ר הרב צב"י טאו..
+ new_line:
+.
+ ---------------
+subject_small:אהבה לעומת טוב .
+ definition_small:- הטוב הוא בגדר "בכח", כי הוא נקודת הטוב האידיאלית הפנימית, הטוב האוביקטיבי, .
+ fake_sub-subject_small:-.
+ definition_small: בהבדל מן "מיטיב" שהוא ביחש לאחרים, שכבר יש עם מה להיטיב, .
+ fake_sub-subject_small:-.
+ definition_small: והאהבה היא לעומת זה בעיקרה בגדר "בפעל", אם יש אהבה בהכרח יש נאהבים, משא"כ במציאות הטוב, אינו מוכרח שיהיו מוטבים, מקבלים, .
+ fake_sub-subject_small:-.
+ definition_small: אלא ממציאות "מיטיב". ומלבד זה בעצם תכונתם ואפים שונים וחלוקים הם המושגים האלה .
+ source_small:[צ"צ כג]..
+ new_line:
+.
+ ---------------
+subject_normal:"מאן דנטיר ברית° אתקרי צדיק°".
+ footnote:3.
+ DefaultParagraphFont: .
+ definition_normal:- כשבקשת העמדת המשפחה היא נאורה ומובנת באלהיותה, ועל כן מקימה בקרבו צביון של טהרת רעיון ומנוחת לב. וכשתכסיס החיים כולו נעשה מובן, מיושב ומיושר, על פי הזוהר של ההמתקה של הנועם האלהי, נעשים  המעשים כולם מיושרים בתכלית המוסר והטוהר .
+ DefaultParagraphFont:[.
+ definition_small:קבצ' ב קעו]. .
+ new_line:
+.
+ ---------------
+sub-subject_normal:צדיק דנטיר ברית .
+ DefaultParagraphFont:-.
+ definition_normal: מי שבא עד למדה העליונה, שהחפץ האלהי הוא גדול ומכריע בקדושתו גם את הנטיה .
+ definition_normal:המינית°.
+ definition_normal:, <הכרעה זו באה, לא בדרך עקירת הטבע הרוחני והגופני, כי אם ברוממותה אל התעודה השכלית, המוארה באורה האלהית> .
+ source_normal:[קובץ א שכט].
+ definition_small:. .
+ new_line:
+.
+ ---------------
 subject_normal:שכינה .
  definition_normal:- ".
  sub-subject_normal:ענן השכינה".
- footnote:3.
+ footnote:4.
  definition_normal: - .
  definition_normal:הוד°.
  definition_normal: .
@@ -46,7 +115,7 @@ subject_normal:שכינה .
 .
  ---------------
 subject_normal:אֶבֶן דִי לָא בִיְדַיִן.
- footnote:4.
+ footnote:5.
  fake_subject_normal: .
  definition_normal:- .
  fake_sub-subject_normal:די לא בידין .
@@ -91,7 +160,7 @@ definition_normal:.
  new_line:
 .
  subject_normal:זיו.
- footnote:5.
+ footnote:6.
  subject_normal: אור אלהים .
  definition_normal:- .
  sub-subject_normal:זיו החיים .
@@ -117,7 +186,7 @@ subject_normal:זמן .
 .
  ---------------
 subject_normal:גשמים.
- footnote:6.
+ footnote:7.
  subject_normal:, הבאים מיסוד המים .
  definition_normal:- מורים על עצם ההויה הגופנית, שֶׂכֶל הגוף .
  source_normal:[ע"ר ב קעו].
@@ -136,7 +205,7 @@ s02Symbol:◊ .
 .
  ---------------
 definition_normal:ע"ע אור עליון. ע"ע אור ד'..
- footnote:7.
+ footnote:8.
  definition_normal: ע' במדור שמות כינויים ותארים אלהיים, אלהי, המקור האלהי. .
  new_line:
 .
@@ -147,7 +216,7 @@ subject_normal:תורה.
  footnote_recurrence:60 .
  definition_normal:- .
  fake_subject_small:בעצמיות מהות הפנימית, הצורתית של התורה.
- footnote:8.
+ footnote:9.
  definition_normal: - עצמיות טבע נשמתם של ישראל .
  source_normal:[ע"א ד ט עו].
  definition_small:..
@@ -162,7 +231,7 @@ subject_small:תורה .
  definition_small: הכוללת, הקבועה, המוחלטת, "ואתה פה עמד עמדי", לעומת .
  fake_subject_small:הנבואה .
  definition_small:המכוונת אל עניני הדורות ותמורות מאורעותיהם "לפי צרך השעה, הדור והמעשה".
- footnote:9.
+ footnote:10.
  definition_small: .
  source_small:[עפ"י ל"י א מז]. .
  new_line:
@@ -226,10 +295,8 @@ s02Symbol:◊.
  ---------------
 subject_normal:אור הגלוי .
  definition_normal:- .
- sub-subject_normal:האור .
- definition_normal:.
- definition_normal:הגלוי°.
- definition_normal: - האור הנראה של .
+ sub-subject_normal:האור הגלוי.
+ definition_normal:° - האור הנראה של .
  definition_normal:אור־התורה°.
  definition_normal: וחכמת ישראל כולה .
  definition_normal:בקדושתה°.
@@ -427,7 +494,7 @@ subject_normal:אור ד' המהוה הישות .
 definition_normal:.
  definition_normal:נשמת־העולמים°.
  definition_normal: .
- fake_sub-subject_small:[קבצ' ב קנה.
+ definition_small:[קבצ' ב קנה.
  fake_sub-subject_normal:].
  definition_small:..
  new_line:
@@ -449,11 +516,11 @@ subject_normal:אבנט.
  definition_normal:שהקדושה°.
  definition_normal: המעלה את הנטיות הנפשיות, פועלת להגביל יפה את סדרי הפעולות הטבעיות לצד המעלה והקדושה.
  DefaultParagraphFont: [.
- definition_normal:ע.
+ definition_small:ע.
  DefaultParagraphFont:".
- definition_normal:א ג ב ד.
+ definition_small:א ג ב ד.
  DefaultParagraphFont:].
- definition_normal:..
+ definition_small:..
  new_line:
 .
  ---------------
@@ -550,8 +617,7 @@ subject_normal:אמר .
  definition_normal: מכבשן האש) .
  fake_subject_normal:אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד.
  footnote:2.
- fake_subject_small: .
- definition_normal:- אברהם כדאי הוא בזכותו שיושפע עליו זה השפע של השווית רצונו עם רצוני, שישכיל בכל כוחותיו, ויושפע זה גם על נפשו המרגשת והצומחת, לדעת שאין שום דבר ראוי לרצון כ"א רצונו של הקב"ה, וממילא הכל מתייחדים בהשווי' אחת, ואין כאן ניגוד - .
+ definition_normal: - אברהם כדאי הוא בזכותו שיושפע עליו זה השפע של השווית רצונו עם רצוני, שישכיל בכל כוחותיו, ויושפע זה גם על נפשו המרגשת והצומחת, לדעת שאין שום דבר ראוי לרצון כ"א רצונו של הקב"ה, וממילא הכל מתייחדים בהשווי' אחת, ואין כאן ניגוד - .
  fake_subject_small:נאה ליחיד להציל את היחיד .
  source_normal:[עפ"י פנק' ג ריג].
  definition_small:..

@@ -79,9 +79,9 @@ import upload_google_play
 
 html_parser = HTMLParser.HTMLParser()
 
-process = "Full"
 # process = "APK"
-# process = "ZIP"
+# process = "Full"
+process = "ZIP"
 
 if process == "Full":
     doc_file_name = 'dict.docx'
@@ -89,9 +89,9 @@ if process == "Full":
     #create_latex = True
     create_latex = False
 else:
-    #doc_file_name = 'dict_few.docx'
-    # doc_file_name = 'dict_check.docx'
-    doc_file_name = 'dict.docx'
+    # doc_file_name = 'dict_few.docx'
+    doc_file_name = 'dict_check.docx'
+    # doc_file_name = 'dict.docx'
 
     create_html = True
     create_latex = False
@@ -647,9 +647,11 @@ def fix_unknown(run):
 def fix_DefaultParagraphFont(run):
     # only if it's really a text
     if run.text.strip() and run.text.strip() not in ("-", "(", ")", "[", "]", "'", '"', ","):
-        if run.font.size == 152400 and not run.bold:
+        if run.font.size == 152400 and run.font.cs_bold:
             return 'subject_normal'
-        if run.font.size == 139700 and run.bold:
+        elif run.font.size == 152400 and not run.font.cs_bold:
+            return 'definition_normal'
+        elif run.font.size == 139700 and run.font.cs_bold:
             return 'subject_normal'
         elif run.font.size == 127000:
             return 'definition_normal'
@@ -659,12 +661,12 @@ def fix_DefaultParagraphFont(run):
             return 'source_small'
         elif run.font.size == 88900:
             return 'source_small'
-        elif run.font.size is None and run.bold:
+        elif run.font.size is None and run.font.cs_bold:
             return 'sub-subject_normal'
-        elif run.font.size is None and not run.bold:
+        elif run.font.size is None and not run.font.cs_bold:
             return 'definition_normal'
         else:
-            print "AH!", ":",run.text.strip(),".", run.font.size, run.bold
+            print "AH!", ":",run.text.strip(),".", run.font.size, run.bold, run.font.cs_bold
             assert False
     else:
         return 'DefaultParagraphFont'
@@ -1034,7 +1036,7 @@ with open('output/debug.txt', 'w') as debug_file:
                 if run.font.size and run.text.strip():
                     size_kind = sizes.match(run.font.size)
                     if size_kind == 'unknown':
-                        print "!%s. Size: %d, Bool: %s, %s:%s$" % (size_kind, run.font.size, run.bold, type, run.text)
+                        print "!%s. Size: %d, Bool: %s, %s:%s$" % (size_kind, run.font.size, run.font.cs_bold, type, run.text)
                     if size_kind not in ('normal', 'unknown'):
                         type = size_kind
 

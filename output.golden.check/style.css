@@ -139,6 +139,10 @@ a {
     font-weight: bold;
 }
 
+.fake_sub-subject_small {
+    font-size: 0.9em;
+    font-weight: bold;
+}
 
 .definition_small {
     font-size: 0.9em;

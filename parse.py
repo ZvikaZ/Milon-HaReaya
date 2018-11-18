@@ -12,7 +12,6 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: Investigate "Intel Crosswalk" ARM/Intel implications
 # TODO: Clean 'UNKNOWN's and 'fix_sz_cs'
 # TODO: verify that it's running on clean GIT clone
-# TODO: why play fails on FULL ?
 
 # TODO: Wrap each definition with <div> tag
 # TODO: change 'is_prev_subject(..)' to correctly handle "Toar Shem Tov" - should be more freely checking
@@ -81,8 +80,8 @@ import upload_google_play
 
 html_parser = HTMLParser.HTMLParser()
 
-# process = "APK"
-process = "Full"
+process = "APK"
+# process = "Full"
 # process = "ZIP"
 
 if process == "Full":
@@ -606,6 +605,8 @@ def fix_sz_cs(run, type):
         return 'source_normal'
     elif szCs == "18" and type == 'sub-subject_normal':
         # return 'sub-subject_normal'             #20.11.16 - Trying to fix Appendix' bold and fonts
+        return 'sub-subject_small'
+    elif szCs == "18" and type == 'subject_small':
         return 'sub-subject_small'
     elif szCs == "20" and type == 'unknown_light':
         return 'definition_normal'

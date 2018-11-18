@@ -16,12 +16,16 @@
     <!--plugin name="org.crosswalk.engine" spec="1.3.0" source="pgb" /-->
 
     <!-- 5.10.16 -->
-    <plugin name="cordova-plugin-crosswalk-webview" source="npm" version="1.7.0" />
+    <!--<plugin name="cordova-plugin-crosswalk-webview" source="npm" version="1.7.0" />-->
+    <plugin name="cordova-plugin-crosswalk-webview" source="npm" version="2.3.0" />
     <preference name="xwalkMultipleApk" value="true" />
     <plugin name="cordova-build-architecture" spec="https://github.com/MBuchalik/cordova-build-architecture.git#v1.0.1" source="git" />
     <preference name="android-versionCode" value="UPDATED_BY_SCRIPT_VERSION_CODE" />
 
     <!--UPDATED_BY_SCRIPT preference name="buildArchitecture" value="x86" /UPDATED_BY_SCRIPT-->
+
+
+
 
 
     <!-- This was a trial, currently not used, left here for future reference -->

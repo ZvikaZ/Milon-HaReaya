@@ -80,8 +80,8 @@ import upload_google_play
 
 html_parser = HTMLParser.HTMLParser()
 
-process = "APK"
-# process = "Full"
+# process = "APK"
+process = "Full"
 # process = "ZIP"
 
 if process == "Full":
@@ -1207,11 +1207,16 @@ def create_zip():
 
 
 try:
-    # because of "https://github.com/MBuchalik/cordova-build-architecture.git#v1.0.1"
-    # the version code we give here is multiplied by 10, and adds either 2 or 4 (for ARM or Intel)
-    # here we do the opposite, and advance the version
+    # 18.11.18 - update - removed CrossWalk, and now the version seem to be *not* multiplied by 10
+    # trying to remove the " / 10"
+    # old comment:
+    # # because of "https://github.com/MBuchalik/cordova-build-architecture.git#v1.0.1"
+    # # the version code we give here is multiplied by 10, and adds either 2 or 4 (for ARM or Intel)
+    # # here we do the opposite, and advance the version
+
     playAPISession = upload_google_play.PlayAPISession()
-    version_code = playAPISession.get_last_apk() / 10 + 1
+    # version_code = playAPISession.get_last_apk() / 10 + 1
+    version_code = playAPISession.get_last_apk() + 1
     replace_in_file('output/config.xml', 'UPDATED_BY_SCRIPT_VERSION_CODE', str(version_code))
 except Exception as e:
     print "Couldn't connect to Google Play - .apk version not updated!"
@@ -1227,12 +1232,16 @@ def update_zip_to_x86():
 
 if process != "ZIP":
     try:
-        build_phonegap.push_to_phonegap("output/milon.zip", 'arm')
-        update_zip_to_x86()
-        build_phonegap.push_to_phonegap("output/milon.zip", 'x86')
+        # build_phonegap.push_to_phonegap("output/milon.zip", 'arm')
+        # update_zip_to_x86()
+        # build_phonegap.push_to_phonegap("output/milon.zip", 'x86')
+
+        # 18.11.18 - trying back to dual APK:
+        build_phonegap.push_to_phonegap("output/milon.zip", 'dual')
         if process == "Full":
             playAPISession = upload_google_play.PlayAPISession()
-            playAPISession.main(["output/milon.x86.apk", "output/milon.arm.apk"])
+            # playAPISession.main(["output/milon.x86.apk", "output/milon.arm.apk"])
+            playAPISession.main(["output/milon.dual.apk"])
 
     except Exception as e:
         print "Build process failed!"

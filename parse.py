@@ -9,13 +9,13 @@ If 'secret.py' exists, it then uploads the .zip file to PhoneGap Build, waits fo
 to be ready, downloads it (to output/) and pushes everything (automatically) to Google Play.
 """
 
-# TODO: Investigate "Intel Crosswalk" ARM/Intel implications
+# TODO: Fix "Skhar Avera" missing recurring footnote - compare output.23.12.18 and output.23.12.18.b
+
 # TODO: Clean 'UNKNOWN's and 'fix_sz_cs'
 # TODO: verify that it's running on clean GIT clone
 
 # TODO: Wrap each definition with <div> tag
 # TODO: change 'is_prev_subject(..)' to correctly handle "Toar Shem Tov" - should be more freely checking
-# TODO: "Yoru" - sizes changing
 # TODO: otiyot - stam font
 # TODO: pagination at end
 # TODO: subject_light vs sub-subjet_light - wait for Rav's response
@@ -29,7 +29,6 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: splitted bubject, like "אמר לו הקדוש ברוך הוא (לגבריאל° שבקש להציל את אברהם־אבינו° מכבשן האש) אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד"
 
 # TODO: circles shouldn't be part of subjects (and what about parentheses?)
-# TODO: decrease size of app
 # TODO: breadcrumbs
 # TODO: "Mehkarim" - make links, check styles!
 # TODO: Change "opening_abbrev.html" styling
@@ -625,7 +624,7 @@ def fix_b_cs(run, type):
     result = type
     try:
         bCs = run.element.rPr.bCs.attrib.values()[0]
-        if bCs == "0" and 'subject' in type:
+        if bCs == "0" and 'subject' in type and run.style.style_id in ("s01", "s11"):
             if type in ('subject_small', 'sub-subject_normal'):
                 return 'definition_normal'
             else:

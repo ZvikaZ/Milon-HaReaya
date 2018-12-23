@@ -18,6 +18,26 @@ NEW_PARA:
 
 NEW_PARA:
 ------
+!s1510.subject_small:
+$ !s1510.subject_small:ק$ !s1510.subject_small:ֹ$ !s1510.subject_small:דש $ !s05.definition_small:-$ !s05.definition_small: האצילות$ !s03.source_normal:°$ !s05.definition_small:, מקור כל ההויה $ !s038.source_small:[$ !s038.source_small:ח"ר$ !s038.source_small: $ !s038.source_small:34$ !s038.source_small:]. $ !s038.source_small:
+$ 
+
+NEW_PARA:
+------
+!s11.sub-subject_normal:"פשט ידיה וקבליה" $ !s11.sub-subject_normal:- ע' $ !s02.definition_normal:שם. $ 
+
+NEW_PARA:
+------
+!s01.subject_normal:תשובה $ !s02.definition_normal:- $ !s11.sub-subject_normal:"עולה של תשובה" $ !s11.sub-subject_normal:- $ !s11.sub-subject_normal:ע' $ !s11.sub-subject_normal:במדור$ !s02.definition_normal: פסוקים ובטויי חז"ל, עולה של תשובה.$ !s02.definition_normal: $ !s02.definition_normal:
+$ 
+
+NEW_PARA:
+------
+!s01.subject_normal:עץ החיים $ !s02.definition_normal:- $ !s02.definition_normal:מצב המנוחה$ !s02.definition_normal:°$ !s02.definition_normal: הטבעית, (בה היה $ !s02.definition_normal:אדם$ !s02.definition_normal:־$ !s02.definition_normal:הראשון$ !s02.definition_normal:°, בה$ !s02.definition_normal:) היה ראוי לדעת רק את הטוב$ !s11.sub-subject_normal:.$ !s11.sub-subject_normal: $ !s02.definition_normal:הסכמת הדעת שראוי לדבק בהדרכה הטבעית$ !FootnoteReference.FootnoteReference:$ !s02.definition_normal: ולא לעורר יותר $ !s02.definition_normal:מדאי$ !s02.definition_normal: את תשוקותיו $ !s03.source_normal:[עפ"י ל"ה 40].$ !s02.definition_normal:
+$ 
+
+NEW_PARA:
+------
 !DefaultParagraphFont.DefaultParagraphFont:לי $ !DefaultParagraphFont.DefaultParagraphFont:- $ !DefaultParagraphFont.DefaultParagraphFont:("להקריב לי" וכד') $ !DefaultParagraphFont.DefaultParagraphFont:- אל $ !DefaultParagraphFont.DefaultParagraphFont:הרום־העליון$ !DefaultParagraphFont.DefaultParagraphFont:°$ !DefaultParagraphFont.DefaultParagraphFont:, $ !DefaultParagraphFont.DefaultParagraphFont:לאור־פני־מלך־חיים$ !DefaultParagraphFont.DefaultParagraphFont:°$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:[$ !DefaultParagraphFont.DefaultParagraphFont:ע"ר$ !DefaultParagraphFont.DefaultParagraphFont: א $ !DefaultParagraphFont.DefaultParagraphFont:קכט$ !DefaultParagraphFont.DefaultParagraphFont:].$ 
 
 NEW_PARA:

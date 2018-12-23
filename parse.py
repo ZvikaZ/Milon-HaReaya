@@ -599,6 +599,8 @@ def fix_sz_cs(run, type):
             return 'subject_small'
     elif szCs == "22" and type == 'definition_normal':
         return 'subject_normal'
+    elif szCs == "22" and type == 'sub-subject_normal':
+        return 'subject_normal'
     elif szCs == "16" and type == 'source_normal':
         return 'source_small'
     elif szCs == "18" and type == 'definition_normal':
@@ -608,6 +610,8 @@ def fix_sz_cs(run, type):
         return 'sub-subject_small'
     elif szCs == "18" and type == 'subject_small':
         return 'sub-subject_small'
+    elif szCs == "18" and type == 'subject_normal':
+        return 'definition_small'
     elif szCs == "20" and type == 'unknown_light':
         return 'definition_normal'
     elif run.text.strip():
@@ -649,7 +653,7 @@ def fix_unknown(run):
 
 def fix_DefaultParagraphFont(run):
     # only if it's really a text
-    if run.text.strip() and run.text.strip() not in ("-", "(", ")", "[", "]", "'", '"', ","):
+    if run.text.strip():
         if run.font.size == 152400 and run.font.cs_bold:
             return 'subject_normal'
         elif run.font.size == 152400 and not run.font.cs_bold:
@@ -658,7 +662,9 @@ def fix_DefaultParagraphFont(run):
             return 'subject_normal'
         elif run.font.size == 127000:
             return 'definition_normal'
-        elif run.font.size == 114300:
+        elif run.font.size == 114300 and run.font.cs_bold:
+            return 'sub-subject_normal'
+        elif run.font.size == 114300 and not run.font.cs_bold:
             return 'source_normal'
         elif run.font.size == 101600:
             return 'source_small'
@@ -669,8 +675,11 @@ def fix_DefaultParagraphFont(run):
         elif run.font.size is None and not run.font.cs_bold:
             return 'definition_normal'
         else:
-            print "AH!", ":",run.text.strip(),".", run.font.size, run.bold, run.font.cs_bold
-            assert False
+            if run.text.strip() not in ("-", "(", ")", "[", "]", "'", '"', ","):
+                print "AH!", ":",run.text.strip(),".", run.font.size, run.bold, run.font.cs_bold
+                assert False
+            else:
+                return 'DefaultParagraphFont'
     else:
         return 'DefaultParagraphFont'
 

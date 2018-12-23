@@ -116,7 +116,7 @@ a {
     font-weight: bold;
 }
 
-.sub-subject_normal, .subject_small {
+.sub-subject_normal, .subject_small, .fake_subject_normal {
     font-size: 1.15em;
     font-weight: bold;
 }

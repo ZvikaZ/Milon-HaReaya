@@ -1079,7 +1079,7 @@ with open('output/debug.txt', 'w') as debug_file:
                         type = fix_b_cs(run, type)
 
                     # NOTE: this footnote number need no fix.
-                    # it is a recurrance, therefore it has no id.
+                    # it is a recurrence, therefore it has no id.
                     if is_footnote_recurrence(run, type):
                         type = 'footnote_recurrence'
             

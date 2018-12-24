@@ -624,9 +624,15 @@ def fix_b_cs(run, type):
     result = type
     try:
         bCs = run.element.rPr.bCs.attrib.values()[0]
-        if bCs == "0" and 'subject' in type and run.style.style_id in ("s01", "s11"):
-            if type in ('subject_small', 'sub-subject_normal'):
-                return 'definition_normal'
+        try:
+            hint_cs = run.element.rPr.rFonts.attrib.get('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hint', None) == 'cs'
+        except:
+            hint_cs = False
+        if bCs == "0" and 'subject' in type:
+            if (run.style.style_id == "s01" and hint_cs) or \
+                  (run.style.style_id == "s11" and run.bold != True):
+                if type in ('subject_small', 'sub-subject_normal'):
+                    return 'definition_normal'
             else:
                 pass
                 # print "Unknown b_cs=0"

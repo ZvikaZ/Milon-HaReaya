@@ -38,6 +38,19 @@ $
 
 NEW_PARA:
 ------
+!s01.subject_normal:אמונה $ !s02.definition_normal:- $ !s11.sub-subject_normal:"א$ !s11.sub-subject_normal:ֹ$ !s11.sub-subject_normal:מֶן"$ !s02.definition_normal:$ !s11.sub-subject_normal: $ !s02.definition_normal:- החפש°, אב° $ !s02.definition_normal:האמונה־העליונה$ !s02.definition_normal:°, השכל המקודש שהוא יסוד החכמה° הקדומה, שמכוחו האמונה נאצלת $ !s03.source_normal:[עפ"י א"א $ !s03.source_normal:128$ !s03.source_normal:, שם $ !s03.source_normal:17$ !s03.source_normal:, ($ !s03.source_normal:77$ !s03.source_normal:)]. $ !s03.source_normal:
+$ 
+
+NEW_PARA:
+------
+!s01.subject_normal:אֽ$ !s01.subject_normal:ֹ$ !s01.subject_normal:מֶר $ !s02.definition_normal:- $ !s11.sub-subject_normal:א$ !s01.subject_normal:ֹ$ !Fixed!szCs=20:ֹ. !s11.sub-subject_normal:מֶר ההויה כולה $ !s02.definition_normal:- רוחה הפנימי של ההויה בסודה הכלול בקרבה$ 
+
+NEW_PARA:
+------
+!s01.subject_normal:תּ$ !s01.subject_normal:ֹ$ !s01.subject_normal:ם $ !s02.definition_normal:- $ !s11.sub-subject_normal:תוכן הַתּ$ !s11.sub-subject_normal:ֹ$ !s11.sub-subject_normal:ם $ !s02.definition_normal:- המערכה$ !s02.definition_normal:°$ !s02.definition_normal: העליונה, מערכת הקודש°, העולה ממעל לכל ערכים מוסריים°, התמימות השלמה, שאין בה דופי פיסוק וקיצוץ מכל ההופעות°, יושר° השכל°, יושר הלב, יושר הרגש, יושר הרוח°, יושר הטבע, יושר הבשר, יושר ההופעה, יושר ההקשבה $ !s03.source_normal:[א' $ !s03.source_normal:כט$ !s03.source_normal:].$ 
+
+NEW_PARA:
+------
 !DefaultParagraphFont.DefaultParagraphFont:לי $ !DefaultParagraphFont.DefaultParagraphFont:- $ !DefaultParagraphFont.DefaultParagraphFont:("להקריב לי" וכד') $ !DefaultParagraphFont.DefaultParagraphFont:- אל $ !DefaultParagraphFont.DefaultParagraphFont:הרום־העליון$ !DefaultParagraphFont.DefaultParagraphFont:°$ !DefaultParagraphFont.DefaultParagraphFont:, $ !DefaultParagraphFont.DefaultParagraphFont:לאור־פני־מלך־חיים$ !DefaultParagraphFont.DefaultParagraphFont:°$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:[$ !DefaultParagraphFont.DefaultParagraphFont:ע"ר$ !DefaultParagraphFont.DefaultParagraphFont: א $ !DefaultParagraphFont.DefaultParagraphFont:קכט$ !DefaultParagraphFont.DefaultParagraphFont:].$ 
 
 NEW_PARA:
@@ -195,7 +208,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s14.subject_light:טבע $ !s02.definition_normal:-$ !s04.unknown_light: החוקיות הכוללת את האדם והעולם. חוקיות החורזת את כל סדרי המציאות $ !s03.source_normal:-$ !s04.unknown_light: האדם, הדורות, ההויה $ !s04.unknown_light:וההסתוריה$ !s04.unknown_light:, שמים וארץ. חוקיות המארגנת את כל הברואים והיצורים לחטיבה אחת$ !s04.unknown_light: $ !s12.definition_light:[עפ"י $ !s12.definition_light:ב"ר$ !s12.definition_light: $ !s12.definition_light:שצז$ !s12.definition_light:]. $ !s12.definition_light:
+!s14.subject_light:טבע $ !s02.definition_normal:-$ !s04.unknown_light: החוקיות הכוללת את האדם והעולם. חוקיות החורזת את כל סדרי המציאות $ !s03.source_normal:-$ !s04.unknown_light: האדם, הדורות, ההויה $ !s04.unknown_light:וההסתוריה$ !s04.unknown_light:, $ !s04.unknown_light:שמים וארץ. חוקיות המארגנת את כל הברואים והיצורים לחטיבה אחת$ !s04.unknown_light: $ !s12.definition_light:[עפ"י $ !s12.definition_light:ב"ר$ !s12.definition_light: $ !s12.definition_light:שצז$ !s12.definition_light:]. $ !s12.definition_light:
 $ 
 
 NEW_PARA:

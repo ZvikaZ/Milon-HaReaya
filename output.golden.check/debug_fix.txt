@@ -43,13 +43,71 @@ subject_normal:עץ החיים .
  definition_normal:המנוחה°.
  definition_normal: הטבעית, (בה היה .
  definition_normal:אדם־הראשון°.
- definition_normal:, בה) היה ראוי לדעת רק את הטוב. הסכמת הדעת שראוי לדבק בהדרכה הטבעית.
+ definition_normal:, בה) היה ראוי לדעת רק את הטוב.
+ fake_sub-subject_normal:. .
+ definition_normal:הסכמת הדעת שראוי לדבק בהדרכה הטבעית.
  footnote:2.
  definition_normal: ולא לעורר יותר מדאי את תשוקותיו .
  source_normal:[עפ"י ל"ה 40].
  definition_small:..
  new_line:
 .
+ new_line:
+.
+ ---------------
+subject_normal:אמונה .
+ definition_normal:- .
+ sub-subject_normal:"אֹמֶן".
+ footnote:3.
+ fake_sub-subject_normal: .
+ definition_normal:- .
+ definition_normal:החפש°.
+ definition_normal:, .
+ definition_normal:אב°.
+ definition_normal: .
+ definition_normal:האמונה־העליונה°.
+ definition_normal:, השכל המקודש שהוא יסוד .
+ definition_normal:החכמה°.
+ definition_normal: הקדומה, שמכוחו האמונה נאצלת .
+ definition_small:[עפ"י א"א .
+ source_small:128.
+ definition_small:, שם .
+ source_small:17.
+ definition_small:, (.
+ source_small:77.
+ definition_small:)]. .
+ new_line:
+.
+ new_line:
+.
+ ---------------
+subject_normal:אֹֽמֶר .
+ definition_normal:- .
+ sub-subject_normal:אֹמֶר ההויה כולה .
+ definition_normal:- רוחה הפנימי של ההויה בסודה הכלול בקרבה.
+ new_line:
+.
+ ---------------
+subject_normal:תֹּם .
+ definition_normal:- .
+ sub-subject_normal:תוכן הַתֹּם .
+ definition_normal:- .
+ definition_normal:המערכה°.
+ definition_normal: העליונה, מערכת .
+ definition_normal:הקודש°.
+ definition_normal:, העולה ממעל לכל ערכים .
+ definition_normal:מוסריים°.
+ definition_normal:, התמימות השלמה, שאין בה דופי פיסוק וקיצוץ מכל .
+ definition_normal:ההופעות°.
+ definition_normal:, .
+ definition_normal:יושר°.
+ definition_normal: .
+ definition_normal:השכל°.
+ definition_normal:, יושר הלב, יושר הרגש, יושר .
+ definition_normal:הרוח°.
+ definition_normal:, יושר הטבע, יושר הבשר, יושר ההופעה, יושר ההקשבה .
+ source_normal:[א' כט].
+ definition_small:..
  new_line:
 .
  ---------------
@@ -67,7 +125,7 @@ subject_normal:לי .
 .
  ---------------
 subject_normal:שם טוב.
- footnote:3.
+ footnote:4.
  fake_subject_normal: .
  definition_normal:- .
  fake_sub-subject_normal:תואר שם טוב .
@@ -101,7 +159,7 @@ sub-subject_normal:אז .
 .
  ---------------
 subject_small:יפה שעה אחת בתשובה ומעשים טובים בעולם הזה, מכל חיי העולם הבא. ויפה שעה אחת של קורת רוח בעולם הבא, מכל חיי העולם הזה.
- footnote:4.
+ footnote:5.
  definition_normal: .
  definition_small:- (שעה אחת של) חיים אידיאליים והגונים מקימי רצון הבורא ומגמת הבריאה, .
  fake_sub-subject_small:יפה .
@@ -125,7 +183,7 @@ subject_small:קדושה .
 .
  ---------------
 subject_normal:"בני אדם שהן ערומין בדעת ומשימין עצמן כבהמה".
- footnote:5.
+ footnote:6.
  fake_sub-subject_normal: .
  definition_small:- .
  fake_subject_small:בני אדם שערומים° בדעת .
@@ -168,7 +226,7 @@ definition_normal:ע' בנספחות, מדור מחקרים, עבד לפני ה�
 .
  ---------------
 subject_normal:בני אדם שקיימו את התורה כולה מאלף ועד תיו.
- footnote:6.
+ footnote:7.
  definition_normal: - .
  definition_small:<האדם שכבר התעלה להכשר השכלתה של תורה, שבא למדה זו שיודע את קונו, ומשיג את החפץ העליון המבוקש בכללותה של תורה, והכח הגנוז המתפרט בפרטיה מאור העליון, הוא משתמש בכל עניני התורה המצות וכונותיהם כשימוש האותיות הכוללים כל הצירופים שבעולם, להביע בהם המון מחשבות ורגשות לאין תכלית>. .
  definition_normal:הדבקים בתורה בעצמם ובבשרם, אצלם מאירה אורה של תורה אפילו באור פניהם החיצוני, אצלם עומדת התורה כולה במדרגת אותיות הכוללים כל המבטאים, והמבטאים נולדים מהם חדשים בכל עת ורגע, "כי עדותיך שיחה לי". סידורה של תורה וערכה נערכת אצלם כערך כלל האותיות, שהם אבות כל מה שמצורף ושעתיד להצרף, כך כל מה שנולד ושיולד לטובה, לאמת, ליושר ולחכמה, הכל נובע מאורה של תורה, והדרכת מצותיה "למימינים .
@@ -196,7 +254,7 @@ subject_small:אהבה לעומת טוב .
 .
  ---------------
 subject_normal:"מאן דנטיר ברית° אתקרי צדיק°".
- footnote:7.
+ footnote:8.
  DefaultParagraphFont: .
  definition_normal:- כשבקשת העמדת המשפחה היא נאורה ומובנת באלהיותה, ועל כן מקימה בקרבו צביון של טהרת רעיון ומנוחת לב. וכשתכסיס החיים כולו נעשה מובן, מיושב ומיושר, על פי הזוהר של ההמתקה של הנועם האלהי, נעשים  המעשים כולם מיושרים בתכלית המוסר והטוהר .
  source_normal:[קבצ' ב קעו].
@@ -216,7 +274,7 @@ sub-subject_normal:צדיק דנטיר ברית .
 subject_normal:שכינה .
  definition_normal:- ".
  sub-subject_normal:ענן השכינה".
- footnote:8.
+ footnote:9.
  definition_normal: - .
  definition_normal:הוד°.
  definition_normal: .
@@ -232,7 +290,7 @@ subject_normal:שכינה .
 .
  ---------------
 subject_normal:אֶבֶן דִי לָא בִיְדַיִן.
- footnote:9.
+ footnote:10.
  fake_subject_normal: .
  definition_normal:- .
  fake_sub-subject_normal:די לא בידין .
@@ -277,7 +335,7 @@ definition_normal:.
  new_line:
 .
  subject_normal:זיו.
- footnote:10.
+ footnote:11.
  subject_normal: אור אלהים .
  definition_normal:- .
  sub-subject_normal:זיו החיים .
@@ -303,7 +361,7 @@ subject_normal:זמן .
 .
  ---------------
 subject_normal:גשמים.
- footnote:11.
+ footnote:12.
  subject_normal:, הבאים מיסוד המים .
  definition_normal:- מורים על עצם ההויה הגופנית, שֶׂכֶל הגוף .
  source_normal:[ע"ר ב קעו].
@@ -322,7 +380,7 @@ s02Symbol:◊ .
 .
  ---------------
 definition_normal:ע"ע אור עליון. ע"ע אור ד'..
- footnote:12.
+ footnote:13.
  definition_normal: ע' במדור שמות כינויים ותארים אלהיים, אלהי, המקור האלהי. .
  new_line:
 .
@@ -333,7 +391,7 @@ subject_normal:תורה.
  footnote_recurrence:60 .
  definition_normal:- .
  fake_subject_small:בעצמיות מהות הפנימית, הצורתית של התורה.
- footnote:13.
+ footnote:14.
  definition_normal: - עצמיות טבע נשמתם של ישראל .
  source_normal:[ע"א ד ט עו].
  definition_small:..
@@ -348,7 +406,7 @@ subject_small:תורה .
  definition_small: הכוללת, הקבועה, המוחלטת, "ואתה פה עמד עמדי", לעומת .
  fake_sub-subject_small:הנבואה .
  definition_small:המכוונת אל עניני הדורות ותמורות מאורעותיהם "לפי צרך השעה, הדור והמעשה".
- footnote:14.
+ footnote:15.
  definition_small: .
  source_small:[עפ"י ל"י א מז]. .
  new_line:

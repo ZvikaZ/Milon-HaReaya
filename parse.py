@@ -9,7 +9,9 @@ If 'secret.py' exists, it then uploads the .zip file to PhoneGap Build, waits fo
 to be ready, downloads it (to output/) and pushes everything (automatically) to Google Play.
 """
 
+# TODO: refactor, split to files, unit tests
 # TODO: Fix "Skhar Avera" missing recurring footnote - compare output.23.12.18 and output.23.12.18.b
+# TODO: Fix "Maasim", "Azey Panim"
 
 # TODO: Clean 'UNKNOWN's and 'fix_sz_cs'
 # TODO: verify that it's running on clean GIT clone
@@ -592,9 +594,11 @@ def fix_sz_cs(run, type):
     szCs = run.element.rPr.szCs.attrib.values()[0]
     if szCs == "20" and 'subject' in type:
         if run.style.style_id == "s01":
-            s = "!Fixed!szCs=%s:%s." % (szCs, run.text)
+            # s = "!Fixed!szCs=%s:%s!bCs=%s!" % (szCs, run.text, run.element.rPr.bCs.attrib.values()[0])
+            s = "!Fixed!szCs=%s:%s!" % (szCs, run.text)
             # print s
             debug_file.write(s.encode('utf8') + ' ')
+            # return 'definition_normal'
             return 'subject_small'
     elif szCs == "22" and type == 'definition_normal':
         return 'subject_normal'
@@ -629,7 +633,7 @@ def fix_b_cs(run, type):
         except:
             hint_cs = False
         if bCs == "0" and 'subject' in type:
-            if (run.style.style_id == "s01" and hint_cs) or \
+            if (run.style.style_id == "s01" and (run.bold != True or hint_cs)) or \
                   (run.style.style_id == "s11" and run.bold != True):
                 if type in ('subject_small', 'sub-subject_normal'):
                     return 'definition_normal'

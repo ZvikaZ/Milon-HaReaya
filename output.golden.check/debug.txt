@@ -43,7 +43,7 @@ $
 
 NEW_PARA:
 ------
-!s01.subject_normal:אֽ$ !s01.subject_normal:ֹ$ !s01.subject_normal:מֶר $ !s02.definition_normal:- $ !s11.sub-subject_normal:א$ !s01.subject_normal:ֹ$ !Fixed!szCs=20:ֹ. !s11.sub-subject_normal:מֶר ההויה כולה $ !s02.definition_normal:- רוחה הפנימי של ההויה בסודה הכלול בקרבה$ 
+!s01.subject_normal:אֽ$ !s01.subject_normal:ֹ$ !s01.subject_normal:מֶר $ !s02.definition_normal:- $ !s11.sub-subject_normal:א$ !s01.subject_normal:ֹ$ !Fixed!szCs=20:ֹ! !s11.sub-subject_normal:מֶר ההויה כולה $ !s02.definition_normal:- רוחה הפנימי של ההויה בסודה הכלול בקרבה$ 
 
 NEW_PARA:
 ------
@@ -237,7 +237,7 @@ $
 
 NEW_PARA:
 ------
-!s01.subject_normal:האהבה העליונה $ !Fixed!szCs=20:האהבה העליונה . !s03.source_normal:- $ !s03.source_normal:אהבת־עולם$ !s03.source_normal:° $ !s03.source_normal:ואהבה־רבה$ !s03.source_normal:°, אשר לישראל את ד' אלהיהם $ !s03.source_normal:ואביהם־שבשמים$ !s03.source_normal:° $ !s03.source_normal:מלך־עולמים$ !s03.source_normal:, הבוחר בעמו ומלמדו ומדריכו $ !s03.source_normal:[ל"י א (מהדורת בית אל תשס"ב) צג].$ !s01.subject_normal: $ 
+!s01.subject_normal:האהבה העליונה $ !Fixed!szCs=20:האהבה העליונה ! !s03.source_normal:- $ !s03.source_normal:אהבת־עולם$ !s03.source_normal:° $ !s03.source_normal:ואהבה־רבה$ !s03.source_normal:°, אשר לישראל את ד' אלהיהם $ !s03.source_normal:ואביהם־שבשמים$ !s03.source_normal:° $ !s03.source_normal:מלך־עולמים$ !s03.source_normal:, הבוחר בעמו ומלמדו ומדריכו $ !s03.source_normal:[ל"י א (מהדורת בית אל תשס"ב) צג].$ !s01.subject_normal: $ 
 
 NEW_PARA:
 ------
@@ -252,11 +252,16 @@ NEW_PARA:
 ------
 !s01.subject_normal:אור ד' המהוה הישות $ !s02.definition_normal:- $ !s02.definition_normal:זרוע־ד$ !s02.definition_normal:'° אשר נגלתה, יסוד ההשתלמות הבלתי פוסקת $ !s03.source_normal:[עפ"י א"ק ב תקל]. $ !s03.source_normal:
 $ !s11.sub-subject_normal:אור ד' וכבודו $ !s02.definition_normal:- אמיתת $ !s02.definition_normal:הרצון־הכללי$ !s02.definition_normal:° אשר בנשמת° היקום כולו $ !s03.source_normal:[שם ג לט]. $ !s03.source_normal:
-$ !s02.definition_normal:אור ד'$ !s01.subject_normal: $ !s01.subject_normal:- המגמה $ !Fixed!szCs=20:- המגמה . !s01.subject_normal:האלהית$ !Fixed!szCs=20:האלהית. !s01.subject_normal: היותר ברורה ותהומית לאין חקר $ !Fixed!szCs=20: היותר ברורה ותהומית לאין חקר . !s03.source_normal:[פנק' ג שלא].$ 
+$ !s02.definition_normal:אור ד'$ !s01.subject_normal: $ !s01.subject_normal:- המגמה $ !Fixed!szCs=20:- המגמה ! !s01.subject_normal:האלהית$ !Fixed!szCs=20:האלהית! !s01.subject_normal: היותר ברורה ותהומית לאין חקר $ !Fixed!szCs=20: היותר ברורה ותהומית לאין חקר ! !s03.source_normal:[פנק' ג שלא].$ 
 
 NEW_PARA:
 ------
-!s01.subject_normal:נשמת$ !Fixed!szCs=20:נשמת. !s01.subject_normal:־$ !Fixed!szCs=20:־. !s01.subject_normal:העולמים$ !Fixed!szCs=20:העולמים. !s02.definition_normal:°$ !s01.subject_normal: $ !s03.source_normal:[$ !s03.source_normal:קבצ$ !s03.source_normal:' ב קנה$ !s11.sub-subject_normal:]$ !s03.source_normal:.$ 
+!s01.subject_normal:נשמת$ !Fixed!szCs=20:נשמת! !s01.subject_normal:־$ !Fixed!szCs=20:־! !s01.subject_normal:העולמים$ !Fixed!szCs=20:העולמים! !s02.definition_normal:°$ !s01.subject_normal: $ !s03.source_normal:[$ !s03.source_normal:קבצ$ !s03.source_normal:' ב קנה$ !s11.sub-subject_normal:]$ !s03.source_normal:.$ 
+
+NEW_PARA:
+------
+!s01.subject_normal:"תשובה קדמה לעולם"$ !s01.subject_normal: $ !s01.subject_normal:- $ !Fixed!szCs=20:- ! !s01.subject_normal:ע' $ !Fixed!szCs=20:ע' ! !s01.subject_normal:במדור$ !Fixed!szCs=20:במדור! !s02.definition_normal: פסוקים ובטויי חז"ל. $ !s02.definition_normal:ושם, קדמה לעולם.$ !s02.definition_normal:
+$ 
 
 NEW_PARA:
 ------
@@ -297,7 +302,7 @@ $
 NEW_PARA:
 ------
 !DefaultParagraphFont.DefaultParagraphFont:באהבה$ !DefaultParagraphFont.DefaultParagraphFont: -$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:בדרך $ !DefaultParagraphFont.DefaultParagraphFont:חפץ פנימי והכרה עצמית $ !s03.source_normal:[ל"ה 55].$ !s03.source_normal: $ !s03.source_normal:
-$ !s02.definition_normal:כח העבודה מאהבה$ !s02.definition_normal: - $ !s02.definition_normal:◊$ !s02.definition_normal: $ !s02.definition_normal:אינו בא כ$ !s02.definition_normal:י $ !s02.definition_normal:א$ !s02.definition_normal:ם$ !s02.definition_normal: לפי מדת הידיעה$ !s02.definition_normal: $ !s02.definition_normal:הבאה בלימוד של קביעות ועשירות רב$ !s02.definition_normal:ה $ !s02.definition_normal:במקצעו$ !s02.definition_normal:ת $ !s02.definition_normal:השונים של תורת המוסר$ !s02.definition_normal:°$ !s02.definition_normal: והיראה$ !s02.definition_normal:°$ !s02.definition_normal:, $ !s02.definition_normal:ש$ !s02.definition_normal:אי אפשר כלל להמצא$ !s02.definition_normal: $ !s02.definition_normal:מבלעדי לימוד בסדר נכון$ !s02.definition_normal:,$ !s02.definition_normal: $ !s02.definition_normal:למגר$ !s02.definition_normal:ס$ !s02.definition_normal: תח$ !s02.definition_normal:י$ !s02.definition_normal:לה בבקיאות מלמטה למעלה$ !s02.definition_normal:,$ !s02.definition_normal: ואח$ !s02.definition_normal:ר $ !s02.definition_normal:כ$ !s02.definition_normal:ך$ !s02.definition_normal: למס$ !s02.definition_normal:ב$ !s02.definition_normal:ר בעומק עיון ודעה$ !s02.definition_normal: שלמה $ !s03.source_normal:[ל$ !s03.source_normal:"$ !s03.source_normal:ה 188].$ !s03.source_normal:
+$ !s02.definition_normal:כח העבודה מאהבה$ !s02.definition_normal: - $ !s02.definition_normal:◊$ !s02.definition_normal: $ !s02.definition_normal:אינו בא כ$ !s02.definition_normal:י $ !s02.definition_normal:א$ !s02.definition_normal:ם$ !s02.definition_normal: לפי מדת הידיעה$ !s02.definition_normal: $ !s02.definition_normal:הבאה בלימוד של קביעות ועשירות רב$ !s02.definition_normal:ה $ !s02.definition_normal:במקצעו$ !s02.definition_normal:ת $ !s02.definition_normal:השונים של תורת המוסר$ !s02.definition_normal:°$ !s02.definition_normal: והיראה$ !s02.definition_normal:°$ !s02.definition_normal:, $ !s02.definition_normal:ש$ !s02.definition_normal:אי אפשר כלל להמצא$ !s02.definition_normal: $ !s02.definition_normal:מבלעדי לימוד בסדר נכון$ !s02.definition_normal:,$ !s02.definition_normal: $ !s02.definition_normal:למגר$ !s02.definition_normal:ס$ !s02.definition_normal: תח$ !s02.definition_normal:י$ !s02.definition_normal:לה בבקיאות מלמטה למעלה$ !s02.definition_normal:,$ !s02.definition_normal: ואח$ !s02.definition_normal:ר $ !s02.definition_normal:כ$ !s02.definition_normal:ך$ !s02.definition_normal: למס$ !s02.definition_normal:ב$ !s02.definition_normal:ר $ !s02.definition_normal:בעומק עיון ודעה$ !s02.definition_normal: שלמה $ !s03.source_normal:[ל$ !s03.source_normal:"$ !s03.source_normal:ה 188].$ !s03.source_normal:
 $ !s02.definition_normal:ע"ע$ !s02.definition_normal: עבודה מאהבה$ !s02.definition_normal:, עבודת ד' מאהבה ותלמוד $ !s02.definition_normal:תורה$ !s02.definition_normal:־$ !s02.definition_normal:לשמה$ !s02.definition_normal:.$ 
 
 NEW_PARA:

@@ -674,6 +674,13 @@ definition_normal:.
  new_line:
 .
  ---------------
+subject_normal:"תשובה קדמה לעולם" .
+ definition_normal:- ע' במדור פסוקים ובטויי חז"ל. ושם, קדמה לעולם..
+ new_line:
+.
+ new_line:
+.
+ ---------------
 subject_normal:אב .
  definition_normal:- הרועה הנאמן. מדריך, העומד במעלות נפשו הרבה יותר גבוה מהמעלה של הצעירות של .
  definition_normal:הבנים°.

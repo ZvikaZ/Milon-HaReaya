@@ -20,8 +20,22 @@ def get_style(run):
 
     if run.style == 's03' and run.bold != True:
         return "normal"
+    elif run.style is None and run.bold is None:
+        return "normal"
+    elif run.style == 's02' and run.bold is None:
+        return "normal"
+    elif run.style == 's05' and run.bold is None:
+        return "normal"
+    elif run.style == 'Emphasis' and run.bold is None:
+        return "normal"
+
     elif run.style == 's03' and run.bold == True:
         return "bolded"
+    elif run.style == 's05' and run.bold == True:
+        return "bolded"
+    elif run.style is None and run.bold == True:
+        return "bolded"
     else:
-        print "FOOTNOTE undefined:", run.style, run.bold, " : ", run.text
+        if run.text.strip():
+            print "FOOTNOTE undefined:", run.style, run.bold, " : ", run.text
         return "normal"

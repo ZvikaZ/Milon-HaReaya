@@ -10,6 +10,7 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 """
 
 # TODO: refactor, split to files, unit tests
+# TODO: why "Pashut" is unknown?
 
 # TODO: Clean 'UNKNOWN's and 'fix_sz_cs'
 # TODO: verify that it's running on clean GIT clone

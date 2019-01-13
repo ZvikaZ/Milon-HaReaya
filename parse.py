@@ -10,8 +10,6 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 """
 
 # TODO: refactor, split to files, unit tests
-# TODO: Fix "Skhar Avera" missing recurring footnote - compare output.23.12.18 and output.23.12.18.b
-# TODO: Fix "Maasim", "Azey Panim"
 
 # TODO: Clean 'UNKNOWN's and 'fix_sz_cs'
 # TODO: verify that it's running on clean GIT clone
@@ -22,11 +20,9 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: pagination at end
 # TODO: subject_light vs sub-subjet_light - wait for Rav's response
 
-# TODO: "Mishkan UMikdash" - "Korbanot" - "Par" - some are not subjects
 # TODO: subjects size in Mehkarim
 # TODO: references numbering
 # TODO: search "Natziv" not working
-# TODO: Or HaGaluy (see check.docx)
 # TODO: Yud and Lamed in Psukim
 # TODO: splitted bubject, like "אמר לו הקדוש ברוך הוא (לגבריאל° שבקש להציל את אברהם־אבינו° מכבשן האש) אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד"
 
@@ -48,7 +44,6 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 
 # TODO: replace menu with Bootstrap style menu
 # TODO: Make index.html's links clickable, or copyable
-# TODO: Split this file...
 # TODO: better icon
 # TODO: iphone?
 # TODO: GUI
@@ -82,8 +77,8 @@ import upload_google_play
 html_parser = HTMLParser.HTMLParser()
 
 # process = "APK"
-process = "Full"
-# process = "ZIP"
+# process = "Full"
+process = "ZIP"
 
 if process == "Full":
     doc_file_name = 'dict.docx'
@@ -632,9 +627,20 @@ def fix_b_cs(run, type):
             hint_cs = run.element.rPr.rFonts.attrib.get('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hint', None) == 'cs'
         except:
             hint_cs = False
+
+        try:
+            szCs = run.element.rPr.szCs.attrib.values()[0]
+        except:
+            szCs = None
+
+        try:
+            fonts = run.element.rPr.rFonts.attrib.get('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs', None)
+        except:
+            fonts = None
+
         if bCs == "0" and 'subject' in type:
-            if (run.style.style_id == "s01" and (run.bold != True or hint_cs)) or \
-                  (run.style.style_id == "s11" and run.bold != True):
+            if (run.style.style_id == "s01" and fonts != "Narkisim" and (run.bold != True or hint_cs or szCs == '20')) or \
+                  (run.style.style_id == "s11" and (run.bold != True or (bCs == '0' and fonts != "Narkisim"))):
                 if type in ('subject_small', 'sub-subject_normal'):
                     return 'definition_normal'
             else:
@@ -664,7 +670,7 @@ def fix_DefaultParagraphFont(run):
     # only if it's really a text
     if run.text.strip():
         if run.font.size == 152400 and run.font.cs_bold:
-            return 'subject_normal'
+            return 'sub-subject_normal'
         elif run.font.size == 152400 and not run.font.cs_bold:
             return 'definition_normal'
         elif run.font.size == 139700 and run.font.cs_bold:

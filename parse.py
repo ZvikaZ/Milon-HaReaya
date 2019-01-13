@@ -73,6 +73,7 @@ import subprocess
 
 import build_phonegap
 import upload_google_play
+import htmler
 
 html_parser = HTMLParser.HTMLParser()
 
@@ -577,11 +578,6 @@ def add_to_output(html_doc, para):
 
         # tags.br()
 
-def add_footnote_to_output(paragraphs):
-    text = ""
-    for (para) in paragraphs:
-        text += para.text
-    tags.li(text)
 
 
 def fix_sz_cs(run, type):
@@ -813,7 +809,7 @@ def close_html_doc(html_doc):
             for (id) in html_doc.footnote_ids_of_this_html_doc:
                 footnote = word_doc_footnotes.footnotes_part.notes[id + 1]
                 assert footnote.id == id
-                add_footnote_to_output(footnote.paragraphs)
+                htmler.add_footnote_to_output(footnote.paragraphs)
 
         # add placeholder for searching
         tags.comment("search_placeholder")

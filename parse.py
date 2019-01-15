@@ -14,13 +14,12 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 
 # TODO: TEX: Fix all "Takala"
 # TODO: TEX: Mehkarim UVeurim - handle style (w/o numbers...)
-# TODO: TEX: check footnotes numbering - Tora "60" ??  (KOMA's label?)
+# TODO: TEX: check footnotes recurrence numbering - Tora "14" ??  (KOMA's label?)
 # TODO: TEX: compare 'check' PDF to 'check' doc
 # TODO: TEX: check 'tex.full' line 8089 failure
 # TODO: TEX: add prefixes and appendices
 # TODO: TEX: clean milon.tex, handle koma recommendations
 # TODO: TEX: check footnotes spacing
-# TODO: TEX: either add 'xelatex' to PATH (or maybe just restart..), or use full path
 
 # TODO: Clean 'UNKNOWN's and 'fix_sz_cs'
 # TODO: verify that it's running on clean GIT clone
@@ -103,8 +102,11 @@ else:
     doc_file_name = 'dict_check.docx'
     # doc_file_name = 'dict.docx'
 
-    create_html = False
-    create_latex = True
+    create_html = True
+    create_latex = False
+
+    # create_html = False
+    # create_latex = True
 
 
 

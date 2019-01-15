@@ -139,11 +139,20 @@ def add_to_latex(para, word_doc_footnotes):
     with open("tex\content.tex", 'a') as latex_file:
         latex_file.write(data.encode('utf8'))
 
+
+
+def run_xelatex(f):
+    try:
+        subprocess.call(['xelatex', f])
+    except:
+        subprocess.call([r'C:\Users\zharamax\AppData\Local\Programs\MiKTeX 2.9\miktex\bin\x64\xelatex', f])
+
+
 def close_latex():
     os.chdir("tex")
     # twice because of thumb-indices
-    subprocess.call(['xelatex', 'milon.tex'])
-    subprocess.call(['xelatex', 'milon.tex'])
+    run_xelatex('milon.tex')
+    run_xelatex('milon.tex')
     os.startfile("milon.pdf")
     os.chdir("..")
 

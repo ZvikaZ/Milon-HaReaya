@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.13)  14 JAN 2019 21:16
+This is XeTeX, Version 3.14159265-2.6-0.999991 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.13)  15 JAN 2019 08:13
 entering extended mode
 **./milon.tex
 (milon.tex
@@ -1530,6 +1530,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 71--72
  []
 
 
+Package multicol Warning: I moved some lines to the next page.
+(multicol)                Footnotes on page \@alph \c@page  might be wrong on i
+nput line 72.
+
+
+Overfull \vbox (7.0pt too high) has occurred while \output is active []
+
+ [3]
 Underfull \hbox (badness 10000) in paragraph at lines 73--74
 [][]
  []
@@ -1540,14 +1548,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 75--76
  []
 
 
-Package multicol Warning: I moved some lines to the next page.
-(multicol)                Footnotes on page \@alph \c@page  might be wrong on i
-nput line 77.
-
-
-Overfull \vbox (7.0pt too high) has occurred while \output is active []
-
- [3]
 Underfull \hbox (badness 10000) in paragraph at lines 77--78
 [][]
  []
@@ -1582,17 +1582,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 89--90
 [][]
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 91--92
+[][]
+ []
+
 [4]
 chapter 2.
 [5
 
 
 ] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 97--98
-[][]
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 99--100
 [][]
  []
@@ -1628,13 +1628,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 111--112
  []
 
 
-Underfull \hbox (badness 7397) in paragraph at lines 113--114
-[]\TU/TimesNewRoman(0)/m/n/10 הטוב־הכללי°, הטוב האלהי השורה בעולמות° כולם.[]
+Underfull \hbox (badness 10000) in paragraph at lines 113--114
+[][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 113--114
-[][]
+Underfull \hbox (badness 7397) in paragraph at lines 115--116
+[]\TU/TimesNewRoman(0)/m/n/10 הטוב־הכללי°, הטוב האלהי השורה בעולמות° כולם.[]
  []
 
 
@@ -1688,28 +1688,28 @@ Underfull \hbox (badness 10000) in paragraph at lines 133--134
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 135--136
+[][]
+ []
+
+
 Package multicol Warning: I moved some lines to the next page.
 (multicol)                Footnotes on page \@alph \c@page  might be wrong on i
-nput line 134.
+nput line 136.
 
 
 Overfull \vbox (8.0pt too high) has occurred while \output is active []
 
  [7]
-Underfull \hbox (badness 10000) in paragraph at lines 135--136
+Underfull \hbox (badness 10000) in paragraph at lines 137--138
 [][]
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 143.
+(Font)              <10.95> on input line 145.
 
-Underfull \hbox (badness 10000) in paragraph at lines 143--144
+Underfull \hbox (badness 10000) in paragraph at lines 145--146
 []\TU/TimesNewRoman(0)/m/n/10 מעבודה־זרה° שבתכונה החפצה בחיי צדק° ויושר°,[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 143--144
-[][]
  []
 
 
@@ -1722,17 +1722,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 147--148
 [][]
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 149--150
+[][]
+ []
+
 [8]
 chapter 3.
 [9
 
 
 ] [10]
-Underfull \hbox (badness 10000) in paragraph at lines 155--156
-[][]
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 157--158
 [][]
  []
@@ -1758,7 +1758,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 165--166
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--176
+Underfull \hbox (badness 10000) in paragraph at lines 167--168
 [][]
  []
 
@@ -1767,16 +1767,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 177--178
 [][]
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 179--180
+[][]
+ []
+
 [11]) [12]
 No complaints by nag.
 (milon.aux (content.aux)) ) 
 Here is how much of TeX's memory you used:
- 27811 strings out of 427748
- 579120 string characters out of 3146444
- 818629 words of memory out of 3000000
- 31463 multiletter control sequences out of 15000+200000
+ 27814 strings out of 427748
+ 579157 string characters out of 3146444
+ 818628 words of memory out of 3000000
+ 31466 multiletter control sequences out of 15000+200000
  536237 words of font info for 67 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 82i,20n,80p,9086b,1402s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 82i,19n,80p,9086b,1402s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on milon.pdf (14 pages).

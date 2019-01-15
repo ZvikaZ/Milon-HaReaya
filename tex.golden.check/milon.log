@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.13)  15 JAN 2019 08:13
+This is XeTeX, Version 3.14159265-2.6-0.999991 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.13)  15 JAN 2019 13:11
 entering extended mode
 **./milon.tex
 (milon.tex
@@ -1351,6 +1351,10 @@ Package fontspec Info: Font family 'TimesNewRoman(3)' created for font 'Times
 
 
 ] [0]
+
+LaTeX Font Warning: Font shape `TU/Miriam(0)/bx/n' undefined
+(Font)              using `TU/Miriam(0)/m/n' instead on input line 13.
+
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 13.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -1774,13 +1778,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 179--180
 
 [11]) [12]
 No complaints by nag.
-(milon.aux (content.aux)) ) 
+(milon.aux (content.aux))
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ ) 
 Here is how much of TeX's memory you used:
- 27814 strings out of 427748
- 579157 string characters out of 3146444
- 818628 words of memory out of 3000000
- 31466 multiletter control sequences out of 15000+200000
- 536237 words of font info for 67 fonts, out of 3000000 for 9000
+ 27853 strings out of 427748
+ 579604 string characters out of 3146444
+ 819629 words of memory out of 3000000
+ 31500 multiletter control sequences out of 15000+200000
+ 536277 words of font info for 72 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
  82i,19n,80p,9086b,1402s stack positions out of 5000i,500n,10000p,200000b,50000s
 

@@ -50,8 +50,14 @@ def latex_type(type):
         return u"צהגדרה"
     elif type == "source_small":
         return u"צמקור"
-    elif type == "footnote":
-        return "footnote"    #TODO: improve footnote
+    elif type == "subject_light":
+        return u"תערך"
+    elif type == "sub-subject_light":
+        return u"תמשנה"
+    elif type == "definition_light":
+        return u"תהגדרה"
+    elif type == "source_light":
+        return u"תמקור"
     elif type == "s02Symbol":
         return u"מעוין"
     #elif type == "DefaultParagraphFont":
@@ -121,7 +127,11 @@ def add_to_latex(para, word_doc_footnotes):
                 all_runs_list.append(foot_text)
 
             all_runs_text = "\\newline\n".join(all_runs_list)
-            data += ("\\%s{%s}" % (type, all_runs_text))
+            data += ("\\%s{%s\label{%s}}" % (type, all_runs_text, id))
+
+        elif type == "footnote_recurrence":
+            data += ("\\%s{%s}" % ('footref', text.strip()))
+
 
         # elif is_subject(para, i):
         #     if not is_prev_subject(para, i):

@@ -14,7 +14,7 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 
 # TODO: TEX: Fix all "Takala"
 # TODO: TEX: Mehkarim UVeurim - handle style (w/o numbers...)
-# TODO: TEX: check footnotes recurrence numbering - Tora "14" ??  (KOMA's label?)
+# TODO: TEX: check footnotes recurrence numbering - 15.1.19 reported a bug to Koma by mail...
 # TODO: TEX: compare 'check' PDF to 'check' doc
 # TODO: TEX: check 'tex.full' line 8089 failure
 # TODO: TEX: add prefixes and appendices
@@ -102,11 +102,11 @@ else:
     doc_file_name = 'dict_check.docx'
     # doc_file_name = 'dict.docx'
 
-    create_html = True
-    create_latex = False
+    # create_html = True
+    # create_latex = False
 
-    # create_html = False
-    # create_latex = True
+    create_html = False
+    create_latex = True
 
 
 

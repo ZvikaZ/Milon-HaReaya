@@ -12,9 +12,9 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: refactor, split to files, unit tests
 # TODO: why "Pashut" is unknown?
 
-# TODO: TEX: read sections*csv, and use that for polythumb
-# TODO: TEX: apply footnotes style
-# TODO: TEX: check footnotes numbering - Tora "60" ??
+# TODO: TEX: Fix all "Takala"
+# TODO: TEX: Mehkarim UVeurim - handle style (w/o numbers...)
+# TODO: TEX: check footnotes numbering - Tora "60" ??  (KOMA's label?)
 # TODO: TEX: compare 'check' PDF to 'check' doc
 # TODO: TEX: check 'tex.full' line 8089 failure
 # TODO: TEX: add prefixes and appendices

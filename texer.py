@@ -4,6 +4,29 @@
 
 import os
 import subprocess
+import codecs
+import footer
+
+sections_csv_file = "sections_short_names.csv"
+
+
+def reverse_words(s):
+    w1 = s.split()
+    w2 = reversed(w1)
+    return ' '.join(w2)
+
+# the output is 'reversed' due to some bug in 'fancytabs' that shows the words reversed in the string
+# TODO: report this bug...
+def get_section_short_name(section):
+    # with open(sections_csv_file, 'r') as csvfile:
+    csvfile = codecs.open(sections_csv_file, encoding='utf-8')
+    for row in csvfile:
+        s = row.strip().split(',')
+        if s[0].strip('"') == section:
+            return reverse_words(s[1])
+    return reverse_words(section)
+
+
 
 
 def open_latex():
@@ -50,17 +73,17 @@ def add_to_latex(para, word_doc_footnotes):
             # TODO: adjust headings
             if type == 'heading_title':
                 data += ("\\chapter{%s}" % text)
-                data += ("\\addPolythumb{%s}" % text)
+                data += ("\\addPolythumb{%s}" % get_section_short_name(text))
             elif type == 'heading_section':
                 data += ("\\chapter{%s}" % text)
-                data += ("\\addPolythumb{%s}" % text)
+                data += ("\\addPolythumb{%s}" % get_section_short_name(text))
             elif type == 'heading_sub-section-bigger':
                 data += ("\\subsection{%s}" % text)
             elif type == 'heading_sub-section':
                 data += ("\\subsection{%s}" % text)
             elif type == 'heading_letter':
                 data += ("\\subsubsection{%s}" % text)
-                data += ("\\replacePolythumb{%s}" % text)
+                data += ("\\replacePolythumb{%s}" % get_section_short_name(text))
 
             data += "\n"
             if 'letter' in type:
@@ -85,11 +108,20 @@ def add_to_latex(para, word_doc_footnotes):
             id = int(text)
             footnote = word_doc_footnotes.footnotes_part.notes[id + 1]
             assert footnote.id == id
-            foot_text = ""
-            for (para) in footnote.paragraphs:
-                foot_text += para.text
 
-            data += ("\\%s{%s}" % (type, foot_text))
+            all_runs_list = []
+            for (para) in footnote.paragraphs:
+                foot_text = ""
+                for (run) in para.runs:
+                    style = footer.get_style(run)
+                    if style == "bolded":
+                        foot_text += (("\\%s{%s}" % ("textbf", run.text)))
+                    else:
+                        foot_text += (run.text)
+                all_runs_list.append(foot_text)
+
+            all_runs_text = "\\newline\n".join(all_runs_list)
+            data += ("\\%s{%s}" % (type, all_runs_text))
 
         # elif is_subject(para, i):
         #     if not is_prev_subject(para, i):

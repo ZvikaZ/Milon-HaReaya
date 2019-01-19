@@ -1,0 +1,48 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{polythumbs}
+    [2016/03/27 Thumbs Index, compatible with RTL language and polyglossia]
+
+\RequirePackage{fancytabs}    %TODO: require specific version [2016/3/..]
+
+\usepackage{fancytabs}
+
+% default style, can be easily overriden
+\fancytabsStyle{\color{white}}
+\fancytabsWidth{2.3cm}
+\fancytabsHeight{0.8cm}
+\fancytabsCount{30}
+\fancytabsLeftColor{black}
+\fancytabsRightColor{black}
+\fancytabsGap{1mm}
+\fancytabsRotate{0}
+\fancytabsTop{1cm}
+
+% thumbs counter
+\newcounter{PolythumbCounter}
+\setcounter{PolythumbCounter}{1}
+
+
+% commands
+\newcommand{\PolythumbWrapperLeft}{}
+\newcommand{\PolythumbWrapperRight}{}
+
+\newcommand{\addPolythumb}[1]{
+	\replacePolythumb{#1}
+	\stepcounter{PolythumbCounter}
+}
+
+
+\newcommand{\replacePolythumb}[1]{
+    \renewcommand{\PolythumbWrapperLeft}{
+	    \fancytab[LEFT]{#1}{\value{PolythumbCounter}}
+	}
+    \renewcommand{\PolythumbWrapperRight}{
+	    \fancytab[RIGHT]{#1}{\value{PolythumbCounter}}
+	}
+}
+
+\newcommand{\skipPolythumb}{
+	\stepcounter{PolythumbCounter}
+}
+
+\endinput

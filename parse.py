@@ -12,14 +12,17 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: refactor, split to files, unit tests
 # TODO: why "Pashut" is unknown?
 
-# TODO: TEX: Fix all "Takala"
 # TODO: TEX: Mehkarim UVeurim - handle style (w/o numbers...)
+# TODO: TEX: Letters - don't have fancy head above them
+# TODO: TEX: "Psukim KeMusagim" - verify Moto style (currently not as in Old way...)
 # TODO: TEX: check footnotes recurrence numbering - 15.1.19 reported a bug to Koma by mail...
 # TODO: TEX: compare 'check' PDF to 'check' doc
-# TODO: TEX: check 'tex.full' line 8089 failure
+# TODO: TEX: check 'tex.full' line 8089 failure (8246)
 # TODO: TEX: add prefixes and appendices
 # TODO: TEX: clean milon.tex, handle koma recommendations
 # TODO: TEX: check footnotes spacing
+# TODO: TEX: make sure that "fake_subject_normal" is correct - curerntly different between HTML and LyX
+# TODO: TEX: publish my Tex packages?
 
 # TODO: Clean 'UNKNOWN's and 'fix_sz_cs'
 # TODO: verify that it's running on clean GIT clone
@@ -99,11 +102,12 @@ if process == "Full":
     create_latex = False
 else:
     # doc_file_name = 'dict_few.docx'
-    doc_file_name = 'dict_check.docx'
+    # doc_file_name = 'dict_check.docx'
+    doc_file_name = 'dict_short.docx'
     # doc_file_name = 'dict.docx'
 
-    # create_html = True
-    # create_latex = False
+    create_html = True
+    create_latex = False
 
     create_html = False
     create_latex = True
@@ -849,11 +853,11 @@ heading_back_to_back = False
 pattern = re.compile(r"\W", re.UNICODE)
 
 # returns:
-#  None - if no need for new html_doc
-#  string - with name of new required html_doc
-#  ('UPDATE_NAME', string) - to replace the name of newly opend html_doc
-#  ('NEW_LETTER', string) - if needs a new html_doc, but w/o putting it in the main TOC
-def is_need_new_html_doc(para):
+#  None - if no need for new section
+#  string - with name of new required section
+#  ('UPDATE_NAME', string) - to replace the name of newly opend section
+#  ('NEW_LETTER', string) - if needs a new section, but w/o putting it in the main TOC
+def is_need_new_section(para, prev_name):
     global heading_back_to_back
     for (type, text) in para:
         if type in ("heading_title", "heading_section"):
@@ -862,8 +866,8 @@ def is_need_new_html_doc(para):
                 return text.strip()
             else:
                 # the previous, and this, are headings - unite them
-                if html_docs_l[-1].name != u"מדורים":
-                    result = html_docs_l[-1].name + " " + text.strip()
+                if prev_name != u"מדורים":
+                    result = prev_name + " " + text.strip()
                 else:
                     # in the special case of 'Section' heading - we don't need it
                     result = text.strip()
@@ -874,7 +878,7 @@ def is_need_new_html_doc(para):
     # if we're here - we didn't 'return text' with a heading
     heading_back_to_back = False
 
-def fix_html_doc_name(name):
+def fix_section_name(name):
     if name == u"מילון הראיה":
         return u"ערכים כלליים"
     else:
@@ -882,7 +886,7 @@ def fix_html_doc_name(name):
 
 html_docs_l = []
 def get_active_html_doc(para):
-    name = is_need_new_html_doc(para)
+    name = is_need_new_section(para, html_docs_l[-1].name)
     if name:
         if isinstance(name, tuple):
             op, new = name
@@ -894,7 +898,7 @@ def get_active_html_doc(para):
                 html_docs_l[-1].name = new
                 html_docs_l[-1].section = new
         else:
-            fixed_name = fix_html_doc_name(name)
+            fixed_name = fix_section_name(name)
             html_docs_l.append(open_html_doc(fixed_name))
     return html_docs_l[-1]
 
@@ -944,6 +948,7 @@ os.chdir("../input_tex")
 for (f) in (
     "milon.tex",
     "polythumbs.sty",
+    "hebrew-gymatria-fix.sty",
 ):
     shutil.copyfile(f, os.path.join("../tex", f))
 os.chdir("../")

@@ -13,16 +13,14 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: why "Pashut" is unknown?
 
 # TODO: TEX: Mehkarim UVeurim - handle style (w/o numbers...)
-# TODO: TEX: Letters - don't have fancy head above them
-# TODO: TEX: "Psukim KeMusagim" - verify Moto style (currently not as in Old way...)
+# TODO: TEX: "Psukim KeMusagim" - verify Moto positioning
 # TODO: TEX: check footnotes recurrence numbering - 15.1.19 reported a bug to Koma by mail...
-# TODO: TEX: compare 'check' PDF to 'check' doc
 # TODO: TEX: check 'tex.full' line 8089 failure (8246)
 # TODO: TEX: add prefixes and appendices
 # TODO: TEX: clean milon.tex, handle koma recommendations
-# TODO: TEX: check footnotes spacing
-# TODO: TEX: make sure that "fake_subject_normal" is correct - curerntly different between HTML and LyX
+# TODO: TEX: make sure that "fake_subject_normal" is correct - currently different between HTML and LyX
 # TODO: TEX: publish my Tex packages?
+# TODO: create indexes? (both before and after main text...)
 
 # TODO: Clean 'UNKNOWN's and 'fix_sz_cs'
 # TODO: verify that it's running on clean GIT clone

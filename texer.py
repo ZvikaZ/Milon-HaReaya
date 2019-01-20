@@ -115,11 +115,20 @@ def set_moto(text):
 
 
 def begin_moto():
-    return "\n\\end{multicols}\n"
+    return """
+    \\end{multicols}
+    \\thispagestyle{empty}
+    \\begin{minipage}{4.1in}{
+"""
 
 
 def end_moto():
-    return "\n\\begin{multicols}{2}\n"
+    return """
+    }
+    \\end{minipage}
+    \\clearpage
+    \\begin{multicols}{2}
+    """
 
 def add_to_latex(para, word_doc_footnotes):
     global latex_new_lines_in_raw
@@ -137,8 +146,12 @@ def add_to_latex(para, word_doc_footnotes):
                 data = add_line_to_data(data, "\\mychapter{%s}{%s}" % (text, get_section_short_name(text)))
                 num_of_heading_titles += 1
             elif type == 'heading_section':
-                data = add_line_to_data(data, "\\mychapter{%s}{%s}" % (text, get_section_short_name(text)))
                 set_moto(text)
+                if next_define_is_moto:
+                    chapter_command = "mymotochapter"
+                else:
+                    chapter_command = "mychapter"
+                data = add_line_to_data(data, "\\%s{%s}{%s}" % (chapter_command, text, get_section_short_name(text)))
             elif type == 'heading_sub-section-bigger':
                 data = add_line_to_data(data, "\\mysubsection{%s}" % (text))
             elif type == 'heading_sub-section':

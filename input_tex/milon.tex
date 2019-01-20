@@ -1,28 +1,17 @@
 % missing:
-% go over `14.1.19` comments, and handle what needed to be handled
 
-% modify רע to  ער:  wait for bug response
-% increase margin above and below footnotes ruler
-% fix redundant page between chapter and section - http://tex.stackexchange.com/questions/300320/when-2-newpages-in-raw-are-joined-and-when-not
-
-% fix new chapter/section
-% footnote - the number should be regular location, "." after number
-% debug warning messages
-% footnote in wrong place - use \clearpage (maybe automatically? with 2 rounds?)
+% font size is too small? compare to printed page
 % Stam font
 
-%%% Questions to the Rav:
-% verify spacing, margins
-
-%%% to do in Python:
-% correct header section
-% restart footnotes at sections (?)
+% ? fix redundant page between chapter and section - http://tex.stackexchange.com/questions/300320/when-2-newpages-in-raw-are-joined-and-when-not
+% ? footnote - the number should be regular location, "." after number
+% ? footnote in wrong place - use \clearpage (maybe automatically? with 2 rounds?)
+% ? python restart footnotes at sections (?)
+% debug warning messages
 
 \documentclass[usegeometry]{scrbook}
 
 \usepackage{nag}
-% should be loaded before polyglossia, but defined after...
-%D \usepackage[center]{titlesec}
 
 %%%%%%%%%%%        PAGE SIZE        %%%%%%%%%%%
 \usepackage[paperheight=10.7in, paperwidth=8.3in, top=3.5cm, bottom=1.8cm, headsep=1.3cm]{geometry}
@@ -44,6 +33,14 @@
 \setcounter{page}{-1}			% make page 1 first
 
 
+%%%%%%%%%%%        HEADING - `plain' with page number only       %%%%%%%%%%%
+\fancypagestyle{plain}{%
+\fancyhf{}
+\fancyhead[LO]{\thepage\PolythumbWrapperLeft}
+\fancyhead[RE]{\thepage\PolythumbWrapperRight}
+}
+
+
 %%%%%%%%%%%        COLUMNS        %%%%%%%%%%%
 \usepackage{multicol}		% allow using 2 columns
 \setlength{\columnsep}{1.5pc}	% increase space between columns
@@ -55,60 +52,47 @@
 \rightfootnoterule   			% move footnote ruler to the right, until https://github.com/reutenauer/polyglossia/issues/5 will be fixed
 
 
-%%%%%%%%%%%    CHAPTERS - Koma script style    %%%%%%%%%%%
+%%%%%%%%%%%    CHAPTERS/PARTS - Koma script style    %%%%%%%%%%%
 % from: https://tex.stackexchange.com/questions/470051/koma-script-how-to-create-an-empty-page-after-each-chapter-heading
-\RedeclareSectionCommand[style=part]{chapter}
-\renewcommand*{\chapterformat}{}   % remove chapter number
-\renewcommand*{\chapterpagestyle}{empty}
+%\RedeclareSectionCommand[style=part]{chapter}
+\renewcommand*{\partformat}{}                % remove part number
+\renewcommand*{\chapterformat}{}             % remove chapter number
+\renewcommand*{\partpagestyle}{empty}        % remove page number from part
+\renewcommand*{\chapterpagestyle}{empty}     % remove page number from chapter
 \setkomafont{disposition}{\normalcolor}
-% if I want to have the titles bolded:    \setkomafont{disposition}{\normalcolor\bfseries}
 
 
 %\RedeclareSectionCommand[style=chapter]{subsubsection}
 \addtokomafont{subsubsection}{\center\Large}
 %\addtokomafont{chapter}{\normalfont\sffamily}
-%\renewcommand*{\raggedsection}{}
+\renewcommand*{\raggedsection}{\centering}
 
+\renewcommand*{\chapterheadendvskip}{\clearpage}
 
 %%%%%%%%%%%        UNINDENT        %%%%%%%%%%%
 \setlength{\parindent}{0pt}		% avoid space at beginning of paragraph
 
 
-
 %%%%%%%%%%%        FOOTNOTES    %%%%%%%%%%%
 \deffootnote[1.5em]{1em}{1em}{\thefootnotemark.\space}	% unindent footnotes, change footnote marker
 
-% 14.1.19 - these cause somewhat distorted view - for now I prefer to disable them
-%D \setlength{\footnotesep}{0.2cm}	% vertical space between footnotes
-%D \setlength{\skip\footins}{1.5em} % vertical space between text body and footnote ruler
+\setlength{\skip\footins}{1.5em} % vertical space between text body and footnote ruler
 
 % based on http://tex.stackexchange.com/questions/59501/how-do-i-add-a-blank-line-between-the-footnote-line-and-the-footnotes?rq=1
 \let\oldfootnoterule\footnoterule
 \def\footnoterule{\oldfootnoterule \vskip1em\relax}      % vertical space between ruler and footnotes
 
 
-%\usepackage[flushmargin]{footmisc} 	% un-indent footnotes
-%\setlength{\footnotemargin}{0.2em}
-
-% good, but may improve...
-%\usepackage[hang,flushmargin]{footmisc} 	% un-indent footnotes
-%\setlength{\footnotemargin}{0.7em}
+% Footnote mark in text - fix size
+% based on https://tex.stackexchange.com/questions/47324/superscript-outside-math-mode/140703
+\deffootnotemark{\scriptsize{$^{\mathrm{\thefootnotemark}}$}}
 
 
 %%%%%%%%%%%        MISC        %%%%%%%%%%%
 
-% 14.1.19 - investigate if it's `Koma's way' of doing it...
-%D \renewcommand\thesection{}	 % remove sections' numbers
-%Dold \renewcommand\thechapter{}	 %
-%Dold \renewcommand{\chaptername}{}
+\usepackage[doublespacing]{setspace}            % instead of `linespread` - which caused strange footnotes spacing
 
-\linespread{1.3}		 %  increase lines spacing
-
-
-\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}		% increase spacing between paragraphs
-
-
-
+\setlength{\parskip}{1ex plus 0.2ex minus 0.2ex}		% increase spacing between paragraphs
 
 
 
@@ -138,13 +122,25 @@
 
 \newcommand{\mychapter}[2]{
     \end{multicols}
-    \chapter[#2]{#1}
+    \part[#2]{#1}
     
     \addPolythumb{#2}
 
     \fancyhead[CE,CO]{\removelinebreaks{#1}}
     \begin{multicols}{2}
 }
+
+
+\newcommand{\mymotochapter}[2]{
+    \end{multicols}
+    \chapter[#2]{#1}
+
+    \addPolythumb{#2}
+
+    \fancyhead[CE,CO]{\removelinebreaks{#1}}
+    \begin{multicols}{2}
+}
+
 
 \newcommand{\mysubsection}[1]{
     \end{multicols}
@@ -156,6 +152,8 @@
 \newcommand{\mylettertitle}[1]{
     \end{multicols}
     \newpage
+    \thispagestyle{plain}
+   
     \vspace*{0.5cm}
     \subsubsection{#1}
     \replacePolythumb{#1}

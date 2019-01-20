@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.13)  20 JAN 2019 14:07
+This is XeTeX, Version 3.14159265-2.6-0.999991 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.1.13)  20 JAN 2019 15:12
 entering extended mode
 **./milon.tex
 (milon.tex
@@ -36,13 +36,18 @@ Package: tocbasic 2018/12/30 v3.26a KOMA-Script package (handling toc-files)
 Package tocbasic Info: omitting babel extension for `toc'
 (tocbasic)             because of feature `nobabel' available
 (tocbasic)             for `toc' on input line 136.
-Class scrbook Info: File `scrsize11pt.clo' used instead of
-(scrbook)           file `scrsize11.clo' to setup font sizes on input line 2358
-.
+Package scrbook Info: You've used standard option `12pt'.
+(scrbook)             This is correct!
+(scrbook)             Internally I'm using `fontsize=12pt'.
+(scrbook)             If you'd like to set the option with \KOMAoptions,
+(scrbook)             you'd have to use `fontsize=12pt' there
+(scrbook)             instead of `12pt', too.
+Class scrbook Info: File `scrsize12pt.clo' used to setup font sizes on input li
+ne 2358.
 
 ("C:\Users\zharamax\AppData\Local\Programs\MiKTeX 2.9\tex/latex/koma-script\scr
-size11pt.clo"
-File: scrsize11pt.clo 2018/12/30 v3.26a KOMA-Script font size class option (11p
+size12pt.clo"
+File: scrsize12pt.clo 2018/12/30 v3.26a KOMA-Script font size class option (12p
 t)
 )
 ("C:\Users\zharamax\AppData\Local\Programs\MiKTeX 2.9\tex/latex/koma-script\typ
@@ -55,21 +60,21 @@ Package: typearea 2018/12/30 v3.26a KOMA-Script package (type area)
 \ta@temp=\skip45
 \footheight=\skip46
 Package typearea Info: These are the values describing the layout:
-(typearea)             DIV  = 10
+(typearea)             DIV  = 12
 (typearea)             BCOR = 0.0pt
 (typearea)             \paperwidth      = 597.50793pt
-(typearea)              \textwidth      = 418.25555pt
+(typearea)              \textwidth      = 448.13095pt
 (typearea)              DIV departure   = -6%
-(typearea)              \evensidemargin = 47.2316pt
-(typearea)              \oddsidemargin  = -12.5192pt
+(typearea)              \evensidemargin = 27.31467pt
+(typearea)              \oddsidemargin  = -22.47766pt
 (typearea)             \paperheight     = 845.04694pt
-(typearea)              \textheight     = 595.80026pt
-(typearea)              \topmargin      = -25.16531pt
-(typearea)              \headheight     = 17.0pt
-(typearea)              \headsep        = 20.40001pt
-(typearea)              \topskip        = 11.0pt
-(typearea)              \footskip       = 47.6pt
-(typearea)              \baselineskip   = 13.6pt
+(typearea)              \textheight     = 635.5pt
+(typearea)              \topmargin      = -41.72441pt
+(typearea)              \headheight     = 18.125pt
+(typearea)              \headsep        = 21.75pt
+(typearea)              \topskip        = 12.0pt
+(typearea)              \footskip       = 50.75pt
+(typearea)              \baselineskip   = 14.5pt
 (typearea)              on input line 1714.
 )
 \c@part=\count81
@@ -165,7 +170,7 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 eometry.cfg")
 
 Package geometry Warning: Over-specification in `v'-direction.
-    `height' (595.80026pt) is ignored.
+    `height' (635.5pt) is ignored.
 
 ) (polythumbs.sty
 Package: polythumbs 2016/03/27 Thumbs Index, compatible with RTL language and p
@@ -1353,20 +1358,20 @@ Package: xstring 2018/12/09 v1.81 String manipulations (CT)
 ) (milon.aux (content.aux))
 \openout1 = `milon.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 201.
-LaTeX Font Info:    ... okay on input line 201.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 201.
-LaTeX Font Info:    ... okay on input line 201.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 201.
-LaTeX Font Info:    ... okay on input line 201.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 201.
-LaTeX Font Info:    ... okay on input line 201.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 201.
-LaTeX Font Info:    ... okay on input line 201.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 201.
-LaTeX Font Info:    ... okay on input line 201.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 201.
-LaTeX Font Info:    ... okay on input line 201.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 204.
+LaTeX Font Info:    ... okay on input line 204.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 204.
+LaTeX Font Info:    ... okay on input line 204.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 204.
+LaTeX Font Info:    ... okay on input line 204.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 204.
+LaTeX Font Info:    ... okay on input line 204.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 204.
+LaTeX Font Info:    ... okay on input line 204.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 204.
+LaTeX Font Info:    ... okay on input line 204.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 204.
+LaTeX Font Info:    ... okay on input line 204.
 
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1375,23 +1380,23 @@ LaTeX Font Info:    ... okay on input line 201.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: twoside 
-* h-part:(L,W,R)=(59.7508pt, 418.25555pt, 121.83487pt)
+* h-part:(L,W,R)=(49.79233pt, 448.13095pt, 101.91794pt)
 * v-part:(T,H,B)=(99.58464pt, 622.48909pt, 51.21504pt)
 * \paperwidth=599.84122pt
 * \paperheight=773.28877pt
-* \textwidth=418.25555pt
+* \textwidth=448.13095pt
 * \textheight=622.48909pt
-* \oddsidemargin=-12.5192pt
-* \evensidemargin=49.56488pt
-* \topmargin=-26.67401pt
-* \headheight=17.0pt
+* \oddsidemargin=-22.47766pt
+* \evensidemargin=29.64795pt
+* \topmargin=-27.79901pt
+* \headheight=18.125pt
 * \headsep=36.98866pt
-* \topskip=11.0pt
-* \footskip=47.6pt
-* \marginparwidth=89.62619pt
+* \topskip=12.0pt
+* \footskip=50.75pt
+* \marginparwidth=74.68849pt
 * \marginparsep=12.8401pt
 * \columnsep=18.0pt
-* \skip\footins=16.42499pt
+* \skip\footins=18.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -1408,69 +1413,69 @@ Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
 
 \symlegacymaths=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 201.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 201.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 201.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 201.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 201.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 201.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 201.
-LaTeX Font Info:    Redeclaring math accent \check on input line 201.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 201.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 201.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 201.
-LaTeX Font Info:    Redeclaring math symbol \colon on input line 201.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 201.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 201.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 201.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 201.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 201.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 201.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 201.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 201.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 201.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 201.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 201.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 201.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 201.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 204.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 204.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 204.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 204.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 204.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 204.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 204.
+LaTeX Font Info:    Redeclaring math accent \check on input line 204.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 204.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 204.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 204.
+LaTeX Font Info:    Redeclaring math symbol \colon on input line 204.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 204.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 204.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 204.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 204.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 204.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 204.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 204.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 204.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 204.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 204.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 204.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 204.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 204.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 201.
+(Font)              `operators' in the math version `normal' on input line 204.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> TU/TimesNewRoman(1)/m/n on input line 2
-01.
+04.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 201.
+(Font)              `operators' in the math version `bold' on input line 204.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/cmr/bx/n --> TU/TimesNewRoman(1)/m/n on input line 
-201.
+204.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  TU/TimesNewRoman(1)/m/n --> TU/TimesNewRoman(1)/m/n on 
-input line 201.
+input line 204.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
 (Font)                  OT1/cmr/m/it --> TU/TimesNewRoman(1)/m/it on input line
- 201.
+ 204.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
 (Font)                  OT1/cmr/bx/n --> TU/TimesNewRoman(1)/bx/n on input line
- 201.
+ 204.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
 (Font)                  OT1/cmss/m/n --> TU/TimesNewRoman(1)/m/n on input line 
-201.
+204.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
 (Font)                  OT1/cmtt/m/n --> TU/TimesNewRoman(2)/m/n on input line 
-201.
+204.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  TU/TimesNewRoman(1)/m/n --> TU/TimesNewRoman(1)/bx/n on
- input line 201.
+ input line 204.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> TU/TimesNewRoman(1)/bx/it on input li
-ne 201.
+ne 204.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
 (Font)                  OT1/cmss/bx/n --> TU/TimesNewRoman(1)/bx/n on input lin
-e 201.
+e 204.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> TU/TimesNewRoman(2)/bx/n on input line
- 201.
+ 204.
 \AtBeginShipoutBox=\box81
 \openout2 = `content.aux'.
 
@@ -1525,37 +1530,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 37--38
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 39--40
+[]\TU/TimesNewRoman(0)/m/n/11 אהבת־ד׳° אלהי־ישראל°, עצם החיים (בישראל),[]
+ []
+
+
 Package multicol Warning: I moved some lines to the next page.
 (multicol)                Footnotes on page \@alph \c@page  might be wrong on i
-nput line 38.
+nput line 40.
 
 
-Overfull \vbox (10.0pt too high) has occurred while \output is active []
+Overfull \vbox (11.0pt too high) has occurred while \output is active []
 
  [2]
-Underfull \hbox (badness 10000) in paragraph at lines 39--40
-[]\TU/TimesNewRoman(0)/m/n/10 אהבת־ד'° אלהי־ישראל°, עצם החיים (בישראל),[]
- []
-
-
-Underfull \hbox (badness 5374) in paragraph at lines 39--40
-[]\TU/TimesNewRoman(0)/m/n/10 כשמתגברת באדם כראוי, מכבוד־אל° הכללי, הנשקף[]
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 41--42
 [][]
  []
 
 
-Package multicol Warning: I moved some lines to the next page.
-(multicol)                Footnotes on page \@alph \c@page  might be wrong on i
-nput line 42.
-
-
-Overfull \vbox (10.0pt too high) has occurred while \output is active []
-
- [3]
 Underfull \hbox (badness 10000) in paragraph at lines 43--44
 [][]
  []
@@ -1576,6 +1568,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 49--50
  []
 
 
+Package multicol Warning: I moved some lines to the next page.
+(multicol)                Footnotes on page \@alph \c@page  might be wrong on i
+nput line 55.
+
+
+Overfull \vbox (11.0pt too high) has occurred while \output is active []
+
+ [3]
 Underfull \hbox (badness 10000) in paragraph at lines 57--58
 [][]
  []
@@ -1596,14 +1596,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 63--64
  []
 
 
-Package multicol Warning: I moved some lines to the next page.
-(multicol)                Footnotes on page \@alph \c@page  might be wrong on i
-nput line 65.
-
-
-Overfull \vbox (10.0pt too high) has occurred while \output is active []
-
- [4]
 Underfull \hbox (badness 10000) in paragraph at lines 65--66
 [][]
  []
@@ -1639,17 +1631,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 81--82
  []
 
 
-Underfull \hbox (badness 6396) in paragraph at lines 85--86
-[]\TU/TimesNewRoman(0)/bx/n/11 אומה הישראלית \TU/TimesNewRoman(0)/m/n/10 - \TU/
-TimesNewRoman(0)/bx/n/10 התכלית הכללית של האומה[]
- []
-
-
-Underfull \hbox (badness 6893) in paragraph at lines 85--86
-[]\TU/TimesNewRoman(0)/m/n/10 חטיבה° אחת בעולם, המצויינת בתקותה לעצמה לא[]
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 85--86
 [][]
  []
@@ -1662,12 +1643,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 87--88
 
 Package multicol Warning: I moved some lines to the next page.
 (multicol)                Footnotes on page \@alph \c@page  might be wrong on i
-nput line 90.
+nput line 89.
 
 
-Overfull \vbox (10.0pt too high) has occurred while \output is active []
+Overfull \vbox (11.0pt too high) has occurred while \output is active []
 
- [5]
+ [4]
 Underfull \hbox (badness 10000) in paragraph at lines 91--92
 [][]
  []
@@ -1705,21 +1686,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 111--112
 
 Package multicol Warning: I moved some lines to the next page.
 (multicol)                Footnotes on page \@alph \c@page  might be wrong on i
-nput line 115.
+nput line 118.
 
 
-Overfull \vbox (9.0pt too high) has occurred while \output is active []
+Overfull \vbox (11.0pt too high) has occurred while \output is active []
 
- [6]
+ [5]
 
 Package multicol Warning: I moved some lines to the next page.
 (multicol)                Footnotes on page \@alph \c@page  might be wrong on i
 nput line 124.
 
 
-Overfull \vbox (9.0pt too high) has occurred while \output is active []
+Overfull \vbox (10.0pt too high) has occurred while \output is active []
 
- [7]
+ [6]
 Underfull \hbox (badness 10000) in paragraph at lines 129--130
 [][]
  []
@@ -1744,7 +1725,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 141--142
 [][]
  []
 
-[8]
+
 Underfull \hbox (badness 10000) in paragraph at lines 143--144
 [][]
  []
@@ -1755,8 +1736,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 147--148
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 151--152
-[][]\TU/TimesNewRoman(0)/bx/n/11 ״אור חדש״ \TU/TimesNewRoman(0)/m/n/10 - אוצר ח
+Underfull \hbox (badness 7907) in paragraph at lines 151--152
+[][]\TU/TimesNewRoman(0)/bx/n/12 ״אור חדש״ \TU/TimesNewRoman(0)/m/n/11 - אוצר ח
 יים חדש ומלא רעננות°,[]
  []
 
@@ -1766,24 +1747,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 157--158
  []
 
 
-Underfull \hbox (badness 7397) in paragraph at lines 159--160
-[]\TU/TimesNewRoman(0)/m/n/10 הטוב־הכללי°, הטוב האלהי השורה בעולמות° כולם.[]
- []
+Package multicol Warning: I moved some lines to the next page.
+(multicol)                Footnotes on page \@alph \c@page  might be wrong on i
+nput line 162.
 
 
+Overfull \vbox (11.0pt too high) has occurred while \output is active []
+
+ [7]
 Underfull \hbox (badness 10000) in paragraph at lines 163--164
 [][]
  []
 
 
-Package multicol Warning: I moved some lines to the next page.
-(multicol)                Footnotes on page \@alph \c@page  might be wrong on i
-nput line 166.
-
-
-Overfull \vbox (10.0pt too high) has occurred while \output is active []
-
- [9]
 Underfull \hbox (badness 10000) in paragraph at lines 169--170
 [][]
  []
@@ -1804,17 +1780,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 181--182
  []
 
 
+Underfull \hbox (badness 6792) in paragraph at lines 183--184
+[]\TU/TimesNewRoman(0)/m/n/11 ששופע בישראל° ביחוד ממקום בית־המקדש° יצאה[]
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 183--184
 [][]
  []
 
-[10]
-Underfull \hbox (badness 5637) in paragraph at lines 187--188
-[]\TU/TimesNewRoman(0)/m/n/10 ◊ \TU/TimesNewRoman(0)/bx/n/10 האורה השכלית \TU/T
-imesNewRoman(0)/m/n/10 באה מרוב תורה ודעת, מהרבה[]
- []
+
+Package multicol Warning: I moved some lines to the next page.
+(multicol)                Footnotes on page \@alph \c@page  might be wrong on i
+nput line 184.
 
 
+Overfull \vbox (11.0pt too high) has occurred while \output is active []
+
+ [8]
 Underfull \hbox (badness 10000) in paragraph at lines 187--188
 [][]
  []
@@ -1840,44 +1823,49 @@ Underfull \hbox (badness 10000) in paragraph at lines 207--208
  []
 
 
-Underfull \hbox (badness 7415) in paragraph at lines 209--210
-[]\TU/TimesNewRoman(0)/bx/n/10 אושר נעלה \TU/TimesNewRoman(0)/m/n/10 - קדושת הח
-יים במוסר° מדות טובות[]
- []
-
-
-Package multicol Warning: I moved some lines to the next page.
-(multicol)                Footnotes on page \@alph \c@page  might be wrong on i
-nput line 210.
-
-
-Overfull \vbox (9.0pt too high) has occurred while \output is active []
-
- [11]
 Underfull \hbox (badness 10000) in paragraph at lines 211--212
 [][]
  []
 
 
+Package multicol Warning: I moved some lines to the next page.
+(multicol)                Footnotes on page \@alph \c@page  might be wrong on i
+nput line 214.
+
+
+Overfull \vbox (11.0pt too high) has occurred while \output is active []
+
+ [9]
 Underfull \hbox (badness 10000) in paragraph at lines 215--216
 [][]
  []
 
 
-Package multicol Warning: I moved some lines to the next page.
-(multicol)                Footnotes on page \@alph \c@page  might be wrong on i
-nput line 224.
+Underfull \hbox (badness 5161) in paragraph at lines 229--230
+[]\TU/TimesNewRoman(0)/m/n/11 הסוד העליון של האורה־האלהית° בראשית° התחלת[]
+ []
 
 
-Overfull \vbox (10.0pt too high) has occurred while \output is active []
-
- [12]
 Underfull \hbox (badness 10000) in paragraph at lines 229--230
-[]\TU/TimesNewRoman(0)/bx/n/11 אחדות מוחלטה \TU/TimesNewRoman(0)/m/n/10 - אור ה
+[]\TU/TimesNewRoman(0)/bx/n/12 אחדות מוחלטה \TU/TimesNewRoman(0)/m/n/11 - אור ה
 פשטות העליונה, יסוד[]
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 229--230
+[]\TU/TimesNewRoman(0)/bx/n/11 מלא האחדות המוחלטה \TU/TimesNewRoman(0)/m/n/11 -
+ מקור חיי כל החיים[]
+ []
+
+
+Package multicol Warning: I moved some lines to the next page.
+(multicol)                Footnotes on page \@alph \c@page  might be wrong on i
+nput line 230.
+
+
+Overfull \vbox (10.0pt too high) has occurred while \output is active []
+
+ [10]
 Underfull \hbox (badness 10000) in paragraph at lines 231--232
 [][]
  []
@@ -1894,11 +1882,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 235--236
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 239--240
-[]\TU/TimesNewRoman(0)/m/n/10 הגדולים המתפשטים מהפנים־המחשביים, נחלי חכמה[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 239--240
 [][]
  []
 
@@ -1907,10 +1890,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 241--242
 [][]
  []
 
-[13]
-Underfull \hbox (badness 6859) in paragraph at lines 249--250
-[]\TU/TimesNewRoman(0)/bx/n/10 האידיאה האלהית המוחלטת \TU/TimesNewRoman(0)/m/n/
-10 - הנטיה הרוחנית של[]
+
+Underfull \hbox (badness 6825) in paragraph at lines 247--248
+[]\TU/TimesNewRoman(0)/m/n/10 הערך הרוחני האידיאלי של המציאות, פנימיות הדברים.[
+]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 251--252
+[]\TU/TimesNewRoman(0)/m/n/11 מוסרית אדירה לשמה, המתנוצצת מהעולם האלהי,[]
  []
 
 
@@ -1919,6 +1907,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 251--252
  []
 
 
+Package multicol Warning: I moved some lines to the next page.
+(multicol)                Footnotes on page \@alph \c@page  might be wrong on i
+nput line 252.
+
+
+Overfull \vbox (11.0pt too high) has occurred while \output is active []
+
+ [11]
 Underfull \hbox (badness 10000) in paragraph at lines 255--256
 [][]
  []
@@ -1934,14 +1930,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 259--260
  []
 
 
-Package multicol Warning: I moved some lines to the next page.
-(multicol)                Footnotes on page \@alph \c@page  might be wrong on i
-nput line 260.
-
-
-Overfull \vbox (9.0pt too high) has occurred while \output is active []
-
- [14]
 Underfull \hbox (badness 10000) in paragraph at lines 261--262
 [][]
  []
@@ -1956,24 +1944,24 @@ LaTeX Font Warning: Font shape `TU/Miriam(0)/bx/n' undefined
 (Font)              using `TU/Miriam(0)/m/n' instead on input line 271.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 271--272
-[]\TU/Miriam(0)/bx/n/10 העליונה והרוממה להתדבקות° אלהית, תוכן[]
+Underfull \hbox (badness 6316) in paragraph at lines 275--276
+[]\TU/TimesNewRoman(0)/bx/n/11 ושואבים תמיד עלוי° וצחצוח° ממקור העצמיות°[]
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 275--276
-[]\TU/TimesNewRoman(0)/bx/n/10 ושואבים תמיד עלוי° וצחצוח° ממקור העצמיות°[]
+[]\TU/TimesNewRoman(0)/m/n/11 חפציו°, האצילות°, הספירות°, המדות°, השבילים,[]
  []
 
 
 Package multicol Warning: I moved some lines to the next page.
 (multicol)                Footnotes on page \@alph \c@page  might be wrong on i
-nput line 278.
+nput line 276.
 
 
-Overfull \vbox (9.0pt too high) has occurred while \output is active []
+Overfull \vbox (11.0pt too high) has occurred while \output is active []
 
- [15]
+ [12]
 Underfull \hbox (badness 10000) in paragraph at lines 279--280
 [][]
  []
@@ -2006,12 +1994,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 307--308
 
 Package multicol Warning: I moved some lines to the next page.
 (multicol)                Footnotes on page \@alph \c@page  might be wrong on i
-nput line 308.
+nput line 311.
 
 
 Overfull \vbox (10.0pt too high) has occurred while \output is active []
 
- [16]
+ [13]
 Underfull \hbox (badness 10000) in paragraph at lines 312--313
 [][]
  []
@@ -2032,26 +2020,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 320--321
  []
 
 
-Package multicol Warning: I moved some lines to the next page.
-(multicol)                Footnotes on page \@alph \c@page  might be wrong on i
-nput line 326.
-
-
-Overfull \vbox (10.0pt too high) has occurred while \output is active []
-
- [17]
-Underfull \hbox (badness 10000) in paragraph at lines 328--329
-[][]\TU/Miriam(0)/bx/n/11 אמונה \TU/TimesNewRoman(0)/m/n/10 - \TU/Miriam(0)/bx/
-n/10 רוח° האמונה הקדושה° \TU/TimesNewRoman(0)/m/n/10 - \TU/Miriam(0)/bx/n/10 הכ
-רה[]
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 332--333
 [][]
  []
 
 
+Package multicol Warning: I moved some lines to the next page.
+(multicol)                Footnotes on page \@alph \c@page  might be wrong on i
+nput line 333.
+
+
+Overfull \vbox (9.0pt too high) has occurred while \output is active []
+
+ [14]
 Underfull \hbox (badness 10000) in paragraph at lines 334--335
 [][]
  []
@@ -2076,7 +2057,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 342--343
 [][]
  []
 
-[18] [19]
+[15]
 Underfull \hbox (badness 10000) in paragraph at lines 351--352
 [][]
  []
@@ -2093,13 +2074,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 367--368
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 375--376
-[]\TU/TimesNewRoman(0)/m/n/9 הופעת קדושת עצמיותנו הצבורית, מתוך השראת־שכינתו°[]
+[]\TU/TimesNewRoman(0)/m/n/10 על כלנו כאחד, בהוציאו אותנו מבית־עבדים ממצרים°,[]
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 375--376
-[]\TU/TimesNewRoman(0)/m/n/9 על כלנו כאחד, בהוציאו אותנו מבית־עבדים ממצרים°,[]
  []
 
 
@@ -2107,22 +2083,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 375--376
 [][]
  []
 
-
-Package multicol Warning: I moved some lines to the next page.
-(multicol)                Footnotes on page \@alph \c@page  might be wrong on i
-nput line 376.
-
-[20] [21] [22
-
-
-]
+[16]
 part II.
 Package scrkbase Info: You've told me to use the font selection of the element
 (scrkbase)             `partprefix' that is an alias of element `partnumber'
 (scrkbase)              on input line 377.
-[23] [24]
+[17
+
+
+] [18]
 chapter 1.
-[25
+[19
 
 
 ]
@@ -2131,8 +2102,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 388--389
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 392.
-[26
+(Font)              <12> on input line 392.
+[20
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 400--401
@@ -2160,9 +2131,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 408--409
  []
 
 )
-Overfull \vbox (7.0pt too high) has occurred while \output is active []
+Overfull \vbox (8.0pt too high) has occurred while \output is active []
 
- [27
+ [21
 
 ]
 No complaints by nag.
@@ -2172,12 +2143,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 28259 strings out of 427748
- 585526 string characters out of 3146444
- 816623 words of memory out of 3000000
- 31908 multiletter control sequences out of 15000+200000
- 535301 words of font info for 61 fonts, out of 3000000 for 9000
+ 28238 strings out of 427748
+ 584980 string characters out of 3146444
+ 823630 words of memory out of 3000000
+ 31887 multiletter control sequences out of 15000+200000
+ 535290 words of font info for 60 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
  82i,20n,80p,9086b,1468s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on milon.pdf (29 pages).
+Output written on milon.pdf (23 pages).

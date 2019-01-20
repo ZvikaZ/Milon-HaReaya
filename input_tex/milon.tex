@@ -9,7 +9,7 @@
 % ? python restart footnotes at sections (?)
 % debug warning messages
 
-\documentclass[usegeometry]{scrbook}
+\documentclass[usegeometry,12pt]{scrbook}
 
 \usepackage{nag}
 
@@ -80,7 +80,7 @@
 
 
 %%%%%%%%%%%        FOOTNOTES    %%%%%%%%%%%
-\deffootnote[1.5em]{1em}{1em}{\thefootnotemark.\space}	% unindent footnotes, change footnote marker
+\deffootnote[1.5em]{1.75em}{1.75em}{\myfootnotesize{\thefootnotemark.\space}}	% unindent footnotes, change footnote marker
 
 \setlength{\skip\footins}{1.5em} % vertical space between text body and footnote ruler
 
@@ -96,7 +96,7 @@
 
 %%%%%%%%%%%        MISC        %%%%%%%%%%%
 
-\usepackage[doublespacing]{setspace}            % instead of `linespread` - which caused strange footnotes spacing
+\usepackage[onehalfspacing]{setspace}            % instead of `linespread` - which caused strange footnotes spacing
 
 \setlength{\parskip}{1ex plus 0.2ex minus 0.2ex}		% increase spacing between paragraphs
 
@@ -115,10 +115,10 @@
 
 
 %%%%%%%%%%%        COMMANDS        %%%%%%%%%%%
-\newcommand\mylarge{\fontsize{11}{12}\selectfont}
-\newcommand\mynormalsize{\fontsize{10}{12}\selectfont}
-\newcommand\mysmall{\fontsize{9}{12}\selectfont}
-\newcommand\myfootnotesize{\fontsize{8}{12}\selectfont}
+\newcommand\mylarge{\fontsize{12}{12}\selectfont}
+\newcommand\mynormalsize{\fontsize{11}{12}\selectfont}
+\newcommand\mysmall{\fontsize{10}{12}\selectfont}
+\newcommand\myfootnotesize{\fontsize{9}{12}\selectfont}
 
 \usepackage{xstring}
 
@@ -173,6 +173,9 @@
     \begin{multicols}{2}
 }
 
+\newcommand{\myfootnote}[1]{
+    \footnote{\myfootnotesize{#1}}
+}
 
 \newcommand{\ערך}[1]{\textbf{\mylarge{#1}}}
 \newcommand{\משנה}[1]{\textbf{\mynormalsize{#1}}}
@@ -187,10 +190,10 @@
 \newcommand{\צמקור}[1]{\myfootnotesize{#1}}
 
 
-\newcommand{\תערך}[1]{\texttt{\ערך{#1}}}
-\newcommand{\תמשנה}[1]{\texttt{\משנה{#1}}}
-\newcommand{\תהגדרה}[1]{\texttt{\הגדרה{#1}}}
-\newcommand{\תמקור}[1]{\texttt{\מקור{#1}}}
+\newcommand{\תערך}[1]{\texttt{\צערך{#1}}}
+\newcommand{\תמשנה}[1]{\texttt{\צמשנה{#1}}}
+\newcommand{\תהגדרה}[1]{\texttt{\צהגדרה{#1}}}
+\newcommand{\תמקור}[1]{\texttt{\צמקור{#1}}}
 
 \newcommand{\מעוין}[1]{\mynormalsize{#1}}
 

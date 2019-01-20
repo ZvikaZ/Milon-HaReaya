@@ -195,7 +195,7 @@ def add_to_latex(para, word_doc_footnotes):
                 all_runs_list.append(foot_text)
 
             all_runs_text = "\\newline\n".join(all_runs_list)
-            data = add_line_to_data(data, "\\%s{%s\label{%s}}" % (type, all_runs_text, id))
+            data = add_line_to_data(data, "\\%s{%s\label{%s}}" % ("myfootnote", all_runs_text, id))
 
         elif type == "footnote_recurrence":
             data = add_line_to_data(data, "\\%s{%s} " % ('footref', text.strip()))
@@ -241,6 +241,7 @@ def run_xelatex(f):
 def close_latex():
     global latex_data
     latex_data = latex_data.replace('"',u"״")
+    latex_data = latex_data.replace("'",u"׳")
 
     os.chdir("tex")
 

@@ -14,8 +14,7 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 
 # TODO: TEX: Mehkarim UVeurim - handle style (w/o numbers...)
 # TODO: TEX: "Psukim KeMusagim" - verify Moto positioning
-# TODO: TEX: check footnotes recurrence numbering - 15.1.19 reported a bug to Koma by mail...
-# TODO: TEX: check 'tex.full' line 8089 failure (8246)
+# TODO: TEX: check 'tex.full' line 8089 failure (8246) - because of "Vav" in "Otiyot" - need to delete previous line, and re-enter
 # TODO: TEX: add prefixes and appendices
 # TODO: TEX: clean milon.tex, handle koma recommendations
 # TODO: TEX: make sure that "fake_subject_normal" is correct - currently different between HTML and LyX

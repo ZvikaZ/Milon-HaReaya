@@ -51,6 +51,12 @@
 \setdefaultlanguage{hebrew}	
 \rightfootnoterule   			% move footnote ruler to the right, until https://github.com/reutenauer/polyglossia/issues/5 will be fixed
 
+% Patch received from Markus Kohm‏ by mail, on 15.1.19 - to fix footnote recurrence problem - he doesn't promise it's 100% good...
+\usepackage{xpatch}
+\makeatletter
+\xpatchcmd{\hebrew@globalnumbers}{\protect}{}{}{\PAtchFailed}
+\makeatother
+
 
 %%%%%%%%%%%    CHAPTERS/PARTS - Koma script style    %%%%%%%%%%%
 % from: https://tex.stackexchange.com/questions/470051/koma-script-how-to-create-an-empty-page-after-each-chapter-heading

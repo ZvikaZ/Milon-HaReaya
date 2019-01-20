@@ -198,7 +198,7 @@ def add_to_latex(para, word_doc_footnotes):
             data = add_line_to_data(data, "\\%s{%s\label{%s}}" % (type, all_runs_text, id))
 
         elif type == "footnote_recurrence":
-            data = add_line_to_data(data, "\\%s{%s}" % ('footref', text.strip()))
+            data = add_line_to_data(data, "\\%s{%s} " % ('footref', text.strip()))
 
 
         # elif is_subject(para, i):

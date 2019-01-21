@@ -1,12 +1,10 @@
 % missing:
 
-% font size is too small? compare to printed page
+% python(?) - restart footnotes at sections
 % Stam font
 
 % ? fix redundant page between chapter and section - http://tex.stackexchange.com/questions/300320/when-2-newpages-in-raw-are-joined-and-when-not
-% ? footnote - the number should be regular location, "." after number
 % ? footnote in wrong place - use \clearpage (maybe automatically? with 2 rounds?)
-% ? python restart footnotes at sections (?)
 % debug warning messages
 
 \documentclass[usegeometry,12pt]{scrbook}
@@ -100,6 +98,8 @@
 
 \setlength{\parskip}{1ex plus 0.2ex minus 0.2ex}		% increase spacing between paragraphs
 
+% for Moto's minipage centering
+\usepackage{adjustbox}
 
 
 %%%%%%%%%%%        FONTS        %%%%%%%%%%%

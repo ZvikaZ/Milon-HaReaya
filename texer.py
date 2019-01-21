@@ -118,14 +118,14 @@ def begin_moto():
     return """
     \\end{multicols}
     \\thispagestyle{empty}
-    \\begin{minipage}{4.1in}{
+    \\vspace*{0.2cm}
+    \\begin{adjustbox}{minipage=8cm,margin=0pt \smallskipamount,center}
 """
 
 
 def end_moto():
     return """
-    }
-    \\end{minipage}
+    \\end{adjustbox} 
     \\clearpage
     \\begin{multicols}{2}
     """

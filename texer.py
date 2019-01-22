@@ -172,8 +172,11 @@ def add_to_latex(para, word_doc_footnotes):
                     data += ("\\\\")
             elif latex_new_lines_in_raw == 2:
                 # chop the "new line" symbol - not required before new paragraph
-                assert data == '' or data[-2:] == "\\\\"
-                data = data[:-2]
+                assert latex_data[-2:] == "\\\\" or data[-2:] == "\\\\"
+                if data[-2:] == "\\\\":
+                    data = data[:-2]
+                elif latex_data[-2:] == "\\\\":
+                    latex_data = latex_data[:-2]
                 data += ("\n\n")
             else:
                 pass

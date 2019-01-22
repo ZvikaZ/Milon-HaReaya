@@ -177,17 +177,17 @@
     \footnote{\myfootnotesize{#1}}
 }
 
-\newcommand{\ערך}[1]{\textbf{\mylarge{#1}}}
-\newcommand{\משנה}[1]{\textbf{\mynormalsize{#1}}}
-\newcommand{\הגדרה}[1]{\mynormalsize{#1}}
+\newcommand{\ערך}[1]{\textbf{{\mylarge #1}}}
+\newcommand{\משנה}[1]{\textbf{{\mynormalsize #1}}}
+\newcommand{\הגדרה}[1]{{\mynormalsize #1}}
 % what about fakes? (bolded)
-\newcommand{\מקור}[1]{\mysmall{#1}}
+\newcommand{\מקור}[1]{{\mysmall #1}}
 
 \newcommand{\צערך}[1]{\משנה{#1}}
-\newcommand{\צמשנה}[1]{\textbf{\mynormalsize{#1}}}
-\newcommand{\צהגדרה}[1]{\mysmall{#1}}
-\newcommand{\צהגדרהמודגשת}[1]{\textbf{\mysmall{#1}}}
-\newcommand{\צמקור}[1]{\myfootnotesize{#1}}
+\newcommand{\צמשנה}[1]{\textbf{{\mynormalsize #1}}}
+\newcommand{\צהגדרה}[1]{{\mysmall #1}}
+\newcommand{\צהגדרהמודגשת}[1]{\textbf{{\mysmall #1}}}
+\newcommand{\צמקור}[1]{{\myfootnotesize #1}}
 
 
 \newcommand{\תערך}[1]{\texttt{\צערך{#1}}}

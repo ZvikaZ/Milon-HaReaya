@@ -12,6 +12,7 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: refactor, split to files, unit tests
 # TODO: why "Pashut" is unknown?
 
+# TODO: TEX: handle unbalanced columns
 # TODO: TEX: Mehkarim UVeurim - handle style (w/o numbers...)
 # TODO: TEX: "Psukim KeMusagim" - Moto - last line should be to the left
 # TODO: TEX: "Psukim KeMusagim" - first page - second column - empty line...

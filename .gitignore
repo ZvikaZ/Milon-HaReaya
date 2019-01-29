@@ -8,6 +8,7 @@ OLD
 *.doc
 *.docx
 !dict_check.docx
+!dict_short.docx
 !rejects.docx
 debug*
 !output.golden.check/*

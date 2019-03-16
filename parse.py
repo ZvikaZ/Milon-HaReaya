@@ -68,7 +68,7 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # (see https://github.com/python-openxml/python-docx/issues/248 )
 # in the meanwhile, I've hacked it locally
 import sys
-sys.path.insert(0, r'C:\Users\zharamax\PycharmProjects\python-docx')
+sys.path.insert(0, r'C:\Users\Zvika\PycharmProjects\python-docx')
 sys.path.insert(0, r'C:\Users\sdaudi\Github\python-docx')
 
 import docx
@@ -102,15 +102,15 @@ if process == "Full":
     create_latex = False
 else:
     # doc_file_name = 'dict_few.docx'
-    # doc_file_name = 'dict_check.docx'
-    doc_file_name = 'dict_short.docx'
+    doc_file_name = 'dict_check.docx'
+    # doc_file_name = 'dict_short.docx'
     # doc_file_name = 'dict.docx'
 
     create_html = True
     create_latex = False
 
-    create_html = False
-    create_latex = True
+    # create_html = False
+    # create_latex = True
 
 
 
@@ -839,12 +839,12 @@ def close_html_doc(html_doc):
     html_doc_name = html_doc.index
     name = "debug_%s.html" % html_doc_name
     with open("output/" + name, 'w') as f:
-        f.write(html_doc.render(inline=False).encode('utf8'))
+        f.write(html_doc.render(pretty=True).encode('utf8'))
     replace_in_file("output/" + name, place_holder, search_html)
 
     name = "%s.html" % html_doc_name
     with open("output/" + name, 'w') as f:
-        f.write(html_doc.render(inline=True).encode('utf8'))
+        f.write(html_doc.render(pretty=False).encode('utf8'))
         print "Created ", name
     replace_in_file("output/" + name, place_holder, search_html)
 
@@ -886,7 +886,11 @@ def fix_section_name(name):
 
 html_docs_l = []
 def get_active_html_doc(para):
-    name = is_need_new_section(para, html_docs_l[-1].name)
+    try:
+        prev_name = html_docs_l[-1].name
+    except:
+        prev_name = None
+    name = is_need_new_section(para, prev_name)
     if name:
         if isinstance(name, tuple):
             op, new = name
@@ -1080,7 +1084,7 @@ def add_menu_to_apriory_htmls(html_docs_l):
 
     place_holder = "<!--menu_bar-->"
 
-    menu_bar_html = menu_bar.render(inline=True).encode('utf8')
+    menu_bar_html = menu_bar.render(pretty=False).encode('utf8')
 
     with open("input_web/stub_search.html", 'r') as file:
         menu_bar_html += file.read()
@@ -1095,7 +1099,7 @@ def add_menu_to_apriory_htmls(html_docs_l):
             "opening_signs.html",
     )):
         content[index].attributes['class'] = 'active'
-        menu_bar_html = menu_bar.render(inline=True).encode('utf8')
+        menu_bar_html = menu_bar.render(pretty=False).encode('utf8')
         with open("input_web/stub_search.html", 'r') as file:
             menu_bar_html += file.read()
 

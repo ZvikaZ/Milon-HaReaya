@@ -126,4 +126,4 @@ def push_to_phonegap(zipfile, cpu='arm'):
 
 
 if __name__ == '__main__':
-    push_to_phonegap("output/milon.zip")
+    push_to_phonegap("output/milon.zip", 'dual')

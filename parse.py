@@ -11,6 +11,7 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 
 # TODO: refactor, split to files, unit tests
 # TODO: why "Pashut" is unknown?
+# TODO: fix "FOOTNOTE undefined: af7 None  :  homo"
 
 # TODO: TEX: handle unbalanced columns
 # TODO: TEX: Mehkarim UVeurim - handle style (w/o numbers...)
@@ -92,8 +93,8 @@ import texer
 html_parser = HTMLParser.HTMLParser()
 
 # process = "APK"
-# process = "Full"
-process = "ZIP"
+process = "Full"
+# process = "ZIP"
 
 if process == "Full":
     doc_file_name = 'dict.docx'
@@ -103,8 +104,8 @@ if process == "Full":
 else:
     # doc_file_name = 'dict_few.docx'
     # doc_file_name = 'dict_check.docx'
-    # doc_file_name = 'dict_short.docx'
-    doc_file_name = 'dict_a.docx'
+    doc_file_name = 'dict_short.docx'
+    # doc_file_name = 'dict.docx'
 
     create_html = True
     create_latex = False
@@ -165,6 +166,7 @@ styles = {
     's149': 'subject_light',
     's14': 'subject_light',
     's16': 'sub-subject_light',
+    's12_bold': 'sub-subject_light',
     's168': 'sub-subject_light',
     's048': 'definition_light',
     's12': 'definition_light',

@@ -15,6 +15,8 @@ In order to work, I had to manually modify C:\Python27\Lib\site-packages\googlea
 import apiclient
 import httplib2
 from oauth2client import client
+from oauth2client.service_account import ServiceAccountCredentials
+from googleapiclient.discovery import build
 
 try:
     from secret import SERVICE_ACCOUNT_EMAIL
@@ -34,22 +36,21 @@ class PlayAPISession:
     def get_service(self):
         # Load the key in PKCS 12 format that you downloaded from the Google APIs
         # Console when you created your Service account.
-        f = file('key.p12', 'rb')
-        key = f.read()
-        f.close()
+        key = 'key.p12'
 
         # Create an httplib2.Http object to handle our HTTP requests and authorize it
         # with the Credentials. Note that the first parameter, service_account_name,
         # is the Email address created for the Service account. It must be the email
         # address associated with the key that was created.
-        credentials = client.SignedJwtAssertionCredentials(
+        credentials = ServiceAccountCredentials.from_p12_keyfile(
             SERVICE_ACCOUNT_EMAIL,
             key,
-            scope='https://www.googleapis.com/auth/androidpublisher')
+            scopes=['https://www.googleapis.com/auth/androidpublisher']
+        )
         http = httplib2.Http()
         http = credentials.authorize(http)
 
-        service = apiclient.discovery.build('androidpublisher', 'v2', http=http)
+        service = build('androidpublisher', 'v2', http=http)
         return service
 
     def get_edit_id(self):
@@ -149,5 +150,8 @@ class PlayAPISession:
 
 if __name__ == '__main__':
     playAPISession = PlayAPISession()
-    playAPISession.main(["output/milon.x86.apk", "output/milon.arm.apk"])
+    version_code = playAPISession.get_last_apk() + 1
+    print version_code
+    playAPISession.main(["output/milon.dual.apk"])
+    # playAPISession.main(["output/milon.x86.apk", "output/milon.arm.apk"])
 

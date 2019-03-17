@@ -102,9 +102,9 @@ if process == "Full":
     create_latex = False
 else:
     # doc_file_name = 'dict_few.docx'
-    doc_file_name = 'dict_check.docx'
+    # doc_file_name = 'dict_check.docx'
     # doc_file_name = 'dict_short.docx'
-    # doc_file_name = 'dict.docx'
+    doc_file_name = 'dict_a.docx'
 
     create_html = True
     create_latex = False
@@ -175,7 +175,18 @@ styles = {
 
     'FootnoteReference': 'FootnoteReference',
     'EndnoteReference': 'EndnoteReference', #?
+
+    # 17.3.19 - these were added with new Office 365 (2019) - seem like new aliases for existing styles
+    'a0': 'DefaultParagraphFont',
+    'a0_bold': 'DefaultParagraphFont',
+    'a3': 'FootnoteReference',
+    'a7': 'EndnoteReference',
+    '30': 'definition_normal',
+    '11': 'definition_normal',
+    'a6': 'definition_normal',
+    # \17.3.19
 }
+
 
 # if the actual size is greater
 class Sizes:

@@ -12,7 +12,7 @@
 \usepackage{nag}
 
 %%%%%%%%%%%        PAGE SIZE        %%%%%%%%%%%
-\usepackage[paperheight=10.7in, paperwidth=8.3in, top=3.5cm, bottom=1.8cm, headsep=1.3cm]{geometry}
+\usepackage[paperheight=10.7in, paperwidth=20.7cm, top=3.5cm, bottom=1.8cm, headsep=1.3cm, left=2.3cm, right=2.3cm]{geometry}
 % add ``showframe'' parameter for debugging page layout
 
 %%%%%%%%%%%        THUMBS        %%%%%%%%%%%
@@ -80,7 +80,7 @@
 %%%%%%%%%%%        FOOTNOTES    %%%%%%%%%%%
 \deffootnote[1.5em]{1.75em}{1.75em}{\myfootnotesize{\thefootnotemark.\space}}	% unindent footnotes, change footnote marker
 
-\setlength{\skip\footins}{1.5em} % vertical space between text body and footnote ruler
+\setlength{\skip\footins}{2em} % vertical space between text body and footnote ruler
 
 % based on http://tex.stackexchange.com/questions/59501/how-do-i-add-a-blank-line-between-the-footnote-line-and-the-footnotes?rq=1
 \let\oldfootnoterule\footnoterule
@@ -173,9 +173,8 @@
     \begin{multicols}{2}
 }
 
-\newcommand{\myfootnote}[1]{
-    \footnote{\myfootnotesize{#1}}
-}
+\newcommand{\myfootnote}[1]{\footnote{\myfootnotesize{#1}}}
+\newcommand{\mycircle}[1]{\mynormalsize{#1}}
 
 \newcommand{\ערך}[1]{\textbf{{\mylarge #1}}}
 \newcommand{\משנה}[1]{\textbf{{\mynormalsize #1}}}

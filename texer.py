@@ -96,6 +96,10 @@ def add_line_to_data(data, line):
             simple_name = r_prev_line.group(2) + ' ' + r_line.group(2)
             line = u"\\my%s{%s}{%s}" % (r_line.group(1), name, get_section_short_name(simple_name))
 
+    if u"°" in line:
+        line = line.replace(u"°", u"\\mycircle{°}")
+
+
     data += line
     prev_line = line
     return data
@@ -245,6 +249,8 @@ def close_latex():
     global latex_data
     latex_data = latex_data.replace('"',u"״")
     latex_data = latex_data.replace("'",u"׳")
+    latex_data = latex_data.replace(u"־", u"-")
+    
 
     os.chdir("tex")
 
@@ -255,6 +261,7 @@ def close_latex():
     # twice because of thumb-indices
     run_xelatex('milon.tex')
     run_xelatex('milon.tex')
-    os.startfile("milon.pdf")
+#    os.startfile("milon.pdf")
+    os.startfile("milon.tex")
     os.chdir("..")
 

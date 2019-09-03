@@ -93,8 +93,8 @@ import texer
 html_parser = HTMLParser.HTMLParser()
 
 # process = "APK"
-process = "Full"
-# process = "ZIP"
+# process = "Full"
+process = "ZIP"
 
 if process == "Full":
     doc_file_name = 'dict.docx'
@@ -107,11 +107,11 @@ else:
     doc_file_name = 'dict_short.docx'
     # doc_file_name = 'dict.docx'
 
-    create_html = True
-    create_latex = False
+    # create_html = True
+    # create_latex = False
 
-    # create_html = False
-    # create_latex = True
+    create_html = False
+    create_latex = True
 
 
 
@@ -614,6 +614,18 @@ def add_to_output(html_doc, para):
 def fix_sz_cs(run, type):
     result = type
     szCs = run.element.rPr.szCs.attrib.values()[0]
+
+    try:
+        eastAsia = 'eastAsia' in run.element.rPr.rFonts.attrib.values()
+    except:
+        eastAsia = False
+
+    try:
+        hint_cs = 'cs' in run.element.rPr.rFonts.attrib.values()
+    except:
+        hint_cs = False
+
+
     if szCs == "20" and 'subject' in type:
         if run.style.style_id == "s01":
             # s = "!Fixed!szCs=%s:%s!bCs=%s!" % (szCs, run.text, run.element.rPr.bCs.attrib.values()[0])
@@ -626,7 +638,17 @@ def fix_sz_cs(run, type):
         return 'subject_normal'
     elif szCs == "22" and type == 'sub-subject_normal':
         return 'subject_normal'
-    elif szCs == "16" and type == 'source_normal':
+    elif szCs == "14" and type == 'definition_light':
+        return 'source_light'
+    elif szCs == "16" and type == 'definition_small':
+        return 'source_small'
+    elif szCs == "14" and type == 'definition_small':
+        return 'source_small'     ####?????? - not sure
+    elif szCs == "16" and type == 'source_normal' and eastAsia:
+        return 'source_small'
+    elif szCs == "16" and type == 'source_normal' and hint_cs:
+        return 'source_small'
+    elif szCs == "14" and type == 'source_normal' and hint_cs:
         return 'source_small'
     elif szCs == "18" and type == 'definition_normal':
         return 'source_normal'
@@ -676,6 +698,24 @@ def fix_b_cs(run, type):
     except:
         pass
     return result
+
+def fix_misc_attrib(run, type):
+    try:
+        eastAsia = run.element.rPr.rFonts.attrib.values()[0] == 'eastAsia'
+        if eastAsia:
+            if type == "source_normal":
+                return "definition_small"
+            else:
+                # print type, run.text
+                return type
+        else:
+            return type
+
+
+    except:
+        return type
+
+
 
 def fix_unknown(run):
     if run.font.size == 114300 and run.style.style_id == 's04':
@@ -965,7 +1005,7 @@ os.chdir("../input_tex")
 for (f) in (
     "milon.tex",
     "polythumbs.sty",
-    "hebrew-gymatria-fix.sty",
+    #  "hebrew-gymatria-fix.sty",     # Rav Kalner asked not to do it. Leaving it here for future reference...
 ):
     shutil.copyfile(f, os.path.join("../tex", f))
 os.chdir("../")
@@ -1017,6 +1057,9 @@ with open('output/debug.txt', 'w') as debug_file:
 
                     if run.element.rPr.bCs is not None and run.text.strip():
                         type = fix_b_cs(run, type)
+
+                    if run.text.strip():
+                        type = fix_misc_attrib(run, type)
 
                     # NOTE: this footnote number need no fix.
                     # it is a recurrence, therefore it has no id.

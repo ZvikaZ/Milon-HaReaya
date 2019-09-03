@@ -147,7 +147,11 @@ def add_to_latex(para, word_doc_footnotes):
 
             # TODO: adjust headings
             if type == 'heading_title':
-                data = add_line_to_data(data, "\\mychapter{%s}{%s}" % (text, get_section_short_name(text)))
+                if num_of_heading_titles == 0:
+                    command = "\\mybookname"
+                else:
+                    command = "\\mytitle"
+                data = add_line_to_data(data, "%s{%s}{%s}" % (command, text, get_section_short_name(text)))
                 num_of_heading_titles += 1
             elif type == 'heading_section':
                 set_moto(text)
@@ -250,7 +254,7 @@ def close_latex():
     latex_data = latex_data.replace('"',u"״")
     latex_data = latex_data.replace("'",u"׳")
     latex_data = latex_data.replace(u"־", u"-")
-    
+
 
     os.chdir("tex")
 

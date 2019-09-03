@@ -106,6 +106,7 @@
 % Font chosing
 \usepackage{fontspec}
 \newfontfamily\hebrewfont{Times New Roman}[Script=Hebrew]
+\newfontfamily\hebrewfontnarkisim{Narkisim}[Script=Hebrew]
 \newfontfamily\hebrewfonttt{Miriam}[Script=Hebrew]
 
 % copied from https://tex.stackexchange.com/questions/23450/font-problems-hebrew-with-koma-document-classes-error-message?rq=1
@@ -125,6 +126,34 @@
 % copied from https://tex.stackexchange.com/questions/35884/easy-way-to-remove-formatting-e-g-linebreaks
 \newcommand{\removelinebreaks}[1]{%
   \begingroup\def\\{}#1\endgroup}
+
+
+\newcommand{\mybookname}[2]{
+    \end{multicols}
+
+    \addtokomafont{part}{\hebrewfontnarkisim}    %TODO make it larger than \Huge (=default)
+    \part[#2]{#1}
+    \addtokomafont{part}{\hebrewfont\Huge}
+
+    \addPolythumb{#2}
+
+    \fancyhead[CE,CO]{\removelinebreaks{#1}}
+    \begin{multicols}{2}
+}
+
+\newcommand{\mytitle}[2]{
+    \end{multicols}
+
+    \part[#2]{#1}
+
+    \addPolythumb{#2}
+
+    \fancyhead[CE,CO]{\removelinebreaks{#1}}
+    \begin{multicols}{2}
+}
+
+
+
 
 \newcommand{\mychapter}[2]{
     \end{multicols}
@@ -164,6 +193,7 @@
     \subsubsection{#1}
     \replacePolythumb{#1}
     \fancyhead[CO]{אות #1}
+    \setcounter{footnote}{0}     % reset footnote counter
     \begin{multicols}{2}
 }
 

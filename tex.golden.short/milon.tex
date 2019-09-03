@@ -1,12 +1,10 @@
 % missing:
 
-% font size is too small? compare to printed page
+% python(?) - restart footnotes at sections
 % Stam font
 
 % ? fix redundant page between chapter and section - http://tex.stackexchange.com/questions/300320/when-2-newpages-in-raw-are-joined-and-when-not
-% ? footnote - the number should be regular location, "." after number
 % ? footnote in wrong place - use \clearpage (maybe automatically? with 2 rounds?)
-% ? python restart footnotes at sections (?)
 % debug warning messages
 
 \documentclass[usegeometry,12pt]{scrbook}
@@ -14,7 +12,7 @@
 \usepackage{nag}
 
 %%%%%%%%%%%        PAGE SIZE        %%%%%%%%%%%
-\usepackage[paperheight=10.7in, paperwidth=8.3in, top=3.5cm, bottom=1.8cm, headsep=1.3cm]{geometry}
+\usepackage[paperheight=10.7in, paperwidth=20.7cm, top=3.5cm, bottom=1.8cm, headsep=1.3cm, left=2.3cm, right=2.3cm]{geometry}
 % add ``showframe'' parameter for debugging page layout
 
 %%%%%%%%%%%        THUMBS        %%%%%%%%%%%
@@ -82,7 +80,7 @@
 %%%%%%%%%%%        FOOTNOTES    %%%%%%%%%%%
 \deffootnote[1.5em]{1.75em}{1.75em}{\myfootnotesize{\thefootnotemark.\space}}	% unindent footnotes, change footnote marker
 
-\setlength{\skip\footins}{1.5em} % vertical space between text body and footnote ruler
+\setlength{\skip\footins}{2em} % vertical space between text body and footnote ruler
 
 % based on http://tex.stackexchange.com/questions/59501/how-do-i-add-a-blank-line-between-the-footnote-line-and-the-footnotes?rq=1
 \let\oldfootnoterule\footnoterule
@@ -100,12 +98,15 @@
 
 \setlength{\parskip}{1ex plus 0.2ex minus 0.2ex}		% increase spacing between paragraphs
 
+% for Moto's minipage centering
+\usepackage{adjustbox}
 
 
 %%%%%%%%%%%        FONTS        %%%%%%%%%%%
 % Font chosing
 \usepackage{fontspec}
 \newfontfamily\hebrewfont{Times New Roman}[Script=Hebrew]
+\newfontfamily\hebrewfontnarkisim{Narkisim}[Script=Hebrew]
 \newfontfamily\hebrewfonttt{Miriam}[Script=Hebrew]
 
 % copied from https://tex.stackexchange.com/questions/23450/font-problems-hebrew-with-koma-document-classes-error-message?rq=1
@@ -125,6 +126,34 @@
 % copied from https://tex.stackexchange.com/questions/35884/easy-way-to-remove-formatting-e-g-linebreaks
 \newcommand{\removelinebreaks}[1]{%
   \begingroup\def\\{}#1\endgroup}
+
+
+\newcommand{\mybookname}[2]{
+    \end{multicols}
+
+    \addtokomafont{part}{\hebrewfontnarkisim}    %TODO make it larger than \Huge (=default)
+    \part[#2]{#1}
+    \addtokomafont{part}{\hebrewfont\Huge}
+
+    \addPolythumb{#2}
+
+    \fancyhead[CE,CO]{\removelinebreaks{#1}}
+    \begin{multicols}{2}
+}
+
+\newcommand{\mytitle}[2]{
+    \end{multicols}
+
+    \part[#2]{#1}
+
+    \addPolythumb{#2}
+
+    \fancyhead[CE,CO]{\removelinebreaks{#1}}
+    \begin{multicols}{2}
+}
+
+
+
 
 \newcommand{\mychapter}[2]{
     \end{multicols}
@@ -164,6 +193,7 @@
     \subsubsection{#1}
     \replacePolythumb{#1}
     \fancyhead[CO]{אות #1}
+    \setcounter{footnote}{0}     % reset footnote counter
     \begin{multicols}{2}
 }
 
@@ -173,21 +203,20 @@
     \begin{multicols}{2}
 }
 
-\newcommand{\myfootnote}[1]{
-    \footnote{\myfootnotesize{#1}}
-}
+\newcommand{\myfootnote}[1]{\footnote{\myfootnotesize{#1}}}
+\newcommand{\mycircle}[1]{\mynormalsize{#1}}
 
-\newcommand{\ערך}[1]{\textbf{\mylarge{#1}}}
-\newcommand{\משנה}[1]{\textbf{\mynormalsize{#1}}}
-\newcommand{\הגדרה}[1]{\mynormalsize{#1}}
+\newcommand{\ערך}[1]{\textbf{{\mylarge #1}}}
+\newcommand{\משנה}[1]{\textbf{{\mynormalsize #1}}}
+\newcommand{\הגדרה}[1]{{\mynormalsize #1}}
 % what about fakes? (bolded)
-\newcommand{\מקור}[1]{\mysmall{#1}}
+\newcommand{\מקור}[1]{{\mysmall #1}}
 
 \newcommand{\צערך}[1]{\משנה{#1}}
-\newcommand{\צמשנה}[1]{\textbf{\mynormalsize{#1}}}
-\newcommand{\צהגדרה}[1]{\mysmall{#1}}
-\newcommand{\צהגדרהמודגשת}[1]{\textbf{\mysmall{#1}}}
-\newcommand{\צמקור}[1]{\myfootnotesize{#1}}
+\newcommand{\צמשנה}[1]{\textbf{{\mynormalsize #1}}}
+\newcommand{\צהגדרה}[1]{{\mysmall #1}}
+\newcommand{\צהגדרהמודגשת}[1]{\textbf{{\mysmall #1}}}
+\newcommand{\צמקור}[1]{{\myfootnotesize #1}}
 
 
 \newcommand{\תערך}[1]{\texttt{\צערך{#1}}}

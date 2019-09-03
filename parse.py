@@ -1005,6 +1005,7 @@ os.chdir("../input_tex")
 for (f) in (
     "milon.tex",
     "polythumbs.sty",
+    "hebcolumnbal.sty",
     #  "hebrew-gymatria-fix.sty",     # Rav Kalner asked not to do it. Leaving it here for future reference...
 ):
     shutil.copyfile(f, os.path.join("../tex", f))

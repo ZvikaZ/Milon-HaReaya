@@ -1,10 +1,12 @@
 % missing:
 
 % Stam font
+% shorten polythumbs - they are overlapping text, in later chapters    - changed in polythumbs.sty, haven't checked the result yet
 
 % ? fix redundant page between chapter and section - http://tex.stackexchange.com/questions/300320/when-2-newpages-in-raw-are-joined-and-when-not
-% ? footnote in wrong place - use \clearpage (maybe automatically? with 2 rounds?)
 % debug warning messages
+
+% https://www.ctan.org/pkg/addlines - might be useful in later stages (adding or subing line or few lines from specific pages to fix appearance)
 
 \documentclass[usegeometry,12pt]{scrbook}
 
@@ -86,6 +88,10 @@
 \def\footnoterule{\oldfootnoterule \vskip1em\relax}      % vertical space between ruler and footnotes
 
 
+% keep all footnotes on same page. taken from https://tex.stackexchange.com/questions/32208/footnote-runs-onto-second-page
+\interfootnotelinepenalty=10000
+
+
 % Footnote mark in text - fix size
 % based on https://tex.stackexchange.com/questions/47324/superscript-outside-math-mode/140703
 \deffootnotemark{\scriptsize{$^{\mathrm{\thefootnotemark}}$}}
@@ -101,15 +107,18 @@
 \usepackage{adjustbox}
 
 
-\usepackage{hebcolumnbal}     % fixes column balancing - my packaging of https://tex.stackexchange.com/questions/471655/avoiding-parskip-at-end-of-column/472148?noredirect=1#comment1193617_472148
+% fixes column balancing - my packaging of https://tex.stackexchange.com/questions/471655/avoiding-parskip-at-end-of-column/472148?noredirect=1#comment1193617_472148
+\usepackage{hebcolumnbal}     
 
 
 %%%%%%%%%%%        FONTS        %%%%%%%%%%%
-% Font chosing
+% regular Hebrew fonts declarations
 \usepackage{fontspec}
 \newfontfamily\hebrewfont{Times New Roman}[Script=Hebrew]
-\newfontfamily\hebrewfontnarkisim{Narkisim}[Script=Hebrew]
 \newfontfamily\hebrewfonttt{Miriam}[Script=Hebrew]
+
+% declare new specific fonts (and new commands)
+\newfontfamily\hebrewfontnarkisim{Narkisim}[Script=Hebrew]
 
 % copied from https://tex.stackexchange.com/questions/23450/font-problems-hebrew-with-koma-document-classes-error-message?rq=1
 \setmainfont[Mapping=tex-text]{Times New Roman}
@@ -133,7 +142,7 @@
 \newcommand{\mybookname}[2]{
     \end{multicols}
 
-    \addtokomafont{part}{\hebrewfontnarkisim}    %TODO make it larger than \Huge (=default)
+    \addtokomafont{part}{\fontsize{34}{34}\hebrewfontnarkisim}    
     \part[#2]{#1}
     \addtokomafont{part}{\hebrewfont\Huge}
 

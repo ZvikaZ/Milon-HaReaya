@@ -100,6 +100,7 @@ def add_line_to_data(data, line):
         line = line.replace(u"°", u"\\mycircle{°}")
 
 
+
     data += line
     prev_line = line
     return data
@@ -178,6 +179,9 @@ def add_to_latex(para, word_doc_footnotes):
             if latex_new_lines_in_raw == 1:
                 if data:
                     data += ("\\\\")
+                else:
+                    # we ignore that 'new line', and not adding it to 'data' - so no need to count it
+                    latex_new_lines_in_raw = 0
             elif latex_new_lines_in_raw == 2:
                 # chop the "new line" symbol - not required before new paragraph
                 assert latex_data[-2:] == "\\\\" or data[-2:] == "\\\\"
@@ -209,7 +213,7 @@ def add_to_latex(para, word_doc_footnotes):
             data = add_line_to_data(data, "\\%s{%s\label{%s}}" % ("myfootnote", all_runs_text, id))
 
         elif type == "footnote_recurrence":
-            data = add_line_to_data(data, "\\%s{%s} " % ('footref', text.strip()))
+            data = add_line_to_data(data, "\\%s{%s}" % ('footref', text.strip()))
 
 
         # elif is_subject(para, i):

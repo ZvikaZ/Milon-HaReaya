@@ -83,7 +83,6 @@ import shutil
 import HTMLParser
 import json
 import copy
-import subprocess
 
 import build_phonegap
 import upload_google_play
@@ -104,8 +103,8 @@ if process == "Full":
 else:
     # doc_file_name = 'dict_few.docx'
     # doc_file_name = 'dict_check.docx'
-    doc_file_name = 'dict_short.docx'
-    # doc_file_name = 'dict.docx'
+    # doc_file_name = 'dict_short.docx'
+    doc_file_name = 'dict.docx'
 
     # create_html = True
     # create_latex = False
@@ -332,7 +331,7 @@ def analyze_and_fix(para):
         if prev_type:
             if (type == prev_type) or \
                     (is_subject_small_or_sub_subject(type) and is_subject_small_or_sub_subject(prev_type)) or \
-                    (prev_type != "footnote" and text.strip() in ("", u"°", u"־", ",")):
+                    (prev_type != "footnote" and prev_type != "footnote_recurrence" and text.strip() in ("", u"°", u"־", ",")):
                 prev_text += text
             else:
                 new_para.append((prev_type, prev_text))

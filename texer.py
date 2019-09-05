@@ -257,7 +257,7 @@ def close_latex():
     global latex_data
     latex_data = latex_data.replace('"',u"״")
     latex_data = latex_data.replace("'",u"׳")
-    latex_data = latex_data.replace(u"־", u"-")
+    latex_data = latex_data.replace(u"־", "\\hebrewmakaf ")
 
 
     os.chdir("tex")

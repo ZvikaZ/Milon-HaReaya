@@ -1,7 +1,23 @@
+% rejects:
+% v. polythumbs - smaller, like in book
+% v. Cicrles - not bold
+% v. Book's title - font - not Narkisim
+
+% w. Makaph - should be instead of `-', but solve the missing Makaph in light font   (EinSof)    # waiting for Rav's answer between 2 options
+
+% letter's size - too big
+% page `number' - end of line, should be smaller
+% footnote - number under line (both single and dual digits)
+% page 17 - Emnuna - Megamat Haemunah - missing bold
+% Meuyan - middle of line, space before them   (page 17)
+% line spacing - smaller
+% letter heading - smaller
+
+
+
 % missing:
 
 % Stam font
-% shorten polythumbs - they are overlapping text, in later chapters    - changed in polythumbs.sty, haven't checked the result yet
 
 % ? fix redundant page between chapter and section - http://tex.stackexchange.com/questions/300320/when-2-newpages-in-raw-are-joined-and-when-not
 % debug warning messages
@@ -118,7 +134,7 @@
 \newfontfamily\hebrewfonttt{Miriam}[Script=Hebrew]
 
 % declare new specific fonts (and new commands)
-\newfontfamily\hebrewfontnarkisim{Narkisim}[Script=Hebrew]
+\newfontfamily\hebrewfonthadassah{Hadassah Friedlaender}[Script=Hebrew]
 
 % copied from https://tex.stackexchange.com/questions/23450/font-problems-hebrew-with-koma-document-classes-error-message?rq=1
 \setmainfont[Mapping=tex-text]{Times New Roman}
@@ -142,7 +158,7 @@
 \newcommand{\mybookname}[2]{
     \end{multicols}
 
-    \addtokomafont{part}{\fontsize{34}{34}\hebrewfontnarkisim}    
+    \addtokomafont{part}{\fontsize{34}{34}\hebrewfonthadassah}    
     \part[#2]{#1}
     \addtokomafont{part}{\hebrewfont\Huge}
 
@@ -215,7 +231,29 @@
 }
 
 \newcommand{\myfootnote}[1]{\footnote{\myfootnotesize{#1}}}
-\newcommand{\mycircle}[1]{\mynormalsize{#1}}
+\newcommand{\mycircle}[1]{\textmd{\mynormalsize{#1}}}
+\newcommand{\hebrewmakaf}{\iffont{Miriam(0)}{ ־}{־}}       % Miriam font has bug, and needs another space before the Makaf, else just print regular Makaf
+%\newcommand{\hebrewmakaf}{\iffont{Miriam(0)}{-}{־}}       % Miriam font has bug, and needs another space before the Makaf, else just print regular Makaf
+
+
+
+%%%%%%%%%%%%%%%
+% copied from https://tex.stackexchange.com/questions/14377/how-can-i-test-for-the-current-font
+
+\usepackage{ifthen}
+\makeatletter
+\newcommand{\showfont}{encoding: \f@encoding{},
+  family: \f@family{},
+  series: \f@series{}
+  shape: \f@shape{},
+  size: \f@size{}
+}
+\newcommand{\iffont}[3]{\ifthenelse{\equal{\f@family}{#1}}{#2}{#3}}
+\makeatother
+
+
+%%%%%%%%%%%%%%%
+
 
 \newcommand{\ערך}[1]{\textbf{{\mylarge #1}}}
 \newcommand{\משנה}[1]{\textbf{{\mynormalsize #1}}}

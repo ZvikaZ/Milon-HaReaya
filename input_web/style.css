@@ -92,6 +92,7 @@ h5 {
     font-size: 2em;
 }
 
+
 body {
   	text-align: justify;
     letter-spacing: 0.25px;
@@ -174,6 +175,15 @@ a {
     color: gray;
 }
 
+.centered_meuyan:before {
+   content: '\A';
+   display: block;
+   white-space: pre; 
+}
+
+.centered_meuyan {
+    display: block;
+}
 
 
 #footnotes {

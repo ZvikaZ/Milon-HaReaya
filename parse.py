@@ -13,7 +13,6 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: why "Pashut" is unknown?
 # TODO: fix "FOOTNOTE undefined: af7 None  :  homo"
 
-# TODO: TEX: handle unbalanced columns
 # TODO: TEX: Mehkarim UVeurim - handle style (w/o numbers...)
 # TODO: TEX: "Psukim KeMusagim" - Moto - last line should be to the left
 # TODO: TEX: "Psukim KeMusagim" - first page - second column - empty line...
@@ -325,13 +324,21 @@ def analyze_and_fix(para):
     for (raw_type, text_raw) in para:
         text = text_raw.replace("@", "")
         if text == u"◊":
-            type = "s02Symbol"
+            if prev_text == "":
+                # new paragraph with meuayn
+                type = "centered_meuyan"
+                # see below, end of function, we're going to fix it...
+            else:
+                # regular meuyan, doesn't need to be centerized
+                type = "s02Symbol"
         else:
             type = raw_type
         if prev_type:
             if (type == prev_type) or \
                     (is_subject_small_or_sub_subject(type) and is_subject_small_or_sub_subject(prev_type)) or \
                     (prev_type != "footnote" and prev_type != "footnote_recurrence" and text.strip() in ("", u"°", u"־", ",")):
+                prev_text += text
+            elif prev_type == "centered_meuyan" and type == "s02Symbol":
                 prev_text += text
             else:
                 new_para.append((prev_type, prev_text))
@@ -445,6 +452,24 @@ def analyze_and_fix(para):
         for (type, text) in para:
             if 'subject' in type and 'fake' not in type:
                 new_para.append(('fake_'+type, text))
+            else:
+                new_para.append((type, text))
+
+
+    # 'centered_meuyan' is legal only if it's the only "heavy" thing in the paragraph, otherwise, it's a regular 'meuyan"
+    found_centered_meuyan = False
+    should_fix_meuayn = False
+    for (type, text) in para:
+        if type == "centered_meuyan":
+            found_centered_meuyan = True
+        elif type != "new_line" and found_centered_meuyan:
+            should_fix_meuayn = True
+    if should_fix_meuayn:
+        para = new_para
+        new_para = []
+        for (type, text) in para:
+            if type == "centered_meuyan":
+                new_para.append(("s02Symbol", text))
             else:
                 new_para.append((type, text))
 

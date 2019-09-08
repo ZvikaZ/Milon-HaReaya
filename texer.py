@@ -67,6 +67,8 @@ def latex_type(type):
         return u"תמקור"
     elif type == "s02Symbol":
         return u"מעוין"
+    elif type == "centered_meuyan":
+        return u"מעויןמרכזי"
     #elif type == "DefaultParagraphFont":
     #    return #TODO: what??
     else:

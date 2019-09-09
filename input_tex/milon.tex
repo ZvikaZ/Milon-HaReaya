@@ -71,9 +71,11 @@
 \setkomafont{disposition}{\normalcolor}
 
 
+%%%%%%%%%%%%    Sections (etc.) heading style    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %\RedeclareSectionCommand[style=chapter]{subsubsection}
 \addtokomafont{subsubsection}{\center\large}
-%\addtokomafont{chapter}{\normalfont\sffamily}
+\addtokomafont{chapter}{\fontsize{24}{54}\selectfont}
 \renewcommand*{\raggedsection}{\centering}
 
 \renewcommand*{\chapterheadendvskip}{\clearpage}
@@ -93,7 +95,11 @@
 
 
 % keep all footnotes on same page. taken from https://tex.stackexchange.com/questions/32208/footnote-runs-onto-second-page
-\interfootnotelinepenalty=10000
+% \interfootnotelinepenalty=10000
+% -
+% the previous setting solves that problem, but created new problem with strange spacing in beginning of ``Tora'' section.
+% trying to mitigate both, with lowering to 5000
+\interfootnotelinepenalty=5000
 
 % define "reset footnote counte" command
 \newcommand{\resetfootnotecounter}{\setcounter{footnote}{0}}

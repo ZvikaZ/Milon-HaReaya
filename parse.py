@@ -13,11 +13,10 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: why "Pashut" is unknown?
 # TODO: fix "FOOTNOTE undefined: af7 None  :  homo"
 
-# TODO: TEX: Mehkarim UVeurim - handle style (w/o numbers...)
-# TODO: TEX: "Psukim KeMusagim" - Moto - last line should be to the left
 # TODO: TEX: "Psukim KeMusagim" - first page - second column - empty line...
 # TODO: TEX: "Psukim KeMusagim" - letters need to be on new page
 # TODO: TEX: 'tex.full' line 8089 failure (8246) - because of "Vav" in "Otiyot" - need to delete previous line, and re-enter
+# TODO: TEX: Mehkarim UVeurim - handle style (w/o numbers...)
 # TODO: TEX: add prefixes and appendices
 # TODO: TEX: clean milon.tex, handle koma recommendations
 # TODO: TEX: make sure that "fake_subject_normal" is correct - currently different between HTML and LyX
@@ -100,10 +99,10 @@ if process == "Full":
     #create_latex = True
     create_latex = False
 else:
-    # doc_file_name = 'dict_few.docx'
+    doc_file_name = 'dict_few.docx'
     # doc_file_name = 'dict_check.docx'
     # doc_file_name = 'dict_short.docx'
-    doc_file_name = 'dict.docx'
+    # doc_file_name = 'dict.docx'
 
     # create_html = True
     # create_latex = False

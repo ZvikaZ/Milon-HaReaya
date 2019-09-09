@@ -27,6 +27,7 @@ def get_section_short_name(section):
     for row in csvfile:
         s = row.strip().split(',')
         if s[0].replace('"','') == section.replace('"',''):
+            print "CSV found: ", s[1]
             return reverse_words(s[1])
     print "CSV failed search for: ", section
     return reverse_words(section)
@@ -115,6 +116,9 @@ num_of_heading_titles = 0
 
 next_define_is_moto = False
 next_define_ends_moto = False
+moto_line_is_left = False
+moto_line_was_left = False
+
 def set_moto(text):
     global next_define_is_moto
     if u"פסוקים" in text:
@@ -137,10 +141,26 @@ def end_moto():
     \\begin{multicols}{2}
     """
 
+
+def begin_moto_left_line():
+    global moto_line_is_left, moto_line_was_left
+    moto_line_is_left = True
+    moto_line_was_left = True
+    return "\leftline{"
+
+
+def end_moto_left_line():
+    global moto_line_is_left
+    moto_line_is_left = False
+    return "}"
+
+
 def add_to_latex(para, word_doc_footnotes):
     global latex_new_lines_in_raw
     global latex_data
     global num_of_heading_titles
+    global moto_line_is_left
+    global moto_line_was_left
 
     data = ""
     for (i, (type, text)) in enumerate(para):
@@ -177,6 +197,10 @@ def add_to_latex(para, word_doc_footnotes):
 
 
         elif type == "new_line":
+            if next_define_ends_moto and moto_line_is_left and type == "new_line":
+                data += end_moto_left_line()
+
+
             latex_new_lines_in_raw += 1
             if latex_new_lines_in_raw == 1:
                 if data:
@@ -194,6 +218,13 @@ def add_to_latex(para, word_doc_footnotes):
                 data += ("\n\n")
             else:
                 pass
+
+
+            if next_define_ends_moto and not moto_line_is_left and not moto_line_was_left and type == "new_line":
+                # inside Moto - got to Left section
+                data += begin_moto_left_line()
+
+
 
         elif type == "footnote":
             id = int(text)
@@ -232,19 +263,29 @@ def add_to_latex(para, word_doc_footnotes):
         if type != "new_line":
             latex_new_lines_in_raw = 0
 
+    if moto_line_is_left and "leftline" not in data:
+        data += end_moto_left_line()
+
     latex_data += data
 
 
+
 def handle_moto(data, text, type):
-    global next_define_is_moto, next_define_ends_moto
+    global next_define_is_moto, next_define_ends_moto, moto_line_is_left, moto_line_was_left
     if latex_type(type) == u"ערך" and next_define_is_moto:
+        # starting Moto
         data += begin_moto()
         next_define_is_moto = False
         next_define_ends_moto = True
+        moto_line_is_left = False
+        moto_line_was_left = False
     elif (('heading' in type and text.strip()) or latex_type(type) == u"ערך") and next_define_ends_moto:
+        # ending Moto
         data += end_moto()
         next_define_is_moto = False
         next_define_ends_moto = False
+        moto_line_is_left = False
+        moto_line_was_left = False
     return data
 
 

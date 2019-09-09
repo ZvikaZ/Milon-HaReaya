@@ -9,6 +9,7 @@ import footer
 import re
 
 sections_csv_file = "sections_short_names.csv"
+current_section = None
 
 
 def reverse_words(s):
@@ -19,6 +20,8 @@ def reverse_words(s):
 # the output is 'reversed' due to some bug in 'fancytabs' that shows the words reversed in the string
 # TODO: report this bug...
 def get_section_short_name(section):
+    global current_section
+
     # I'd prefer to use 'csv' package, but it doesn't behave well with Unicode...
     # with open(sections_csv_file, 'r') as csvfile:
 
@@ -27,10 +30,12 @@ def get_section_short_name(section):
     for row in csvfile:
         s = row.strip().split(',')
         if s[0].replace('"','') == section.replace('"',''):
-            print "CSV found: ", s[1]
-            return reverse_words(s[1])
+            current_section = s[1]
+            print "CSV found: ", current_section
+            return reverse_words(current_section)
     print "CSV failed search for: ", section
-    return reverse_words(section)
+    current_section = section
+    return reverse_words(current_section)
 
 
 
@@ -188,10 +193,14 @@ def add_to_latex(para, word_doc_footnotes):
             elif type == 'heading_sub-section':
                 data = add_line_to_data(data, "\\mysubsection{%s}" % (text))
             elif type == 'heading_letter':
-                if num_of_heading_titles >= 2:
-                    data = add_line_to_data(data, "\\myletterslave{%s}" % (text))
-                else:
+                global current_section
+                if current_section == u"מילון הראיה":
                     data = add_line_to_data(data, "\\mylettertitle{%s}" % (text))
+                elif current_section == u"פסוקים":
+                    data = add_line_to_data(data, "\\myletterweaktitle{%s}" % (text))
+                else:
+                    data = add_line_to_data(data, "\\myletterslave{%s}" % (text))
+
             data += "\n"
 
 

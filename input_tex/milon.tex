@@ -97,7 +97,7 @@
 % keep all footnotes on same page. taken from https://tex.stackexchange.com/questions/32208/footnote-runs-onto-second-page
 % \interfootnotelinepenalty=10000
 % -
-% the previous setting solves that problem, but created new problem with strange spacing in beginning of ``Tora'' section.
+% the previous setting solved that problem, but created new problem with strange spacing in beginning of ``Tora'' section.
 % trying to mitigate both, with lowering to 5000
 \interfootnotelinepenalty=5000
 
@@ -162,7 +162,7 @@
 
     \addPolythumb{#2}
 
-    \fancyhead[CE,CO]{\removelinebreaks\mynormalsize{#1}}
+    \fancyhead[CE,CO]{\mynormalsize\removelinebreaks{#1}}
     \begin{multicols}{2}
 }
 
@@ -173,7 +173,7 @@
 
     \addPolythumb{#2}
 
-    \fancyhead[CE,CO]{\removelinebreaks\mynormalsize{#1}}
+    \fancyhead[CE,CO]{\mynormalsize\removelinebreaks{#1}}
     \resetfootnotecounter
     \begin{multicols}{2}
 }
@@ -187,7 +187,7 @@
     
     \addPolythumb{#2}
 
-    \fancyhead[CE,CO]{\removelinebreaks\mynormalsize{#1}}
+    \fancyhead[CE,CO]{\mynormalsize\removelinebreaks{#1}}
     \resetfootnotecounter
     \begin{multicols}{2}
 }
@@ -199,7 +199,7 @@
 
     \addPolythumb{#2}
 
-    \fancyhead[CE,CO]{\removelinebreaks\mynormalsize{#1}}
+    \fancyhead[CE,CO]{\mynormalsize\removelinebreaks{#1}}
     \resetfootnotecounter
     \begin{multicols}{2}
 }
@@ -213,6 +213,19 @@
     \begin{multicols}{2}
 }
 
+\newcommand{\myletterweaktitle}[1]{
+    \end{multicols}
+    \newpage
+    \thispagestyle{plain}
+
+    \vspace*{0.5cm}
+    \subsubsection{#1}
+
+    \resetfootnotecounter
+    \begin{multicols}{2}
+}
+
+
 \newcommand{\mylettertitle}[1]{
     \end{multicols}
     \newpage
@@ -220,8 +233,11 @@
    
     \vspace*{0.5cm}
     \subsubsection{#1}
+
+    % the following two are the diff between this, and \myletterweaktitle
     \replacePolythumb{#1}
     \fancyhead[CO]{\mynormalsize{אות #1}}
+
     \resetfootnotecounter
     \begin{multicols}{2}
 }

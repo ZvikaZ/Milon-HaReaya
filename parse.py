@@ -13,13 +13,12 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: why "Pashut" is unknown?
 # TODO: fix "FOOTNOTE undefined: af7 None  :  homo"
 
-# TODO: TEX: "Psukim KeMusagim" - first page - second column - empty line...
-# TODO: TEX: "Psukim KeMusagim" - letters need to be on new page
 # TODO: TEX: 'tex.full' line 8089 failure (8246) - because of "Vav" in "Otiyot" - need to delete previous line, and re-enter
 # TODO: TEX: Mehkarim UVeurim - handle style (w/o numbers...)
 # TODO: TEX: add prefixes and appendices
 # TODO: TEX: clean milon.tex, handle koma recommendations
 # TODO: TEX: make sure that "fake_subject_normal" is correct - currently different between HTML and LyX
+# TODO: TEX: make sure there aren't any "Takala" in .tex file
 # TODO: TEX: publish my Tex packages?
 # TODO: create indexes? (both before and after main text...)
 

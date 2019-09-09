@@ -95,6 +95,9 @@
 % keep all footnotes on same page. taken from https://tex.stackexchange.com/questions/32208/footnote-runs-onto-second-page
 \interfootnotelinepenalty=10000
 
+% define "reset footnote counte" command
+\newcommand{\resetfootnotecounter}{\setcounter{footnote}{0}}
+        
 
 % Footnote mark in text - fix size
 % based on https://tex.stackexchange.com/questions/47324/superscript-outside-math-mode/140703
@@ -165,6 +168,7 @@
     \addPolythumb{#2}
 
     \fancyhead[CE,CO]{\removelinebreaks\mynormalsize{#1}}
+    \resetfootnotecounter
     \begin{multicols}{2}
 }
 
@@ -178,6 +182,7 @@
     \addPolythumb{#2}
 
     \fancyhead[CE,CO]{\removelinebreaks\mynormalsize{#1}}
+    \resetfootnotecounter
     \begin{multicols}{2}
 }
 
@@ -189,6 +194,7 @@
     \addPolythumb{#2}
 
     \fancyhead[CE,CO]{\removelinebreaks\mynormalsize{#1}}
+    \resetfootnotecounter
     \begin{multicols}{2}
 }
 
@@ -197,6 +203,7 @@
     \end{multicols}
     \subsection{#1}
     \fancyhead[CE,CO]{\mynormalsize{#1}}
+    \resetfootnotecounter
     \begin{multicols}{2}
 }
 
@@ -209,7 +216,7 @@
     \subsubsection{#1}
     \replacePolythumb{#1}
     \fancyhead[CO]{\mynormalsize{אות #1}}
-    \setcounter{footnote}{0}     % reset footnote counter
+    \resetfootnotecounter
     \begin{multicols}{2}
 }
 

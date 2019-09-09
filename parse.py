@@ -102,8 +102,8 @@ if process == "Full":
 else:
     # doc_file_name = 'dict_few.docx'
     # doc_file_name = 'dict_check.docx'
-    doc_file_name = 'dict_short.docx'
-    # doc_file_name = 'dict.docx'
+    # doc_file_name = 'dict_short.docx'
+    doc_file_name = 'dict.docx'
 
     # create_html = True
     # create_latex = False
@@ -458,20 +458,34 @@ def analyze_and_fix(para):
 
     # 'centered_meuyan' is legal only if it's the only "heavy" thing in the paragraph, otherwise, it's a regular 'meuyan"
     found_centered_meuyan = False
-    should_fix_meuayn = False
+    should_replace_centered_meuayn = False
     for (type, text) in para:
         if type == "centered_meuyan":
             found_centered_meuyan = True
         elif type != "new_line" and found_centered_meuyan:
-            should_fix_meuayn = True
-    if should_fix_meuayn:
+            should_replace_centered_meuayn = True
+    if found_centered_meuyan:
         para = new_para
         new_para = []
-        for (type, text) in para:
-            if type == "centered_meuyan":
-                new_para.append(("s02Symbol", text))
-            else:
-                new_para.append((type, text))
+        if should_replace_centered_meuayn:
+            for (type, text) in para:
+                if type == "centered_meuyan":
+                    new_para.append(("s02Symbol", text))
+                else:
+                    new_para.append((type, text))
+        else:
+            # it's a centered meuyan, and should stay such; but we don't need anything else in it
+            for (type, text) in para:
+                if type == "centered_meuyan":
+                    new_para.append((type, text))
+                elif type == "new_line":
+                    # redundant, and causes troubles...
+                    pass
+                else:
+                    print("Unexpected type in centered meuyan")
+                    print type, text
+                    assert False
+
 
 
     with open('output/debug_fix.txt', 'a') as debug_file:

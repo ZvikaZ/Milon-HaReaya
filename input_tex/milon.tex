@@ -1,10 +1,9 @@
 
-
 % missing:
-
+% Otiut intro setting
 % Stam font
+% Otiut title sizes
 
-% ? fix redundant page between chapter and section - http://tex.stackexchange.com/questions/300320/when-2-newpages-in-raw-are-joined-and-when-not
 % debug warning messages
 
 % https://www.ctan.org/pkg/addlines - might be useful in later stages (adding or subing line or few lines from specific pages to fix appearance)
@@ -28,6 +27,7 @@
 
 \newcommand{\fancyheadlo}{\PolythumbWrapperLeft\hspace{-1mm}\mynormalsize{\thepage}}
 \newcommand{\fancyheadre}{\mynormalsize{\thepage}\PolythumbWrapperRight}
+\newcommand{\setfancyheadtitleboth}[1] {\fancyhead[CE,CO]{\mynormalsize\removelinebreaks{#1}}}
 
 \fancyhead[LO]{\fancyheadlo}
 \fancyhead[RE]{\fancyheadre}
@@ -38,9 +38,9 @@
 
 %%%%%%%%%%%        HEADING - `plain' with page number only       %%%%%%%%%%%
 \fancypagestyle{plain}{%
-\fancyhf{}
-\fancyhead[LO]{\fancyheadlo}
-\fancyhead[RE]{\fancyheadre}
+    \fancyhf{}
+    \fancyhead[LO]{\fancyheadlo}
+    \fancyhead[RE]{\fancyheadre}
 }
 
 
@@ -121,6 +121,10 @@
 \usepackage{adjustbox}
 
 
+% to make sure that subsubsection heading isn't at end of page
+\usepackage{needspace}
+
+
 % fixes column balancing - my packaging of https://tex.stackexchange.com/questions/471655/avoiding-parskip-at-end-of-column/472148?noredirect=1#comment1193617_472148
 \usepackage{hebcolumnbal}     
 
@@ -162,7 +166,7 @@
 
     \addPolythumb{#2}
 
-    \fancyhead[CE,CO]{\mynormalsize\removelinebreaks{#1}}
+    \setfancyheadtitleboth{#1}
     \begin{multicols}{2}
 }
 
@@ -173,7 +177,7 @@
 
     \addPolythumb{#2}
 
-    \fancyhead[CE,CO]{\mynormalsize\removelinebreaks{#1}}
+    \setfancyheadtitleboth{#1}
     \resetfootnotecounter
     \begin{multicols}{2}
 }
@@ -187,7 +191,7 @@
     
     \addPolythumb{#2}
 
-    \fancyhead[CE,CO]{\mynormalsize\removelinebreaks{#1}}
+    \setfancyheadtitleboth{#1}
     \resetfootnotecounter
     \begin{multicols}{2}
 }
@@ -199,16 +203,31 @@
 
     \addPolythumb{#2}
 
-    \fancyhead[CE,CO]{\mynormalsize\removelinebreaks{#1}}
+    \setfancyheadtitleboth{#1}
     \resetfootnotecounter
     \begin{multicols}{2}
 }
 
 
+\newcommand{\myintrochapter}[2]{
+    \end{multicols}
+
+    \chapter[#2]{#1}
+    \thispagestyle{plain}
+
+    \addPolythumb{#2}
+
+    \setfancyheadtitleboth{#1, הגדרות מבוא}
+    \resetfootnotecounter
+    \begin{multicols}{2}
+}
+
+
+
 \newcommand{\mysubsection}[1]{
     \end{multicols}
     \subsection{#1}
-    \fancyhead[CE,CO]{\mynormalsize{#1}}
+    \setfancyheadtitleboth{#1}
     \resetfootnotecounter
     \begin{multicols}{2}
 }
@@ -244,6 +263,7 @@
 
 \newcommand{\myletterslave}[1]{
     \end{multicols}
+    \needspace{3cm}
     \subsubsection{#1}
     \begin{multicols}{2}
 }

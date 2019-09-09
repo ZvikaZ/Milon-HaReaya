@@ -8,14 +8,26 @@ import codecs
 import footer
 import re
 
-sections_csv_file = "sections_short_names.csv"
-current_section = None
+sections_csv_file = "sections_info.csv"
+current_section = {'section': None, 'moto': False, 'intro': False, 'end_of_intro:type': "", 'end_of_intro:text': ""}
 
 
 def reverse_words(s):
     w1 = s.split()
     w2 = reversed(w1)
     return ' '.join(w2)
+
+
+
+def get_bool_from_csv(cell):
+    if cell == "" or cell.lower() == "no":
+        return False
+    elif cell.lower() == "yes":
+        return True
+    else:
+        print "Illegal value in CSV: ", cell
+        assert False
+
 
 # the output is 'reversed' due to some bug in 'fancytabs' that shows the words reversed in the string
 # TODO: report this bug...
@@ -30,12 +42,20 @@ def get_section_short_name(section):
     for row in csvfile:
         s = row.strip().split(',')
         if s[0].replace('"','') == section.replace('"',''):
-            current_section = s[1]
-            print "CSV found: ", current_section
-            return reverse_words(current_section)
+            current_section['section'] = s[1]
+            current_section['moto'] = get_bool_from_csv(s[2])
+            current_section['intro'] = get_bool_from_csv(s[3])
+            current_section['end_of_intro:type'] = s[4]
+            current_section['end_of_intro:text'] = s[5]
+            print "CSV found: ", s[1], current_section
+            return reverse_words(current_section['section'])
     print "CSV failed search for: ", section
-    current_section = section
-    return reverse_words(current_section)
+    current_section['section'] = section
+    current_section['moto'] = False
+    current_section['intro'] = False
+    current_section['end_of_intro:type'] = ""
+    current_section['end_of_intro:text'] = ""
+    return reverse_words(current_section['section'])
 
 
 
@@ -124,10 +144,6 @@ next_define_ends_moto = False
 moto_line_is_left = False
 moto_line_was_left = False
 
-def set_moto(text):
-    global next_define_is_moto
-    if u"פסוקים" in text:
-        next_define_is_moto = True
 
 
 def begin_moto():
@@ -166,37 +182,43 @@ def add_to_latex(para, word_doc_footnotes):
     global num_of_heading_titles
     global moto_line_is_left
     global moto_line_was_left
+    global current_section
 
     data = ""
     for (i, (type, text)) in enumerate(para):
         data = handle_moto(data, text, type)
+        data = handle_intro(data, text, type)
 
         if 'heading' in type and text.strip():
 
             # TODO: adjust headings
             if type == 'heading_title':
+                get_section_short_name(text)
                 if num_of_heading_titles == 0:
                     command = "\\mybookname"
                 else:
                     command = "\\mytitle"
-                data = add_line_to_data(data, "%s{%s}{%s}" % (command, text, get_section_short_name(text)))
+                data = add_line_to_data(data, "%s{%s}{%s}" % (command, text, current_section['section']))
                 num_of_heading_titles += 1
             elif type == 'heading_section':
-                set_moto(text)
+                get_section_short_name(text)
+                assert not (current_section['moto'] and current_section['intro'])
+                next_define_is_moto = current_section['moto']
                 if next_define_is_moto:
                     chapter_command = "mymotochapter"
+                elif current_section['intro']:
+                    chapter_command = "myintrochapter"
                 else:
                     chapter_command = "mychapter"
-                data = add_line_to_data(data, "\\%s{%s}{%s}" % (chapter_command, text, get_section_short_name(text)))
+                data = add_line_to_data(data, "\\%s{%s}{%s}" % (chapter_command, text, current_section['section']))
             elif type == 'heading_sub-section-bigger':
                 data = add_line_to_data(data, "\\mysubsection{%s}" % (text))
             elif type == 'heading_sub-section':
                 data = add_line_to_data(data, "\\mysubsection{%s}" % (text))
             elif type == 'heading_letter':
-                global current_section
-                if current_section == u"מילון הראיה":
+                if current_section['section'] == u"מילון הראיה":
                     data = add_line_to_data(data, "\\mylettertitle{%s}" % (text))
-                elif current_section == u"פסוקים":
+                elif current_section['section'] == u"פסוקים":
                     data = add_line_to_data(data, "\\myletterweaktitle{%s}" % (text))
                 else:
                     data = add_line_to_data(data, "\\myletterslave{%s}" % (text))
@@ -296,6 +318,15 @@ def handle_moto(data, text, type):
         moto_line_is_left = False
         moto_line_was_left = False
     return data
+
+
+def handle_intro(data, text, type):
+    if type == current_section['end_of_intro:type'] and text == current_section['end_of_intro:text']:
+        # print "end of intro: ", current_section['section']
+        data += r"\setfancyheadtitleboth{%s}" % current_section['section']
+        data += r"\resetfootnotecounter"
+    return data
+
 
 
 def run_xelatex(f):

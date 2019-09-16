@@ -41,12 +41,12 @@ def get_section_short_name(section):
     csvfile = codecs.open(sections_csv_file, encoding='utf-8-sig')
     for row in csvfile:
         s = row.strip().split(',')
-        if s[0].replace('"','') == section.replace('"',''):
-            current_section['section'] = s[1]
+        if s[0].replace('"','').strip() == section.replace('"','').strip():
+            current_section['section'] = s[1].strip()
             current_section['moto'] = get_bool_from_csv(s[2])
             current_section['intro'] = get_bool_from_csv(s[3])
-            current_section['end_of_intro:type'] = s[4]
-            current_section['end_of_intro:text'] = s[5]
+            current_section['end_of_intro:type'] = s[4].strip()
+            current_section['end_of_intro:text'] = s[5].strip()
             print "CSV found: ", s[1], current_section
             return reverse_words(current_section['section'])
     print "CSV failed search for: ", section
@@ -95,34 +95,58 @@ def latex_type(type):
         return u"מעוין"
     elif type == "centered_meuyan":
         return u"מעויןמרכזי"
+    elif type == "section_title_secondary":
+        return "my_section_title_secondary"
     #elif type == "DefaultParagraphFont":
     #    return #TODO: what??
     else:
         # print "TAKALA: ", type
         return u"תקלה"
 
+
+def unite_lines(data, r_prev_line, r_line, prefix_to_new_line = "", suffix_to_new_line = ""):
+    global prev_line
+    global latex_data
+
+    print "unite_lines. removing: ", prev_line
+
+    # remove 'prev_line'
+    latex_data = latex_data.replace(prev_line, "")
+    data = data.replace(prev_line, "")
+
+    # create united line
+    if r_prev_line is not None:
+        name = r_prev_line.group(2) + ' \protect\\\\ ' + prefix_to_new_line + r_line.group(2) + suffix_to_new_line
+        simple_name = r_prev_line.group(2) + ' ' + r_line.group(2)
+        line = u"\\my%s{%s}{%s}" % (r_prev_line.group(1), name, get_section_short_name(simple_name))
+    else:
+        r_prev_line = re.compile(r"\\my(\w+)\{(.*)\{(.*)\}\}(.*)").match(prev_line)
+        line = ur"\my%s{%s{%s}}%s" % (r_prev_line.group(1), r_prev_line.group(2), r_prev_line.group(3) + ' \protect\\\\ ' + r_line.group(2), r_prev_line.group(4))
+
+    print "unite_lines. adding: ", line
+
+    return data, line
+
+
 prev_line = ""
 def add_line_to_data(data, line):
     global prev_line
-    global latex_data
+
+    # this matches things of either kind:
+    # \mychapter{a}{b}    # .group(1) = 'chapter'      , .group(2) = 'a', group(3) = '{b}', group(4) = 'b'
+    # \mysubsection{a}    # .group(1) = 'mysubsection' , .group(2) = 'a', group(3) is None, group(4) is None
+    r = re.compile(r"\\my(\w+)\{([^{}]+)\}({([^{}]+)\})?", re.UNICODE)
+    r_line = r.match(line)
+    r_prev_line = r.match(prev_line)
+
     if line.startswith("\\my") and prev_line.startswith("\\my") and line.split('{')[0] == prev_line.split('{')[0]:
-        # this matches things of either kind:
-        # \mychapter{a}{b}    # .group(1) = 'chapter'      , .group(2) = 'a', group(3) = '{b}', group(4) = 'b'
-        # \mysubsection{a}    # .group(1) = 'mysubsection' , .group(2) = 'a', group(3) is None, group(4) is None
-        r = re.compile(r"\\my(\w+)\{([^{}]+)\}({([^{}]+)\})?", re.UNICODE)
-        r_line = r.match(line)
-        r_prev_line = r.match(prev_line)
         if r_line.group(1) == r_prev_line.group(1) and r_prev_line.group(2) != u'מדורים':
             # we need to unite prev_line and line
+            (data, line) = unite_lines(data, r_prev_line, r_line)
 
-            # remove 'prev_line'
-            latex_data = latex_data.replace(prev_line, "")
-            data = data.replace(prev_line, "")
-
-            # create united line
-            name = r_prev_line.group(2) + ' \protect\\\\ ' + r_line.group(2)
-            simple_name = r_prev_line.group(2) + ' ' + r_line.group(2)
-            line = u"\\my%s{%s}{%s}" % (r_line.group(1), name, get_section_short_name(simple_name))
+    if line.startswith(r"\my_section_title_secondary"):
+        assert prev_line.startswith(r"\my") and "chapter" in prev_line
+        (data, line) = unite_lines(data, r_prev_line, r_line, r"\mysectiontitlesecondarysize{", "}")
 
     if u"°" in line:
         line = line.replace(u"°", u"\\mycircle{°}")
@@ -138,6 +162,8 @@ latex_data = ""
 latex_new_lines_in_raw = 0
 num_of_heading_titles = 0
 
+in_section_intro = False
+letters_section_current_letter = ""
 
 next_define_is_moto = False
 next_define_ends_moto = False
@@ -183,6 +209,8 @@ def add_to_latex(para, word_doc_footnotes):
     global moto_line_is_left
     global moto_line_was_left
     global current_section
+    global letters_section_current_letter
+    global in_section_intro
 
     data = ""
     for (i, (type, text)) in enumerate(para):
@@ -207,6 +235,7 @@ def add_to_latex(para, word_doc_footnotes):
                 if next_define_is_moto:
                     chapter_command = "mymotochapter"
                 elif current_section['intro']:
+                    in_section_intro = True
                     chapter_command = "myintrochapter"
                 else:
                     chapter_command = "mychapter"
@@ -226,7 +255,6 @@ def add_to_latex(para, word_doc_footnotes):
             data += "\n"
 
 
-
         elif type == "new_line":
             if next_define_ends_moto and moto_line_is_left and type == "new_line":
                 data += end_moto_left_line()
@@ -235,17 +263,17 @@ def add_to_latex(para, word_doc_footnotes):
             latex_new_lines_in_raw += 1
             if latex_new_lines_in_raw == 1:
                 if data:
-                    data += ("\\\\")
+                    data += (r"\mynewline")
                 else:
                     # we ignore that 'new line', and not adding it to 'data' - so no need to count it
                     latex_new_lines_in_raw = 0
             elif latex_new_lines_in_raw == 2:
                 # chop the "new line" symbol - not required before new paragraph
-                assert latex_data[-2:] == "\\\\" or data[-2:] == "\\\\"
-                if data[-2:] == "\\\\":
-                    data = data[:-2]
-                elif latex_data[-2:] == "\\\\":
-                    latex_data = latex_data[:-2]
+                assert latex_data.endswith(r"\mynewline") or data.endswith(r"\mynewline")
+                if data.endswith(r"\mynewline"):
+                    data = data[:-(len(r"\mynewline"))]
+                elif latex_data.endswith(r"\mynewline"):
+                    latex_data = latex_data[:-(len(r"\mynewline"))]
                 data += ("\n\n")
             else:
                 pass
@@ -255,6 +283,11 @@ def add_to_latex(para, word_doc_footnotes):
                 # inside Moto - got to Left section
                 data += begin_moto_left_line()
 
+
+        elif current_section['section'] == u"אותיות" and not in_section_intro and type == "subject_normal" and text.strip() != letters_section_current_letter:
+            letters_section_current_letter = text.strip()
+            data += "\\stamletter{%s}" % text[0]
+            data = add_line_to_data(data, "\\%s{%s}" % (latex_type(type), text[1:]))
 
 
         elif type == "footnote":
@@ -320,11 +353,19 @@ def handle_moto(data, text, type):
     return data
 
 
+# CSV has too many layers of " protection - it's better just to strip them of...
+def csv_text_compare(a, b):
+    return a.strip().replace('"', '') == b.strip().replace('"', '')
+
+
 def handle_intro(data, text, type):
-    if type == current_section['end_of_intro:type'] and text == current_section['end_of_intro:text']:
+    global in_section_intro
+    if in_section_intro and type == current_section['end_of_intro:type'] and csv_text_compare(text, current_section['end_of_intro:text']):
         # print "end of intro: ", current_section['section']
+        data += r"\newpage"
         data += r"\setfancyheadtitleboth{%s}" % current_section['section']
         data += r"\resetfootnotecounter"
+        in_section_intro = False
     return data
 
 
@@ -353,6 +394,6 @@ def close_latex():
     run_xelatex('milon.tex')
     run_xelatex('milon.tex')
 #    os.startfile("milon.pdf")
-    os.startfile("milon.tex")
+#     os.startfile("milon.tex")
     os.chdir("..")
 

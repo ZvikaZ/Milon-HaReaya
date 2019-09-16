@@ -1,8 +1,13 @@
+% problems:
+% section_title_secondary:
+%   gets into page title - shouldn't be there
+%   gets into thumbs - shouldn't be there
+%   because of these, Stam font has been lost (probably because it's not ``Otiyut'' but ``otiut and friends''
+%   make sure no harm is done to other sections and to Web, when finished here
+%   make sure that it's correctly spelled
+%   make sure that it matches book
+%   then delete all ``ZZ'' and ``unite_lines'' prints
 
-% missing:
-% Otiut intro setting
-% Stam font
-% Otiut title sizes
 
 % debug warning messages
 
@@ -25,8 +30,8 @@
 \pagestyle{fancy}
 \fancyhf{}
 
-\newcommand{\fancyheadlo}{\PolythumbWrapperLeft\hspace{-1mm}\mynormalsize{\thepage}}
-\newcommand{\fancyheadre}{\mynormalsize{\thepage}\PolythumbWrapperRight}
+\newcommand{\fancyheadlo}{\mynormalsize{\PolythumbWrapperLeft\hspace{-1mm}\thepage}}
+\newcommand{\fancyheadre}{\mynormalsize{\thepage\PolythumbWrapperRight}}
 \newcommand{\setfancyheadtitleboth}[1] {\fancyhead[CE,CO]{\mynormalsize\removelinebreaks{#1}}}
 
 \fancyhead[LO]{\fancyheadlo}
@@ -137,6 +142,8 @@
 
 % declare new specific fonts (and new commands)
 \newfontfamily\hebrewfonthadassah{Hadassah Friedlaender}[Script=Hebrew]
+\newfontfamily\hebrewfontstam{Guttman Stam}[Script=Hebrew]
+
 
 % copied from https://tex.stackexchange.com/questions/23450/font-problems-hebrew-with-koma-document-classes-error-message?rq=1
 \setmainfont[Mapping=tex-text]{Times New Roman}
@@ -145,10 +152,12 @@
 
 
 %%%%%%%%%%%        COMMANDS        %%%%%%%%%%%
+\newcommand\mysectiontitlesecondarysize{\fontsize{18}{34}\selectfont}
+\newcommand\mystamsize{\fontsize{14}{14}\selectfont}              % used by Stam
 \newcommand\mylarge{\fontsize{11}{14}\selectfont}
 \newcommand\mynormalsize{\fontsize{10}{14}\selectfont}
 \newcommand\mysmall{\fontsize{9}{14}\selectfont}
-\newcommand\myfootnotesize{\fontsize{8}{12}\selectfont}
+\newcommand\myfootnotesize{\fontsize{9}{12}\selectfont}
 
 \usepackage{xstring}
 
@@ -160,8 +169,10 @@
 \newcommand{\mybookname}[2]{
     \end{multicols}
 
-    \addtokomafont{part}{\fontsize{34}{34}\hebrewfonthadassah}    
+    \addtokomafont{part}{\vspace{-3cm}\fontsize{35}{35}\hebrewfonthadassah}    
+
     \part[#2]{#1}
+
     \addtokomafont{part}{\hebrewfont\Huge}
 
     \addPolythumb{#2}
@@ -271,7 +282,7 @@
 \newcommand{\myfootnote}[1]{\footnote{\myfootnotesize{#1}}}
 \newcommand{\mycircle}[1]{\textmd{\mynormalsize{#1}}}
 \newcommand{\hebrewmakaf}{\iffont{Miriam(0)}{\,\,־}{־}}       % Miriam font has bug, and needs another space before the Makaf, else just print regular Makaf
-
+\newcommand{\mynewline}{\\*}
 
 
 
@@ -317,6 +328,9 @@
      \centerline{\mynormalsize{#1}}
      \vspace{2mm}
 }
+
+\newcommand{\stamletter}[1]{\mystamsize\hebrewfontstam{#1}\hebrewfont}
+
 
 %\newcommand{\תקלה}[1]{\הגדרה{#1}}
 \newcommand{\תקלה}[1]{#1}

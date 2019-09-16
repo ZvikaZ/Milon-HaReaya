@@ -212,7 +212,7 @@ class Sizes:
             return tags.h1
         elif kind == 'heading_section':
             return tags.h2
-        elif kind == 'heading_sub-section-bigger':
+        elif kind == 'heading_sub-section-bigger' or kind == 'section_title_secondary':
             return tags.h3
         elif kind == 'heading_sub-section':
             return tags.h4
@@ -697,6 +697,11 @@ def fix_sz_cs(run, type):
         return 'definition_small'
     elif szCs == "20" and type == 'unknown_light':
         return 'definition_normal'
+    elif szCs == "26" and type == 'subject_normal':
+        ## wild guess, might break everything :-(
+        ## be careful here...
+        print "ZZ: Fixed to 'section_title_secondary': ", run.text.strip()
+        return 'section_title_secondary'
     elif run.text.strip():
         # print "fix_sz_cs::Unsupported value: ", szCs, "type:", type, ". At: ", run.text    #TODO: clean this!!!
         pass

@@ -50,7 +50,7 @@ class PlayAPISession:
         http = httplib2.Http()
         http = credentials.authorize(http)
 
-        service = build('androidpublisher', 'v2', http=http)
+        service = build('androidpublisher', 'v3', http=http)
         return service
 
     def get_edit_id(self):
@@ -96,11 +96,14 @@ class PlayAPISession:
                 editId=self.edit_id,
                 track=TRACK,
                 packageName=package_name,
-                body={u'versionCodes': version_codes}).execute()
+                body={u'releases': [{
+                    u'name': u'Milon HaReaya',
+                    u'versionCodes': version_codes,
+                    u'status': u'completed',
+                }]}).execute()
 
-            print 'Track %s is set for version code(s) %s' % (
-                track_response['track'], str(track_response['versionCodes']))
-
+            print 'Track %s is set with releases: %s' % (
+                track_response['track'], str(track_response['releases']))
 
         except client.AccessTokenRefreshError:
             print ('The credentials have been revoked or expired, please re-run the '

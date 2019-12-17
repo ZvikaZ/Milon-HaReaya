@@ -89,8 +89,8 @@ import texer
 html_parser = HTMLParser.HTMLParser()
 
 # process = "APK"
-# process = "Full"
-process = "ZIP"
+process = "Full"
+# process = "ZIP"
 
 if process == "Full":
     doc_file_name = 'dict.docx'
@@ -100,7 +100,7 @@ if process == "Full":
 else:
     # doc_file_name = 'dict_few.docx'
     # doc_file_name = 'dict_check.docx'
-    doc_file_name = 'dict_short.docx'
+    doc_file_name = 'dict_half.docx'
     # doc_file_name = 'dict.docx'
 
     # create_html = True

@@ -7,7 +7,7 @@
 
 
     <!--minimal version required by Google, due to security considerations-->
-    <preference name="android-minSdkVersion" value="26"/>
+    <preference name="android-minSdkVersion" value="28"/>
 
     <!-- 18.11.18 - since I removed CrossWalk (due to compilation problem, and seems to be obsolete) - I'm not sure I need this: -->
     <!--<plugin name="cordova-build-architecture" spec="https://github.com/MBuchalik/cordova-build-architecture.git#v1.0.1" source="git" />-->

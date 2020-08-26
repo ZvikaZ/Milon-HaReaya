@@ -21,10 +21,13 @@
     <!-- versionCode is optional and Android only -->
     <!--gap:plugin name="cordova-plugin-appversion" source="npm"/-->
 
+    <!-- 26.8.20 - commented the following, because of transition from PhoneGap to Monaca
+              TODO: investigate if it's needed, and find solution -->
     <!-- This allows clicking on mails addresses to work -->
-    <gap:plugin name="cordova-plugin-whitelist" source="npm" />
+    <!-- gap:plugin name="cordova-plugin-whitelist" source="npm" />
     <allow-intent href="mailto:*" />
     <access origin="mailto:*" launch-external="yes"/>
+    -->
 
     <name>מילון הראיה</name>
 	

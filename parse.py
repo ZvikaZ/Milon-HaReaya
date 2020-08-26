@@ -13,6 +13,8 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: why "Pashut" is unknown?
 # TODO: fix "FOOTNOTE undefined: af7 None  :  homo"
 
+# TODO: TEX: with new version, " looks different (it's curly)
+
 # TODO: TEX: 'tex.full' line 8089 failure (8246) - because of "Vav" in "Otiyot" - need to delete previous line, and re-enter
 # TODO: TEX: Mehkarim UVeurim - handle style (w/o numbers...)
 # TODO: TEX: add prefixes and appendices
@@ -88,9 +90,9 @@ import texer
 
 html_parser = html.parser.HTMLParser()
 
-# process = "APK"
-process = "Full"
-#process = "ZIP"
+#process = "APK"
+#process = "Full"
+process = "ZIP"
 
 if process == "Full":
     doc_file_name = 'dict.docx'
@@ -103,11 +105,11 @@ else:
     # doc_file_name = 'dict_half.docx'
     # doc_file_name = 'dict.docx'
 
-    #create_html = True
-    #create_latex = False
+    create_html = True
+    create_latex = False
 
-    create_html = False
-    create_latex = True
+    #create_html = False
+    #create_latex = True
 
 
 
@@ -932,15 +934,15 @@ def close_html_doc(html_doc):
 
     html_doc_name = html_doc.index
     name = "debug_%s.html" % html_doc_name
-    with open("output/" + name, 'w', encoding='utf-8') as f:
+    with open("output/www/" + name, 'w', encoding='utf-8') as f:
         f.write(html_doc.render(pretty=True))
-    replace_in_file("output/" + name, place_holder, search_html)
+    replace_in_file("output/www/" + name, place_holder, search_html)
 
     name = "%s.html" % html_doc_name
-    with open("output/" + name, 'w', encoding='utf-8') as f:
+    with open("output/www/" + name, 'w', encoding='utf-8') as f:
         f.write(html_doc.render(pretty=False))
         print("Created ", name)
-    replace_in_file("output/" + name, place_holder, search_html)
+    replace_in_file("output/www/" + name, place_holder, search_html)
 
 
 heading_back_to_back = False
@@ -1016,12 +1018,17 @@ except:
 
 os.mkdir("tex")
 os.mkdir("output")
-os.mkdir("output/html_demos-gh-pages")
+os.mkdir("output/www")
+os.mkdir("output/www/html_demos-gh-pages")
 
 os.chdir("input_web")
 for (f) in (
     'config.xml',
     'icon.png',
+):
+    shutil.copyfile(f, os.path.join("../output", f))
+
+for (f) in (
     'style.css',
     'html_demos-gh-pages/footnotes.css',
     'html_demos-gh-pages/footnotes.js',
@@ -1033,14 +1040,14 @@ for (f) in (
     'opening_signs.html',
     'search.html',
 ):
-    shutil.copyfile(f, os.path.join("../output", f))
+    shutil.copyfile(f, os.path.join("../output/www/", f))
 
 for (d) in (
     'bootstrap-3.3.6-dist',
     'bootstrap-rtl-3.3.4',
     'jquery',
 ):
-    shutil.copytree(d, os.path.join("../output", d))
+    shutil.copytree(d, os.path.join("../output/www", d))
 
 os.chdir("../input_tex")
 for (f) in (
@@ -1187,7 +1194,7 @@ def add_menu_to_apriory_htmls(html_docs_l):
     with open("input_web/stub_search.html", 'r', encoding='utf-8') as file:
         menu_bar_html += file.read()
 
-    replace_in_file('output/search.html', place_holder, menu_bar_html)
+    replace_in_file('output/www/search.html', place_holder, menu_bar_html)
 
     for index, filename in enumerate((
             'index.html',
@@ -1201,7 +1208,7 @@ def add_menu_to_apriory_htmls(html_docs_l):
         with open("input_web/stub_search.html", 'r', encoding='utf-8') as file:
             menu_bar_html += file.read()
 
-        replace_in_file('output/%s' % filename, place_holder, menu_bar_html)
+        replace_in_file('output/www/%s' % filename, place_holder, menu_bar_html)
         del content[index].attributes['class']
 
 
@@ -1215,7 +1222,7 @@ if create_html:
 if create_latex:
     texer.close_latex()
 
-with open('output/subjects_db.json', 'w', encoding='utf-8') as fp:
+with open('output/www/subjects_db.json', 'w', encoding='utf-8') as fp:
     s = json.dumps(subjects_db)
     fp.write("data = " + s)
 

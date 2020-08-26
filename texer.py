@@ -386,8 +386,8 @@ def close_latex():
 
     os.chdir("tex")
 
-    with open("content.tex", 'a') as latex_file:
-        latex_file.write(latex_data.encode('utf8'))
+    with open("content.tex", 'a', encoding='utf-8') as latex_file:
+        latex_file.write(latex_data)
 
 
     # twice because of thumb-indices

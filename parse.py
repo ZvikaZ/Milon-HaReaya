@@ -89,8 +89,8 @@ import texer
 html_parser = html.parser.HTMLParser()
 
 # process = "APK"
-# process = "Full"
-process = "ZIP"
+process = "Full"
+#process = "ZIP"
 
 if process == "Full":
     doc_file_name = 'dict.docx'
@@ -103,11 +103,11 @@ else:
     # doc_file_name = 'dict_half.docx'
     # doc_file_name = 'dict.docx'
 
-    create_html = True
-    create_latex = False
+    #create_html = True
+    #create_latex = False
 
-    #create_html = False
-    #create_latex = True
+    create_html = False
+    create_latex = True
 
 
 

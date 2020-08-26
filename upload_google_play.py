@@ -21,7 +21,7 @@ from googleapiclient.discovery import build
 try:
     from secret import SERVICE_ACCOUNT_EMAIL
 except:
-    print "Missing 'secret.py'. Cannot upload to Google Play"
+    print("Missing 'secret.py'. Cannot upload to Google Play")
     # you probably need also key.p12
     # secret.py should contain something like:
     # SERVICE_ACCOUNT_EMAIL = (
@@ -66,7 +66,7 @@ class PlayAPISession:
     def commit(self):
         commit_request = self.service.edits().commit(
             editId=self.edit_id, packageName=package_name).execute()
-        print 'Edit "%s" has been committed' % (commit_request['id'])
+        print('Edit "%s" has been committed' % (commit_request['id']))
 
 
     def upload_apk(self, apk_file):
@@ -81,7 +81,7 @@ class PlayAPISession:
                 media_body=apk_file).execute()
 
             version_code = apk_response['versionCode']
-            print 'Version code %d has been uploaded' % version_code
+            print('Version code %d has been uploaded' % version_code)
 
             return version_code
 
@@ -96,14 +96,14 @@ class PlayAPISession:
                 editId=self.edit_id,
                 track=TRACK,
                 packageName=package_name,
-                body={u'releases': [{
-                    u'name': u'Milon HaReaya',
-                    u'versionCodes': version_codes,
-                    u'status': u'completed',
+                body={'releases': [{
+                    'name': 'Milon HaReaya',
+                    'versionCodes': version_codes,
+                    'status': 'completed',
                 }]}).execute()
 
-            print 'Track %s is set with releases: %s' % (
-                track_response['track'], str(track_response['releases']))
+            print('Track %s is set with releases: %s' % (
+                track_response['track'], str(track_response['releases'])))
 
         except client.AccessTokenRefreshError:
             print ('The credentials have been revoked or expired, please re-run the '
@@ -132,8 +132,8 @@ class PlayAPISession:
                 editId=self.edit_id, packageName=package_name).execute()
 
             for apk in apks_result['apks']:
-                print 'versionCode: %s, binary.sha1: %s' % (
-                    apk['versionCode'], apk['binary']['sha1'])
+                print('versionCode: %s, binary.sha1: %s' % (
+                    apk['versionCode'], apk['binary']['sha1']))
 
         except client.AccessTokenRefreshError:
             print ('The credentials have been revoked or expired, please re-run the '
@@ -144,8 +144,8 @@ class PlayAPISession:
         versions = []
         for f in apk_files:
             versions.append(self.upload_apk(f))
-        print "Successfully loaded versions:"
-        print versions
+        print("Successfully loaded versions:")
+        print(versions)
         self.update_track(versions)
         self.commit()
 
@@ -154,7 +154,7 @@ class PlayAPISession:
 if __name__ == '__main__':
     playAPISession = PlayAPISession()
     version_code = playAPISession.get_last_apk() + 1
-    print version_code
+    print(version_code)
     playAPISession.main(["output/milon.dual.apk"])
     # playAPISession.main(["output/milon.x86.apk", "output/milon.arm.apk"])
 

@@ -12,7 +12,7 @@ import shutil
 try:
     from secret import *
 except:
-    print "Missing 'secret.py'. Cannot build with Phonegap"
+    print("Missing 'secret.py'. Cannot build with Phonegap")
     # secret.py should contain these:
     # auth = ('your@mail.com', "password")
     # key_json = 'data={"key_pw":"password","keystore_pw":"password"}'
@@ -53,12 +53,12 @@ def check_app_status():
     resp = json.loads(r.text)
     status = resp['status']['android']
     if status == 'error':
-        print "APK creation Error: ", resp['error']
+        print("APK creation Error: ", resp['error'])
         sys.exit(1)
     elif status not in ('pending', 'complete'):
-        print "\nAPK creation status:"
-        print status
-        print resp
+        print("\nAPK creation status:")
+        print(status)
+        print(resp)
     else:
         # print "APK creation status:", status
         pass
@@ -105,14 +105,14 @@ def push_to_phonegap(zipfile, cpu='arm'):
     assert r.status_code == 200, r.content
     # print "Upload status: ", r.status_code, r.text
 
-    print "Compiling %s APK" % cpu
+    print("Compiling %s APK" % cpu)
     while check_app_status() == 'pending':
-        print "Pending"
+        print("Pending")
         time.sleep(2)
 
 
     # download the APK
-    print "Downloading %s APK" % cpu
+    print("Downloading %s APK" % cpu)
     r = requests.get(app_url+"android", verify=False, auth=auth)
     assert r.status_code == 200
 
@@ -121,7 +121,7 @@ def push_to_phonegap(zipfile, cpu='arm'):
     with open(apk_name, 'wb') as f:
         f.write(r.content)
     shutil.move(apk_name, "output/")
-    print "%s downloaded" % apk_name
+    print("%s downloaded" % apk_name)
 
 
 

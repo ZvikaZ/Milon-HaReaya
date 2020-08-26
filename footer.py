@@ -37,5 +37,5 @@ def get_style(run):
         return "bolded"
     else:
         if run.text.strip():
-            print "FOOTNOTE undefined:", run.style, run.bold, " : ", run.text
+            print("FOOTNOTE undefined:", run.style, run.bold, " : ", run.text)
         return "normal"

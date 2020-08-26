@@ -25,7 +25,7 @@ def get_bool_from_csv(cell):
     elif cell.lower() == "yes":
         return True
     else:
-        print "Illegal value in CSV: ", cell
+        print("Illegal value in CSV: ", cell)
         assert False
 
 
@@ -47,9 +47,9 @@ def get_section_short_name(section):
             current_section['intro'] = get_bool_from_csv(s[3])
             current_section['end_of_intro:type'] = s[4].strip()
             current_section['end_of_intro:text'] = s[5].strip()
-            print "CSV found: ", s[1], current_section
+            print("CSV found: ", s[1], current_section)
             return reverse_words(current_section['section'])
-    print "CSV failed search for: ", section
+    print("CSV failed search for: ", section)
     current_section['section'] = section
     current_section['moto'] = False
     current_section['intro'] = False
@@ -68,47 +68,47 @@ def open_latex():
 
 def latex_type(type):
     if type in ("subject_normal", "fake_subject_normal"):
-        return u"ערך"
+        return "ערך"
     elif type in ("sub-subject_normal", "subject_small", "fake_subject_small", "fake_sub-subject_normal"):
-        return u"משנה"
+        return "משנה"
     elif type in ("definition_normal", "fake_subject_small_normal"):
-        return u"הגדרה"
+        return "הגדרה"
     elif type == "source_normal":
-        return u"מקור"
+        return "מקור"
     elif type == "sub-subject_small":
-        return u"צמשנה"
+        return "צמשנה"
     elif type == "fake_sub-subject_small":
-        return u"צהגדרהמודגשת"
+        return "צהגדרהמודגשת"
     elif type == "definition_small":
-        return u"צהגדרה"
+        return "צהגדרה"
     elif type == "source_small":
-        return u"צמקור"
+        return "צמקור"
     elif type == "subject_light":
-        return u"תערך"
+        return "תערך"
     elif type == "sub-subject_light":
-        return u"תמשנה"
+        return "תמשנה"
     elif type in ("definition_light", "unknown_light"):
-        return u"תהגדרה"
+        return "תהגדרה"
     elif type == "source_light":
-        return u"תמקור"
+        return "תמקור"
     elif type == "s02Symbol":
-        return u"מעוין"
+        return "מעוין"
     elif type == "centered_meuyan":
-        return u"מעויןמרכזי"
+        return "מעויןמרכזי"
     elif type == "section_title_secondary":
         return "my_section_title_secondary"
     #elif type == "DefaultParagraphFont":
     #    return #TODO: what??
     else:
         # print "TAKALA: ", type
-        return u"תקלה"
+        return "תקלה"
 
 
 def unite_lines(data, r_prev_line, r_line, prefix_to_new_line = "", suffix_to_new_line = ""):
     global prev_line
     global latex_data
 
-    print "unite_lines. removing: ", prev_line
+    print("unite_lines. removing: ", prev_line)
 
     # remove 'prev_line'
     latex_data = latex_data.replace(prev_line, "")
@@ -118,12 +118,12 @@ def unite_lines(data, r_prev_line, r_line, prefix_to_new_line = "", suffix_to_ne
     if r_prev_line is not None:
         name = r_prev_line.group(2) + ' \protect\\\\ ' + prefix_to_new_line + r_line.group(2) + suffix_to_new_line
         simple_name = r_prev_line.group(2) + ' ' + r_line.group(2)
-        line = u"\\my%s{%s}{%s}" % (r_prev_line.group(1), name, get_section_short_name(simple_name))
+        line = "\\my%s{%s}{%s}" % (r_prev_line.group(1), name, get_section_short_name(simple_name))
     else:
         r_prev_line = re.compile(r"\\my(\w+)\{(.*)\{(.*)\}\}(.*)").match(prev_line)
-        line = ur"\my%s{%s{%s}}%s" % (r_prev_line.group(1), r_prev_line.group(2), r_prev_line.group(3) + ' \protect\\\\ ' + r_line.group(2), r_prev_line.group(4))
+        line = r"\my%s{%s{%s}}%s" % (r_prev_line.group(1), r_prev_line.group(2), r_prev_line.group(3) + ' \protect\\\\ ' + r_line.group(2), r_prev_line.group(4))
 
-    print "unite_lines. adding: ", line
+    print("unite_lines. adding: ", line)
 
     return data, line
 
@@ -140,7 +140,7 @@ def add_line_to_data(data, line):
     r_prev_line = r.match(prev_line)
 
     if line.startswith("\\my") and prev_line.startswith("\\my") and line.split('{')[0] == prev_line.split('{')[0]:
-        if r_line.group(1) == r_prev_line.group(1) and r_prev_line.group(2) != u'מדורים':
+        if r_line.group(1) == r_prev_line.group(1) and r_prev_line.group(2) != 'מדורים':
             # we need to unite prev_line and line
             (data, line) = unite_lines(data, r_prev_line, r_line)
 
@@ -148,8 +148,8 @@ def add_line_to_data(data, line):
         assert prev_line.startswith(r"\my") and "chapter" in prev_line
         (data, line) = unite_lines(data, r_prev_line, r_line, r"\mysectiontitlesecondarysize{", "}")
 
-    if u"°" in line:
-        line = line.replace(u"°", u"\\mycircle{°}")
+    if "°" in line:
+        line = line.replace("°", "\\mycircle{°}")
 
 
 
@@ -245,9 +245,9 @@ def add_to_latex(para, word_doc_footnotes):
             elif type == 'heading_sub-section':
                 data = add_line_to_data(data, "\\mysubsection{%s}" % (text))
             elif type == 'heading_letter':
-                if current_section['section'] == u"מילון הראיה":
+                if current_section['section'] == "מילון הראיה":
                     data = add_line_to_data(data, "\\mylettertitle{%s}" % (text))
-                elif current_section['section'] == u"פסוקים":
+                elif current_section['section'] == "פסוקים":
                     data = add_line_to_data(data, "\\myletterweaktitle{%s}" % (text))
                 else:
                     data = add_line_to_data(data, "\\myletterslave{%s}" % (text))
@@ -284,7 +284,7 @@ def add_to_latex(para, word_doc_footnotes):
                 data += begin_moto_left_line()
 
 
-        elif current_section['section'] == u"אותיות" and not in_section_intro and type == "subject_normal" and text.strip() != letters_section_current_letter:
+        elif current_section['section'] == "אותיות" and not in_section_intro and type == "subject_normal" and text.strip() != letters_section_current_letter:
             letters_section_current_letter = text.strip()
             data += "\\stamletter{%s}" % text[0]
             data = add_line_to_data(data, "\\%s{%s}" % (latex_type(type), text[1:]))
@@ -336,14 +336,14 @@ def add_to_latex(para, word_doc_footnotes):
 
 def handle_moto(data, text, type):
     global next_define_is_moto, next_define_ends_moto, moto_line_is_left, moto_line_was_left
-    if latex_type(type) == u"ערך" and next_define_is_moto:
+    if latex_type(type) == "ערך" and next_define_is_moto:
         # starting Moto
         data += begin_moto()
         next_define_is_moto = False
         next_define_ends_moto = True
         moto_line_is_left = False
         moto_line_was_left = False
-    elif (('heading' in type and text.strip()) or latex_type(type) == u"ערך") and next_define_ends_moto:
+    elif (('heading' in type and text.strip()) or latex_type(type) == "ערך") and next_define_ends_moto:
         # ending Moto
         data += end_moto()
         next_define_is_moto = False
@@ -379,9 +379,9 @@ def run_xelatex(f):
 
 def close_latex():
     global latex_data
-    latex_data = latex_data.replace('"',u"״")
-    latex_data = latex_data.replace("'",u"׳")
-    latex_data = latex_data.replace(u"־", "\\hebrewmakaf ")
+    latex_data = latex_data.replace('"',"״")
+    latex_data = latex_data.replace("'","׳")
+    latex_data = latex_data.replace("־", "\\hebrewmakaf ")
 
 
     os.chdir("tex")

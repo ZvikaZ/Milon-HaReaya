@@ -77,7 +77,7 @@ import re
 import zipfile
 import os
 import shutil
-import HTMLParser
+import html.parser
 import json
 import copy
 
@@ -86,11 +86,11 @@ import upload_google_play
 import htmler
 import texer
 
-html_parser = HTMLParser.HTMLParser()
+html_parser = html.parser.HTMLParser()
 
 # process = "APK"
-process = "Full"
-# process = "ZIP"
+# process = "Full"
+process = "ZIP"
 
 if process == "Full":
     doc_file_name = 'dict.docx'
@@ -99,15 +99,15 @@ if process == "Full":
     create_latex = False
 else:
     # doc_file_name = 'dict_few.docx'
-    # doc_file_name = 'dict_check.docx'
-    doc_file_name = 'dict_half.docx'
+    doc_file_name = 'dict_check.docx'
+    # doc_file_name = 'dict_half.docx'
     # doc_file_name = 'dict.docx'
 
-    # create_html = True
-    # create_latex = False
+    create_html = True
+    create_latex = False
 
-    create_html = False
-    create_latex = True
+    #create_html = False
+    #create_latex = True
 
 
 
@@ -255,10 +255,10 @@ def regular(type, text):
             tags.attr(cls="ptr")
     else:
         if "\n" in text:
-            print "New:", text
-        if u"°" in text:
-            href = re.sub(u"°", "", text)
-            href = re.sub(u"־", " ", href)
+            print("New:", text)
+        if "°" in text:
+            href = re.sub("°", "", text)
+            href = re.sub("־", " ", href)
             with tags.span(tags.a(text, href="#"+href)):
                 tags.attr(cls=type)
         else:
@@ -271,7 +271,7 @@ def is_footnote_recurrence(run, type):
         run.element.rPr.vertAlign is not None \
         and type != 'footnote' \
         and run.text.strip().isdigit() \
-        and run.element.rPr.vertAlign.values()[0] == 'superscript'
+        and list(run.element.rPr.vertAlign.values())[0] == 'superscript'
 
 def is_subject(para, i, next=False):
     type, text = para[i]
@@ -321,7 +321,7 @@ def analyze_and_fix(para):
     new_para = []
     for (raw_type, text_raw) in para:
         text = text_raw.replace("@", "")
-        if text == u"◊":
+        if text == "◊":
             if prev_text == "":
                 # new paragraph with meuayn
                 type = "centered_meuyan"
@@ -334,7 +334,7 @@ def analyze_and_fix(para):
         if prev_type:
             if (type == prev_type) or \
                     (is_subject_small_or_sub_subject(type) and is_subject_small_or_sub_subject(prev_type)) or \
-                    (prev_type != "footnote" and prev_type != "footnote_recurrence" and text.strip() in ("", u"°", u"־", ",")):
+                    (prev_type != "footnote" and prev_type != "footnote_recurrence" and text.strip() in ("", "°", "־", ",")):
                 prev_text += text
             elif prev_type == "centered_meuyan" and type == "s02Symbol":
                 prev_text += text
@@ -407,10 +407,10 @@ def analyze_and_fix(para):
     # make links from circles - °
     para = new_para
     new_para = []
-    pattern = re.compile(u"([\S־]*\S+°)", re.UNICODE)
+    pattern = re.compile("([\S־]*\S+°)", re.UNICODE)
     for (type, text) in para:
         # don't do this for subjects - it complicates their own link name...
-        if u"°" in text and 'subject' not in type:
+        if "°" in text and 'subject' not in type:
             for (chunk) in pattern.split(text):
                 new_para.append((type, chunk))
         else:
@@ -481,16 +481,16 @@ def analyze_and_fix(para):
                     pass
                 else:
                     print("Unexpected type in centered meuyan")
-                    print type, text
+                    print(type, text)
                     assert False
 
 
 
-    with open('output/debug_fix.txt', 'a') as debug_file:
+    with open('output/debug_fix.txt', 'a', encoding='utf-8') as debug_file:
         debug_file.write("---------------\n")
         for (type, text) in new_para:
             s = "%s:%s.\n" % (type, text)
-            debug_file.write(s.encode('utf8') + ' ')
+            debug_file.write(s + ' ')
 
     # fix
     return new_para
@@ -520,7 +520,7 @@ def update_href_no_link(child):
 
 def fix_links(html_docs_l):
     # fix outbound links
-    print "Fixing links"
+    print("Fixing links")
     for (doc) in html_docs_l:
         for (child) in doc.body.children[0].children:
             if 'definition' in child.attributes.get('class', ()):
@@ -540,7 +540,7 @@ def fix_links(html_docs_l):
                         if update_values_for_href(child, href):
                             updated = True
                         else:
-                            if href[0] in (u"ה", u"ו", u"ש", u"ב", u"כ", u"ל", u"מ"):
+                            if href[0] in ("ה", "ו", "ש", "ב", "כ", "ל", "מ"):
                                 updated = update_values_for_href(child, href[1:])
                         if not updated:
                             # failed to update - it's not a real link...
@@ -548,15 +548,15 @@ def fix_links(html_docs_l):
 
                     except Exception as e:
                         pass
-                        print e, "Exception of HREF update", href
+                        print(e, "Exception of HREF update", href)
                         #TODO - investigate why it happens? (it's a single corner case, I think)
 
 
     def sorter(html_doc):
-        if html_doc.name in [u"ערכים כלליים",]:
+        if html_doc.name in ["ערכים כלליים",]:
             return "FIRST"
-        if html_doc.name in [u"נספחות",]:
-            return u"תתתתתתתתתת"    #last
+        if html_doc.name in ["נספחות",]:
+            return "תתתתתתתתתת"    #last
         else:
             return html_doc.name
 
@@ -570,15 +570,15 @@ def fix_links(html_docs_l):
 
         with content_menu:
             with tags.li():
-                tags.a(u"אודות", href="index.html")
+                tags.a("אודות", href="index.html")
             with tags.li():
-                tags.a(u"הקדמות", href="opening_intros.html")
+                tags.a("הקדמות", href="opening_intros.html")
             with tags.li():
-                tags.a(u"הסכמות", href="opening_haskamot.html")
+                tags.a("הסכמות", href="opening_haskamot.html")
             with tags.li():
-                tags.a(u"קיצורים", href="opening_abbrev.html")
+                tags.a("קיצורים", href="opening_abbrev.html")
             with tags.li():
-                tags.a(u"סימנים", href="opening_signs.html")
+                tags.a("סימנים", href="opening_signs.html")
             # if you add more entries here, please update add_menu_to_apriory_htmls(..)
             with tags.li():
                 tags.attr(cls="divider")
@@ -621,7 +621,7 @@ def add_to_output(html_doc, para):
                 # tags.p()
                 # tags.p()
                 heading = sizes.get_heading_type(size_kind)
-                print type, text
+                print(type, text)
                 heading(text)
             elif type == "new_line":
                 new_lines_in_raw += 1
@@ -649,15 +649,15 @@ def add_to_output(html_doc, para):
 
 def fix_sz_cs(run, type):
     result = type
-    szCs = run.element.rPr.szCs.attrib.values()[0]
+    szCs = list(run.element.rPr.szCs.attrib.values())[0]
 
     try:
-        eastAsia = 'eastAsia' in run.element.rPr.rFonts.attrib.values()
+        eastAsia = 'eastAsia' in list(run.element.rPr.rFonts.attrib.values())
     except:
         eastAsia = False
 
     try:
-        hint_cs = 'cs' in run.element.rPr.rFonts.attrib.values()
+        hint_cs = 'cs' in list(run.element.rPr.rFonts.attrib.values())
     except:
         hint_cs = False
 
@@ -667,7 +667,7 @@ def fix_sz_cs(run, type):
             # s = "!Fixed!szCs=%s:%s!bCs=%s!" % (szCs, run.text, run.element.rPr.bCs.attrib.values()[0])
             s = "!Fixed!szCs=%s:%s!" % (szCs, run.text)
             # print s
-            debug_file.write(s.encode('utf8') + ' ')
+            debug_file.write(s + ' ')
             # return 'definition_normal'
             return 'subject_small'
     elif szCs == "22" and type == 'definition_normal':
@@ -700,7 +700,7 @@ def fix_sz_cs(run, type):
     elif szCs == "26" and type == 'subject_normal':
         ## wild guess, might break everything :-(
         ## be careful here...
-        print "ZZ: Fixed to 'section_title_secondary': ", run.text.strip()
+        print("ZZ: Fixed to 'section_title_secondary': ", run.text.strip())
         return 'section_title_secondary'
     elif run.text.strip():
         # print "fix_sz_cs::Unsupported value: ", szCs, "type:", type, ". At: ", run.text    #TODO: clean this!!!
@@ -712,14 +712,14 @@ def fix_sz_cs(run, type):
 def fix_b_cs(run, type):
     result = type
     try:
-        bCs = run.element.rPr.bCs.attrib.values()[0]
+        bCs = list(run.element.rPr.bCs.attrib.values())[0]
         try:
             hint_cs = run.element.rPr.rFonts.attrib.get('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hint', None) == 'cs'
         except:
             hint_cs = False
 
         try:
-            szCs = run.element.rPr.szCs.attrib.values()[0]
+            szCs = list(run.element.rPr.szCs.attrib.values())[0]
         except:
             szCs = None
 
@@ -742,7 +742,7 @@ def fix_b_cs(run, type):
 
 def fix_misc_attrib(run, type):
     try:
-        eastAsia = run.element.rPr.rFonts.attrib.values()[0] == 'eastAsia'
+        eastAsia = list(run.element.rPr.rFonts.attrib.values())[0] == 'eastAsia'
         if eastAsia:
             if type == "source_normal":
                 return "definition_small"
@@ -770,7 +770,7 @@ def fix_unknown(run):
     elif run.font.size == 88900 and run.style.style_id == 's04':
         return 'source_light'
     else:
-        print "UNKNOWN: ", run.text
+        print("UNKNOWN: ", run.text)
         return 'unknown_light'
 
 
@@ -799,7 +799,7 @@ def fix_DefaultParagraphFont(run):
             return 'definition_normal'
         else:
             if run.text.strip() not in ("-", "(", ")", "[", "]", "'", '"', ","):
-                print "AH!", ":",run.text.strip(),".", run.font.size, run.bold, run.font.cs_bold
+                print("AH!", ":",run.text.strip(),".", run.font.size, run.bold, run.font.cs_bold)
                 assert False
             else:
                 return 'DefaultParagraphFont'
@@ -828,22 +828,22 @@ def bold_type(s, type, run):
         # TODO - verify that it's always OK
         return 'sub-subject_light'
     elif type == 'source_normal':
-        print "Strange 'source_normal' bold!"
+        print("Strange 'source_normal' bold!")
     elif 'subject' in type or 'heading' in type:
         return type
-    elif run.text.strip() in (u"◊", "-", ""):
+    elif run.text.strip() in ("◊", "-", ""):
         return type
     else:
         if type not in temp_l:
-            print "Unexpected bold!", type
-            print s, type, run.text, run.font.size
+            print("Unexpected bold!", type)
+            print(s, type, run.text, run.font.size)
             assert False
             temp_l.append(type)
         return type
 
 
 def open_html_doc(name, letter=None):
-    html_doc = dominate.document(title=u"מילון הראיה")
+    html_doc = dominate.document(title="מילון הראיה")
     html_doc['dir'] = 'rtl'
     with html_doc.head:
         with tags.meta():
@@ -904,7 +904,7 @@ def open_html_doc(name, letter=None):
 
 
 def clean_name(s):
-    s = re.sub(u"־", " ", s, flags=re.UNICODE)
+    s = re.sub("־", " ", s, flags=re.UNICODE)
     return re.sub(r"[^\w ]", "", s, flags=re.UNICODE)
 
 
@@ -927,19 +927,19 @@ def close_html_doc(html_doc):
         tags.comment("search_placeholder")
 
     place_holder = "<!--search_placeholder-->"
-    with open("input_web/stub_search.html", 'r') as file:
+    with open("input_web/stub_search.html", 'r', encoding='utf-8') as file:
         search_html = file.read()
 
     html_doc_name = html_doc.index
     name = "debug_%s.html" % html_doc_name
-    with open("output/" + name, 'w') as f:
-        f.write(html_doc.render(pretty=True).encode('utf8'))
+    with open("output/" + name, 'w', encoding='utf-8') as f:
+        f.write(html_doc.render(pretty=True))
     replace_in_file("output/" + name, place_holder, search_html)
 
     name = "%s.html" % html_doc_name
-    with open("output/" + name, 'w') as f:
-        f.write(html_doc.render(pretty=False).encode('utf8'))
-        print "Created ", name
+    with open("output/" + name, 'w', encoding='utf-8') as f:
+        f.write(html_doc.render(pretty=False))
+        print("Created ", name)
     replace_in_file("output/" + name, place_holder, search_html)
 
 
@@ -960,7 +960,7 @@ def is_need_new_section(para, prev_name):
                 return text.strip()
             else:
                 # the previous, and this, are headings - unite them
-                if prev_name != u"מדורים":
+                if prev_name != "מדורים":
                     result = prev_name + " " + text.strip()
                 else:
                     # in the special case of 'Section' heading - we don't need it
@@ -973,8 +973,8 @@ def is_need_new_section(para, prev_name):
     heading_back_to_back = False
 
 def fix_section_name(name):
-    if name == u"מילון הראיה":
-        return u"ערכים כלליים"
+    if name == "מילון הראיה":
+        return "ערכים כלליים"
     else:
         return name
 
@@ -992,7 +992,7 @@ def get_active_html_doc(para):
                 html_docs_l.append(open_html_doc(op, letter=new))
             else:
                 assert op == 'UPDATE_NAME'
-                print "Updating ", new
+                print("Updating ", new)
                 html_docs_l[-1].name = new
                 html_docs_l[-1].section = new
         else:
@@ -1055,7 +1055,7 @@ os.chdir("../")
 
 texer.open_latex()
 # Here starts the action!
-with open('output/debug.txt', 'w') as debug_file:
+with open('output/debug.txt', 'w', encoding='utf-8') as debug_file:
     for (paragraph, footnote_paragraph) in zip(word_doc.paragraphs, word_doc_footnotes.paragraphs):
         if paragraph.text.strip():
             # print "Paragraph:", paragraph.text, "$"
@@ -1064,13 +1064,13 @@ with open('output/debug.txt', 'w') as debug_file:
             for (run, footnote_run) in zip(paragraph.runs, footnote_paragraph.runs):
                 s = "!%s.%s:%s$" % (run.style.style_id, styles.get(run_style_id(run), run_style_id(run)), run.text)
                 # print "!%s:%s$" % (styles.get(run.style.style_id, run.style.style_id), run.text)
-                debug_file.write(s.encode('utf8') + ' ')
+                debug_file.write(s + ' ')
                 type = styles.get(run_style_id(run), "unknown")
 
                 if run.font.size and run.text.strip():
                     size_kind = sizes.match(run.font.size)
                     if size_kind == 'unknown':
-                        print "!%s. Size: %d, Bool: %s, %s:%s$" % (size_kind, run.font.size, run.font.cs_bold, type, run.text)
+                        print("!%s. Size: %d, Bool: %s, %s:%s$" % (size_kind, run.font.size, run.font.cs_bold, type, run.text))
                     if size_kind not in ('normal', 'unknown'):
                         type = size_kind
 
@@ -1117,10 +1117,10 @@ with open('output/debug.txt', 'w') as debug_file:
                 if type == "unknown":
                     if run_style_id(run) not in unknown_list:
                         unknown_list.append(run_style_id(run))
-                        print paragraph.text
+                        print(paragraph.text)
                         s = "\nMissing: !%s:%s$\n\n" % (run_style_id(run), run.text)
-                        print s
-                        debug_file.write(s.encode('utf8') + ' ')
+                        print(s)
+                        debug_file.write(s + ' ')
 
 
                 try:
@@ -1139,7 +1139,7 @@ with open('output/debug.txt', 'w') as debug_file:
                                 para.append(('footnote', str(note.id)))
 
                 except:
-                    print "Failed footnote_references"
+                    print("Failed footnote_references")
 
 
             para.append(("new_line", "\n"))
@@ -1164,12 +1164,12 @@ with open('output/debug.txt', 'w') as debug_file:
                 pass
 
 def replace_in_file(file_name, orig_str, new_str):
-    with open(file_name, 'r') as file:
+    with open(file_name, 'r', encoding='utf-8') as file:
         filedata = file.read()
 
     filedata = filedata.replace(orig_str, new_str)
 
-    with open(file_name, 'w') as file:
+    with open(file_name, 'w', encoding='utf-8') as file:
         file.write(filedata)
 
 
@@ -1182,9 +1182,9 @@ def add_menu_to_apriory_htmls(html_docs_l):
 
     place_holder = "<!--menu_bar-->"
 
-    menu_bar_html = menu_bar.render(pretty=False).encode('utf8')
+    menu_bar_html = menu_bar.render(pretty=False)
 
-    with open("input_web/stub_search.html", 'r') as file:
+    with open("input_web/stub_search.html", 'r', encoding='utf-8') as file:
         menu_bar_html += file.read()
 
     replace_in_file('output/search.html', place_holder, menu_bar_html)
@@ -1197,8 +1197,8 @@ def add_menu_to_apriory_htmls(html_docs_l):
             "opening_signs.html",
     )):
         content[index].attributes['class'] = 'active'
-        menu_bar_html = menu_bar.render(pretty=False).encode('utf8')
-        with open("input_web/stub_search.html", 'r') as file:
+        menu_bar_html = menu_bar.render(pretty=False)
+        with open("input_web/stub_search.html", 'r', encoding='utf-8') as file:
             menu_bar_html += file.read()
 
         replace_in_file('output/%s' % filename, place_holder, menu_bar_html)
@@ -1215,14 +1215,14 @@ if create_html:
 if create_latex:
     texer.close_latex()
 
-with open('output/subjects_db.json', 'wb') as fp:
-    s = json.dumps(subjects_db, encoding='utf8')
+with open('output/subjects_db.json', 'w', encoding='utf-8') as fp:
+    s = json.dumps(subjects_db)
     fp.write("data = " + s)
 
 
 if unknown_list:
-    print "\n\nMissing:"
-    print unknown_list
+    print("\n\nMissing:")
+    print(unknown_list)
 
 
 def create_zip():
@@ -1235,7 +1235,7 @@ def create_zip():
             for filename in files:
                 if not 'debug' in filename and not '.apk' in filename:
                     zf.write(os.path.join(dirname, filename))
-        print "Created milon.zip"
+        print("Created milon.zip")
     os.chdir("..")
     shutil.move("milon.zip", "output/")
 
@@ -1253,8 +1253,8 @@ try:
     version_code = playAPISession.get_last_apk() + 1
     replace_in_file('output/config.xml', 'UPDATED_BY_SCRIPT_VERSION_CODE', str(version_code))
 except Exception as e:
-    print "Couldn't connect to Google Play - .apk version not updated!"
-    print e
+    print("Couldn't connect to Google Play - .apk version not updated!")
+    print(e)
 
 create_zip()
 
@@ -1278,5 +1278,5 @@ if process != "ZIP":
             playAPISession.main(["output/milon.dual.apk"])
 
     except Exception as e:
-        print "Build process failed!"
-        print e
+        print("Build process failed!")
+        print(e)

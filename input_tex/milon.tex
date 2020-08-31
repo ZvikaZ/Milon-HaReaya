@@ -60,11 +60,13 @@
 \setdefaultlanguage{hebrew}	
 \rightfootnoterule   			% move footnote ruler to the right, until https://github.com/reutenauer/polyglossia/issues/5 will be fixed
 
-% Patch received from Markus Kohm‏ by mail, on 15.1.19 - to fix footnote recurrence problem - he doesn't promise it's 100% good...
-\usepackage{xpatch}
-\makeatletter
-\xpatchcmd{\hebrew@globalnumbers}{\protect}{}{}{\PAtchFailed}
-\makeatother
+% 31.8.20 - this patch doesn't compile with newer MikTeX, commenting it
+% TODO: check if it's still required, or maybe the problem has been fixed
+%D % Patch received from Markus Kohm‏ by mail, on 15.1.19 - to fix footnote recurrence problem - he doesn't promise it's 100% good...
+%D \usepackage{xpatch}
+%D \makeatletter
+%D \xpatchcmd{\hebrew@globalnumbers}{\protect}{}{}{\PAtchFailed}
+%D \makeatother
 
 
 %%%%%%%%%%%    CHAPTERS/PARTS - Koma script style    %%%%%%%%%%%

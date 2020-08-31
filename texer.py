@@ -374,7 +374,7 @@ def run_xelatex(f):
     try:
         subprocess.call(['xelatex', f])
     except:
-        subprocess.call([r'C:\Users\zharamax\AppData\Local\Programs\MiKTeX 2.9\miktex\bin\x64\xelatex', f])
+        subprocess.call([r'C:\Users\Zvika\AppData\Local\Programs\MiKTeX\miktex\bin\x64\xelatex', f])
 
 
 def close_latex():
@@ -382,7 +382,6 @@ def close_latex():
     latex_data = latex_data.replace('"',"״")
     latex_data = latex_data.replace("'","׳")
     latex_data = latex_data.replace("־", "\\hebrewmakaf ")
-
 
     os.chdir("tex")
 

@@ -101,10 +101,10 @@ if process == "Full":
     create_latex = False
 else:
     # doc_file_name = 'dict_few.docx'
-    doc_file_name = 'dict_check.docx'
+    # doc_file_name = 'dict_check.docx'
     # doc_file_name = 'dict_short.docx'
     # doc_file_name = 'dict_half.docx'
-    # doc_file_name = 'dict.docx'
+    doc_file_name = 'dict.docx'
 
     create_html = True
     create_latex = False
@@ -698,6 +698,8 @@ def fix_sz_cs(run, type):
         return 'sub-subject_small'
     elif szCs == "18" and type == 'subject_normal':
         return 'definition_small'
+    elif szCs == "18" and type == 'source_normal':
+        return 'definition_small'
     elif szCs == "20" and type == 'unknown_light':
         return 'definition_normal'
     elif szCs == "26" and type == 'subject_normal':
@@ -706,7 +708,7 @@ def fix_sz_cs(run, type):
         print("ZZ: Fixed to 'section_title_secondary': ", run.text.strip())
         return 'section_title_secondary'
     elif run.text.strip():
-        # print "fix_sz_cs::Unsupported value: ", szCs, "type:", type, ". At: ", run.text    #TODO: clean this!!!
+        #print("fix_sz_cs::Unsupported value: ", szCs, "type:", type, ". At: ", run.text)    #TODO: clean this!!!
         pass
     else:
         pass
@@ -737,8 +739,8 @@ def fix_b_cs(run, type):
                 if type in ('subject_small', 'sub-subject_normal'):
                     return 'definition_normal'
             else:
+                #print("Unknown b_cs=0")
                 pass
-                # print "Unknown b_cs=0"
     except:
         pass
     return result
@@ -804,8 +806,8 @@ def fix_DefaultParagraphFont(run):
             if run.text.strip() not in ("-", "(", ")", "[", "]", "'", '"', ","):
                 print("AH!", ":",run.text.strip(),".", run.font.size, run.bold, run.font.cs_bold)
                 assert False
-            else:
-                return 'DefaultParagraphFont'
+            #else:
+            #    return 'DefaultParagraphFont'
     else:
         return 'DefaultParagraphFont'
 

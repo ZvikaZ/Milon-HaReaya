@@ -467,7 +467,7 @@ subject_normal:גשמים.
 .
  ---------------
 s02Symbol:◊ .
- sub-subject_normal:תאר מלך.
+ fake_sub-subject_normal:תאר מלך.
  definition_normal: ראוי להאמר מצד הכרתינו את .
  definition_normal:דעת־האלהים°.
  definition_normal: מצד הנבראים כפי ערכינו .
@@ -485,8 +485,8 @@ definition_normal:ע"ע אור עליון. ע"ע אור ד'..
 .
  ---------------
 subject_normal:תורה.
- footnote_recurrence:14 .
- definition_normal:- .
+ footnote_recurrence:14.
+ definition_normal: - .
  fake_subject_small:בעצמיות מהות הפנימית, הצורתית של התורה.
  footnote:18.
  definition_normal: - עצמיות טבע נשמתם של ישראל .
@@ -562,9 +562,7 @@ subject_normal:אור חַי־העולמים° .
  new_line:
 .
  ---------------
-s02Symbol:◊.
- new_line:
-.
+centered_meuyan:◊.
  ---------------
 subject_normal:אור הגלוי .
  definition_normal:- .

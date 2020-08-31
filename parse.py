@@ -101,16 +101,16 @@ if process == "Full":
     create_latex = False
 else:
     # doc_file_name = 'dict_few.docx'
-    # doc_file_name = 'dict_check.docx'
-    doc_file_name = 'dict_short.docx'
+    doc_file_name = 'dict_check.docx'
+    # doc_file_name = 'dict_short.docx'
     # doc_file_name = 'dict_half.docx'
     # doc_file_name = 'dict.docx'
 
-    #create_html = True
-    #create_latex = False
+    create_html = True
+    create_latex = False
 
-    create_html = False
-    create_latex = True
+    #create_html = False
+    #create_latex = True
 
 
 

@@ -7,12 +7,12 @@
 
 
     <!--minimal version required by Google, due to security considerations-->
-    <preference name="android-minSdkVersion" value="26"/>
+    <preference name="android-minSdkVersion" value="28"/>
 
     <!-- 18.11.18 - since I removed CrossWalk (due to compilation problem, and seems to be obsolete) - I'm not sure I need this: -->
     <!--<plugin name="cordova-build-architecture" spec="https://github.com/MBuchalik/cordova-build-architecture.git#v1.0.1" source="git" />-->
 
-    <preference name="android-versionCode" value="345" />
+    <preference name="android-versionCode" value="348" />
 
     <!--UPDATED_BY_SCRIPT preference name="buildArchitecture" value="x86" /UPDATED_BY_SCRIPT-->
 
@@ -21,10 +21,13 @@
     <!-- versionCode is optional and Android only -->
     <!--gap:plugin name="cordova-plugin-appversion" source="npm"/-->
 
+    <!-- 26.8.20 - commented the following, because of transition from PhoneGap to Monaca
+              TODO: investigate if it's needed, and find solution -->
     <!-- This allows clicking on mails addresses to work -->
-    <gap:plugin name="cordova-plugin-whitelist" source="npm" />
+    <!-- gap:plugin name="cordova-plugin-whitelist" source="npm" />
     <allow-intent href="mailto:*" />
     <access origin="mailto:*" launch-external="yes"/>
+    -->
 
     <name>מילון הראיה</name>
 	

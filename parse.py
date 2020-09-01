@@ -101,10 +101,10 @@ if process == "Full":
     create_latex = False
 else:
     # doc_file_name = 'dict_few.docx'
-    # doc_file_name = 'dict_check.docx'
+    doc_file_name = 'dict_check.docx'
     # doc_file_name = 'dict_short.docx'
     # doc_file_name = 'dict_half.docx'
-    doc_file_name = 'dict.docx'
+    # doc_file_name = 'dict.docx'
 
     create_html = True
     create_latex = False
@@ -141,7 +141,7 @@ styles = {
     's03_bold': 'sub-subject_small',    #?Fixing appendix  ?
     's02': 'definition_normal',
     's02_bold': 'definition_normal',     #?Fixing appendix
-    's03': 'source_normal',
+    's03': 'definition_small',
     'Heading3Char': 'definition_normal',
     '1': 'definition_normal',   #?
     'FootnoteTextChar1': 'definition_normal',   #?
@@ -387,23 +387,17 @@ def analyze_and_fix(para):
         else:
             new_para.append((type, text))
 
-    # fix wrong 'source's
+    # fix missing 'source's
     para = new_para
     new_para = []
     source_pattern = re.compile(r"(\s*\[.*\]\s*)")
     for (type, text) in para:
-        if type == 'source_normal':
-            small = False
-            for (chunk) in source_pattern.split(text):
-                if source_pattern.match(chunk):
-                    if small:
-                        new_para.append(('source_small', chunk))
-                    else:
-                        new_para.append((type, chunk))
-                elif chunk != "":
-                    new_para.append(('definition_small', chunk))
-                    small = True
-                # re.split(r"(\[.*\])", s)
+        if source_pattern.match(text) and not 'source' in type:
+            if type == 'definition_small':
+                new_para.append(('source_normal', text))
+            else:
+                print(type, text)
+                assert False
         else:
             new_para.append((type, text))
 
@@ -679,10 +673,12 @@ def fix_sz_cs(run, type):
         return 'subject_normal'
     elif szCs == "14" and type == 'definition_light':
         return 'source_light'
-    elif szCs == "16" and type == 'definition_small':
+    elif szCs == "16" and type == 'definition_small' and run.text.replace(',','').replace(':','').strip().isdigit():
+        return 'definition_small'		# keep original type
+    elif szCs == "16" and type == 'definition_small': # and hint_cs:
         return 'source_small'
-    elif szCs == "14" and type == 'definition_small':
-        return 'source_small'     ####?????? - not sure
+    elif szCs == "14" and type == 'definition_small' and hint_cs:   # or maybe my 'isdigit'
+        return 'source_small'
     elif szCs == "16" and type == 'source_normal' and eastAsia:
         return 'source_small'
     elif szCs == "16" and type == 'source_normal' and hint_cs:
@@ -690,7 +686,7 @@ def fix_sz_cs(run, type):
     elif szCs == "14" and type == 'source_normal' and hint_cs:
         return 'source_small'
     elif szCs == "18" and type == 'definition_normal':
-        return 'source_normal'
+        return 'definition_small'
     elif szCs == "18" and type == 'sub-subject_normal':
         # return 'sub-subject_normal'             #20.11.16 - Trying to fix Appendix' bold and fonts
         return 'sub-subject_small'

@@ -393,11 +393,14 @@ def analyze_and_fix(para):
     source_pattern = re.compile(r"(\s*\[.*\]\s*)")
     for (type, text) in para:
         if source_pattern.match(text) and not 'source' in type:
-            if type == 'definition_small':
+            if type in ['definition_small', 'fake_sub-subject_small']:
                 new_para.append(('source_normal', text))
+            elif type == 'definition_normal':
+                new_para.append(('source_smalll', text))
             else:
+                print("Fix missing 'source's, unknown type: ", end='')
                 print(type, text)
-                assert False
+                new_para.append((type, text))
         else:
             new_para.append((type, text))
 
@@ -1040,6 +1043,8 @@ for (f) in (
     'search.html',
 ):
     shutil.copyfile(f, os.path.join("../output/www/", f))
+
+shutil.copytree('res', '../output/res')
 
 for (d) in (
     'bootstrap-3.3.6-dist',

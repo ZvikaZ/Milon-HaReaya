@@ -155,6 +155,6 @@ if __name__ == '__main__':
     playAPISession = PlayAPISession()
     version_code = playAPISession.get_last_apk() + 1
     print(version_code)
-    playAPISession.main(["output/milon.dual.apk"])
+    playAPISession.main(["output/milon.apk"])
     # playAPISession.main(["output/milon.x86.apk", "output/milon.arm.apk"])
 

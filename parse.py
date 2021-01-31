@@ -111,10 +111,10 @@ if process == "Full":
     create_latex = False
 else:
     # doc_file_name = 'dict_few.docx'
-    doc_file_name = 'dict_check.docx'
+    # doc_file_name = 'dict_check.docx'
     # doc_file_name = 'dict_short.docx'
     # doc_file_name = 'dict_half.docx'
-    # doc_file_name = 'dict.docx'
+    doc_file_name = 'dict.docx'
 
     create_html = True
     create_latex = False
@@ -797,6 +797,8 @@ def fix_DefaultParagraphFont(run):
             return 'definition_normal'
         elif run.font.size == 139700 and run.font.cs_bold:
             return 'subject_normal'
+        elif run.font.size == 139700 and not run.font.cs_bold:
+            return 'definition_normal'
         elif run.font.size == 127000:
             return 'definition_normal'
         elif run.font.size == 114300 and run.font.cs_bold:

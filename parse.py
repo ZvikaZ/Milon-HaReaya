@@ -61,6 +61,12 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # TODO: iphone?
 # TODO: GUI
 
+# reminder:
+# dropped PhonaGap for Monaca:
+# https://console.monaca.mobi/dashboard
+# (maybe change Rimon...)
+
+
 # remember:
 # http://stackoverflow.com/questions/10752055/cross-origin-requests-are-only-supported-for-http-error-when-loading-a-local
 
@@ -68,9 +74,13 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # (see https://github.com/python-openxml/python-docx/issues/248 )
 # in the meanwhile, I've hacked it locally
 import sys
+
+import docx as docx
+
 sys.path.insert(0, r'C:\Users\Zvika\PycharmProjects\python-docx')
 sys.path.insert(0, r'C:\Users\sdaudi\Github\python-docx')
 
+## pip install python-docx
 import docx
 import docx_fork_ludoo
 import dominate
@@ -91,7 +101,7 @@ import texer
 html_parser = html.parser.HTMLParser()
 
 #process = "APK"
-#process = "Full"
+process = "Full"
 process = "ZIP"
 
 if process == "Full":
@@ -109,8 +119,8 @@ else:
     create_html = True
     create_latex = False
 
-    #create_html = False
-    #create_latex = True
+    # create_html = False
+    # create_latex = True
 
 
 
@@ -1006,22 +1016,20 @@ def get_active_html_doc(para):
 
 
 
-
-
 try:
     shutil.rmtree("output")
-except:
+except FileNotFoundError:
     pass
 
 try:
     shutil.rmtree("tex")
-except:
+except FileNotFoundError:
     pass
 
-os.mkdir("tex")
 os.mkdir("output")
 os.mkdir("output/www")
 os.mkdir("output/www/html_demos-gh-pages")
+os.mkdir("tex")
 
 os.chdir("input_web")
 for (f) in (

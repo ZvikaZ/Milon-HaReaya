@@ -101,7 +101,7 @@ import texer
 html_parser = html.parser.HTMLParser()
 
 #process = "APK"
-process = "Full"
+# process = "Full"
 process = "ZIP"
 
 if process == "Full":
@@ -111,10 +111,10 @@ if process == "Full":
     create_latex = False
 else:
     # doc_file_name = 'dict_few.docx'
-    # doc_file_name = 'dict_check.docx'
+    doc_file_name = 'dict_check.docx'
     # doc_file_name = 'dict_short.docx'
     # doc_file_name = 'dict_half.docx'
-    doc_file_name = 'dict.docx'
+    # doc_file_name = 'dict.docx'
 
     create_html = True
     create_latex = False
@@ -400,17 +400,22 @@ def analyze_and_fix(para):
     # fix missing 'source's
     para = new_para
     new_para = []
-    source_pattern = re.compile(r"(\s*\[.*\]\s*)")
+    source_pattern = re.compile(r"(.*)(\[.*\])(.*)")
     for (type, text) in para:
         if source_pattern.match(text) and not 'source' in type:
+            g = source_pattern.match(text)
+            new_para.append((type, g.group(1)))
             if type in ['definition_small', 'fake_sub-subject_small']:
-                new_para.append(('source_normal', text))
+                new_para.append(('source_small', g.group(2)))
             elif type == 'definition_normal':
-                new_para.append(('source_smalll', text))
+                new_para.append(('source_small', g.group(2)))
+            elif type == 'definition_light':
+                new_para.append(('source_light', g.group(2)))
             else:
                 print("Fix missing 'source's, unknown type: ", end='')
-                print(type, text)
-                new_para.append((type, text))
+                print(type, g.group(2))
+                new_para.append((type, g.group(2)))
+            new_para.append((type, g.group(3)))
         else:
             new_para.append((type, text))
 

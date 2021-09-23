@@ -397,7 +397,7 @@ def analyze_and_fix(para):
     # fix missing 'source's
     para = new_para
     new_para = []
-    source_pattern = re.compile(r"(.*)(\[.*\])(.*)")
+    source_pattern = re.compile(r"(.*)(\[.*\])(\..*)")
     for (type, text) in para:
         if source_pattern.match(text) and not 'source' in type:
             g = source_pattern.match(text)

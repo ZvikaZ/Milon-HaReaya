@@ -71,7 +71,9 @@ subject_normal:לי .
  definition_normal:, .
  definition_normal:לאור־פני־מלך־חיים°.
  definition_normal: .
- source_normal:[ע"ר א קכט]..
+ definition_small:.
+ source_normal:[ע"ר א קכט].
+ definition_small:..
  new_line:
 .
  ---------------
@@ -105,11 +107,15 @@ subject_normal:עזי פנים.
  definition_normal: .
  definition_normal:וקדושה°.
  definition_normal:, ומכל עול קדוש וראוי .
- source_normal:[ע"ר א פ־פא, מ"ר 84]. .
+ definition_small:.
+ source_normal:[ע"ר א פ־פא, מ"ר 84].
+ definition_small:. .
  new_line:
 .
  definition_normal:מנגדי התורה, בכל דור ודור .
- source_normal:[ה' ריט]. .
+ definition_small:.
+ source_normal:[ה' ריט].
+ definition_small:. .
  new_line:
 .
  new_line:
@@ -147,7 +153,9 @@ subject_normal:עץ החיים .
  definition_normal:, בה) היה ראוי לדעת רק את הטוב. הסכמת הדעת שראוי לדבק בהדרכה הטבעית.
  footnote:5.
  definition_normal: ולא לעורר יותר מדאי את תשוקותיו .
- source_normal:[עפ"י ל"ה 40]..
+ definition_small:.
+ source_normal:[עפ"י ל"ה 40].
+ definition_small:..
  new_line:
 .
  new_line:
@@ -167,7 +175,9 @@ subject_normal:אמונה .
  definition_normal:, השכל המקודש שהוא יסוד .
  definition_normal:החכמה°.
  definition_normal: הקדומה, שמכוחו האמונה נאצלת .
- source_normal:[עפ"י א"א 128, שם 17, (77)]. .
+ definition_small:.
+ source_normal:[עפ"י א"א 128, שם 17, (77)].
+ definition_small:. .
  new_line:
 .
  new_line:
@@ -198,7 +208,9 @@ subject_normal:תֹּם .
  definition_normal:, יושר הלב, יושר הרגש, יושר .
  definition_normal:הרוח°.
  definition_normal:, יושר הטבע, יושר הבשר, יושר ההופעה, יושר ההקשבה .
- source_normal:[א' כט]..
+ definition_small:.
+ source_normal:[א' כט].
+ definition_small:..
  new_line:
 .
  ---------------
@@ -208,7 +220,9 @@ subject_normal:שם טוב.
  definition_normal:- .
  fake_sub-subject_normal:תואר שם טוב .
  definition_normal:- ההשלמה שפועל על זולתו כפי ערכו .
- source_normal:[ע"א א ב נג]. .
+ definition_small:.
+ source_normal:[ע"א א ב נג].
+ definition_small:. .
  new_line:
 .
  new_line:
@@ -267,7 +281,9 @@ subject_normal:"בני אדם שהן ערומין בדעת ומשימין עצמ
  definition_normal: מאד בעצמם, מצד שלמותם הפרטית, .
  fake_subject_small:ומשימים עצמם כבהמה .
  definition_normal:- מבטלים את עצמם אל הכלל, כאילו לא היתה להם תכלית פרטית כלל .
- source_normal:[מ"ש קיח־ט]..
+ definition_small:.
+ source_normal:[מ"ש קיח־ט].
+ definition_small:..
  new_line:
 .
  ---------------
@@ -275,7 +291,9 @@ subject_normal:בני אדם .
  definition_normal:הקונים בשכלם, ע"י יגיעתם, מדות קדושות, באופן שיהי' להם בזה קנין טבעי, עד שטבעם יטה אותם לטוב, והם דומים בזה ל.
  fake_subject_normal:בהמה, .
  definition_normal:שכל פעולתה היא מצד הטבע לבד .
- source_normal:[עפ"י ע"ר ב קמט]..
+ definition_small:.
+ source_normal:[עפ"י ע"ר ב קמט].
+ definition_small:..
  new_line:
 .
  ---------------
@@ -289,7 +307,9 @@ subject_normal:בני אדם .
  definition_normal: העליונה שלמעלה .
  definition_normal:מהנס°.
  definition_normal: .
- source_normal:[עפ"י ע"ר ב קמט]..
+ definition_small:.
+ source_normal:[עפ"י ע"ר ב קמט].
+ definition_small:..
  new_line:
 .
  ---------------
@@ -304,7 +324,9 @@ subject_normal:בני אדם שקיימו את התורה כולה מאלף וע
  definition_normal:הדבקים בתורה בעצמם ובבשרם, אצלם מאירה אורה של תורה אפילו באור פניהם החיצוני, אצלם עומדת התורה כולה במדרגת אותיות הכוללים כל המבטאים, והמבטאים נולדים מהם חדשים בכל עת ורגע, "כי עדותיך שיחה לי". סידורה של תורה וערכה נערכת אצלם כערך כלל האותיות, שהם אבות כל מה שמצורף ושעתיד להצרף, כך כל מה שנולד ושיולד לטובה, לאמת, ליושר ולחכמה, הכל נובע מאורה של תורה, והדרכת מצותיה "למימינים .
  definition_normal:בה"°.
  definition_normal:, ובכל עת מצטרפים הרעיונות הפזורים לדברים שלמים, המופיעים דברים מלאים לכל ענין וכל חפץ .
- source_normal:[ע"א ד ה לד]. .
+ definition_small:.
+ source_normal:[ע"א ד ה לד].
+ definition_small:. .
  new_line:
 .
  ---------------
@@ -328,7 +350,9 @@ subject_normal:"מאן דנטיר ברית° אתקרי צדיק°".
  footnote:11.
  DefaultParagraphFont: .
  definition_normal:- כשבקשת העמדת המשפחה היא נאורה ומובנת באלהיותה, ועל כן מקימה בקרבו צביון של טהרת רעיון ומנוחת לב. וכשתכסיס החיים כולו נעשה מובן, מיושב ומיושר, על פי הזוהר של ההמתקה של הנועם האלהי, נעשים  המעשים כולם מיושרים בתכלית המוסר והטוהר .
- source_normal:[קבצ' ב קעו]. .
+ definition_small:.
+ source_normal:[קבצ' ב קעו].
+ definition_small:. .
  new_line:
 .
  ---------------
@@ -336,7 +360,9 @@ sub-subject_normal:צדיק דנטיר ברית .
  definition_normal:- מי שבא עד למדה העליונה, שהחפץ האלהי הוא גדול ומכריע בקדושתו גם את הנטיה .
  definition_normal:המינית°.
  definition_normal:, <הכרעה זו באה, לא בדרך עקירת הטבע הרוחני והגופני, כי אם ברוממותה אל התעודה השכלית, המוארה באורה האלהית> .
- source_normal:[קובץ א שכט]. .
+ definition_small:.
+ source_normal:[קובץ א שכט].
+ definition_small:. .
  new_line:
 .
  ---------------
@@ -351,7 +377,9 @@ subject_normal:שכינה .
  definition_normal:, המעולף בענני ערפל לרדת ללב בני האדם להחיותם חיי .
  definition_normal:עד°.
  definition_normal: .
- source_normal:[ע"ר א פח]. .
+ definition_small:.
+ source_normal:[ע"ר א פח].
+ definition_small:. .
  new_line:
 .
  new_line:
@@ -379,7 +407,9 @@ subject_normal:אֶבֶן דִי לָא בִיְדַיִן.
  definition_normal: ויקבלו איזו שלמות להכנה של מעלתם, אע"פ שלא יהיו עדיין מוכנים לגמרי, א"כ תהיה השבירה של הצלם ע"י .
  fake_sub-subject_normal:אבן די לא בידין .
  definition_normal:שלא עשו ישראל בידיהם זאת המעלה .
- source_normal:[מ"ש רעז־ח]..
+ definition_small:.
+ source_normal:[מ"ש רעז־ח].
+ definition_small:..
  new_line:
 .
  ---------------
@@ -389,14 +419,18 @@ subject_normal:זיו אלהי .
  definition_normal:- .
  definition_normal:הגודל־העליון°.
  definition_normal: .
- source_normal:[ע"ר א כ, ועפ"י שם ב עד]..
+ definition_small:.
+ source_normal:[ע"ר א כ, ועפ"י שם ב עד].
+ definition_small:..
  new_line:
 .
  ---------------
 definition_normal:.
  definition_normal:שכינתא°.
  definition_normal:.
- source_normal: [א"ק ג יט]. .
+ definition_small: .
+ source_normal:[א"ק ג יט].
+ definition_small:. .
  new_line:
 .
  subject_normal:זיו.
@@ -418,7 +452,9 @@ subject_normal:זמן .
  definition_normal:- .
  sub-subject_normal:(לעומת נצח°) .
  definition_normal:- ההוה התדירי .
- source_normal:[ע"ר א סד]. .
+ definition_small:.
+ source_normal:[ע"ר א סד].
+ definition_small:. .
  new_line:
 .
  new_line:
@@ -441,7 +477,9 @@ subject_normal:גשמים.
  footnote:16.
  subject_normal:, הבאים מיסוד המים .
  definition_normal:- מורים על עצם ההויה הגופנית, שֶׂכֶל הגוף .
- source_normal:[ע"ר ב קעו]. .
+ definition_small:.
+ source_normal:[ע"ר ב קעו].
+ definition_small:. .
  new_line:
 .
  ---------------
@@ -450,7 +488,9 @@ s02Symbol:◊ .
  definition_normal: ראוי להאמר מצד הכרתינו את .
  definition_normal:דעת־האלהים°.
  definition_normal: מצד הנבראים כפי ערכינו .
- source_normal:[ע"א ב ח ו]. .
+ definition_small:.
+ source_normal:[ע"א ב ח ו].
+ definition_small:. .
  new_line:
 .
  ---------------
@@ -468,7 +508,9 @@ subject_normal:תורה.
  fake_subject_small:בעצמיות מהות הפנימית, הצורתית של התורה.
  footnote:18.
  definition_normal: - עצמיות טבע נשמתם של ישראל .
- source_normal:[ע"א ד ט עו]..
+ definition_small:.
+ source_normal:[ע"א ד ט עו].
+ definition_small:..
  new_line:
 .
  ---------------
@@ -512,7 +554,9 @@ subject_normal:חילה .
  definition_normal:, כמו חלל פנוי במשפט הכרתו .
  definition_normal:מיראת־ד'°.
  definition_normal: .
- source_normal:[ע"ר א רנו]. .
+ definition_small:.
+ source_normal:[ע"ר א רנו].
+ definition_small:. .
  new_line:
 .
  new_line:
@@ -522,7 +566,9 @@ subject_normal:זָכָר .
  definition_normal:- היסוד העקרי שבתולדה והמשכת החיים, .
  definition_normal:הסגולה°.
  definition_normal: המפעלית .
- source_normal:[עפ"י ע"ר א מ]..
+ definition_small:.
+ source_normal:[עפ"י ע"ר א מ].
+ definition_small:..
  new_line:
 .
  new_line:
@@ -532,7 +578,9 @@ subject_normal:אור חַי־העולמים° .
  definition_normal:- .
  definition_normal:אור־עליון°.
  definition_normal:, מקור מקורות, חיי החיים .
- source_normal:[קובץ ה צט]..
+ definition_small:.
+ source_normal:[קובץ ה צט].
+ definition_small:..
  new_line:
 .
  ---------------
@@ -552,7 +600,9 @@ subject_normal:אור הגלוי .
  definition_normal: לחיות את אותם החיים הטהורים והקדושים אשר האור המלא הזה מתאר אותם לפנינו. .
  definition_normal:(אור־הקודש־החבוי°.
  definition_normal:) בהיותו מתקרב מאד אל מושגינו, אל צרכינו הזמניים, ואל מאויינו הלאומיים .
- source_normal:[מא"ה ג (מהדורת תשס"ד) קכג, קכה]. .
+ definition_small:.
+ source_normal:[מא"ה ג (מהדורת תשס"ד) קכג, קכה].
+ definition_small:. .
  new_line:
 .
  definition_normal:ע"ע אור קודש חבוי. .
@@ -613,7 +663,9 @@ subject_light:טבע .
  ---------------
 subject_normal:אב .
  definition_normal:- המקים את הבית, המדריך את התולדות, המאיר את ארחות חייהם בהשפעתו הרוחנית .
- source_normal:[שם קיח]. .
+ definition_small:.
+ source_normal:[שם קיח].
+ definition_small:. .
  new_line:
 .
  ---------------
@@ -621,7 +673,9 @@ new_line:
 .
  subject_normal:הא .
  definition_normal:- מורה על המוכן ומוכשר להושטה .
- source_normal:[עפ"י ר"מ פה]. .
+ definition_small:.
+ source_normal:[עפ"י ר"מ פה].
+ definition_small:. .
  new_line:
 .
  new_line:
@@ -637,7 +691,9 @@ subject_normal:האדרת שם ד'.
  definition_normal: של בורא כל העולמים ברוך הוא. ההופעה העזיזה החודרת מרום הגובה העליון עד שפל המדרגה של אדם על .
  definition_normal:הארץ°.
  definition_normal: .
- source_normal:[עפ"י ע"א ד ט קד]. .
+ definition_small:.
+ source_normal:[עפ"י ע"א ד ט קד].
+ definition_small:. .
  new_line:
 .
  ---------------
@@ -647,7 +703,9 @@ subject_normal:האח .
  definition_normal: .
  definition_normal:והחדוה°.
  definition_normal: .
- source_normal:[ר"מ קכ]. .
+ definition_small:.
+ source_normal:[ר"מ קכ].
+ definition_small:. .
  new_line:
 .
  new_line:
@@ -661,7 +719,9 @@ sub-subject_normal:אהבת צור־העולמים°.
  definition_normal: באהבת אמת והכרה עמוקה .
  definition_normal:פנימית°.
  definition_normal: .
- source_normal:[עפ"י ע"א ג ב נ]. .
+ definition_small:.
+ source_normal:[עפ"י ע"א ג ב נ].
+ definition_small:. .
  new_line:
 .
  new_line:
@@ -683,7 +743,9 @@ subject_normal:אור חֵי־העולמים° .
  definition_normal:- .
  definition_normal:הענין־האלהי°.
  definition_normal:.
- source_normal: [א' סו]..
+ definition_small: .
+ source_normal:[א' סו].
+ definition_small:..
  new_line:
 .
  ---------------
@@ -696,7 +758,9 @@ definition_normal:.
  definition_normal: .
  definition_normal:וקדושתה°.
  definition_normal: .
- source_normal:[עפ"י א"ש פרק ב]. .
+ definition_small:.
+ source_normal:[עפ"י א"ש פרק ב].
+ definition_small:. .
  new_line:
 .
  new_line:
@@ -706,7 +770,9 @@ subject_normal:אור ד' המהוה הישות .
  definition_normal:- .
  definition_normal:זרוע־ד'°.
  definition_normal: אשר נגלתה, יסוד ההשתלמות הבלתי פוסקת .
- source_normal:[עפ"י א"ק ב תקל]. .
+ definition_small:.
+ source_normal:[עפ"י א"ק ב תקל].
+ definition_small:. .
  new_line:
 .
  sub-subject_normal:אור ד' וכבודו .
@@ -715,12 +781,16 @@ subject_normal:אור ד' המהוה הישות .
  definition_normal: אשר .
  definition_normal:בנשמת°.
  definition_normal: היקום כולו .
- source_normal:[שם ג לט]. .
+ definition_small:.
+ source_normal:[שם ג לט].
+ definition_small:. .
  new_line:
 .
  subject_small:אור ד' .
  definition_normal:- המגמה האלהית היותר ברורה ותהומית לאין חקר .
- source_normal:[פנק' ג שלא]..
+ definition_small:.
+ source_normal:[פנק' ג שלא].
+ definition_small:..
  new_line:
 .
  ---------------
@@ -746,7 +816,9 @@ subject_normal:אב .
  definition_normal:, הצריכה לקבל את .
  definition_normal:השפעתו°.
  definition_normal: .
- source_normal:[עפ"י ע"ר ב סה]..
+ definition_small:.
+ source_normal:[עפ"י ע"ר ב סה].
+ definition_small:..
  new_line:
 .
  ---------------
@@ -754,7 +826,9 @@ subject_normal:אבנט.
  definition_normal: - מכוון בתור אמצעי, בין החלק העליון מקום הכחות הנפשיים, לבין החלק התחתון שבגוף, מקום הכחות הגופניים השפלים, שמורה אמנם על היחש החזק שיש לכחות השפלים אל הכחות הנפשיים, עד .
  definition_normal:שהקדושה°.
  definition_normal: המעלה את הנטיות הנפשיות, פועלת להגביל יפה את סדרי הפעולות הטבעיות לצד המעלה והקדושה.
- source_normal: [ע"א ג ב ד]..
+ definition_small: .
+ source_normal:[ע"א ג ב ד].
+ definition_small:..
  new_line:
 .
  ---------------
@@ -766,7 +840,9 @@ sub-subject_normal:עבודת ד' וכל מעגל טוב מאהבה .
  definition_normal:- מידיעת .
  definition_normal:הטוב°.
  definition_normal: הגנוז בהם .
- source_normal:[עפ"י ע"ר א רפו]. .
+ definition_small:.
+ source_normal:[עפ"י ע"ר א רפו].
+ definition_small:. .
  new_line:
 .
  new_line:
@@ -781,7 +857,9 @@ subject_normal:חסיה .
  definition_normal: הנמשכת עליו .
  definition_normal:מקבלת־עול־מלכות־שמים°.
  definition_normal: מתחדשת בקרבו רוח חדשה להיות למגן לו מכל המוני הדעות הרעות .
- source_normal:[ע"א ג ב קנא]. .
+ definition_small:.
+ source_normal:[ע"א ג ב קנא].
+ definition_small:. .
  new_line:
 .
  new_line:
@@ -798,7 +876,9 @@ subject_normal:אהבה .
  ---------------
 subject_small:שלימות האהבה.
  definition_normal: - השמחה הגמורה ואור הנפש, שעמה כל טוב ואושר ובה כלולים נועם החכמה וההשגה ואהבתה .
- source_normal:[ע"א א ד לו]..
+ definition_small:.
+ source_normal:[ע"א א ד לו].
+ definition_small:..
  new_line:
 .
  ---------------
@@ -808,7 +888,9 @@ s02Symbol:◊.
  definition_normal: והאהבה הן עצם החיים בעוה"ז .
  definition_normal:ובעוה"ב°.
  definition_normal: .
- source_normal:[א' סט]. .
+ definition_small:.
+ source_normal:[א' סט].
+ definition_small:. .
  new_line:
 .
  new_line:
@@ -816,7 +898,9 @@ s02Symbol:◊.
  ---------------
 sub-subject_normal:באהבה.
  definition_normal: - בדרך חפץ פנימי והכרה עצמית .
- source_normal:[ל"ה 55]. .
+ definition_small:.
+ source_normal:[ל"ה 55].
+ definition_small:. .
  new_line:
 .
  subject_small:כח העבודה מאהבה.
@@ -827,7 +911,9 @@ sub-subject_normal:באהבה.
  definition_normal: .
  definition_normal:והיראה°.
  definition_normal:, שאי אפשר כלל להמצא מבלעדי לימוד בסדר נכון, למגרס תחילה בבקיאות מלמטה למעלה, ואחר כך למסבר בעומק עיון ודעה שלמה .
- source_normal:[ל"ה 188]..
+ definition_small:.
+ source_normal:[ל"ה 188].
+ definition_small:..
  new_line:
 .
  definition_normal:ע"ע עבודה מאהבה, עבודת ד' מאהבה ותלמוד תורה־לשמה..
@@ -846,7 +932,9 @@ subject_normal:אמר .
  footnote:2.
  definition_normal: - אברהם כדאי הוא בזכותו שיושפע עליו זה השפע של השווית רצונו עם רצוני, שישכיל בכל כוחותיו, ויושפע זה גם על נפשו המרגשת והצומחת, לדעת שאין שום דבר ראוי לרצון כ"א רצונו של הקב"ה, וממילא הכל מתייחדים בהשווי' אחת, ואין כאן ניגוד - .
  fake_subject_small:נאה ליחיד להציל את היחיד .
- source_normal:[עפ"י פנק' ג ריג]..
+ definition_small:.
+ source_normal:[עפ"י פנק' ג ריג].
+ definition_small:..
  new_line:
 .
  ---------------
@@ -863,7 +951,9 @@ subject_normal:אתרא דיראה־עילאה°.
  definition_normal: של השלמות האלהית הנוראה, שהוא .
  definition_normal:האידיאל°.
  definition_normal: של הבריאה, היסוד של ההויה כולה .
- source_normal:[עפ"י א"ק ב תקלב־ג]..
+ definition_small:.
+ source_normal:[עפ"י א"ק ב תקלב־ג].
+ definition_small:..
  new_line:
 .
  ---------------
@@ -887,7 +977,9 @@ subject_normal:""בבגדו בה" בגין דבגדו בעבודה זרה".
  definition_normal: הבאה לסדר את החיים כולם ע"פ מבט בהיר, בטהרת רגש .
  definition_normal:הכרת־הטובה°.
  definition_normal: החברתית המעשית הנובעת ממנו; וברוממות להבת האהבה אל הטוב והיושר בעצמו .
- source_normal:[עפ"י מ"ר 285]..
+ definition_small:.
+ source_normal:[עפ"י מ"ר 285].
+ definition_small:..
  new_line:
 .
  ---------------
@@ -896,7 +988,9 @@ subject_normal:צדקה תרומם גוי, וחסד לאֻמים חטאת.
  definition_normal: - בישראל עיקר הצדקה תכליתה רק לרומם את הגוי, לרומם את הנותנים ולזכותם בעשיית הטוב והחסד, א"כ הוא מצד המעלה ולא מצד החסרון. ובאוה"ע אין כונתם כ"א מצד המצוקה הטבעית המורגשת במה שרואה צערו של המצטער, א"כ הוא רק מצד החסרון. <.
  fake_subject_small:חטאת.
  definition_normal: - לשון חסרון, כמו "ולא יחטיא"> .
- source_normal:[פנק' ג רסא-רסב]..
+ definition_small:.
+ source_normal:[פנק' ג רסא-רסב].
+ definition_small:..
  new_line:
 .
  ---------------
@@ -949,7 +1043,9 @@ subject_small:אישיות .
  definition_normal: .
  definition_normal:ובדעה°.
  definition_normal: ברורה .
- source_normal:[קובץ א רנא]..
+ definition_small:.
+ source_normal:[קובץ א רנא].
+ definition_small:..
  new_line:
 .
  ---------------
@@ -967,7 +1063,9 @@ subject_normal:גודל הנפש .
  definition_normal: .
  definition_normal:המחשבה°.
  definition_normal: .
- source_normal:[א"ק ג קכג]..
+ definition_small:.
+ source_normal:[א"ק ג קכג].
+ definition_small:..
  new_line:
 .
  new_line:
@@ -1036,14 +1134,30 @@ subject_normal:תורה .
  definition_normal: המעשים הטובים .
  definition_normal:ויראת־ד'־הטהורה°.
  definition_normal: .
- source_normal:[עפ"י ע"א ב ט שמד]. .
+ definition_small:.
+ source_normal:[עפ"י ע"א ב ט שמד].
+ definition_small:. .
  new_line:
 .
  definition_normal:ע' במדור תורה, "חמאה של תורה". .
  new_line:
 .
+ ---------------
+subject_normal:ערלה.
+ footnote:1.
+ definition_normal: - אטימת נביעת תשוקת החיים ממקור הכל, המטה אותה לצד החלקיות והפרטיות המנותקת ממקור הכל, שאינה נותנת לאהבת .
+ definition_normal:המין°.
+ definition_normal: להתעדן. הגברת הצד הבהמי החמרי על הצד האידיאלי, ושכרון הבשרי המזהם את כל הנטיות הנאורות והיפות.
+ definition_small: .
+ source_normal:[ע"ר א שצז].
+ definition_small:.  .
  new_line:
 .
+ ---------------
+definition_normal:קליפתה התאונית של נטית המין המביאה את החיים למציאות .
+ definition_small:.
+ source_normal:[קובץ א תשכט].
+ definition_small:..
  new_line:
 .
  ---------------

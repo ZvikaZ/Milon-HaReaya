@@ -832,6 +832,12 @@ def fix_DefaultParagraphFont(run):
         return 'DefaultParagraphFont'
 
 temp_l = []
+
+
+def uniqify(s):
+    return "".join(set(s))
+
+
 def bold_type(s, type, run):
     if type == 'definition_normal':
         return 'subject_small'
@@ -849,6 +855,8 @@ def bold_type(s, type, run):
         return 'sub-subject_light'
     elif type == 'definition_light' and run.style.style_id == "s12" and run.font.size == 101600:
         return 'sub-subject_light'
+    elif type == 'definition_light' and run.style.style_id == "s04" and run.font.size is None:
+        return 'subject-light'
     elif type == 'definition_light' and run.style.style_id == "s12" and run.font.size is None:
         # TODO - verify that it's always OK
         return 'sub-subject_light'
@@ -856,7 +864,7 @@ def bold_type(s, type, run):
         print("Strange 'source_normal' bold!")
     elif 'subject' in type or 'heading' in type:
         return type
-    elif run.text.strip() in ("◊", "-", ""):
+    elif uniqify(run.text.strip()) in ("◊", "-", ""):
         return type
     else:
         if type not in temp_l:
@@ -1119,8 +1127,6 @@ with open('output/debug.txt', 'w', encoding='utf-8') as debug_file:
                         if size_kind == 'unknown':
                             print("!%s. Size: %d, Bool: %s, %s:%s$" % (size_kind, run.font.size, run.font.cs_bold, type, run.text))
                         if size_kind not in ('normal', 'unknown'):
-                            if type != size_kind:
-                                print("Modifiying ", type, size_kind)
                             type = size_kind
 
                 try:

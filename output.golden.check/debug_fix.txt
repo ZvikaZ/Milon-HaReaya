@@ -3,6 +3,20 @@ heading_title:מילון הראיה.
  ---------------
 heading_letter:א.
  ---------------
+new_line:
+.
+ subject-light:חילוני .
+ definition_light:- .
+ sub-subject_light:נשמה חילונית .
+ definition_light:- זרם ההויה הבא מצד המשך ההויה שאנחנו קוראים .
+ definition_light:טבע°.
+ definition_light:, ההשגה של אוה"ע, הזרם הבא מהאמצעים .
+ definition_light:מהסיבות°.
+ definition_light: .
+ source_light:[נ"א ה 31]..
+ new_line:
+.
+ ---------------
 subject_normal:אבוקה .
  definition_normal:- .
  sub-subject_normal:(בעולם השכלי, לעומת אור ירח° ואור השמש°).

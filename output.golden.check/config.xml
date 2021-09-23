@@ -4,7 +4,7 @@
     	xmlns:android="http://schemas.android.com/apk/res/android"
         id          = "com.haramaty.zvika.milon"
         version     = "1.1.2"
-	android-versionCode = "351">
+	android-versionCode = "352">
 
 
     <!--minimal version required by Google, due to security considerations-->
@@ -13,7 +13,7 @@
     <!-- 18.11.18 - since I removed CrossWalk (due to compilation problem, and seems to be obsolete) - I'm not sure I need this: -->
     <!--<plugin name="cordova-build-architecture" spec="https://github.com/MBuchalik/cordova-build-architecture.git#v1.0.1" source="git" />-->
 
-    <preference name="android-versionCode" value="351" />
+    <preference name="android-versionCode" value="352" />
 
     <!--UPDATED_BY_SCRIPT preference name="buildArchitecture" value="x86" /UPDATED_BY_SCRIPT-->
 

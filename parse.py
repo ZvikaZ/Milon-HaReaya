@@ -75,13 +75,10 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # in the meanwhile, I've hacked it locally
 import sys
 
-import docx as docx
-
-sys.path.insert(0, r'C:\Users\Zvika\PycharmProjects\python-docx')
+sys.path.insert(0, r'C:\Zvika\PycharmProjects\python-docx')
 sys.path.insert(0, r'C:\Users\sdaudi\Github\python-docx')
+import docx     # from aforementioned path
 
-## pip install python-docx
-import docx
 import docx_fork_ludoo
 import dominate
 import dominate.tags as tags

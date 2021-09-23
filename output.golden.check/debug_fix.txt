@@ -1,9 +1,75 @@
 ---------------
 heading_title:מילון הראיה.
  ---------------
+heading_letter:א.
+ ---------------
+subject_normal:אבוקה .
+ definition_normal:- .
+ sub-subject_normal:(בעולם השכלי, לעומת אור ירח° ואור השמש°).
+ footnote:1.
+ fake_sub-subject_normal: .
+ definition_normal:- החכמה ההקשית הבנויה מהרכבת הקדמות עיוניות .
+ definition_small:.
+ source_normal:[ע"א ב ז נג].
+ definition_small:. .
+ new_line:
+.
+ new_line:
+.
+ ---------------
+sub-subject_light:אשא דעי למרחוק ולפועלי אתן צדק.
+ footnote:2.
+ definition_normal: - .
+ fake_sub-subject_light:להבין בחינת מה מהצדק העליון, נחוץ להתרומם בסולם הדעות מרחק רב מאד, הרחק הרחק ממדת הצדק שלנו .
+ source_light:[נ"א ה 29].
+ fake_sub-subject_light:..
+ new_line:
+.
+ ---------------
+heading_letter:ב.
+ ---------------
 new_line:
 .
- heading_letter:א.
+ subject_normal:בא .
+ definition_normal:- הוראת התכנסות הנושא אל המקום הראוי ע"י תנועה מוקדמת .
+ definition_small:.
+ source_normal:[ר"מ קכח].
+ definition_small:..
+ new_line:
+.
+ new_line:
+.
+ ---------------
+heading_letter:ג.
+ ---------------
+subject_normal:גאונים .
+ definition_normal:- ע' במדור מדרגות והערכות אישיותיות. ע"ע גאונים, תקופת הגאונים..
+ new_line:
+.
+ ---------------
+fake_sub-subject_normal:גדול הוא קידוש השם מחלול השם.
+ footnote:1.
+ DefaultParagraphFont: .
+ fake_sub-subject_normal:- .
+ source_small:צד קידוש השם הוא הגדול המכריע והמחייב כשבאותו ענין יש צד קידוש השם וצד חילול השם, ואין אומרים ספיקא ושב ואל תעשה [עפ"י שי' ה 88]..
+ new_line:
+.
+ ---------------
+subject_normal:נקודים.
+ footnote_recurrence:15.
+ DefaultParagraphFont: .
+ definition_normal:- העולמים והבריות לאין תכלית, הכחות .
+ definition_normal:בפירודם°.
+ definition_normal: ובהתגברותם, האינדיוידואליות המתאדרת, החיים בכל שאונם הנחמד .
+ definition_small:.
+ source_normal:[א"ק א קפט].
+ definition_small:..
+ new_line:
+.
+ new_line:
+.
+ ---------------
+heading_letter:א.
  ---------------
 subject_small:טהרה וקדושה ההבדל ביניהן .
  definition_small:- הטהרה מכוונת לעשות כל ענינים גשמיים בדרך הכנה לקדושה, אבל עוד אינם מקודשים בעצמם אלא שהם דרך הכרח; אבל קדושה היא מעלה יותר גדולה, שגם כל ענינים גשמיים הם מקודשים ממש .

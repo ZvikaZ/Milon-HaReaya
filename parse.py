@@ -218,6 +218,7 @@ class Sizes:
             return 'normal'
 
     def get_heading_type(self, kind):
+        assert 'heading' in kind
         if kind == 'heading_title':
             return tags.h1
         elif kind == 'heading_section':
@@ -228,6 +229,8 @@ class Sizes:
             return tags.h4
         elif kind == 'heading_letter':
             return tags.h5
+        else:
+            assert False
 
 sizes = Sizes()
 
@@ -406,7 +409,7 @@ def analyze_and_fix(para):
                 new_para.append(('source_normal', g.group(2)))
             elif type == 'definition_normal':
                 new_para.append(('source_small', g.group(2)))
-            elif type == 'definition_light':
+            elif 'light' in type:
                 new_para.append(('source_light', g.group(2)))
             else:
                 print("Fix missing 'source's, unknown type: ", end='')
@@ -632,7 +635,7 @@ def add_to_output(html_doc, para):
             if 'heading' in type and text.strip():
                 # tags.p()
                 # tags.p()
-                heading = sizes.get_heading_type(size_kind)
+                heading = sizes.get_heading_type(type)
                 print(type, text)
                 heading(text)
             elif type == "new_line":
@@ -793,7 +796,11 @@ def fix_unknown(run):
 def fix_DefaultParagraphFont(run):
     # only if it's really a text
     if run.text.strip():
-        if run.font.size == 152400 and run.font.cs_bold:
+        if run.font.size == 330200:
+            return 'heading_section'
+        elif run.font.size == 177800 and run.font.cs_bold:
+            return 'subject_normal'
+        elif run.font.size == 152400 and run.font.cs_bold:
             return 'sub-subject_normal'
         elif run.font.size == 152400 and not run.font.cs_bold:
             return 'definition_normal'
@@ -1090,31 +1097,31 @@ with open('output/debug.txt', 'w', encoding='utf-8') as debug_file:
                 debug_file.write(s + ' ')
                 type = styles.get(run_style_id(run), "unknown")
 
-                if run.font.size and run.text.strip():
-                    size_kind = sizes.match(run.font.size)
-                    if size_kind == 'unknown':
-                        print("!%s. Size: %d, Bool: %s, %s:%s$" % (size_kind, run.font.size, run.font.cs_bold, type, run.text))
-                    if size_kind not in ('normal', 'unknown'):
-                        type = size_kind
-
                 if 'unknown' in type and run.text.strip():
                     type = fix_unknown(run)
 
-                elif type == "DefaultParagraphFont":
+                if type == "DefaultParagraphFont":
                     type = fix_DefaultParagraphFont(run)
                     # print paragraph.style.style_id, run.bold, run.font.size, s
 
                 # elif run.bold:          #20.11.16 - Trying to fix 'fake' bold in Appendix
-                elif run.font.cs_bold:
+                if run.font.cs_bold:
                     type = bold_type(s, type, run)
 
                 # single run & alignment is CENTER and ...-> letter heading
-                elif len(paragraph.runs) == 1 and paragraph.alignment is not None and int(paragraph.alignment) == 1\
-                        and "heading" not in type and run.text.isalpha():
-                    # print "NEW heading letter!", s
-                    size_kind = "heading_letter"
-                    type = size_kind
+                if paragraph.alignment is not None and int(paragraph.alignment) == 1 and "heading" not in type:
+                    if len(paragraph.runs) <= 2 and run.text.isalnum():
+                        size_kind = "heading_letter"
+                        type = size_kind
 
+                    if run.font.size and run.text.strip():
+                        size_kind = sizes.match(run.font.size)
+                        if size_kind == 'unknown':
+                            print("!%s. Size: %d, Bool: %s, %s:%s$" % (size_kind, run.font.size, run.font.cs_bold, type, run.text))
+                        if size_kind not in ('normal', 'unknown'):
+                            if type != size_kind:
+                                print("Modifiying ", type, size_kind)
+                            type = size_kind
 
                 try:
                     if run.element.rPr.szCs is not None and run.text.strip():

@@ -209,6 +209,12 @@ $(window).load(function() {
 })
 
 
+// https://stackoverflow.com/questions/49178396/autofocus-input-element-on-modal-open-bootstrap-4
+$(document).ready(function() {
+  $('#searchDialogModal').on('shown.bs.modal', function() {
+    $('#subject_search').trigger('focus');
+  });
+});
 
 
 

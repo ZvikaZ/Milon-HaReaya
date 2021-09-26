@@ -579,8 +579,7 @@ def fix_links(html_docs_l):
     for (doc) in html_docs_l:
         letters_l = []
 
-        # content_menu = doc.body.children[0].children[1].children[0].children[0].children[-1].children[0].children[1]
-        content_menu = doc.body.children[0].children[1].children[0].children[1].children[-1]
+        content_menu = doc.body.children[0].children[1].children[0].children[-1].children[-1]
         assert content_menu['class'] == 'dropdown-menu dropdown-menu-left scrollable-menu'
 
         with content_menu:
@@ -915,6 +914,14 @@ def open_html_doc(name, letter=None):
             with tags.div():
                 tags.attr(cls="fixed_top_left", id="menu_bar")
                 with tags.div():
+                    with tags.button('הבא', type="button"):
+                        tags.attr(id="forward_icon_button", type="button", cls="btn btn-default", onclick="goForward()")
+                        # with tags.span():
+                        #     tags.attr(cls="glyphicon glyphicon-arrow-right")
+                    with tags.button('הקודם', type="button"):
+                        tags.attr(id="back_icon_button", type="button", cls="btn btn-default", onclick="goBack()")
+                        # with tags.span():
+                        #     tags.attr(cls="glyphicon glyphicon-arrow-left")
                     with tags.button(type="button"):
                         tags.attr(id="search_icon_button", type="button", cls="btn btn-default")
                         with tags.span():

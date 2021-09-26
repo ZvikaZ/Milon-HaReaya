@@ -179,6 +179,39 @@ function page_loaded(url) {
 	};
 }
 
+function goBack() {
+	window.history.back();
+}
+
+function goForward() {
+	window.history.forward();
+}
+
+// https://stackoverflow.com/questions/32017791/how-to-find-the-current-location-index-in-the-browser-history
+// Onload
+{
+    if (!history.state  &&  typeof(history.replaceState) == "function")
+        history.replaceState({ page: history.length, href: location.href }, "foo");
+	// now history.state is the index of the current page in window.history
+}
+
+$(window).load(function() {
+	if (history.state.page == 1) {
+		$("#back_icon_button").prop('disabled', true)
+	} else {
+		$("#back_icon_button").prop('disabled', false)
+	}
+	if (history.state.page == window.history.length) {
+		$("#forward_icon_button").prop('disabled', true)
+	} else {
+		$("#forward_icon_button").prop('disabled', false)
+	}
+})
+
+
+
+
+
 //D window.onload = function() {
 //D     search_focused(false);
 //D }

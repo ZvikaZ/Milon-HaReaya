@@ -17,6 +17,7 @@ debug*
 key/
 key.p12
 secret.py
+venv/
 
 electron_builder/dist/
 electron_builder/node_modules/

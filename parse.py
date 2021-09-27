@@ -113,7 +113,7 @@ else:
     doc_file_name = 'dict_check.docx'
     # doc_file_name = 'dict_short.docx'
     # doc_file_name = 'dict_half.docx'
-    # doc_file_name = 'dict.docx'
+    # doc_file_name = 'מילון הראיה.docx'
 
     create_html = True
     create_latex = False
@@ -121,10 +121,8 @@ else:
     # create_html = False
     # create_latex = True
 
-
-
-word_doc = docx.Document(doc_file_name)
-word_doc_footnotes = docx_fork_ludoo.Document(doc_file_name)
+word_doc = docx.Document(os.path.join('input_dict', doc_file_name))
+word_doc_footnotes = docx_fork_ludoo.Document(os.path.join('input_dict', doc_file_name))
 
 
 # support old and new version of docx

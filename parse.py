@@ -99,12 +99,13 @@ import texer
 
 html_parser = html.parser.HTMLParser()
 
-#process = "APK"
-process = "Full"
+# process = "Full"
+process = "Electron"
 # process = "ZIP"
 
-if process == "Full":
+if process in ["Full", "Electron"]:
     doc_file_name = 'dict.docx'
+    # doc_file_name = 'מילון הראיה.docx'
     create_html = True
     #create_latex = True
     create_latex = False
@@ -1314,10 +1315,11 @@ if process != "ZIP":
         # build_phonegap.push_to_phonegap("output/milon.zip", 'x86')
 
         # 18.11.18 - trying back to dual APK:
-        build_phonegap.push_to_phonegap("output/milon.zip", 'dual')
-        if process == "Full":
-            build_electron.build_electron()
+        # build_phonegap.push_to_phonegap("output/milon.zip", 'dual')
 
+        build_electron.build_electron()
+
+        if process == "Full":
             playAPISession = upload_google_play.PlayAPISession()
             # playAPISession.main(["output/milon.x86.apk", "output/milon.arm.apk"])
             playAPISession.main(["output/milon.dual.apk"])

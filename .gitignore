@@ -17,3 +17,9 @@ debug*
 key/
 key.p12
 secret.py
+
+electron_builder/dist/
+electron_builder/node_modules/
+electron_builder/www
+electron_builder/yarn-error.log
+electron_builder/yarn.lock

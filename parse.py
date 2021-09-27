@@ -75,6 +75,8 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # in the meanwhile, I've hacked it locally
 import sys
 
+import build_electron
+
 sys.path.insert(0, r'C:\Zvika\PycharmProjects\python-docx')
 sys.path.insert(0, r'C:\Users\sdaudi\Github\python-docx')
 import docx     # from aforementioned path
@@ -98,8 +100,8 @@ import texer
 html_parser = html.parser.HTMLParser()
 
 #process = "APK"
-# process = "Full"
-process = "ZIP"
+process = "Full"
+# process = "ZIP"
 
 if process == "Full":
     doc_file_name = 'dict.docx'
@@ -914,14 +916,14 @@ def open_html_doc(name, letter=None):
             with tags.div():
                 tags.attr(cls="fixed_top_left", id="menu_bar")
                 with tags.div():
-                    with tags.button('הבא', type="button"):
-                        tags.attr(id="forward_icon_button", type="button", cls="btn btn-default", onclick="goForward()")
-                        # with tags.span():
-                        #     tags.attr(cls="glyphicon glyphicon-arrow-right")
                     with tags.button('הקודם', type="button"):
                         tags.attr(id="back_icon_button", type="button", cls="btn btn-default", onclick="goBack()")
                         # with tags.span():
                         #     tags.attr(cls="glyphicon glyphicon-arrow-left")
+                    with tags.button('הבא', type="button"):
+                        tags.attr(id="forward_icon_button", type="button", cls="btn btn-default", onclick="goForward()")
+                        # with tags.span():
+                        #     tags.attr(cls="glyphicon glyphicon-arrow-right")
                     with tags.button(type="button"):
                         tags.attr(id="search_icon_button", type="button", cls="btn btn-default")
                         with tags.span():
@@ -1316,6 +1318,8 @@ if process != "ZIP":
         # 18.11.18 - trying back to dual APK:
         build_phonegap.push_to_phonegap("output/milon.zip", 'dual')
         if process == "Full":
+            build_electron.build_electron()
+
             playAPISession = upload_google_play.PlayAPISession()
             # playAPISession.main(["output/milon.x86.apk", "output/milon.arm.apk"])
             playAPISession.main(["output/milon.dual.apk"])

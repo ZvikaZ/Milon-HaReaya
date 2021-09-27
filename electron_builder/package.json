@@ -18,6 +18,7 @@
   "build": {
     "appId": "com.haramaty.milon",
     "productName": "מילון הראיה",
+    "artifactName": "Setup Milon HaReaya.exe",
     "win": {
       "icon": "icon.png"
     }

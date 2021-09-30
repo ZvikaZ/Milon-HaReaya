@@ -5,8 +5,8 @@ creates 'html_docs_l' - internal representation of all the Milon,
 'subjects_db' which is used for searching (and is written as JSON file for the JS)
 and then creates 'output/' with a working HTML/CSS/JS site, and zips it to 'milon.zip'
 
-If 'secret.py' exists, it then uploads the .zip file to PhoneGap Build, waits for the .apk
-to be ready, downloads it (to output/) and pushes everything (automatically) to Google Play.
+If then creates an apk file and Electron .exe NSIS installer,
+and pushes the APK (automatically) to Google Play.
 """
 
 # TODO: refactor, split to files, unit tests
@@ -75,7 +75,9 @@ to be ready, downloads it (to output/) and pushes everything (automatically) to 
 # in the meanwhile, I've hacked it locally
 import sys
 
+import build_cordova
 import build_electron
+from misc import replace_in_file
 
 sys.path.insert(0, r'C:\Zvika\PycharmProjects\python-docx')
 sys.path.insert(0, r'C:\Users\sdaudi\Github\python-docx')
@@ -92,7 +94,6 @@ import html.parser
 import json
 import copy
 
-import build_phonegap
 import upload_google_play
 import htmler
 import texer
@@ -100,10 +101,10 @@ import texer
 html_parser = html.parser.HTMLParser()
 
 # process = "Full"
-# process = "Electron"
+# process = "Compile"
 process = "ZIP"
 
-if process in ["Full", "Electron"]:
+if process in ["Full", "Compile"]:
     # doc_file_name = 'dict.docx'
     doc_file_name = 'מילון הראיה.docx'
     create_html = True
@@ -1060,12 +1061,6 @@ os.mkdir("tex")
 
 os.chdir("input_web")
 for (f) in (
-    'config.xml',
-    'icon.png',
-):
-    shutil.copyfile(f, os.path.join("../output", f))
-
-for (f) in (
     'style.css',
     'html_demos-gh-pages/footnotes.css',
     'html_demos-gh-pages/footnotes.js',
@@ -1207,15 +1202,6 @@ with open('output/debug.txt', 'w', encoding='utf-8') as debug_file:
             except:
                 pass
 
-def replace_in_file(file_name, orig_str, new_str):
-    with open(file_name, 'r', encoding='utf-8') as file:
-        filedata = file.read()
-
-    filedata = filedata.replace(orig_str, new_str)
-
-    with open(file_name, 'w', encoding='utf-8') as file:
-        file.write(filedata)
-
 
 def add_menu_to_apriory_htmls(html_docs_l):
     # add menus to index.html and search.html
@@ -1284,44 +1270,16 @@ def create_zip():
     shutil.move("milon.zip", "output/")
 
 
-try:
-    # 18.11.18 - update - removed CrossWalk, and now the version seem to be *not* multiplied by 10
-    # trying to remove the " / 10"
-    # old comment:
-    # # because of "https://github.com/MBuchalik/cordova-build-architecture.git#v1.0.1"
-    # # the version code we give here is multiplied by 10, and adds either 2 or 4 (for ARM or Intel)
-    # # here we do the opposite, and advance the version
-
-    playAPISession = upload_google_play.PlayAPISession()
-    # version_code = playAPISession.get_last_apk() / 10 + 1
-    version_code = playAPISession.get_last_apk() + 1
-    replace_in_file('output/config.xml', 'UPDATED_BY_SCRIPT_VERSION_CODE', str(version_code))
-except Exception as e:
-    print("Couldn't connect to Google Play - .apk version not updated!")
-    print(e)
-
 create_zip()
 
-def update_zip_to_x86():
-    os.remove('output/milon.zip')
-    replace_in_file('output/config.xml', '!--UPDATED_BY_SCRIPT ', '')
-    replace_in_file('output/config.xml', '/UPDATED_BY_SCRIPT--', '/')
-    create_zip()
 
 if process != "ZIP":
     try:
-        # build_phonegap.push_to_phonegap("output/milon.zip", 'arm')
-        # update_zip_to_x86()
-        # build_phonegap.push_to_phonegap("output/milon.zip", 'x86')
-
-        # 18.11.18 - trying back to dual APK:
-        # build_phonegap.push_to_phonegap("output/milon.zip", 'dual')
-
         build_electron.build_electron()
+        build_cordova.main()
 
         if process == "Full":
             playAPISession = upload_google_play.PlayAPISession()
-            # playAPISession.main(["output/milon.x86.apk", "output/milon.arm.apk"])
             playAPISession.main(["output/milon.dual.apk"])
 
     except Exception as e:

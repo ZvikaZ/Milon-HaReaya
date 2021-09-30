@@ -1,0 +1,34 @@
+import subprocess
+from distutils.dir_util import copy_tree
+
+import upload_google_play
+from misc import replace_in_file
+
+
+def prepare_cordova():
+    subprocess.run("cordova platform add android".split(), cwd='input_cordova', shell=True)
+    copy_tree("input_cordova", "output")
+
+
+def build_cordova():
+    subprocess.run(['cordova', 'build'], cwd='output', shell=True)
+
+
+def update_apk_version():
+    try:
+        playAPISession = upload_google_play.PlayAPISession()
+        version_code = playAPISession.get_last_apk() + 1
+        replace_in_file('output/config.xml', 'UPDATED_BY_SCRIPT_VERSION_CODE', str(version_code))
+    except Exception as e:
+        print("Couldn't connect to Google Play - .apk version not updated!")
+        print(e)
+
+
+def main():
+    prepare_cordova()
+    update_apk_version()
+    build_cordova()
+
+
+if __name__ == '__main__':
+    main()

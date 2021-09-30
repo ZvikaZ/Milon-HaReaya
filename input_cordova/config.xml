@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget
+	id="com.haramaty.zvika.milon"
+	version="1.1.3"
+	android-versionCode="UPDATED_BY_SCRIPT_VERSION_CODE">
+	xmlns="http://www.w3.org/ns/widgets"
+xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>מילון הראיה</name>
+    <description></description>
+    <author email="haramaty.zvika@gmail.com" href="https://github.com/ZvikaZ/Milon-HaReaya/">
+        Zvika Haramaty
+    </author>
+    <content src="index.html" />
+    <!--access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" /-->
+    <platform name="android">
+        <!--allow-intent href="market:*" /-->
+    </platform>
+    <!--platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform-->
+
+	
+	<icon src="icon.png" />
+
+	<!--minimal version required by Google, due to security considerations-->
+    <preference name="android-minSdkVersion" value="28"/>
+
+</widget>

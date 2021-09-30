@@ -13,11 +13,9 @@
 		<script src="milon.js"></script>
 		<script src="html_demos-gh-pages/footnotes.js"></script>
 		<script src="subjects_db.json"></script>
-		<script src="phonegap.js"></script>
 	</head>
 	<body onload="init()">
 	<div class="container-fluid">
-		<div class="col-sm-6">
 			<!--menu_bar-->
 			<p></p><br><br>
 			<div class="jumbotron my_background">
@@ -36,33 +34,6 @@
 			<hr>
 
 			<p>
-			<script>
-	//	if (typeof(Storage) !== "undefined") {
-	//
-	//		var url = "index.html";
-	//		var http = new XMLHttpRequest();
-	//		http.open('HEAD', url);
-	//		http.onreadystatechange = function() {
-	//			if (this.readyState == this.DONE) {
-	//				// http_callback(this);
-	//			}
-	//		};
-	//		http.send();
-	//	};
-
-	//	function http_callback(http_request) {
-	//	    alert(http_request.getAllResponseHeaders());
-	//	    var last_modified = http_request.getResponseHeader('Last-Modified');
-	//	    alert("From http:" + last_modified + "\nFrom local:" + localStorage.lastModifiedIndexHtml + "\nlast_url:" + localStorage.last_url)
-	//	    // jump to last location - if it's valid, and user already saw this version of index.html
-	//		if ((localStorage.lastModifiedIndexHtml == last_modified) && (localStorage.getItem("last_url") != null)) {
-	//			console.log("localStorage.get last_url = " + localStorage.getItem("last_url"))
-	//			window.location.href = localStorage.getItem("last_url");
-	//		};
-	//		localStorage.lastModifiedIndexHtml = last_modified;
-	//	}
-
-			</script>
 
 			<p class="my_background">
 			על מנת להתחיל, חפש ערך בעזרת כפתור החיפוש שבראש המסך <span class="glyphicon glyphicon-search"></span>, או בחר מדור מהתפריט <span class="glyphicon glyphicon-menu-hamburger"></span>.
@@ -117,7 +88,6 @@
 			צביקה הרמתי<br>
 			גני טל ת"ו
 			<div class="modal fade" id="search_modal"></div>
-		</div>
 	</div>
 	</body>
 </html> 

@@ -21,7 +21,7 @@ def build_electron():
     subprocess.run(['yarn', 'dist'], cwd='electron_builder', shell=True)
 
     shutil.copy2(pathlib.Path("electron_builder") / "dist" / "Setup Milon HaReaya.exe", "output")
-
+    subprocess.run(pathlib.Path("output") / "Setup Milon HaReaya.exe")
 
 
 if __name__ == '__main__':

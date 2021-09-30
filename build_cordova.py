@@ -1,9 +1,11 @@
 import subprocess
+import shutil
+import pathlib
 from distutils.dir_util import copy_tree
 
 import upload_google_play
 from misc import replace_in_file
-
+import secret
 
 def prepare_cordova():
     subprocess.run("cordova platform add android".split(), cwd='input_cordova', shell=True)
@@ -11,7 +13,14 @@ def prepare_cordova():
 
 
 def build_cordova():
-    subprocess.run(['cordova', 'build'], cwd='output', shell=True)
+    keystore = secret.apk_sign_keystore_file
+    storePassword = secret.apk_sign_storePassword
+    alias = secret.apk_sign_alias
+    password = secret.apk_sign_password
+    subprocess.run(f"cordova build --debug --release -- --keystore={keystore} --storePassword={storePassword} --alias={alias} --password={password}".split(),
+                   cwd='output', shell=True)
+    shutil.copy2(pathlib.Path("output") / "platforms" / "android" / "app" / "build" / "outputs" / "apk" / "release" / "app-release.apk"
+                 , "output")
 
 
 def update_apk_version():

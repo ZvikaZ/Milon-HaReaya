@@ -1,4 +1,5 @@
 import os.path
+import pathlib
 import shutil
 import subprocess
 
@@ -18,6 +19,9 @@ def build_electron():
 
     subprocess.run(['yarn'], cwd='electron_builder', shell=True)
     subprocess.run(['yarn', 'dist'], cwd='electron_builder', shell=True)
+
+    shutil.copy2(pathlib.Path("electron_builder") / "dist" / "Setup Milon HaReaya.exe", "output")
+
 
 
 if __name__ == '__main__':

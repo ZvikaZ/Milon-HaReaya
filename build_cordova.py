@@ -20,7 +20,7 @@ def build_cordova():
     subprocess.run(f"cordova build --debug --release -- --keystore={keystore} --storePassword={storePassword} --alias={alias} --password={password}".split(),
                    cwd='output', shell=True)
     shutil.copy2(pathlib.Path("output") / "platforms" / "android" / "app" / "build" / "outputs" / "apk" / "release" / "app-release.apk"
-                 , "output")
+                 , pathlib.Path("output") / "milon.apk")
 
 
 def update_apk_version():

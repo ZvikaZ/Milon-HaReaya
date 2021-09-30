@@ -105,7 +105,6 @@ html_parser = html.parser.HTMLParser()
 process = "ZIP"
 
 if process in ["Full", "Compile"]:
-    # doc_file_name = 'dict.docx'
     doc_file_name = 'מילון הראיה.docx'
     create_html = True
     #create_latex = True
@@ -1280,7 +1279,7 @@ if process != "ZIP":
 
         if process == "Full":
             playAPISession = upload_google_play.PlayAPISession()
-            playAPISession.main(["output/milon.dual.apk"])
+            playAPISession.main(["output/milon.apk"])
 
     except Exception as e:
         print("Build process failed!")

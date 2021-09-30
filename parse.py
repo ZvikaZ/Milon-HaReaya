@@ -100,12 +100,12 @@ import texer
 html_parser = html.parser.HTMLParser()
 
 # process = "Full"
-process = "Electron"
-# process = "ZIP"
+# process = "Electron"
+process = "ZIP"
 
 if process in ["Full", "Electron"]:
-    doc_file_name = 'dict.docx'
-    # doc_file_name = 'מילון הראיה.docx'
+    # doc_file_name = 'dict.docx'
+    doc_file_name = 'מילון הראיה.docx'
     create_html = True
     #create_latex = True
     create_latex = False
@@ -1158,7 +1158,7 @@ with open('output/debug.txt', 'w', encoding='utf-8') as debug_file:
 
                 para.append((type, run.text))
 
-                if type == "unknown":
+                if type == "unknown" and run.text.strip():
                     if run_style_id(run) not in unknown_list:
                         unknown_list.append(run_style_id(run))
                         print(paragraph.text)

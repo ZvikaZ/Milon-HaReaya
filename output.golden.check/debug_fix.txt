@@ -5,7 +5,24 @@ heading_letter:א.
  ---------------
 new_line:
 .
- subject-light:חילוני .
+ subject_normal:משקל עליון .
+ definition_normal:- .
+ sub-subject_normal:המשקל העליון .
+ definition_normal:- בירורה של הכרעת ההנהגה העליונה .
+ definition_small:.
+ source_normal:[רצי"ה א"ש יא הערה 18].
+ definition_small:..
+ new_line:
+.
+ ---------------
+ERROR_definition_normal:ע' במדור מונחי קבלה ונסתר, .
+ definition_small:מתקלא..
+ new_line:
+.
+ new_line:
+.
+ ---------------
+subject-light:חילוני .
  definition_light:- .
  sub-subject_light:נשמה חילונית .
  definition_light:- זרם ההויה הבא מצד המשך ההויה שאנחנו קוראים .

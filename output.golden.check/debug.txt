@@ -14,7 +14,16 @@ NEW_PARA:
 NEW_PARA:
 ------
 !s03.definition_small:
-$ !s04.s04_bold:חילוני$ !s04.unknown_light: $ !s04.unknown_light:-$ !s04.unknown_light: $ !s04.s04_bold:נשמה$ !s01.subject_normal: $ !s04.s04_bold:חילונית$ !s01.subject_normal: $ !s04.unknown_light:-$ !s04.unknown_light: $ !s04.unknown_light:זרם ההויה הבא מצד המשך ההויה שאנחנו קוראים טבע$ !s04.unknown_light:°, ההשגה של $ !s04.unknown_light:אוה$ !s04.unknown_light:"ע$ !s04.unknown_light:, הזרם הבא מהאמצעים מהסיבות$ !s04.unknown_light:°$ !s04.unknown_light: $ !s04.unknown_light:[נ"א ה 31].$ 
+$ !s01.subject_normal:משקל עליון $ !s02.definition_normal:- $ !s11.sub-subject_normal:המשקל העליון $ !s02.definition_normal:- בירורה של הכרעת ההנהגה העליונה $ !s03.definition_small:[$ !s03.definition_small:רצי"ה$ !s03.definition_small: א"ש יא הערה $ !s03.definition_small:18$ !s03.definition_small:].$ 
+
+NEW_PARA:
+------
+!s02.definition_normal:ע$ !s02.definition_normal:'$ !s02.definition_normal: במדור מונחי קבלה ונסתר$ !s03.definition_small:,$ !s03.definition_small: $ !s03.definition_small:מתקלא$ !s03.definition_small:.$ !s03.definition_small:
+$ 
+
+NEW_PARA:
+------
+!s04.s04_bold:חילוני$ !s04.unknown_light: $ !s04.unknown_light:-$ !s04.unknown_light: $ !s04.s04_bold:נשמה$ !s01.subject_normal: $ !s04.s04_bold:חילונית$ !s01.subject_normal: $ !s04.unknown_light:-$ !s04.unknown_light: $ !s04.unknown_light:זרם ההויה הבא מצד המשך ההויה שאנחנו קוראים טבע$ !s04.unknown_light:°, ההשגה של $ !s04.unknown_light:אוה$ !s04.unknown_light:"ע$ !s04.unknown_light:, הזרם הבא מהאמצעים מהסיבות$ !s04.unknown_light:°$ !s04.unknown_light: $ !s04.unknown_light:[נ"א ה 31].$ 
 
 NEW_PARA:
 ------
@@ -130,7 +139,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s01.subject_normal:תּ$ !s01.subject_normal:ֹ$ !s01.subject_normal:ם $ !s02.definition_normal:- $ !s11.sub-subject_normal:תוכן הַתּ$ !s11.sub-subject_normal:ֹ$ !s11.sub-subject_normal:ם $ !s02.definition_normal:- המערכה$ !s02.definition_normal:°$ !s02.definition_normal: העליונה, מערכת הקודש°, העולה ממעל לכל ערכים מוסריים°, התמימות השלמה, שאין בה דופי $ !s02.definition_normal:פיסוק וקיצוץ מכל ההופעות°, יושר° השכל°, יושר הלב, יושר הרגש, יושר הרוח°, יושר הטבע, יושר הבשר, יושר ההופעה, יושר ההקשבה $ !s03.definition_small:[א' $ !s03.definition_small:כט$ !s03.definition_small:].$ 
+!s01.subject_normal:תּ$ !s01.subject_normal:ֹ$ !s01.subject_normal:ם $ !s02.definition_normal:- $ !s11.sub-subject_normal:תוכן הַתּ$ !s11.sub-subject_normal:ֹ$ !s11.sub-subject_normal:ם $ !s02.definition_normal:- המערכה$ !s02.definition_normal:°$ !s02.definition_normal: העליונה, מערכת הקודש°, העולה ממעל לכל ערכים מוסריים°, התמימות השלמה, שאין בה דופי פיסוק וקיצוץ מכל ההופעות°, יושר° השכל°, יושר הלב, יושר הרגש, יושר הרוח°, יושר הטבע, יושר הבשר, יושר ההופעה, יושר ההקשבה $ !s03.definition_small:[א' $ !s03.definition_small:כט$ !s03.definition_small:].$ 
 
 NEW_PARA:
 ------

@@ -524,7 +524,7 @@ def update_values_for_href(child, href):
     elif len(values) > 1:
         # # tuple of (subject, html_doc's section name, url)
         # subject, section, url = values[]
-        child.children[0]['href'] = "search.html?"+href
+        child.children[0]['href'] = "search.html?method=exact_subject&term="+href
         return True
     else:
         assert False
@@ -914,6 +914,8 @@ def open_html_doc(name, letter=None):
         tags.script(src="milon.js")
         tags.script(src="html_demos-gh-pages/footnotes.js")
         tags.script(src="subjects_db.json")
+        tags.script(src="index.json")
+        tags.script(src="elasticlunr.min.js")
 
 
 

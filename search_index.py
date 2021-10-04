@@ -69,7 +69,6 @@ def learn(tag, html_doc):
                 'section': html_doc.section,
                 'url': "%s.html#%s" % (html_doc.index, subject_id)
             })
-            print(subject, clean_subject)
             db[clean_subject] = new_subject_l
 
 
@@ -102,7 +101,7 @@ for (var subject in data) {
 	}
 } 
 
-fs.writeFile('index.json', JSON.stringify(index), function (err) {
+fs.writeFile('www/index.json', "indexDump = " + JSON.stringify(index), function (err) {
 	if (err) throw err;
 	console.log('index.json written');
 });

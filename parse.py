@@ -75,7 +75,9 @@ import sys
 
 import build_cordova
 import build_electron
+import search_index
 from misc import replace_in_file
+from search_index import calc_subject_id, clean_name
 
 sys.path.insert(0, r'C:\Zvika\PycharmProjects\python-docx')
 sys.path.insert(0, r'C:\Users\sdaudi\Github\python-docx')
@@ -239,14 +241,6 @@ unknown_list = []
 # dictionary mapping subjects to list of pointers
 # each pointer is a tuple of (subject, html_doc's section name, url)
 subjects_db = {}
-
-def calc_subject_id(text_orig, cnt):
-    # subject_id = "subject_%d" % len(subjects_db)
-    text = text_orig.replace(" ", "-")
-    if cnt == 0:
-        return text
-    else:
-        return "%s%d" % (text, cnt)
 
 
 def subject(html_doc, type, text):
@@ -640,6 +634,7 @@ new_lines_in_raw = 0
 
 def add_running_tag(body, running_tag):
     if str(running_tag) != "<span></span>":
+        search_index.learn(running_tag, html_doc)
         body += running_tag
     return (body, tags.span())
 
@@ -970,11 +965,6 @@ def open_html_doc(name, letter=None):
     return html_doc
 
 
-def clean_name(s):
-    s = re.sub("־", " ", s, flags=re.UNICODE)
-    return re.sub(r"[^\w ]", "", s, flags=re.UNICODE)
-
-
 def close_html_doc(html_doc):
     with html_doc.body.children[-1]:
         assert html_doc.body.children[-1]['class'] == 'container-fluid'
@@ -1090,6 +1080,7 @@ for (f) in (
     'html_demos-gh-pages/footnotes.css',
     'html_demos-gh-pages/footnotes.js',
     'milon.js',
+    'elasticlunr.min.js',
     'index.html',
     'opening_abbrev.html',
     'opening_haskamot.html',
@@ -1273,6 +1264,9 @@ if create_latex:
 with open('output/www/subjects_db.json', 'w', encoding='utf-8') as fp:
     s = json.dumps(subjects_db)
     fp.write("data = " + s)
+
+
+search_index.create_index()
 
 
 if unknown_list:

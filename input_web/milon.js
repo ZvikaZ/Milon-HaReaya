@@ -60,17 +60,24 @@ $(function(){
 });
 
 
-function show_search_result(subjects) {
+function show_search_result(subjects, term) {
     console.log("show_subjects: ", subjects);
 
 	var subjects_html = '<div class="container-fluid"><p><ol>';
 
-	for (var item of subjects) {
+    function highlight(s, term) {
+        //var re = new RegExp("\\b" + term, "gu");  //TODO JS doesn't really support 'word-boundry' in Unicode regex
+        var re = new RegExp(term, "g")
+        return s.replace(re, '<span class="highlight">' + term + '</span>')
+    }
+
+    for (var item of subjects) {
 		console.log(item);
         subjects_html += '<li><a class="search_result" href=' + item.doc.url + '>' +
-			item.doc.subject + '  (<small>' + item.doc.section + '</small>)</a> ' +
-			', התאמה: ' + Math.ceil(item.score * 10) + "<br>" +		// ceil - to avoid zero score
-			item.doc.data + "</li>";
+			highlight(item.doc.subject, term) +
+            '  (<small>' + item.doc.section + '</small>)</a> ' +
+			'<em>' + ', התאמה: ' + Math.ceil(item.score * 10) + "</em><br>" +		// ceil - to avoid zero score
+			'<small>' + highlight(item.doc.data, term) + "</small></li>";
 	}
 
 	subjects_html += "</ol></div>"
@@ -143,8 +150,7 @@ function search() {
                 window.location.href = url;
             }
         };
-        // leftover from legacy search - probably safe to delete in the future
-        // document.getElementById("subject_search").value = "";
+        document.getElementById("subject_search").value = "";
     };
 }
 

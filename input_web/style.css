@@ -191,6 +191,13 @@ a {
 }
 
 
+/* used by search results */
+.highlight {
+  background-color: yellow;
+  /*color: black;*/
+}
+
+
 /*
 .letters_navbar {
     list-style-type: none;

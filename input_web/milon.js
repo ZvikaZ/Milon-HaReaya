@@ -142,7 +142,7 @@ function search() {
             show_failed_search_modal(clean_val);
         } else {
 			// show_search_result(items)
-            if (items.length > 1) {
+            if (items.length > 1 || !items[0].doc.subject.includes(clean_val)) {
 				window.location = "search.html?method=" + method + "&term=" + clean_val;
             } else {
                 let url = items[0].doc.url;

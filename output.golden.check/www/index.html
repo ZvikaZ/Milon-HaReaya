@@ -13,11 +13,9 @@
 		<script src="milon.js"></script>
 		<script src="html_demos-gh-pages/footnotes.js"></script>
 		<script src="subjects_db.json"></script>
-		<script src="phonegap.js"></script>
 	</head>
 	<body onload="init()">
 	<div class="container-fluid">
-		<div class="col-sm-6">
 			<div class="fixed_top_left" id="menu_bar"><div><button class="btn btn-default" id="back_icon_button" onclick="goBack()" type="button">הקודם</button><button class="btn btn-default" id="forward_icon_button" onclick="goForward()" type="button">הבא</button><button class="btn btn-default" id="search_icon_button" type="button"><span class="glyphicon glyphicon-search"></span></button><span class="dropdown"><button class="btn btn-primary" href="#" type="button"><span class="glyphicon glyphicon-menu-hamburger"></span></button><ul class="dropdown-menu dropdown-menu-left scrollable-menu"><li class="active"><a href="index.html">אודות</a></li><li><a href="opening_intros.html">הקדמות</a></li><li><a href="opening_haskamot.html">הסכמות</a></li><li><a href="opening_abbrev.html">קיצורים</a></li><li><a href="opening_signs.html">סימנים</a></li><li class="divider"></li><li><a href="1.html">ערכים כלליים</a></li><li><a href="8.html">מדרגות והערכות אישיותיות</a></li><li><a href="6.html">מונחי קבלה ונסתר</a></li></ul></span></div></div>﻿  <!-- Modal -->
   <div class="modal fade" id="searchDialogModal" role="dialog">
     <div class="modal-dialog">
@@ -83,33 +81,6 @@
 			<hr>
 
 			<p>
-			<script>
-	//	if (typeof(Storage) !== "undefined") {
-	//
-	//		var url = "index.html";
-	//		var http = new XMLHttpRequest();
-	//		http.open('HEAD', url);
-	//		http.onreadystatechange = function() {
-	//			if (this.readyState == this.DONE) {
-	//				// http_callback(this);
-	//			}
-	//		};
-	//		http.send();
-	//	};
-
-	//	function http_callback(http_request) {
-	//	    alert(http_request.getAllResponseHeaders());
-	//	    var last_modified = http_request.getResponseHeader('Last-Modified');
-	//	    alert("From http:" + last_modified + "\nFrom local:" + localStorage.lastModifiedIndexHtml + "\nlast_url:" + localStorage.last_url)
-	//	    // jump to last location - if it's valid, and user already saw this version of index.html
-	//		if ((localStorage.lastModifiedIndexHtml == last_modified) && (localStorage.getItem("last_url") != null)) {
-	//			console.log("localStorage.get last_url = " + localStorage.getItem("last_url"))
-	//			window.location.href = localStorage.getItem("last_url");
-	//		};
-	//		localStorage.lastModifiedIndexHtml = last_modified;
-	//	}
-
-			</script>
 
 			<p class="my_background">
 			על מנת להתחיל, חפש ערך בעזרת כפתור החיפוש שבראש המסך <span class="glyphicon glyphicon-search"></span>, או בחר מדור מהתפריט <span class="glyphicon glyphicon-menu-hamburger"></span>.
@@ -164,7 +135,6 @@
 			צביקה הרמתי<br>
 			גני טל ת"ו
 			<div class="modal fade" id="search_modal"></div>
-		</div>
 	</div>
 	</body>
 </html> 

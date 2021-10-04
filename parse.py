@@ -27,7 +27,6 @@ and pushes the APK (automatically) to Google Play.
 # TODO: Clean 'UNKNOWN's and 'fix_sz_cs'
 # TODO: verify that it's running on clean GIT clone
 
-# TODO: Wrap each definition with <div> tag
 # TODO: change 'is_prev_subject(..)' to correctly handle "Toar Shem Tov" - should be more freely checking
 # TODO: otiyot - stam font
 # TODO: pagination at end
@@ -40,7 +39,6 @@ and pushes the APK (automatically) to Google Play.
 # TODO: splitted bubject, like "אמר לו הקדוש ברוך הוא (לגבריאל° שבקש להציל את אברהם־אבינו° מכבשן האש) אני יחיד בעולמי והוא יחיד בעולמו, נאה ליחיד להציל את היחיד"
 
 # TODO: circles shouldn't be part of subjects (and what about parentheses?)
-# TODO: breadcrumbs
 # TODO: "Mehkarim" - make links, check styles!
 # TODO: Change "opening_abbrev.html" styling
 # TODO: handle footnotes' styles
@@ -237,6 +235,7 @@ sizes = Sizes()
 
 unknown_list = []
 
+#TODO remove this
 # dictionary mapping subjects to list of pointers
 # each pointer is a tuple of (subject, html_doc's section name, url)
 subjects_db = {}
@@ -251,33 +250,40 @@ def calc_subject_id(text_orig, cnt):
 
 
 def subject(html_doc, type, text):
-    clean_text = clean_name(text.strip())
-    new_subject_l = subjects_db.get(clean_text, [])
-    subject_id = calc_subject_id(text.strip(), len(new_subject_l))
-    new_subject_l.append((text.strip(), html_doc.section, "%s.html#%s" % (html_doc.index, subject_id)))
-    subjects_db[clean_text] = new_subject_l
+    result = tags.span()
+    with result:
+        clean_text = clean_name(text.strip())
+        new_subject_l = subjects_db.get(clean_text, [])
+        subject_id = calc_subject_id(text.strip(), len(new_subject_l))
+        new_subject_l.append((text.strip(), html_doc.section, "%s.html#%s" % (html_doc.index, subject_id)))
+        subjects_db[clean_text] = new_subject_l
 
-    with tags.span(text, id=subject_id):
-        tags.attr(cls=type)
+        with tags.span(text, id=subject_id):
+            tags.attr(cls=type)
 
-    # with tags.span(tags.a(text, href="#%s" % text.strip(), id=text.strip())):
-    #     tags.attr(cls=type)
+        # with tags.span(tags.a(text, href="#%s" % text.strip(), id=text.strip())):
+        #     tags.attr(cls=type)
+    return result
+
 
 def regular(type, text):
-    if type in ['footnote', 'footnote_recurrence']:
-        with tags.a("(%s)" % text.strip()):
-            tags.attr(cls="ptr")
-    else:
-        if "\n" in text:
-            print("New:", text)
-        if "°" in text:
-            href = re.sub("°", "", text)
-            href = re.sub("־", " ", href)
-            with tags.span(tags.a(text, href="#"+href)):
-                tags.attr(cls=type)
+    result = tags.span()
+    with result:
+        if type in ['footnote', 'footnote_recurrence']:
+            with tags.a("(%s)" % text.strip()):
+                tags.attr(cls="ptr")
         else:
-            with tags.span(text):
-                tags.attr(cls=type)
+            if "\n" in text:
+                print("New:", text)
+            if "°" in text:
+                href = re.sub("°", "", text)
+                href = re.sub("־", " ", href)
+                with tags.span(tags.a(text, href="#"+href)):
+                    tags.attr(cls=type)
+            else:
+                with tags.span(text):
+                    tags.attr(cls=type)
+    return result
 
 def is_footnote_recurrence(run, type):
     # a number in superscript, that's not defined as a footnote
@@ -534,39 +540,44 @@ def update_href_no_link(child):
     text = html_parser.unescape(child.children[0].children[0])
     child.children[0] = tags.span(text)
 
+
 def fix_links(html_docs_l):
     # fix outbound links
     print("Fixing links")
     for (doc) in html_docs_l:
-        for (child) in doc.body.children[0].children:
-            if 'definition' in child.attributes.get('class', ()):
-                href = ""
+        for (parent) in doc.body.children[0].children:
+            for middle in parent.children:
                 try:
-                    href = child.children[0].attributes.get("href")
-                except AttributeError as e:
+                    for child in middle.children:
+                        if 'definition' in child.attributes.get('class', ()):
+                            href = ""
+                            try:
+                                href = child.children[0].attributes.get("href")
+                            except AttributeError as e:
+                                pass
+
+                            # it's a link - try to update it
+                            if href:
+                                # first, strip it of weird chars
+                                try:
+                                    href = clean_name(href)
+
+                                    updated = False
+                                    if update_values_for_href(child, href):
+                                        updated = True
+                                    else:
+                                        if href[0] in ("ה", "ו", "ש", "ב", "כ", "ל", "מ"):
+                                            updated = update_values_for_href(child, href[1:])
+                                    if not updated:
+                                        # failed to update - it's not a real link...
+                                        update_href_no_link(child)
+
+                                except Exception as e:
+                                    pass
+                                    print(e, "Exception of HREF update", href)
+                                    #TODO - investigate why it happens? (it's a single corner case, I think)
+                except AttributeError:
                     pass
-
-                # it's a link - try to update it
-                if href:
-                    # first, strip it of weird chars
-                    try:
-                        href = clean_name(href)
-
-                        updated = False
-                        if update_values_for_href(child, href):
-                            updated = True
-                        else:
-                            if href[0] in ("ה", "ו", "ש", "ב", "כ", "ל", "מ"):
-                                updated = update_values_for_href(child, href[1:])
-                        if not updated:
-                            # failed to update - it's not a real link...
-                            update_href_no_link(child)
-
-                    except Exception as e:
-                        pass
-                        print(e, "Exception of HREF update", href)
-                        #TODO - investigate why it happens? (it's a single corner case, I think)
-
 
     def sorter(html_doc):
         if html_doc.name in ["ערכים כלליים",]:
@@ -623,42 +634,57 @@ def fix_links(html_docs_l):
 
     return html_docs_l
 
+
 new_lines_in_raw = 0
+
+
+def add_running_tag(body, running_tag):
+    if str(running_tag) != "<span></span>":
+        body += running_tag
+    return (body, tags.span())
+
+
 def add_to_output(html_doc, para):
     global new_lines_in_raw
     # we shouldn't accept empty paragraph (?)
     assert len(para) > 0
 
-    with html_doc.body.children[-1]:
-        assert html_doc.body.children[-1]['class'] == 'container-fluid';
-        for (i, (type, text)) in enumerate(para):
-            if 'heading' in type and text.strip():
-                # tags.p()
-                # tags.p()
-                heading = sizes.get_heading_type(type)
-                print(type, text)
-                heading(text)
-            elif type == "new_line":
-                new_lines_in_raw += 1
-                if new_lines_in_raw == 1:
-                    tags.br()
-                elif new_lines_in_raw == 2:
-                    tags.p()
-                else:
-                    pass
-            elif is_subject(para, i):
-                if not is_prev_subject(para, i):
-                    # tags.p()
-                    #tags.br()
-                    pass
-                subject(html_doc, type, text)
+    body = html_doc.body.children[-1]
+    assert body['class'] == 'container-fluid';
+    running_tag = tags.span()
+    for (i, (type, text)) in enumerate(para):
+        if 'heading' in type and text.strip():
+            # tags.p()
+            # tags.p()
+            body, running_tag = add_running_tag(body, running_tag)
+            heading = sizes.get_heading_type(type)
+            print(type, text)
+            body += heading(text)
+        elif type == "new_line":
+            new_lines_in_raw += 1
+            if new_lines_in_raw == 1:
+                running_tag += tags.br()
+            elif new_lines_in_raw == 2:
+                body, running_tag = add_running_tag(body, running_tag)
+                body += tags.p()
             else:
-                regular(type, text)
+                pass
+        elif is_subject(para, i):
+            if not is_prev_subject(para, i):
+                # tags.p()
+                #tags.br()
+                pass
 
-            if type != "new_line":
-                new_lines_in_raw = 0
+            body, running_tag = add_running_tag(body, running_tag)
+            running_tag = subject(html_doc, type, text)
+        else:
+            running_tag += regular(type, text)
 
-        # tags.br()
+        if type != "new_line":
+            new_lines_in_raw = 0
+
+    # tags.br()
+    body, running_tag = add_running_tag(body, running_tag)
 
 
 

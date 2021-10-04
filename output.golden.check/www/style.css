@@ -66,7 +66,7 @@ to fix the bug that Search Modal appeared grayed out */
 	left: 5px;
 	top: 5px;
     width: auto;
-	max-width: 40%;
+	max-width: 80%;
 	display: inline;
 }
 

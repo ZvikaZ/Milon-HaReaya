@@ -60,58 +60,74 @@ $(function(){
 });
 
 
-function show_search_result(subjects, term) {
-    console.log("show_subjects: ", subjects);
+function show_search_result(subjects, method, term) {
+    console.time("show_search_result");
 
-	var subjects_html = '<div class="container-fluid"><p><ol>';
+    let subjects_html;
 
-    function highlight(s, term) {
-        //var re = new RegExp("\\b" + term, "gu");  //TODO JS doesn't really support 'word-boundry' in Unicode regex
-        var re = new RegExp(term, "g")
-        return s.replace(re, '<span class="highlight">' + term + '</span>')
+    let key = "show_" + method + "&&&" + term;
+    if (localStorage[key]) {
+        console.log("show_search_result: using cache");
+        subjects_html = localStorage[key];
+    } else {
+        console.log("show_search_result: not using cache")
+
+        subjects_html = '<div class="container-fluid"><p><ol>';
+
+        function highlight(s, term) {
+            //var re = new RegExp("\\b" + term, "gu");  //TODO JS doesn't really support 'word-boundry' in Unicode regex
+            var re = new RegExp(term, "g")
+            return s.replace(re, '<span class="highlight">' + term + '</span>')
+        }
+
+        for (var item of subjects) {
+            subjects_html += '<li><a class="search_result" href=' + item.doc.url + '>' +
+                highlight(item.doc.subject, term) +
+                '  (<small>' + item.doc.section + '</small>)</a> ' +
+                '<em>' + ', התאמה: ' + Math.ceil(item.score * 10) + "</em><br>" +		// ceil - to avoid zero score
+                '<small>' + highlight(item.doc.data, term) + "</small></li>";
+        }
+
+        subjects_html += "</ol></div>";
+
+        localStorage[key] = subjects_html;
     }
-
-    for (var item of subjects) {
-		console.log(item);
-        subjects_html += '<li><a class="search_result" href=' + item.doc.url + '>' +
-			highlight(item.doc.subject, term) +
-            '  (<small>' + item.doc.section + '</small>)</a> ' +
-			'<em>' + ', התאמה: ' + Math.ceil(item.score * 10) + "</em><br>" +		// ceil - to avoid zero score
-			'<small>' + highlight(item.doc.data, term) + "</small></li>";
-	}
-
-	subjects_html += "</ol></div>"
-
+    console.timeEnd("show_search_result");
 	document.body.innerHTML = subjects_html;
 }
 
 function actual_searching(method, val) {
+    let key = "raw_" + method + "&&&" + val;
+    if (localStorage[key]) {
+        return JSON.parse(localStorage[key])
+    }
+
+    let results;
+    console.time("search index load")
 	let searchIndex = elasticlunr.Index.load(indexDump);
+    console.timeEnd("search index load")
+    console.time("search")
     switch(method) {
 	    case "exact_subject":
-            var results = searchIndex.search(val, {
+            results = searchIndex.search(val, {
                 fields: {
                     subject: {boost: 2},
                 },
                 bool: "AND",
                 expand: false
             });
-            console.log(results)
-			return results;
 			break;
 	    case "subjects_only":
-            var results = searchIndex.search(val, {
+            results = searchIndex.search(val, {
                 fields: {
                     subject: {boost: 2},
                 },
                 bool: "AND",
                 expand: true
             });
-            console.log(results)
-			return results;
-			break;
+            break;
 	    case "everywhere":
-            var results = searchIndex.search(val, {
+            results = searchIndex.search(val, {
                 fields: {
                     subject: {boost: 2},
                     data: {boost: 1}
@@ -119,13 +135,14 @@ function actual_searching(method, val) {
                 bool: "AND",
                 expand: true
             });
-            console.log(results)
-			return results;
-			break;
+            break;
 		default:
 		    console.log("Received strange searching 'method': ", method);
 			break;
 	};
+    console.timeEnd("search")
+    localStorage[key] = JSON.stringify(results)
+    return results;
 }
 
 
@@ -137,7 +154,6 @@ function search() {
 	    let clean_val = val.replace(/[\|&;\$%@"'<>\(\)\+,]/g, "");
 
 		let items = actual_searching(method, clean_val);
-        console.log(items);
         if (items.length == 0) {
             show_failed_search_modal(clean_val);
         } else {
@@ -201,7 +217,6 @@ $(document).ready(function() {
 // $(document).ready(function() {
 // 	searchIndex = elasticlunr.Index.load(indexDump);
 // 	sessionStorage.setItem('searchIndex', searchIndex);
-// 	console.log(searchIndex);
 // });
 
 

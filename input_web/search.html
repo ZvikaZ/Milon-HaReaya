@@ -22,7 +22,7 @@
     const urlParams = new URLSearchParams(window.location.search);
     const term = urlParams.get('term');
     const method = urlParams.get('method');
-    show_search_result(actual_searching(method, term), term)
+    show_search_result(actual_searching(method, term), method, term)
 </script>
 
 <div class="container-fluid">

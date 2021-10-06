@@ -43,7 +43,7 @@ function show_failed_search_modal(val) {
                 <h4>חיפוש</h4>\
             </div>\
             <div class="modal-body">\
-                הערך "' + val + '" לא נמצא\
+                הביטוי "' + val + '" לא נמצא\
             </div>\
         </div>\
     </div>\
@@ -100,12 +100,16 @@ function show_search_result(subjects, method, term) {
         subjects_html += '<ol>';
 
         function highlight(s, term) {
-            for (let word of term.split(" ")) {
-                //var re = new RegExp("\\b" + word, "gu");  //TODO JS doesn't really support 'word-boundry' in Unicode regex
-                var re = new RegExp(word, "g")
-                s = s.replace(re, '<span class="highlight">' + word + '</span>')
-            }
-            return s
+			if (typeof s === 'string') {
+				for (let word of term.split(" ")) {
+					//var re = new RegExp("\\b" + word, "gu");  //TODO JS doesn't really support 'word-boundry' in Unicode regex
+					var re = new RegExp(word, "g")
+					s = s.replace(re, '<span class="highlight">' + word + '</span>')
+				}
+				return s
+			} else {
+				return "";
+			}
         }
 
         for (var item of subjects) {
@@ -113,7 +117,13 @@ function show_search_result(subjects, method, term) {
                 highlight(item.doc.subject, term) +
                 '  (<small>' + item.doc.section + '</small>)</a> ' +
                 '<em>' + ', התאמה: ' + Math.ceil(item.score * 10) + "</em><br>" +		// ceil - to avoid zero score
-                '<small>' + highlight(item.doc.data, term) + "</small></li>";
+                '<small>' + highlight(item.doc.data, term) + "</small>"
+
+            let highlight_footnotes = highlight(item.doc.footnotes, term)
+            if (highlight_footnotes != item.doc.footnotes)
+                subjects_html += '<em><small>' + '<br>' + highlight_footnotes + '</small></em>'
+            highlight_footnotes += "</li>";
+
         }
 
         subjects_html += "</ol></div>";
@@ -158,7 +168,8 @@ function actual_searching(method, val) {
             results = searchIndex.search(val, {
                 fields: {
                     subject: {boost: 2},
-                    data: {boost: 1}
+                    data: {boost: 1},
+                    footnotes: {boost: 0.8},
                 },
                 bool: "AND",
                 expand: true

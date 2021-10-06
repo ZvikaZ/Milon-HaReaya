@@ -5,12 +5,25 @@ from html.parser import HTMLParser
 
 
 class MyHTMLParser(HTMLParser):
+    current_footnote = 1
+
     def __init__(self):
         super().__init__()
         self.data = ""
+        self.footnotes = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag == 'a' and attrs[0] == ('class', 'ptr'):
+            assert attrs[1][0] == 'text'
+            # number = attrs[1][1]
+            self.footnotes.append(MyHTMLParser.current_footnote)
+            MyHTMLParser.current_footnote += 1
 
     def handle_data(self, data):
         self.data += data.replace("\n", "")
+
+    def get_results(self):
+        return self.data, self.footnotes # {'data': self.data, 'footnotes': self.footnotes}
 
 
 def calc_subject_id(text_orig, cnt):
@@ -29,6 +42,7 @@ def clean_name(s):
 
 
 db = {}
+footnotes_db = {}
 
 
 def get_subject(tag):
@@ -37,39 +51,67 @@ def get_subject(tag):
             # return tag.attributes['id']
             parser = MyHTMLParser()
             parser.feed(str(tag))
-            return parser.data
+            return parser.get_results()
 
         else:
-            return None
+            return None, []
     except KeyError:
-        return None
+        try:
+            return get_subject(tag.children[0])
+        except IndexError:
+            return None, []
 
 
 def get_data(tags):
     parser = MyHTMLParser()
     for tag in tags:
         parser.feed(str(tag))
-    return parser.data
+    return parser.get_results()
 
 
 def learn(tag, html_doc):
     if len(tag.children) >= 2:
-        item = {
-            'subject': get_subject(tag.children[0]),
-            'data': get_data(tag.children[1:])
-        }
-        if item['subject'] is not None:
-            subject = item['subject'].strip()
+        subject, subject_footnotes = get_subject(tag.children[0])
+        data, data_footnotes = get_data(tag.children[1:])
+        footnotes = subject_footnotes + data_footnotes
+        if footnotes == []:
+            footnotes = ""
+        if subject is not None:
+            subject = subject.strip()
             clean_subject = clean_name(subject)
             new_subject_l = db.get(clean_subject, [])
             subject_id = calc_subject_id(subject, len(new_subject_l))
             new_subject_l.append({
                 'subject': clean_subject,
-                'data': item['data'],
+                'data': data,
+                'footnotes': footnotes,
                 'section': html_doc.section,
                 'url': "%s.html#%s" % (html_doc.index, subject_id)
             })
             db[clean_subject] = new_subject_l
+            for id in footnotes:
+                footnotes_db[id] = clean_subject
+        else:
+            print("None subject: ", tag)	#TODO fix, or remove
+
+
+def learn_footnote(id, paragraphs):
+    text = ''.join([p.text for p in paragraphs])
+    try:
+        subject = footnotes_db[id]
+        defs = db[subject]
+        new_defs = []
+        changes = 0
+        for d in defs:
+            for footnote in d['footnotes']:
+                if footnote == int(id):
+                    d['footnotes'] = text
+                    changes += 1
+            new_defs.append(d)
+        assert changes == 1
+        db[subject] = new_defs
+    except:
+        print("ERROR at footnote: ", id)
 
 
 def create_index():
@@ -86,6 +128,7 @@ const fs = require('fs')
 var index = elasticlunr(function () {
     this.addField('subject');
     this.addField('data');
+    this.addField('footnotes');
     this.setRef('url');
     // this.saveDocument(false);		//depends on size...
 });

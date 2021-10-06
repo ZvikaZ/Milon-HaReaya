@@ -2,10 +2,12 @@
 # now it's holding small portion of HTML-related work
 
 import dominate.tags as tags
+
 import footer
+from search_index import learn_footnote
 
-
-def add_footnote_to_output(paragraphs):
+def add_footnote_to_output(id, paragraphs):
+    learn_footnote(id, paragraphs)
     with tags.li():
         for (para) in paragraphs:
             for (run) in para.runs:

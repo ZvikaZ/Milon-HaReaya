@@ -265,7 +265,7 @@ def regular(type, text):
     with result:
         if type in ['footnote', 'footnote_recurrence']:
             with tags.a("(%s)" % text.strip()):
-                tags.attr(cls="ptr")
+                tags.attr(cls="ptr", text=text)
         else:
             if "\n" in text:
                 print("New:", text)
@@ -312,9 +312,10 @@ def is_prev_newline(para, i):
     except:
         return False
 
+
 def is_prev_meuyan(para, i):
     try:
-        return para[i-1][0] == "s02Symbol"
+        return para[i-1][0] == "s02Symbol" or para[i-1][1].strip() == '◊'
     except:
         return False
 
@@ -630,6 +631,7 @@ def fix_links(html_docs_l):
 
 
 new_lines_in_raw = 0
+running_tag = tags.span()
 
 
 def add_running_tag(body, running_tag):
@@ -641,12 +643,12 @@ def add_running_tag(body, running_tag):
 
 def add_to_output(html_doc, para):
     global new_lines_in_raw
+    global running_tag
     # we shouldn't accept empty paragraph (?)
     assert len(para) > 0
 
     body = html_doc.body.children[-1]
     assert body['class'] == 'container-fluid';
-    running_tag = tags.span()
     for (i, (type, text)) in enumerate(para):
         if 'heading' in type and text.strip():
             # tags.p()
@@ -679,7 +681,7 @@ def add_to_output(html_doc, para):
             new_lines_in_raw = 0
 
     # tags.br()
-    body, running_tag = add_running_tag(body, running_tag)
+    # body, running_tag = add_running_tag(body, running_tag)	#TODO make sure it's not missing...
 
 
 
@@ -980,7 +982,7 @@ def close_html_doc(html_doc):
             for (id) in html_doc.footnote_ids_of_this_html_doc:
                 footnote = word_doc_footnotes.footnotes_part.notes[id + 1]
                 assert footnote.id == id
-                htmler.add_footnote_to_output(footnote.paragraphs)
+                htmler.add_footnote_to_output(id, footnote.paragraphs)
 
         # add placeholder for searching
         tags.comment("search_placeholder")

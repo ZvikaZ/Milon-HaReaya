@@ -1,14 +1,14 @@
 ﻿// called on index.html's BODY
 function init() {
     document.addEventListener("deviceready", onDeviceReady, false);
-	console.log("Hi");
+    console.log("Hi");
 }
 
 // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
 function onDeviceReady() {
-	//alert(AppVersion.version);
-	//alert(AppVersion.build);
-	console.log("device ready");
+    //alert(AppVersion.version);
+    //alert(AppVersion.build);
+    console.log("device ready");
 //	console.log(localStorage.last_build);
 //	console.log(AppVersion.build);
 //
@@ -25,7 +25,7 @@ function onDeviceReady() {
 //	};
 //	localStorage.last_build = AppVersion.build;
 
-	$(".hidden-on-mobile").hide();
+    $(".hidden-on-mobile").hide();
 
 
 }
@@ -35,7 +35,7 @@ function onDeviceReady() {
 
 
 function show_failed_search_modal(val) {
-  document.getElementById("search_modal").innerHTML = '\
+    document.getElementById("search_modal").innerHTML = '\
     <div class="modal-dialog">\
         <div class="modal-content">\
             <div class="modal-header">\
@@ -43,20 +43,20 @@ function show_failed_search_modal(val) {
                 <h4>חיפוש</h4>\
             </div>\
             <div class="modal-body">\
-                הערך "'+ val + '" לא נמצא\
+                הערך "' + val + '" לא נמצא\
             </div>\
         </div>\
     </div>\
     ';
- $("#search_modal").modal('show');
+    $("#search_modal").modal('show');
 
 }
 
-$(function(){
-    $('#search_modal').on('show.bs.modal', function(){
+$(function () {
+    $('#search_modal').on('show.bs.modal', function () {
         var myModal = $(this);
         clearTimeout(myModal.data('hideInterval'));
-        myModal.data('hideInterval', setTimeout(function(){
+        myModal.data('hideInterval', setTimeout(function () {
             myModal.modal('hide');
         }, 2000));
     });
@@ -100,7 +100,7 @@ function show_search_result(subjects, method, term) {
         subjects_html += '<ol>';
 
         function highlight(s, term) {
-            for(let word of term.split(" ")) {
+            for (let word of term.split(" ")) {
                 //var re = new RegExp("\\b" + word, "gu");  //TODO JS doesn't really support 'word-boundry' in Unicode regex
                 var re = new RegExp(word, "g")
                 s = s.replace(re, '<span class="highlight">' + word + '</span>')
@@ -121,7 +121,7 @@ function show_search_result(subjects, method, term) {
         sessionStorage[key] = subjects_html;
     }
     console.timeEnd("show_search_result");
-	document.body.innerHTML = subjects_html;
+    document.body.innerHTML = subjects_html;
 }
 
 function actual_searching(method, val) {
@@ -132,11 +132,11 @@ function actual_searching(method, val) {
 
     let results;
     console.time("search index load")
-	let searchIndex = elasticlunr.Index.load(indexDump);
+    let searchIndex = elasticlunr.Index.load(indexDump);
     console.timeEnd("search index load")
     console.time("search")
-    switch(method) {
-	    case "exact_subject":
+    switch (method) {
+        case "exact_subject":
             results = searchIndex.search(val, {
                 fields: {
                     subject: {boost: 2},
@@ -144,8 +144,8 @@ function actual_searching(method, val) {
                 bool: "AND",
                 expand: false
             });
-			break;
-	    case "subjects_only":
+            break;
+        case "subjects_only":
             results = searchIndex.search(val, {
                 fields: {
                     subject: {boost: 2},
@@ -154,7 +154,7 @@ function actual_searching(method, val) {
                 expand: true
             });
             break;
-	    case "everywhere":
+        case "everywhere":
             results = searchIndex.search(val, {
                 fields: {
                     subject: {boost: 2},
@@ -164,10 +164,10 @@ function actual_searching(method, val) {
                 expand: true
             });
             break;
-		default:
-		    console.log("Received strange searching 'method': ", method);
-			break;
-	}
+        default:
+            console.log("Received strange searching 'method': ", method);
+            break;
+    }
     console.timeEnd("search")
     sessionStorage[key] = JSON.stringify(results)
     return results;
@@ -176,22 +176,22 @@ function actual_searching(method, val) {
 
 function search() {
     let val = document.getElementById("subject_search").value;
-	let method = document.querySelector('input[name="searchRadio"]:checked').id;
+    let method = document.querySelector('input[name="searchRadio"]:checked').id;
     // storing to both of them because of https://github.com/electron-userland/electron-builder/issues/3885
     sessionStorage['searchMethod'] = method
     localStorage['searchMethod'] = method
-	console.log("search function: ", method, ". ", val);
+    console.log("search function: ", method, ". ", val);
 
     if (val) {
-	    let clean_val = val.replace(/[\|&;\$%@"'<>\(\)\+,]/g, "");
+        let clean_val = val.replace(/[\|&;\$%@"'<>\(\)\+,]/g, "");
 
-		let items = actual_searching(method, clean_val);
+        let items = actual_searching(method, clean_val);
         if (items.length == 0) {
             show_failed_search_modal(clean_val);
         } else {
-			// show_search_result(items)
+            // show_search_result(items)
             if (items.length > 1 || !items[0].doc.subject.includes(clean_val)) {
-				window.location = "search.html?method=" + method + "&term=" + clean_val;
+                window.location = "search.html?method=" + method + "&term=" + clean_val;
             } else {
                 let url = items[0].doc.url;
                 console.log(url);
@@ -207,46 +207,46 @@ function search() {
 
 
 function page_loaded(url) {
-	if (typeof(Storage) !== "undefined") {
-		localStorage.setItem("last_url", url);
-	}
+    if (typeof (Storage) !== "undefined") {
+        localStorage.setItem("last_url", url);
+    }
 }
 
 function goBack() {
-	window.history.back();
+    window.history.back();
 }
 
 function goForward() {
-	window.history.forward();
+    window.history.forward();
 }
 
 // https://stackoverflow.com/questions/32017791/how-to-find-the-current-location-index-in-the-browser-history
 // Onload
 {
-    if (!history.state  &&  typeof(history.replaceState) == "function")
-        history.replaceState({ page: history.length, href: location.href }, "foo");
-	// now history.state is the index of the current page in window.history
+    if (!history.state && typeof (history.replaceState) == "function")
+        history.replaceState({page: history.length, href: location.href}, "foo");
+    // now history.state is the index of the current page in window.history
 }
 
-$(window).load(function() {
-	if (history.state.page == 1) {
-		$("#back_icon_button").prop('disabled', true)
-	} else {
-		$("#back_icon_button").prop('disabled', false)
-	}
-	if (history.state.page == window.history.length) {
-		$("#forward_icon_button").prop('disabled', true)
-	} else {
-		$("#forward_icon_button").prop('disabled', false)
-	}
+$(window).load(function () {
+    if (history.state.page == 1) {
+        $("#back_icon_button").prop('disabled', true)
+    } else {
+        $("#back_icon_button").prop('disabled', false)
+    }
+    if (history.state.page == window.history.length) {
+        $("#forward_icon_button").prop('disabled', true)
+    } else {
+        $("#forward_icon_button").prop('disabled', false)
+    }
 })
 
 
 // https://stackoverflow.com/questions/49178396/autofocus-input-element-on-modal-open-bootstrap-4
-$(document).ready(function() {
-  $('#searchDialogModal').on('shown.bs.modal', function() {
-    $('#subject_search').trigger('focus');
-  });
+$(document).ready(function () {
+    $('#searchDialogModal').on('shown.bs.modal', function () {
+        $('#subject_search').trigger('focus');
+    });
 });
 
 // //TODO do it once and for all? this code gets executed on every page, every refresh

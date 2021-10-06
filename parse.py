@@ -87,7 +87,7 @@ import docx_fork_ludoo
 import dominate
 import dominate.tags as tags
 import re
-import zipfile
+import pyzipper
 import os
 import shutil
 import html.parser
@@ -1277,7 +1277,8 @@ if unknown_list:
 
 
 def create_zip():
-    with zipfile.ZipFile("milon.zip", "w", zipfile.ZIP_DEFLATED) as zf:
+    with pyzipper.AESZipFile("milon.zip", "w", encryption=pyzipper.WZ_AES) as zf:
+        zf.setpassword(b"milon")
         os.chdir("output")
         for dirname, subdirs, files in os.walk("."):
             # avoid creating 'output' directory as first hierrarchy

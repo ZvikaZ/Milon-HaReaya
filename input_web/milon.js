@@ -47,7 +47,7 @@ function show_failed_search_modal(val) {
     ';
  $("#search_modal").modal('show');
 
-};
+}
 
 $(function(){
     $('#search_modal').on('show.bs.modal', function(){
@@ -72,7 +72,11 @@ function show_search_result(subjects, method, term) {
     } else {
         console.log("show_search_result: not using cache")
 
-        subjects_html = '<div class="container-fluid"><p><ol>';
+        subjects_html = '<div class="container-fluid"><p>';
+
+        subjects_html += "<h5>" + term + "</h5>"
+
+        subjects_html += '<ol>';
 
         function highlight(s, term) {
             //var re = new RegExp("\\b" + term, "gu");  //TODO JS doesn't really support 'word-boundry' in Unicode regex
@@ -139,7 +143,7 @@ function actual_searching(method, val) {
 		default:
 		    console.log("Received strange searching 'method': ", method);
 			break;
-	};
+	}
     console.timeEnd("search")
     localStorage[key] = JSON.stringify(results)
     return results;
@@ -165,15 +169,15 @@ function search() {
                 console.log(url);
                 window.location.href = url;
             }
-        };
+        }
         document.getElementById("subject_search").value = "";
-    };
+    }
 }
 
 function page_loaded(url) {
 	if (typeof(Storage) !== "undefined") {
 		localStorage.setItem("last_url", url);
-	};
+	}
 }
 
 function goBack() {

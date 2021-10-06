@@ -6,8 +6,9 @@ import dominate.tags as tags
 import footer
 from search_index import learn_footnote
 
+
 def add_footnote_to_output(id, paragraphs):
-    learn_footnote(id, paragraphs)
+    learn_footnote(paragraphs)
     with tags.li():
         for (para) in paragraphs:
             for (run) in para.runs:

@@ -113,7 +113,7 @@ else:
     # doc_file_name = 'dict_few.docx'
     doc_file_name = 'dict_check.docx'
     # doc_file_name = 'dict_short.docx'
-    # doc_file_name = 'dict_half.docx'
+    doc_file_name = 'dict_footnotes.docx'
     # doc_file_name = 'מילון הראיה.docx'
 
     create_html = True
@@ -986,6 +986,8 @@ def close_html_doc(html_doc):
 
         # add placeholder for searching
         tags.comment("search_placeholder")
+
+    search_index.close_html_doc()
 
     place_holder = "<!--search_placeholder-->"
     with open("input_web/stub_search.html", 'r', encoding='utf-8') as file:

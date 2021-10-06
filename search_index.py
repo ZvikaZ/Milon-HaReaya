@@ -5,25 +5,22 @@ from html.parser import HTMLParser
 
 
 class MyHTMLParser(HTMLParser):
-    current_footnote = 1
-
     def __init__(self):
         super().__init__()
         self.data = ""
-        self.footnotes = []
+        self.footnote_ids = []
 
     def handle_starttag(self, tag, attrs):
         if tag == 'a' and attrs[0] == ('class', 'ptr'):
             assert attrs[1][0] == 'text'
-            # number = attrs[1][1]
-            self.footnotes.append(MyHTMLParser.current_footnote)
-            MyHTMLParser.current_footnote += 1
+            number = attrs[1][1]
+            self.footnote_ids.append(number)
 
     def handle_data(self, data):
         self.data += data.replace("\n", "")
 
     def get_results(self):
-        return self.data, self.footnotes # {'data': self.data, 'footnotes': self.footnotes}
+        return self.data, self.footnote_ids
 
 
 def calc_subject_id(text_orig, cnt):
@@ -71,11 +68,9 @@ def get_data(tags):
 
 def learn(tag, html_doc):
     if len(tag.children) >= 2:
-        subject, subject_footnotes = get_subject(tag.children[0])
-        data, data_footnotes = get_data(tag.children[1:])
-        footnotes = subject_footnotes + data_footnotes
-        if footnotes == []:
-            footnotes = ""
+        subject, subject_footnote_ids = get_subject(tag.children[0])
+        data, data_footnote_ids = get_data(tag.children[1:])
+        footnote_ids = subject_footnote_ids + data_footnote_ids
         if subject is not None:
             subject = subject.strip()
             clean_subject = clean_name(subject)
@@ -84,34 +79,46 @@ def learn(tag, html_doc):
             new_subject_l.append({
                 'subject': clean_subject,
                 'data': data,
-                'footnotes': footnotes,
+                'footnote_ids': footnote_ids,
+                'footnotes': "",
                 'section': html_doc.section,
                 'url': "%s.html#%s" % (html_doc.index, subject_id)
             })
             db[clean_subject] = new_subject_l
-            for id in footnotes:
-                footnotes_db[id] = clean_subject
+            for id in footnote_ids:
+                footnotes_db[int(id)] = clean_subject
         else:
             print("None subject: ", tag)	#TODO fix, or remove
 
 
-def learn_footnote(id, paragraphs):
+footnote_id = 0
+
+
+def learn_footnote(paragraphs):
+    global footnote_id
+    footnote_id += 1
     text = ''.join([p.text for p in paragraphs])
-    try:
-        subject = footnotes_db[id]
-        defs = db[subject]
-        new_defs = []
-        changes = 0
-        for d in defs:
-            for footnote in d['footnotes']:
-                if footnote == int(id):
-                    d['footnotes'] = text
-                    changes += 1
-            new_defs.append(d)
-        assert changes == 1
-        db[subject] = new_defs
-    except:
-        print("ERROR at footnote: ", id)
+    # try:
+    subject = footnotes_db[footnote_id]
+    defs = db[subject]
+    new_defs = []
+    changes = 0
+    for d in defs:
+        for footnote in d['footnote_ids']:
+            if int(footnote) == int(footnote_id):
+                d['footnotes'] += "<br>" + text
+                changes += 1
+        new_defs.append(d)
+    # assert changes == 1
+    # print(f"changes: {changes}")
+    db[subject] = new_defs
+    # except:
+    #     print("ERROR at footnote: ", id)
+
+
+def close_html_doc():
+    global footnote_id
+    footnote_id = 0
 
 
 def create_index():

@@ -121,7 +121,7 @@ function show_search_result(subjects, method, term) {
 
             let highlight_footnotes = highlight(item.doc.footnotes, term)
             if (highlight_footnotes != item.doc.footnotes)
-                subjects_html += '<em><small>' + '<br>' + highlight_footnotes + '</small></em>'
+                subjects_html += '<em><small>' + highlight_footnotes + '</small></em>'
             highlight_footnotes += "</li>";
 
         }

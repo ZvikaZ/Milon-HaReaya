@@ -31,6 +31,9 @@ function onDeviceReady() {
 }
 
 
+////////////////////////////////////////////////////////////////////////
+
+
 function show_failed_search_modal(val) {
   document.getElementById("search_modal").innerHTML = '\
     <div class="modal-dialog">\
@@ -59,6 +62,24 @@ $(function(){
     });
 });
 
+////
+
+$(document).ready(function () {
+    $("#search_icon_button").click(function () {
+        initSearchDialog();
+        $("#searchDialogModal").modal();
+    });
+});
+
+function initSearchDialog() {
+    let key = 'searchMethod'
+    if (sessionStorage[key]) {
+        document.getElementById(sessionStorage[key]).checked = true;
+    } else if (localStorage[key]) {
+        document.getElementById(localStorage[key]).checked = true;
+    } else
+        document.getElementById("everywhere").checked = true;
+}
 
 function show_search_result(subjects, method, term) {
     console.time("show_search_result");
@@ -66,9 +87,9 @@ function show_search_result(subjects, method, term) {
     let subjects_html;
 
     let key = "show_" + method + "&&&" + term;
-    if (localStorage[key]) {
+    if (sessionStorage[key]) {
         console.log("show_search_result: using cache");
-        subjects_html = localStorage[key];
+        subjects_html = sessionStorage[key];
     } else {
         console.log("show_search_result: not using cache")
 
@@ -94,7 +115,7 @@ function show_search_result(subjects, method, term) {
 
         subjects_html += "</ol></div>";
 
-        localStorage[key] = subjects_html;
+        sessionStorage[key] = subjects_html;
     }
     console.timeEnd("show_search_result");
 	document.body.innerHTML = subjects_html;
@@ -102,8 +123,8 @@ function show_search_result(subjects, method, term) {
 
 function actual_searching(method, val) {
     let key = "raw_" + method + "&&&" + val;
-    if (localStorage[key]) {
-        return JSON.parse(localStorage[key])
+    if (sessionStorage[key]) {
+        return JSON.parse(sessionStorage[key])
     }
 
     let results;
@@ -145,7 +166,7 @@ function actual_searching(method, val) {
 			break;
 	}
     console.timeEnd("search")
-    localStorage[key] = JSON.stringify(results)
+    sessionStorage[key] = JSON.stringify(results)
     return results;
 }
 
@@ -153,7 +174,11 @@ function actual_searching(method, val) {
 function search() {
     let val = document.getElementById("subject_search").value;
 	let method = document.querySelector('input[name="searchRadio"]:checked').id;
+    // storing to both of them because of https://github.com/electron-userland/electron-builder/issues/3885
+    sessionStorage['searchMethod'] = method
+    localStorage['searchMethod'] = method
 	console.log("search function: ", method, ". ", val);
+
     if (val) {
 	    let clean_val = val.replace(/[\|&;\$%@"'<>\(\)\+,]/g, "");
 
@@ -173,6 +198,10 @@ function search() {
         document.getElementById("subject_search").value = "";
     }
 }
+
+
+////////////////////////////////////////////////////////////////////////
+
 
 function page_loaded(url) {
 	if (typeof(Storage) !== "undefined") {

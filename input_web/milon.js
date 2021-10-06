@@ -100,9 +100,12 @@ function show_search_result(subjects, method, term) {
         subjects_html += '<ol>';
 
         function highlight(s, term) {
-            //var re = new RegExp("\\b" + term, "gu");  //TODO JS doesn't really support 'word-boundry' in Unicode regex
-            var re = new RegExp(term, "g")
-            return s.replace(re, '<span class="highlight">' + term + '</span>')
+            for(let word of term.split(" ")) {
+                //var re = new RegExp("\\b" + word, "gu");  //TODO JS doesn't really support 'word-boundry' in Unicode regex
+                var re = new RegExp(word, "g")
+                s = s.replace(re, '<span class="highlight">' + word + '</span>')
+            }
+            return s
         }
 
         for (var item of subjects) {

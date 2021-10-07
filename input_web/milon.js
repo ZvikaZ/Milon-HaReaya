@@ -119,10 +119,12 @@ function show_search_result(subjects, method, term) {
                 '<em>' + ', התאמה: ' + Math.ceil(item.score * 10) + "</em><br>" +		// ceil - to avoid zero score
                 '<small>' + highlight(item.doc.data, term) + "</small>"
 
-            let highlight_footnotes = highlight(item.doc.footnotes, term)
-            if (highlight_footnotes != item.doc.footnotes)
-                subjects_html += '<em><small>' + highlight_footnotes + '</small></em>'
-            highlight_footnotes += "</li>";
+            for (var footnote of item.doc.footnotes) {
+                let highlight_footnote = highlight(footnote, term)
+                if (highlight_footnote != footnote)
+                    subjects_html += '<em><small>' + '<br>' + highlight_footnote + '</small></em>'
+            }
+            subjects_html += "</li>";
 
         }
 

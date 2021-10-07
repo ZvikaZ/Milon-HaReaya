@@ -80,7 +80,7 @@ def learn(tag, html_doc):
                 'subject': clean_subject,
                 'data': data,
                 'footnote_ids': footnote_ids,
-                'footnotes': "",
+                'footnotes': [],
                 'section': html_doc.section,
                 'url': "%s.html#%s" % (html_doc.index, subject_id)
             })
@@ -106,7 +106,7 @@ def learn_footnote(paragraphs):
     for d in defs:
         for footnote in d['footnote_ids']:
             if int(footnote) == int(footnote_id):
-                d['footnotes'] += "<br>" + text
+                d['footnotes'].append(f"{footnote}. {text}")
                 changes += 1
         new_defs.append(d)
     # assert changes == 1

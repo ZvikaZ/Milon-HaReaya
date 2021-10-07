@@ -101,8 +101,8 @@ import texer
 html_parser = html.parser.HTMLParser()
 
 # process = "Full"
-process = "Compile"
-# process = "ZIP"
+# process = "Compile"
+process = "ZIP"
 
 if process in ["Full", "Compile"]:
     doc_file_name = 'מילון הראיה.docx'
@@ -771,7 +771,7 @@ def fix_b_cs(run, type):
             szCs = None
 
         try:
-            fonts = run.element.rPr.rFonts.attrib.get('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs', None)
+            fonts = get_fonts(run)
         except:
             fonts = None
 
@@ -787,7 +787,19 @@ def fix_b_cs(run, type):
         pass
     return result
 
+
+def get_fonts(run):
+    try:
+        return run.element.rPr.rFonts.attrib.get('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs', None)
+    except:
+        return None
+
+
 def fix_misc_attrib(run, type):
+    if get_fonts(run) == "Miriam":
+        if type == "definition_small":
+            type = "subject_light"
+
     try:
         eastAsia = list(run.element.rPr.rFonts.attrib.values())[0] == 'eastAsia'
         if eastAsia:
@@ -799,10 +811,8 @@ def fix_misc_attrib(run, type):
         else:
             return type
 
-
     except:
         return type
-
 
 
 def fix_unknown(run):
@@ -1169,16 +1179,17 @@ with open('output/debug.txt', 'w', encoding='utf-8') as debug_file:
                     if run.element.rPr.bCs is not None and run.text.strip():
                         type = fix_b_cs(run, type)
 
-                    if run.text.strip():
-                        type = fix_misc_attrib(run, type)
-
-                    # NOTE: this footnote number need no fix.
-                    # it is a recurrence, therefore it has no id.
-                    if is_footnote_recurrence(run, type):
-                        type = 'footnote_recurrence'
-            
                 except:
                     pass
+
+                if run.text.strip():
+                    type = fix_misc_attrib(run, type)
+
+                # NOTE: this footnote number need no fix.
+                # it is a recurrence, therefore it has no id.
+                if is_footnote_recurrence(run, type):
+                    type = 'footnote_recurrence'
+            
 
 
                 para.append((type, run.text))

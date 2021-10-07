@@ -15,7 +15,7 @@ new_line:
  new_line:
 .
  ---------------
-definition_normal:ע' במדור מונחי קבלה ונסתר, .
+ERROR_definition_normal:ע' במדור מונחי קבלה ונסתר, .
  definition_small:מתקלא..
  new_line:
 .

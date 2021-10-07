@@ -281,11 +281,14 @@ def regular(type, text):
 
 def is_footnote_recurrence(run, type):
     # a number in superscript, that's not defined as a footnote
-    return \
-        run.element.rPr.vertAlign is not None \
-        and type != 'footnote' \
-        and run.text.strip().isdigit() \
-        and list(run.element.rPr.vertAlign.values())[0] == 'superscript'
+    try:
+        return \
+            run.element.rPr.vertAlign is not None \
+            and type != 'footnote' \
+            and run.text.strip().isdigit() \
+            and list(run.element.rPr.vertAlign.values())[0] == 'superscript'
+    except AttributeError:
+        return False
 
 def is_subject(para, i, next=False):
     type, text = para[i]

@@ -23,6 +23,11 @@ $
 
 NEW_PARA:
 ------
+!s02.definition_normal:"$ !s01.subject_normal:יקרא $ !s01.subject_normal:דשכבי$ !s01.subject_normal:"$ !s02.definition_normal:$ !s02.definition_normal: $ !s02.definition_normal:- $ !s11.sub-subject_normal:שבהספד$ !s02.definition_normal: $ !s11.sub-subject_normal:(במובן פנימי) $ !s02.definition_normal:- האהבה והגעגועים ליקרת הדרכים הישרים (של המנוח) רק בגדר אהבה רוחנית לבד. (ש)אמנם תפעל פעולתה להתקרב יותר אל הצד הטוב והכשר שבדרכי החיים של (המנוח), אבל לא תוכל לפעול במעשה פעולה מורגשת $ !s03.definition_small:[עפ"י מ"ר $ !s03.definition_small:396$ !s03.definition_small:]. $ !s03.definition_small:
+$ 
+
+NEW_PARA:
+------
 !s04.s04_bold:חילוני$ !s04.unknown_light: $ !s04.unknown_light:-$ !s04.unknown_light: $ !s04.s04_bold:נשמה$ !s01.subject_normal: $ !s04.s04_bold:חילונית$ !s01.subject_normal: $ !s04.unknown_light:-$ !s04.unknown_light: $ !s04.unknown_light:זרם ההויה הבא מצד המשך ההויה שאנחנו קוראים טבע$ !s04.unknown_light:°, ההשגה של $ !s04.unknown_light:אוה$ !s04.unknown_light:"ע$ !s04.unknown_light:, הזרם הבא מהאמצעים מהסיבות$ !s04.unknown_light:°$ !s04.unknown_light: $ !s04.unknown_light:[נ"א ה 31].$ 
 
 NEW_PARA:

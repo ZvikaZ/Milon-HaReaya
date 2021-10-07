@@ -385,12 +385,17 @@ def analyze_and_fix(para):
             # after new_line and empty
             # after subject,"-"
             # after Meuyan
+            # second, and after '"'
             if (index == 0) or (is_prev_newline(para, index)) or (is_prev_meuyan(para, index)):
                 new_para.append((type, text))
             elif (is_prev_subject(para, index)):
                 new_para.append((make_sub_subject(type), text))
             elif new_para[index-1][0] in ('sub-subject_normal', 'subject_small'):
                 new_para.append((make_sub_subject(type), text))
+            elif index == 1 and new_para[0][1] == '"':
+                # get rid of the wrong '"'
+                new_para[0] = ('', '')
+                new_para.append((type, '"' + text))
             else:
                 new_para.append(("fake_"+type, text))
         elif 'subject' in type:

@@ -22,6 +22,20 @@ ERROR_definition_normal:ע' במדור מונחי קבלה ונסתר, .
  new_line:
 .
  ---------------
+:.
+ subject_normal:"יקרא דשכבי".
+ footnote:1.
+ definition_normal: - .
+ fake_sub-subject_normal:שבהספד (במובן פנימי) .
+ definition_normal:- האהבה והגעגועים ליקרת הדרכים הישרים (של המנוח) רק בגדר אהבה רוחנית לבד. (ש)אמנם תפעל פעולתה להתקרב יותר אל הצד הטוב והכשר שבדרכי החיים של (המנוח), אבל לא תוכל לפעול במעשה פעולה מורגשת .
+ definition_small:.
+ source_normal:[עפ"י מ"ר 396].
+ definition_small:. .
+ new_line:
+.
+ new_line:
+.
+ ---------------
 subject-light:חילוני .
  definition_light:- .
  sub-subject_light:נשמה חילונית .
@@ -37,7 +51,7 @@ subject-light:חילוני .
 subject_normal:אבוקה .
  definition_normal:- .
  sub-subject_normal:(בעולם השכלי, לעומת אור ירח° ואור השמש°).
- footnote:1.
+ footnote:2.
  fake_sub-subject_normal: .
  definition_normal:- החכמה ההקשית הבנויה מהרכבת הקדמות עיוניות .
  definition_small:.
@@ -49,7 +63,7 @@ subject_normal:אבוקה .
 .
  ---------------
 sub-subject_light:אשא דעי למרחוק ולפועלי אתן צדק.
- footnote:2.
+ footnote:3.
  definition_normal: - .
  fake_sub-subject_light:להבין בחינת מה מהצדק העליון, נחוץ להתרומם בסולם הדעות מרחק רב מאד, הרחק הרחק ממדת הצדק שלנו .
  source_light:[נ"א ה 29].

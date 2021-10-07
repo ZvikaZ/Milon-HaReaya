@@ -8,6 +8,8 @@ function createWindow () {
     autoHideMenuBar: true,
   })
 
+  // win.webContents.openDevTools()
+
   win.loadFile('www/index.html')
 }
 

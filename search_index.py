@@ -66,6 +66,10 @@ def get_data(tags):
     return parser.get_results()
 
 
+def get_footnote_key(index, id):
+    return str(index) + "&&" + str(id)
+
+
 def learn(tag, html_doc):
     if len(tag.children) >= 2:
         subject, subject_footnote_ids = get_subject(tag.children[0])
@@ -86,34 +90,35 @@ def learn(tag, html_doc):
             })
             db[clean_subject] = new_subject_l
             for id in footnote_ids:
-                footnotes_db[int(id)] = clean_subject
+                footnote_key = get_footnote_key(html_doc.index, id)
+                # TODO now we ignore duplicates - do we want to keep them as well?
+                if footnote_key not in footnotes_db:
+                    footnotes_db[footnote_key] = clean_subject
         else:
-            print("None subject: ", tag)	#TODO fix, or remove
+            print("None subject: ", tag)	 # TODO fix, or remove
 
 
 footnote_id = 0
 
 
-def learn_footnote(paragraphs):
+def learn_footnote(paragraphs, html_doc_index):
     global footnote_id
     footnote_id += 1
     text = ''.join([p.text for p in paragraphs])
-    # try:
-    subject = footnotes_db[footnote_id]
-    defs = db[subject]
-    new_defs = []
-    changes = 0
-    for d in defs:
-        for footnote in d['footnote_ids']:
-            if int(footnote) == int(footnote_id):
-                d['footnotes'].append(f"{footnote}. {text}")
-                changes += 1
-        new_defs.append(d)
-    # assert changes == 1
-    # print(f"changes: {changes}")
-    db[subject] = new_defs
-    # except:
-    #     print("ERROR at footnote: ", id)
+    try:
+        subject = footnotes_db[get_footnote_key(html_doc_index, footnote_id)]
+        defs = db[subject]
+        new_defs = []
+        changes = 0
+        for d in defs:
+            for footnote in d['footnote_ids']:
+                if int(footnote) == int(footnote_id):
+                    d['footnotes'].append(f"{footnote}. {text}")
+                    changes += 1
+            new_defs.append(d)
+        db[subject] = new_defs
+    except KeyError:
+        print(f"learn_footnote: KeyError ({html_doc_index}, {footnote_id}): {text}")       # TODO fix
 
 
 def close_html_doc():

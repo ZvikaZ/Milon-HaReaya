@@ -983,6 +983,7 @@ def close_html_doc(html_doc):
                 footnote = word_doc_footnotes.footnotes_part.notes[id + 1]
                 assert footnote.id == id
                 htmler.add_footnote_to_output(id, footnote.paragraphs)
+                search_index.learn_footnote(footnote.paragraphs, html_doc.index)
 
         # add placeholder for searching
         tags.comment("search_placeholder")

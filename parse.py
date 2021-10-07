@@ -101,8 +101,8 @@ import texer
 html_parser = html.parser.HTMLParser()
 
 # process = "Full"
-# process = "Compile"
-process = "ZIP"
+process = "Compile"
+# process = "ZIP"
 
 if process in ["Full", "Compile"]:
     doc_file_name = 'מילון הראיה.docx'
@@ -315,7 +315,7 @@ def is_prev_newline(para, i):
 
 def is_prev_meuyan(para, i):
     try:
-        return para[i-1][0] == "s02Symbol" or para[i-1][1].strip() == '◊'
+        return para[i-1][0] == "s02Symbol" or uniqify(para[i-1][1].strip()) == '◊'
     except:
         return False
 
@@ -859,6 +859,7 @@ def fix_DefaultParagraphFont(run):
             #    return 'DefaultParagraphFont'
     else:
         return 'DefaultParagraphFont'
+
 
 temp_l = []
 

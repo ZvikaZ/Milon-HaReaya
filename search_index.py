@@ -95,7 +95,8 @@ def learn(tag, html_doc):
                 if footnote_key not in footnotes_db:
                     footnotes_db[footnote_key] = clean_subject
         else:
-            print("None subject: ", tag)	 # TODO fix, or remove
+            if data.strip():
+                print("None subject: ", tag)	 # TODO fix, or remove
 
 
 footnote_id = 0

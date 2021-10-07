@@ -86,9 +86,7 @@ fake_sub-subject_normal:גדול הוא קידוש השם מחלול השם.
  new_line:
 .
  ---------------
-subject_normal:נקודים.
- footnote_recurrence:15.
- DefaultParagraphFont: .
+subject_normal:נקודים .
  definition_normal:- העולמים והבריות לאין תכלית, הכחות .
  definition_normal:בפירודם°.
  definition_normal: ובהתגברותם, האינדיוידואליות המתאדרת, החיים בכל שאונם הנחמד .
@@ -581,7 +579,7 @@ subject_normal:גשמים.
 .
  ---------------
 s02Symbol:◊ .
- fake_sub-subject_normal:תאר מלך.
+ sub-subject_normal:תאר מלך.
  definition_normal: ראוי להאמר מצד הכרתינו את .
  definition_normal:דעת־האלהים°.
  definition_normal: מצד הנבראים כפי ערכינו .
@@ -599,10 +597,9 @@ definition_normal:ע"ע אור עליון. ע"ע אור ד'..
  new_line:
 .
  ---------------
-subject_normal:תורה.
- footnote_recurrence:14.
- definition_normal: - .
- fake_subject_small:בעצמיות מהות הפנימית, הצורתית של התורה.
+subject_normal:תורה .
+ definition_normal:- .
+ sub-subject_normal:בעצמיות מהות הפנימית, הצורתית של התורה.
  footnote:18.
  definition_normal: - עצמיות טבע נשמתם של ישראל .
  definition_small:.

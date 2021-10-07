@@ -13,6 +13,8 @@
 		<script src="milon.js"></script>
 		<script src="html_demos-gh-pages/footnotes.js"></script>
 		<script src="subjects_db.json"></script>
+		<script src="index.json"></script>
+		<script src="elasticlunr.min.js"></script>
 	</head>
 
 	<body>
@@ -27,21 +29,21 @@
 	   <form>
         <div class="modal-body" style="padding:10px 14px;">
 			<div class="form-group">
-  			    <label for="subject_search">חיפוש ברשימת הערכים <span class="glyphicon glyphicon-search"></span></label>
-			    <input type="search" class="form-control" id="subject_search" placeholder="ביטוי לחיפוש ברשימת הערכים" autofocus>
+  			    <label for="subject_search">חיפוש<span class="glyphicon glyphicon-search"></span></label>
+			    <input type="search" class="form-control" id="subject_search" placeholder="מילים (אפשר חלקיות) לחיפוש" autofocus>
 			</div>
 			<div class="form-group" >
 				<div class="input-group">
+<!--					<div class="radio">-->
+<!--						<label><input type="radio" name="searchRadio" id="exact_expr">חיפוש שם ערך מדויק</label>-->
+<!--					</div>-->
 					<div class="radio">
-						<label><input type="radio" name="searchRadio" id="exact_expr">חיפוש שם ערך מדויק</label>
+						<label><input type="radio" name="searchRadio" id="everywhere">חיפוש בשמות הערכים ובתוכנם</label>
 					</div>
 					<div class="radio">
-						<label><input type="radio" name="searchRadio" id="whold_word" checked="checked">חיפוש מילה שלמה, שמופיעה בשם הערך</label>
+						<label><input type="radio" name="searchRadio" id="subjects_only">חיפוש בשמות הערכים בלבד</label>
 					</div>				
-					<div class="radio">
-						<label><input type="radio" name="searchRadio" id="partial">חיפוש רצף אותיות משם הערך</label>
-					</div>				
-				</div>				
+				</div>
 			</div>				
 
         </div>
@@ -56,14 +58,6 @@
 
   </div>
 
-  <script>
-  $(document).ready(function(){
-      $("#search_icon_button").click(function(){
-          $("#searchDialogModal").modal();
-      });
-  });
-  </script>
-  
 				
 
 	<p></p><br><br>

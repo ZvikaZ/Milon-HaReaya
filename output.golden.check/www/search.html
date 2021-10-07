@@ -1,28 +1,32 @@
 ﻿<!DOCTYPE html>
 <html dir="rtl">
-	<head>
-		<title>חיפוש</title>
-		<meta charset="utf-8">
-		<meta content="width=device-width, initial-scale=1" name="viewport">
-		<script src="jquery/dist/jquery.min.js"></script>
-		<link href="bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
-		<link href="style.css" rel="stylesheet">
-		<script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
-		<link href="bootstrap-rtl-3.3.4/dist/css/bootstrap-rtl.css" rel="stylesheet">
-		<link href="html_demos-gh-pages/footnotes.css" rel="stylesheet">
-		<script src="milon.js"></script>
-		<script src="html_demos-gh-pages/footnotes.js"></script>
-		<script src="subjects_db.json"></script>
-	</head>
+<head>
+    <title>חיפוש</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <script src="jquery/dist/jquery.min.js"></script>
+    <link href="bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+    <link href="bootstrap-rtl-3.3.4/dist/css/bootstrap-rtl.css" rel="stylesheet">
+    <link href="html_demos-gh-pages/footnotes.css" rel="stylesheet">
+    <script src="milon.js"></script>
+    <script src="html_demos-gh-pages/footnotes.js"></script>
+    <script src="subjects_db.json"></script>
+    <script src="index.json"></script>
+    <script src="elasticlunr.min.js"></script>
+</head>
 
-	<body>
-		<script>
-	      var clean_val = decodeURI(location.search).slice(1);
-		  show_subjects(clean_val);
-        </script>
-		
-		<div class="container-fluid">
-			<div class="fixed_top_left" id="menu_bar"><div><button class="btn btn-default" id="back_icon_button" onclick="goBack()" type="button">הקודם</button><button class="btn btn-default" id="forward_icon_button" onclick="goForward()" type="button">הבא</button><button class="btn btn-default" id="search_icon_button" type="button"><span class="glyphicon glyphicon-search"></span></button><span class="dropdown"><button class="btn btn-primary" href="#" type="button"><span class="glyphicon glyphicon-menu-hamburger"></span></button><ul class="dropdown-menu dropdown-menu-left scrollable-menu"><li><a href="index.html">אודות</a></li><li><a href="opening_intros.html">הקדמות</a></li><li><a href="opening_haskamot.html">הסכמות</a></li><li><a href="opening_abbrev.html">קיצורים</a></li><li><a href="opening_signs.html">סימנים</a></li><li class="divider"></li><li><a href="1.html">ערכים כלליים</a></li><li><a href="8.html">מדרגות והערכות אישיותיות</a></li><li><a href="6.html">מונחי קבלה ונסתר</a></li></ul></span></div></div>﻿  <!-- Modal -->
+<body>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const term = urlParams.get('term');
+    const method = urlParams.get('method');
+    show_search_result(actual_searching(method, term), method, term)
+</script>
+
+<div class="container-fluid">
+    <div class="fixed_top_left" id="menu_bar"><div><button class="btn btn-default" id="back_icon_button" onclick="goBack()" type="button">הקודם</button><button class="btn btn-default" id="forward_icon_button" onclick="goForward()" type="button">הבא</button><button class="btn btn-default" id="search_icon_button" type="button"><span class="glyphicon glyphicon-search"></span></button><span class="dropdown"><button class="btn btn-primary" href="#" type="button"><span class="glyphicon glyphicon-menu-hamburger"></span></button><ul class="dropdown-menu dropdown-menu-left scrollable-menu"><li><a href="index.html">אודות</a></li><li><a href="opening_intros.html">הקדמות</a></li><li><a href="opening_haskamot.html">הסכמות</a></li><li><a href="opening_abbrev.html">קיצורים</a></li><li><a href="opening_signs.html">סימנים</a></li><li class="divider"></li><li><a href="1.html">ערכים כלליים</a></li><li><a href="8.html">מדרגות והערכות אישיותיות</a></li><li><a href="6.html">מונחי קבלה ונסתר</a></li></ul></span></div></div>﻿  <!-- Modal -->
   <div class="modal fade" id="searchDialogModal" role="dialog">
     <div class="modal-dialog">
     
@@ -31,21 +35,21 @@
 	   <form>
         <div class="modal-body" style="padding:10px 14px;">
 			<div class="form-group">
-  			    <label for="subject_search">חיפוש ברשימת הערכים <span class="glyphicon glyphicon-search"></span></label>
-			    <input type="search" class="form-control" id="subject_search" placeholder="ביטוי לחיפוש ברשימת הערכים" autofocus>
+  			    <label for="subject_search">חיפוש<span class="glyphicon glyphicon-search"></span></label>
+			    <input type="search" class="form-control" id="subject_search" placeholder="מילים (אפשר חלקיות) לחיפוש" autofocus>
 			</div>
 			<div class="form-group" >
 				<div class="input-group">
+<!--					<div class="radio">-->
+<!--						<label><input type="radio" name="searchRadio" id="exact_expr">חיפוש שם ערך מדויק</label>-->
+<!--					</div>-->
 					<div class="radio">
-						<label><input type="radio" name="searchRadio" id="exact_expr">חיפוש שם ערך מדויק</label>
+						<label><input type="radio" name="searchRadio" id="everywhere">חיפוש בשמות הערכים ובתוכנם</label>
 					</div>
 					<div class="radio">
-						<label><input type="radio" name="searchRadio" id="whold_word" checked="checked">חיפוש מילה שלמה, שמופיעה בשם הערך</label>
+						<label><input type="radio" name="searchRadio" id="subjects_only">חיפוש בשמות הערכים בלבד</label>
 					</div>				
-					<div class="radio">
-						<label><input type="radio" name="searchRadio" id="partial">חיפוש רצף אותיות משם הערך</label>
-					</div>				
-				</div>				
+				</div>
 			</div>				
 
         </div>
@@ -60,19 +64,11 @@
 
   </div>
 
-  <script>
-  $(document).ready(function(){
-      $("#search_icon_button").click(function(){
-          $("#searchDialogModal").modal();
-      });
-  });
-  </script>
-  
 				
 
-			<!--/div-->
-	        <div class="modal fade" id="search_modal"></div>
-		</div>
+    <!--/div-->
+    <div class="modal fade" id="search_modal"></div>
+</div>
 
-    </body>
- </html> 
+</body>
+</html>

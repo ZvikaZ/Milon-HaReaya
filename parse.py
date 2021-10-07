@@ -113,7 +113,7 @@ else:
     # doc_file_name = 'dict_few.docx'
     doc_file_name = 'dict_check.docx'
     # doc_file_name = 'dict_short.docx'
-    doc_file_name = 'dict_footnotes.docx'
+    # doc_file_name = 'dict_footnotes.docx'
     # doc_file_name = 'מילון הראיה.docx'
 
     create_html = True
@@ -812,7 +812,8 @@ def fix_unknown(run):
     elif run.font.size == 88900 and run.style.style_id == 's04':
         return 'source_light'
     else:
-        print("UNKNOWN: ", run.text)
+        if run.text != '◊':
+            print("UNKNOWN: ", run.text)
         return 'unknown_light'
 
 

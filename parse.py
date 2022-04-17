@@ -59,11 +59,8 @@ and pushes the APK (automatically) to Google Play.
 # TODO: iphone?
 # TODO: GUI
 
-# reminder:
-# dropped PhonaGap for Monaca:
-# https://console.monaca.mobi/dashboard
-# (maybe change Rimon...)
-
+# installation:
+# install node, yarn, cordova (android sdk, JDK8, gradle)
 
 # remember:
 # http://stackoverflow.com/questions/10752055/cross-origin-requests-are-only-supported-for-http-error-when-loading-a-local

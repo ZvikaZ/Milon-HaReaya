@@ -100,9 +100,9 @@ import texer
 
 html_parser = html.parser.HTMLParser()
 
-# process = "Full"
+process = "Full"
 # process = "Compile"
-process = "ZIP"
+# process = "ZIP"
 
 if process in ["Full", "Compile"]:
     doc_file_name = 'מילון הראיה.docx'
@@ -860,6 +860,8 @@ def fix_DefaultParagraphFont(run):
             return 'source_small'
         elif run.font.size == 88900:
             return 'source_small'
+        elif run.font.size == 76200 and run.font.cs_bold is None:
+            return 'source_small'
         elif run.font.size is None and run.font.cs_bold:
             return 'sub-subject_normal'
         elif run.font.size is None and not run.font.cs_bold:
@@ -867,6 +869,7 @@ def fix_DefaultParagraphFont(run):
         else:
             if run.text.strip() not in ("-", "(", ")", "[", "]", "'", '"', ","):
                 print("AH!", ":",run.text.strip(),".", run.font.size, run.bold, run.font.cs_bold)
+                print(paragraph.text)
                 assert False
             #else:
             #    return 'DefaultParagraphFont'
@@ -892,6 +895,8 @@ def bold_type(s, type, run):
         return 'subject_normal'
     elif type == 'source_normal' and run.style.style_id == "DefaultParagraphFont" and run.font.size != 139700:
         return 'sub-subject_normal'
+    elif type == 'source_small' and run.style.style_id == "a0" and run.font.size == 101600:
+        return 'subject_small'
     elif type == 'unknown_light' and run.style.style_id == "s04" and run.font.size == 114300:
         return 'subject_light'
     elif type == 'unknown_light' and run.style.style_id == "s04" and run.font.size == 101600:
@@ -912,7 +917,8 @@ def bold_type(s, type, run):
     else:
         if type not in temp_l:
             print("Unexpected bold!", type)
-            print(s, type, run.text, run.font.size)
+            print(paragraph.text)
+            print(s, type, run.text, run.font.size, run.style.style_id)
             assert False
             temp_l.append(type)
         return type

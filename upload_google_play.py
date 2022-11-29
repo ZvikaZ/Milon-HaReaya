@@ -65,7 +65,10 @@ class PlayAPISession:
 
     def commit(self):
         commit_request = self.service.edits().commit(
-            editId=self.edit_id, packageName=package_name).execute()
+            editId=self.edit_id,
+            packageName=package_name,
+            changesNotSentForReview=True
+        ).execute()
         print('Edit "%s" has been committed' % (commit_request['id']))
 
     def upload_apk(self, apk_file):
@@ -99,6 +102,7 @@ class PlayAPISession:
                     'versionCodes': version_codes,
                     'status': 'completed',
                 }]}).execute()
+            # 'changesNotSentForReview': 'true',
 
             print('Track %s is set with releases: %s' % (
                 track_response['track'], str(track_response['releases'])))

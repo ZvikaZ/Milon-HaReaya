@@ -27,10 +27,10 @@ except:
     # SERVICE_ACCOUNT_EMAIL = (
     # 'service-...@api-...gserviceaccount.com')
 
-
 package_name = "com.haramaty.zvika.milon"
 # apk_file = "output/milon.apk"
 TRACK = 'production'  # Can be 'alpha', beta', 'production' or 'rollout'
+
 
 class PlayAPISession:
     def get_service(self):
@@ -68,11 +68,10 @@ class PlayAPISession:
             editId=self.edit_id, packageName=package_name).execute()
         print('Edit "%s" has been committed' % (commit_request['id']))
 
-
     def upload_apk(self, apk_file):
         service = self.service
         edit_id = self.edit_id
-    ###
+        ###
         try:
 
             apk_response = service.edits().apks().upload(
@@ -86,9 +85,8 @@ class PlayAPISession:
             return version_code
 
         except client.AccessTokenRefreshError:
-            print ('The credentials have been revoked or expired, please re-run the '
-                   'application to re-authorize')
-
+            print('The credentials have been revoked or expired, please re-run the '
+                  'application to re-authorize')
 
     def update_track(self, version_codes):
         try:
@@ -106,9 +104,8 @@ class PlayAPISession:
                 track_response['track'], str(track_response['releases'])))
 
         except client.AccessTokenRefreshError:
-            print ('The credentials have been revoked or expired, please re-run the '
-                   'application to re-authorize')
-
+            print('The credentials have been revoked or expired, please re-run the '
+                  'application to re-authorize')
 
     def get_last_apk(self):
         try:
@@ -121,9 +118,8 @@ class PlayAPISession:
 
 
         except client.AccessTokenRefreshError:
-            print ('The credentials have been revoked or expired, please re-run the '
-                   'application to re-authorize')
-
+            print('The credentials have been revoked or expired, please re-run the '
+                  'application to re-authorize')
 
     ### Copied from basic_list_apks_service_account.py:
     def list_all_apks(self):
@@ -136,9 +132,8 @@ class PlayAPISession:
                     apk['versionCode'], apk['binary']['sha1']))
 
         except client.AccessTokenRefreshError:
-            print ('The credentials have been revoked or expired, please re-run the '
-                   'application to re-authorize')
-
+            print('The credentials have been revoked or expired, please re-run the '
+                  'application to re-authorize')
 
     def main(self, apk_files):
         versions = []
@@ -150,10 +145,8 @@ class PlayAPISession:
         self.commit()
 
 
-
 if __name__ == '__main__':
     playAPISession = PlayAPISession()
     version_code = playAPISession.get_last_apk() + 1
     print(version_code)
     playAPISession.main(["output/milon.apk"])
-

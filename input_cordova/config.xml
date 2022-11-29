@@ -3,8 +3,8 @@
         id="com.haramaty.zvika.milon"
         version="1.2.2"
         android-versionCode="UPDATED_BY_SCRIPT_VERSION_CODE">
-    xmlns="http://www.w3.org/ns/widgets"
-    xmlns:cdv="http://cordova.apache.org/ns/1.0">
+        xmlns="http://www.w3.org/ns/widgets"
+        xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>מילון הראיה</name>
     <description></description>
     <author email="haramaty.zvika@gmail.com" href="https://github.com/ZvikaZ/Milon-HaReaya/">
@@ -30,9 +30,10 @@
 
     <icon src="icon.png"/>
 
-    <!--minimal version required by Google, due to security considerations-->
-    <preference name="android-minSdkVersion" value="30"/>
-    <preference name="android-targetSdkVersion" value="30"/>
+    <!--minimal versions required by Google, due to security considerations-->
+    <preference name="android-minSdkVersion" value="21"/>
+    <preference name="android-targetSdkVersion" value="31"/>
+
 
     <platform name="android">
         <splash src="res/android/screen/splash-port-ldpi.png" density="port-ldpi"/>

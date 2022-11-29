@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 """ Currently, this is the 'main' module of this project.
-By default, it parses 'dict.docx' (that contains Milon HaReaya's source Word file,
+By default, it parses 'מילון הראיה.docx' (that contains Milon HaReaya's source Word file,
 creates 'html_docs_l' - internal representation of all the Milon,
 'subjects_db' which is used for searching (and is written as JSON file for the JS)
 and then creates 'output/' with a working HTML/CSS/JS site, and zips it to 'milon.zip'
 
-If then creates an apk file and Electron .exe NSIS installer,
+If then creates an Electron .exe NSIS installer, a .apk file (with Cordova),
 and pushes the APK (automatically) to Google Play.
 """
 
+# TODO: The "<splash>" tags were detected and are no longer supported. Please migrate to the "preference" tag "AndroidWindowSplashScreenAnimatedIcon".
+# TODO: add date
 # TODO: refactor, split to files, unit tests
 # TODO: why "Pashut" is unknown?
 # TODO: fix "FOOTNOTE undefined: af7 None  :  homo"
@@ -1334,5 +1336,5 @@ if process != "ZIP":
             playAPISession.main(["output/milon.apk"])
 
     except Exception as e:
-        print("Build process failed!")
+        print("APK creation/uploading failed!")
         print(e)

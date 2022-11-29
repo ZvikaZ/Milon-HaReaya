@@ -1,3 +1,10 @@
+"""
+In order to update Android version, try:
+    # cordova platform remove android
+    # cordova platform add android@11.X.X
+    and if needed, https://stackoverflow.com/a/70634241/1543290
+"""
+
 import subprocess
 import shutil
 import pathlib
@@ -6,6 +13,7 @@ from distutils.dir_util import copy_tree
 import upload_google_play
 from misc import replace_in_file
 import secret
+
 
 def prepare_cordova():
     subprocess.run("cordova platform add android".split(), cwd='input_cordova', shell=True)
@@ -17,9 +25,11 @@ def build_cordova():
     storePassword = secret.apk_sign_storePassword
     alias = secret.apk_sign_alias
     password = secret.apk_sign_password
-    subprocess.run(f"cordova build --debug --release -- --keystore={keystore} --storePassword={storePassword} --alias={alias} --password={password}".split(),
-                   cwd='output', shell=True)
-    shutil.copy2(pathlib.Path("output") / "platforms" / "android" / "app" / "build" / "outputs" / "apk" / "release" / "app-release.apk"
+    subprocess.run(
+        f"cordova build --debug --release -- --keystore={keystore} --storePassword={storePassword} --alias={alias} --password={password} --packageType=apk".split(),
+        cwd='output', shell=True)
+    shutil.copy2(pathlib.Path(
+        "output") / "platforms" / "android" / "app" / "build" / "outputs" / "apk" / "release" / "app-release.apk"
                  , pathlib.Path("output") / "milon.apk")
 
 

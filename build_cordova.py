@@ -3,6 +3,9 @@ In order to update Android version, try:
     # cordova platform remove android
     # cordova platform add android@11.X.X
     and if needed, https://stackoverflow.com/a/70634241/1543290
+
+helpful debugging advices:
+    https://ionic.zendesk.com/hc/en-us/articles/7891143965975-Migrating-to-Cordova-Android-11
 """
 
 import subprocess

@@ -67,7 +67,7 @@ class PlayAPISession:
         commit_request = self.service.edits().commit(
             editId=self.edit_id,
             packageName=package_name,
-            changesNotSentForReview=True
+            # changesNotSentForReview=True
         ).execute()
         print('Edit "%s" has been committed' % (commit_request['id']))
 

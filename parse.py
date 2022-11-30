@@ -9,8 +9,8 @@ If then creates an Electron .exe NSIS installer, a .apk file (with Cordova),
 and pushes the APK (automatically) to Google Play.
 """
 
-# TODO: The "<splash>" tags were detected and are no longer supported. Please migrate to the "preference" tag "AndroidWindowSplashScreenAnimatedIcon".
-# TODO: add date
+# TODO: apk: add date
+# TODO: fix new errors in file
 # TODO: refactor, split to files, unit tests
 # TODO: why "Pashut" is unknown?
 # TODO: fix "FOOTNOTE undefined: af7 None  :  homo"

@@ -9,7 +9,11 @@ If then creates an Electron .exe NSIS installer, a .apk file (with Cordova),
 and pushes the APK (automatically) to Google Play.
 """
 
-# TODO: apk: add date
+# TODO: update search explanation and iphone
+# TODO: add waiting cursor
+# TODO: programmatically delete and create core; upload files; update solr index
+
+# TODO: check 'אשכח תמרי' - the link to 'משל עניינו של רבי מאיר' ; and many more links in this page
 # TODO: fix new errors in file
 # TODO: refactor, split to files, unit tests
 # TODO: why "Pashut" is unknown?
@@ -99,9 +103,9 @@ import texer
 
 html_parser = html.parser.HTMLParser()
 
-process = "Full"
+# process = "Full"
 # process = "Compile"
-# process = "ZIP"
+process = "ZIP"
 
 if process in ["Full", "Compile"]:
     doc_file_name = 'מילון הראיה.docx'
@@ -110,10 +114,10 @@ if process in ["Full", "Compile"]:
     create_latex = False
 else:
     # doc_file_name = 'dict_few.docx'
-    doc_file_name = 'dict_check.docx'
+    # doc_file_name = 'dict_check.docx'
     # doc_file_name = 'dict_short.docx'
     # doc_file_name = 'dict_footnotes.docx'
-    # doc_file_name = 'מילון הראיה.docx'
+    doc_file_name = 'מילון הראיה.docx'
 
     create_html = True
     create_latex = False
@@ -940,10 +944,7 @@ def open_html_doc(name, letter=None):
         tags.link(rel='stylesheet', href='html_demos-gh-pages/footnotes.css')
         tags.script(src="milon.js")
         tags.script(src="html_demos-gh-pages/footnotes.js")
-        tags.script(src="subjects_db.json")
-        tags.script(src="index.json")
-        tags.script(src="elasticlunr.min.js")
-
+        tags.link(rel='shortcut icon', href='favicon.ico')
 
 
 
@@ -1112,13 +1113,13 @@ for (f) in (
     'html_demos-gh-pages/footnotes.css',
     'html_demos-gh-pages/footnotes.js',
     'milon.js',
-    'elasticlunr.min.js',
     'index.html',
     'opening_abbrev.html',
     'opening_haskamot.html',
     'opening_intros.html',
     'opening_signs.html',
     'search.html',
+    'favicon.ico',
 ):
     shutil.copyfile(f, os.path.join("../output/www/", f))
 
@@ -1197,7 +1198,7 @@ with open('output/debug.txt', 'w', encoding='utf-8') as debug_file:
                 # it is a recurrence, therefore it has no id.
                 if is_footnote_recurrence(run, type):
                     type = 'footnote_recurrence'
-            
+
 
 
                 para.append((type, run.text))
@@ -1294,9 +1295,6 @@ if create_html:
 if create_latex:
     texer.close_latex()
 
-with open('output/www/subjects_db.json', 'w', encoding='utf-8') as fp:
-    s = json.dumps(subjects_db)
-    fp.write("data = " + s)
 
 
 search_index.create_index()

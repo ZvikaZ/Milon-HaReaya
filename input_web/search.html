@@ -12,9 +12,6 @@
     <link href="html_demos-gh-pages/footnotes.css" rel="stylesheet">
     <script src="milon.js"></script>
     <script src="html_demos-gh-pages/footnotes.js"></script>
-    <script src="subjects_db.json"></script>
-    <script src="index.json"></script>
-    <script src="elasticlunr.min.js"></script>
 </head>
 
 <body>
@@ -22,7 +19,7 @@
     const urlParams = new URLSearchParams(window.location.search);
     const term = urlParams.get('term');
     const method = urlParams.get('method');
-    show_search_result(actual_searching(method, term), method, term)
+    actual_searching(method, term, show_search_result)
 </script>
 
 <div class="container-fluid">

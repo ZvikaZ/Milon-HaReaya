@@ -29,7 +29,8 @@ def build_cordova():
     alias = secret.apk_sign_alias
     password = secret.apk_sign_password
     subprocess.run(
-        f"cordova build --debug --release -- --keystore={keystore} --storePassword={storePassword} --alias={alias} --password={password} --packageType=apk".split(),
+        # f"cordova build --debug --release -- --keystore={keystore} --storePassword={storePassword} --alias={alias} --password={password} --packageType=apk".split(),
+        f"cordova build android --release --device -- --keystore={keystore} --storePassword={storePassword} --alias={alias} --password={password} --packageType=apk".split(),
         cwd='output', shell=True)
     shutil.copy2(pathlib.Path(
         "output") / "platforms" / "android" / "app" / "build" / "outputs" / "apk" / "release" / "app-release.apk"

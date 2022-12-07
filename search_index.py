@@ -1,6 +1,6 @@
 import json
 import re
-import subprocess
+import uuid
 from html.parser import HTMLParser
 
 
@@ -81,12 +81,13 @@ def learn(tag, html_doc):
             new_subject_l = db.get(clean_subject, [])
             subject_id = calc_subject_id(subject, len(new_subject_l))
             new_subject_l.append({
-                'subject': clean_subject,
-                'data': data,
-                'footnote_ids': footnote_ids,
-                'footnotes': [],
-                'section': html_doc.section,
-                'url': "%s.html#%s" % (html_doc.index, subject_id)
+                'id': str(uuid.uuid4()),
+                'subject_t': clean_subject,
+                'data_t': data,
+                'footnote_ids_ss': footnote_ids,
+                'footnotes_t': '',
+                'section_s': html_doc.section,
+                'url_s': "%s.html#%s" % (html_doc.index, subject_id)
             })
             db[clean_subject] = new_subject_l
             for id in footnote_ids:
@@ -112,9 +113,9 @@ def learn_footnote(paragraphs, html_doc_index):
         new_defs = []
         changes = 0
         for d in defs:
-            for footnote in d['footnote_ids']:
+            for footnote in d['footnote_ids_ss']:
                 if int(footnote) == int(footnote_id):
-                    d['footnotes'].append(f"{footnote}. {text}")
+                    d['footnotes_t'] += (f"\n{footnote}. {text}")
                     changes += 1
             new_defs.append(d)
         db[subject] = new_defs
@@ -128,40 +129,7 @@ def close_html_doc():
 
 
 def create_index():
-    with open('output/create_index.js', 'w', encoding='utf-8') as fp:
-        s = json.dumps(db)
-        fp.write("data = " + s)
-        fp.write("""
-        
-const elasticlunr = require('./www/elasticlunr.min')
-//const elasticlunr = require('./www/elasticlunr')
+    with open('output/docs_to_index.json', 'w', encoding='utf-8') as fp:
+        flat = [item for sublist in db.values() for item in sublist]
+        json.dump(flat, fp)
 
-const fs = require('fs')
-
-var index = elasticlunr(function () {
-    this.addField('subject');
-    this.addField('data');
-    this.addField('footnotes');
-    this.setRef('url');
-    // this.saveDocument(false);		//depends on size...
-});
-
-// quick and dirty Hebrew support - just don't do English processing
-//TODO write my own trimmer, to keep only Hebrew/English letters (and numerals?)
-index.pipeline.reset();
-
-for (var subject in data) {
-	for (var item of data[subject]) {
-		//console.log(item);
-		index.addDoc(item);
-	}
-} 
-
-fs.writeFile('www/index.json', "indexDump = " + JSON.stringify(index), function (err) {
-	if (err) throw err;
-	console.log('index.json written');
-});
-
-
-        """)
-    subprocess.run(['node', 'create_index'], cwd='output', shell=True)

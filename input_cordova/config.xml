@@ -37,12 +37,14 @@
     <platform name="android">
         <!-- Default -->
         <preference name="AndroidWindowSplashScreenAnimatedIcon" value="res/android/screen/splash-port-xxxhdpi.png"/>
+        <!--        <preference name="AndroidWindowSplashScreenAnimationDuration" value="3000"/>-->
+        <!--        <preference name="SplashScreenDelay" value="3000"/>-->
     </platform>
 
 
-<!--    Those were deprecated, currently using only xxxhdpi.png; maybe can use .xml to include all of them
-        maybe need to somehow use them as well?
-        leaving these as reminder/reference     -->
+    <!--    Those were deprecated, currently using only xxxhdpi.png; maybe can use .xml to include all of them
+            maybe need to somehow use them as well?
+            leaving these as reminder/reference     -->
     <!--    <platform name="android">-->
     <!--        <splash src="res/android/screen/splash-port-ldpi.png" density="port-ldpi"/>-->
     <!--        <splash src="res/android/screen/splash-port-mdpi.png" density="port-mdpi"/>-->

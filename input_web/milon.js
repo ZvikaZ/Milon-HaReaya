@@ -81,11 +81,11 @@ function initSearchDialog() {
         document.getElementById("everywhere").checked = true;
 }
 
-function show_search_result(subjects, method, term) {
+function show_search_result(items, method, term) {
     console.time("show_search_result");
 
     let subjects_html;
-
+    let subjects = items.response.docs;
     let key = "show_" + method + "&&&" + term;
     if (sessionStorage[key]) {
         console.log("show_search_result: using cache");
@@ -94,40 +94,36 @@ function show_search_result(subjects, method, term) {
         console.log("show_search_result: not using cache")
 
         subjects_html = '<div class="container-fluid"><p>';
-
         subjects_html += "<h5>" + term + "</h5>"
-
         subjects_html += '<ol>';
 
         function highlight(s, term) {
-			if (typeof s === 'string') {
-				for (let word of term.split(" ")) {
-					//var re = new RegExp("\\b" + word, "gu");  //TODO JS doesn't really support 'word-boundry' in Unicode regex
-					var re = new RegExp(word, "g")
-					s = s.replace(re, '<span class="highlight">' + word + '</span>')
-				}
-				return s
-			} else {
-				return "";
-			}
+            if (typeof s === 'string') {
+                for (let word of term.split(" ")) {
+                    //var re = new RegExp("\\b" + word, "gu");  //TODO JS doesn't really support 'word-boundry' in Unicode regex
+                    var re = new RegExp(word, "g")
+                    s = s.replace(re, '<span class="highlight">' + word + '</span>')
+                }
+                return s
+            } else {
+                return "";
+            }
         }
 
         for (var item of subjects) {
-            subjects_html += '<li><a class="search_result" href=' + item.doc.url + '>' +
-                highlight(item.doc.subject, term) +
-                '  (<small>' + item.doc.section + '</small>)</a> ' +
+            subjects_html += '<li><a class="search_result" href=' + item.url_s + '>' +
+                highlight(item.subject_t, term) +
+                '  (<small>' + item.section_s + '</small>)</a> ' +
                 '<em>' + ', התאמה: ' + Math.ceil(item.score * 10) + "</em><br>" +		// ceil - to avoid zero score
-                '<small>' + highlight(item.doc.data, term) + "</small>"
+                '<small>' + highlight(item.data_t, term) + "</small>"
 
-            for (var footnote of item.doc.footnotes) {
-                let highlight_footnote = highlight(footnote, term)
-                if (highlight_footnote != footnote)
+            if ('footnotes_t' in item) {
+                let highlight_footnote = highlight(item.footnotes_t, term)
+                if (highlight_footnote != item.footnotes_t)
                     subjects_html += '<em><small>' + '<br>' + highlight_footnote + '</small></em>'
             }
             subjects_html += "</li>";
-
         }
-
         subjects_html += "</ol></div>";
 
         sessionStorage[key] = subjects_html;
@@ -136,54 +132,14 @@ function show_search_result(subjects, method, term) {
     document.body.innerHTML = subjects_html;
 }
 
-function actual_searching(method, val) {
-    let key = "raw_" + method + "&&&" + val;
-    if (sessionStorage[key]) {
-        return JSON.parse(sessionStorage[key])
+function actual_searching(method, val, cb) {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function () {
+        items = JSON.parse(this.responseText)
+        cb(items, method, val)
     }
-
-    let results;
-    console.time("search index load")
-    let searchIndex = elasticlunr.Index.load(indexDump);
-    console.timeEnd("search index load")
-    console.time("search")
-    switch (method) {
-        case "exact_subject":
-            results = searchIndex.search(val, {
-                fields: {
-                    subject: {boost: 2},
-                },
-                bool: "AND",
-                expand: false
-            });
-            break;
-        case "subjects_only":
-            results = searchIndex.search(val, {
-                fields: {
-                    subject: {boost: 2},
-                },
-                bool: "AND",
-                expand: true
-            });
-            break;
-        case "everywhere":
-            results = searchIndex.search(val, {
-                fields: {
-                    subject: {boost: 2},
-                    data: {boost: 1},
-                    footnotes: {boost: 0.8},
-                },
-                bool: "AND",
-                expand: true
-            });
-            break;
-        default:
-            console.log("Received strange searching 'method': ", method);
-            break;
-    }
-    console.timeEnd("search")
-    sessionStorage[key] = JSON.stringify(results)
-    return results;
+    xhttp.open("GET", "http://18.159.236.82/cgi-bin/milon/search.py?method=" + method + "&term=" + val);
+    xhttp.send();
 }
 
 
@@ -195,23 +151,24 @@ function search() {
     localStorage['searchMethod'] = method
     console.log("search function: ", method, ". ", val);
 
+
     if (val) {
         let clean_val = val.replace(/[\|&;\$%@"'<>\(\)\+,]/g, "");
 
-        let items = actual_searching(method, clean_val);
-        if (items.length == 0) {
-            show_failed_search_modal(clean_val);
-        } else {
-            // show_search_result(items)
-            if (items.length > 1 || !items[0].doc.subject.includes(clean_val)) {
-                window.location = "search.html?method=" + method + "&term=" + clean_val;
+        actual_searching(method, clean_val, function (items) {
+            if (items.response.numFound == 0) {
+                show_failed_search_modal(val);
             } else {
-                let url = items[0].doc.url;
-                console.log(url);
-                window.location.href = url;
+                if (items.response.numFound > 1 || !items.response.docs[0].subject_t.includes(val)) {
+                    window.location = "search.html?method=" + method + "&term=" + val;
+                } else {
+                    let url = items.response.docs[0].url_s;
+                    console.log(url);
+                    window.location.href = url;
+                }
             }
-        }
-        document.getElementById("subject_search").value = "";
+            document.getElementById("subject_search").value = "";
+        })
     }
 }
 
@@ -262,10 +219,5 @@ $(document).ready(function () {
     });
 });
 
-// //TODO do it once and for all? this code gets executed on every page, every refresh
-// $(document).ready(function() {
-// 	searchIndex = elasticlunr.Index.load(indexDump);
-// 	sessionStorage.setItem('searchIndex', searchIndex);
-// });
 
 

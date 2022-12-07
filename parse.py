@@ -13,6 +13,8 @@ and pushes the APK (automatically) to Google Play.
 # TODO: add waiting cursor
 # TODO: programmatically delete and create core; upload files; update solr index
 # TODO: update comments header in this file
+# TODO: add splash to android
+# TODO: Hebrew solr search
 
 # TODO: check 'אשכח תמרי' - the link to 'משל עניינו של רבי מאיר' ; and many more links in this page
 # TODO: fix new errors in file

@@ -1,25 +1,32 @@
 a {
-  /* from https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
-  On devices with small screen, the index.html would get horizontal Scroll Bar.
-  It appears because of links getting out of line.
-  This one forces them to wrap around */
-  word-wrap: break-word;
+    /* from https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
+    On devices with small screen, the index.html would get horizontal Scroll Bar.
+    It appears because of links getting out of line.
+    This one forces them to wrap around */
+    word-wrap: break-word;
+}
+
+.jumbotron {
+    background-color: #405081; /* indigo */
 }
 
 .my_background {
-    /*background-color:  !important;*/
-    background-color: #4d79ff;
-	color: white;
+    background-color: #405081; /* indigo */
+    color: white;
+}
+
+.btn-primary {
+    background-color: #405081; /* indigo */
 }
 
 #subject_search {
-	border-color: black;
+    border-color: black;
 }
 
 #info_well {
     padding-top: 0;
     background-color: white;
-	color: black;
+    color: black;
 }
 
 /* from http://stackoverflow.com/questions/16214326/bootstrap-dropdown-with-hover
@@ -30,44 +37,50 @@ to fix the bug that menu stays open, and lose focus, when users scrolls text beh
     margin-top: 0; /* remove the gap so it doesn't close*/
 }
 
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:focus, .dropdown-menu > .active > a:hover {
+    background-color: #405081; /* indigo */
+}
+
 
 /* from http://stackoverflow.com/questions/18580203/bootstrap-modal-window-is-grayed-out
 to fix the bug that Search Modal appeared grayed out */
-.modal-backdrop.in { z-index: auto;}
+.modal-backdrop.in {
+    z-index: auto;
+}
 
 .scrollable-menu {
     height: 400px;
     max-height: 400px;
-	overflow-y: scroll;
+    overflow-y: scroll;
 
- /*   height: auto;
-    max-height: 800%;
-    overflow-x: hidden;
+    /*   height: auto;
+       max-height: 800%;
+       overflow-x: hidden;
 
-/*    height: auto;
-    max-height: 200px;
-    overflow-x: hidden;
+   /*    height: auto;
+       max-height: 200px;
+       overflow-x: hidden;
 
-    display: block;
-	overflow: scroll;
-	max-height: 800%;
-	width: 400%;
-*/
+       display: block;
+       overflow: scroll;
+       max-height: 800%;
+       width: 400%;
+   */
 }
 
 /* make search icon the same size as search bar */
 .input-group .input-group-addon {
-     line-height:0!important;
- }
- 
+    line-height: 0 !important;
+}
+
 .fixed_top_left {
     z-index: 300;
     position: fixed;
-	left: 5px;
-	top: 5px;
+    left: 5px;
+    top: 5px;
     width: auto;
-	max-width: 80%;
-	display: inline;
+    max-width: 80%;
+    display: inline;
 }
 
 
@@ -94,11 +107,12 @@ h5 {
 
 
 body {
-  	text-align: justify;
+    text-align: justify;
     letter-spacing: 0.25px;
     line-height: 1.7;
     font-size: 16px;
 }
+
 /*
 body {
     /*margin-top: 3.8em;* /
@@ -176,9 +190,9 @@ a {
 }
 
 .centered_meuyan:before {
-   content: '\A';
-   display: block;
-   white-space: pre; 
+    content: '\A';
+    display: block;
+    white-space: pre;
 }
 
 .centered_meuyan {
@@ -193,8 +207,8 @@ a {
 
 /* used by search results */
 .highlight {
-  background-color: yellow;
-  /*color: black;*/
+    background-color: yellow;
+    /*color: black;*/
 }
 
 

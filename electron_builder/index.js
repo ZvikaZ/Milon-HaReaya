@@ -10,7 +10,7 @@ function createWindow () {
 
   // win.webContents.openDevTools()
 
-  win.loadFile('www/index.html')
+  win.loadURL('http://18.159.236.82/milon/index.html')
 }
 
 app.whenReady().then(() => {

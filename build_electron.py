@@ -15,7 +15,8 @@ def build_electron():
     except FileNotFoundError:
         pass
 
-    shutil.copytree(os.path.join("output", "www"), os.path.join("electron_builder", "www"))
+    # not needed for 'thin client'
+    # shutil.copytree(os.path.join("output", "www"), os.path.join("electron_builder", "www"))
 
     subprocess.run(['yarn'], cwd='electron_builder', shell=True)
     subprocess.run(['yarn', 'dist'], cwd='electron_builder', shell=True)

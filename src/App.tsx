@@ -1,13 +1,12 @@
-// Import styles of packages that you've installed.
-// All packages except `@mantine/hooks` require styles imports
-import '@mantine/core/styles.css';
+import "@mantine/core/styles.css";
 
-import { MantineProvider } from '@mantine/core';
+import { MantineProvider } from "@mantine/core";
+import { MainLayout } from "./main-layout.tsx";
 
 export default function App() {
-    return <MantineProvider>{
-        <>
-        Hello
-        </>
-    }</MantineProvider>;
+  return (
+    <MantineProvider>
+      <MainLayout />
+    </MantineProvider>
+  );
 }

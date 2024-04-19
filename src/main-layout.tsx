@@ -5,6 +5,7 @@ import { Navbar } from "./navbar.tsx";
 const MainLayout = () => {
   const [opened, { toggle }] = useDisclosure();
 
+  //TODO: maybe us Mantine's: Breadcrumbs , Anchor, Skeleton (w/ React Query)
   return (
     <AppShell
       header={{ height: 60 }}

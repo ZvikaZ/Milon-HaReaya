@@ -4,6 +4,7 @@ export function Navbar() {
   return (
     <>
       <Search />
+      <br />
       <div>ראשון</div>
       <div>שני</div>
     </>

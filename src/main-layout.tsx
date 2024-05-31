@@ -5,9 +5,12 @@ import { useDisclosure } from "@mantine/hooks";
 
 import { Navbar } from "./navbar.tsx";
 import { Search } from "./search.tsx";
+import { useState } from "react";
 
 const MainLayout = () => {
   const [opened, { toggle }] = useDisclosure();
+  const [searchAlsoContent, setSearchAlsoContent] = useState(false);
+  const [searchKey, setSearchKey] = useState("");
 
   //TODO: maybe us Mantine's: Breadcrumbs , Anchor, Skeleton (w/ React Query)
   return (
@@ -26,12 +29,17 @@ const MainLayout = () => {
       </AppShell.Header>
 
       <AppShell.Navbar p="md">
-        <Navbar></Navbar>
+        <Navbar
+          searchKey={searchKey}
+          setSearchKey={setSearchKey}
+          searchAlsoContent={searchAlsoContent}
+          setSearchAlsoContent={setSearchAlsoContent}
+        />
       </AppShell.Navbar>
 
       <AppShell.Main>
         {/*<Page pageKey={"p_1"} />*/}
-        <Search searchKey={"אבר"} />
+        <Search searchKey={searchKey} />
       </AppShell.Main>
     </AppShell>
   );

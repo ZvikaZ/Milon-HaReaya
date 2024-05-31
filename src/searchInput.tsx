@@ -2,15 +2,19 @@ import { rem, TextInput, Checkbox } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
 import { useState } from "react";
 
-export const SearchInput = () => {
-  const [searchValues, setSearchValues] = useState(false);
-  const [searchKey, setSearchKey] = useState("");
-
+export const SearchInput = ({
+  searchKey,
+  setSearchKey,
+  searchAlsoContent,
+  setSearchAlsoContent,
+}) => {
   return (
     <>
       <TextInput
         placeholder={
-          searchValues ? "חיפוש בשמות הערכים ובתוכנם" : "חיפוש רק בשמות הערכים"
+          searchAlsoContent
+            ? "חיפוש בשמות הערכים ובתוכנם"
+            : "חיפוש רק בשמות הערכים"
         }
         value={searchKey}
         onChange={(e) => setSearchKey(e.target.value)}
@@ -28,8 +32,8 @@ export const SearchInput = () => {
       />
       <Checkbox
         label={"חיפוש בתוכן הערכים"}
-        checked={searchValues}
-        onChange={() => setSearchValues(!searchValues)}
+        checked={searchAlsoContent}
+        onChange={() => setSearchAlsoContent(!searchAlsoContent)}
       />
     </>
   );

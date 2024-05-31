@@ -6,6 +6,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { Navbar } from "./navbar.tsx";
 import { Search } from "./search.tsx";
 import { useState } from "react";
+import { Page } from "./page.tsx";
 
 const MainLayout = () => {
   const [opened, { toggle }] = useDisclosure();
@@ -38,8 +39,11 @@ const MainLayout = () => {
       </AppShell.Navbar>
 
       <AppShell.Main>
-        {/*<Page pageKey={"p_1"} />*/}
-        <Search searchKey={searchKey} />
+        {!searchKey ? (
+          <Page pageKey={"p_1"} />
+        ) : (
+          <Search searchKey={searchKey} />
+        )}
       </AppShell.Main>
     </AppShell>
   );

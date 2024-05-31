@@ -17,5 +17,10 @@ export const Search: React.FC<{ searchKey: string }> = ({ searchKey }) => {
     return <div>שגיאה: {error.message}</div>;
   }
 
-  return <pre>{JSON.stringify(data)}</pre>;
+  console.log(data);
+  return (
+    <pre>
+      {data.map((result) => `כותרת: ${result.title}\n${result.content}\n`)}
+    </pre>
+  );
 };

@@ -1,9 +1,9 @@
-import { Search } from "./search.tsx";
+import { SearchInput } from "./searchInput.tsx";
 
 export function Navbar() {
   return (
     <>
-      <Search />
+      <SearchInput />
       <br />
       <div>ראשון</div>
       <div>שני</div>

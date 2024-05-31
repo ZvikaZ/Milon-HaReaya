@@ -2,11 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 
 import { fetchData } from "./api.ts";
 
-export const Search = ({ searchKey }) => {
-  console.log("search", searchKey);
+export const Page = ({ pageKey }) => {
+  console.log("page", pageKey);
   const { data, error, isLoading } = useQuery({
-    queryKey: ["search", searchKey],
-    queryFn: () => fetchData("search", { key: searchKey }),
+    queryKey: ["Page", pageKey],
+    queryFn: () => fetchData("page", { key: pageKey }),
   });
 
   if (isLoading) {

@@ -1,6 +1,10 @@
+//TODO keep in git the mongo functions, for reference
+
 import { AppShell, Burger } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+
 import { Navbar } from "./navbar.tsx";
+import { Search } from "./search.tsx";
 
 const MainLayout = () => {
   const [opened, { toggle }] = useDisclosure();
@@ -18,19 +22,17 @@ const MainLayout = () => {
     >
       <AppShell.Header>
         <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-        <span>
-          <span> </span>
-          <span>מילון הראיה</span>
-          <span> / </span>
-          <span>י ניסן תשפד</span>
-        </span>
+        <span>מילון הראיה</span>
       </AppShell.Header>
 
       <AppShell.Navbar p="md">
         <Navbar></Navbar>
       </AppShell.Navbar>
 
-      <AppShell.Main>המון דברים ממילון הראיה</AppShell.Main>
+      <AppShell.Main>
+        {/*<Page pageKey={"p_1"} />*/}
+        <Search searchKey={"אבר"} />
+      </AppShell.Main>
     </AppShell>
   );
 };

@@ -13,7 +13,7 @@ export const getToken = async () => {
   //TODO handle errors
 };
 
-export const fetchData = async (endpoint: string, data) => {
+export const fetchData = async (endpoint: string, data: { key: string }) => {
   const url = `${import.meta.env.VITE_DB_ENDPOINT_URL}/${endpoint}`;
 
   if (!accessToken) {

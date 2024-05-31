@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { fetchData } from "./api.ts";
 
-export const Page = ({ pageKey }) => {
+export const Page: React.FC<{ pageKey: string }> = ({ pageKey }) => {
   console.log("page", pageKey);
   const { data, error, isLoading } = useQuery({
     queryKey: ["Page", pageKey],

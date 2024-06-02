@@ -1,5 +1,5 @@
 # Simple workflow for deploying static content to GitHub Pages
-# Zvika copied from https://vitejs.dev/guide/static-deploy#github-pages
+# Zvika based on https://vitejs.dev/guide/static-deploy#github-pages
 name: Deploy static content to Pages
 
 on:
@@ -39,6 +39,7 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
+          cache-dependency-path: '**/package-lock.json' # bebacuse my 'package-lock.json' isn't at root
       - name: Install dependencies
         run: npm ci
       - name: Build

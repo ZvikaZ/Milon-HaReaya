@@ -1,13 +1,13 @@
 import { rem, TextInput, Checkbox } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
-import { useState } from "react";
+import React from "react";
 
-export const SearchInput = ({
-  searchKey,
-  setSearchKey,
-  searchAlsoContent,
-  setSearchAlsoContent,
-}) => {
+export const SearchInput: React.FC<{
+  searchKey: string;
+  setSearchKey: (value: string) => void;
+  searchAlsoContent: boolean;
+  setSearchAlsoContent: (value: boolean) => void;
+}> = ({ searchKey, setSearchKey, searchAlsoContent, setSearchAlsoContent }) => {
   return (
     <>
       <TextInput

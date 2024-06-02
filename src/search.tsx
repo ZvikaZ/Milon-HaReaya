@@ -20,7 +20,10 @@ export const Search: React.FC<{ searchKey: string }> = ({ searchKey }) => {
   console.log(data);
   return (
     <pre>
-      {data.map((result) => `כותרת: ${result.title}\n${result.content}\n`)}
+      {data.map(
+        (result: { title: string; content: string }) =>
+          `כותרת: ${result.title}\n${result.content}\n`,
+      )}
     </pre>
   );
 };

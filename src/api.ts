@@ -3,6 +3,7 @@ import axios from "axios";
 let accessToken = "";
 
 export const getToken = async () => {
+  console.log("Requesting token");
   const url = import.meta.env.VITE_DB_API_URL;
   const apiKey = import.meta.env.VITE_DB_API_KEY;
 
@@ -10,6 +11,7 @@ export const getToken = async () => {
     key: apiKey,
   });
   accessToken = response.data.access_token;
+  console.log("Got token");
   //TODO handle errors
 };
 

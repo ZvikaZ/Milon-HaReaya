@@ -44,6 +44,11 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+        env:
+          VITE_DB_API_URL: ${{ secrets.VITE_DB_API_URL }}
+          VITE_DB_API_KEY: ${{ secrets.VITE_DB_API_KEY }}
+          VITE_DB_ENDPOINT_URL: ${{ secrets.VITE_DB_ENDPOINT_URL }}
+          VITE_CHECK: ${{ secrets.VITE_CHECK }}
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact

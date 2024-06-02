@@ -28,11 +28,12 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 'frontend'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Get in directory
-        run: cd frontend
       - name: Set up Node
         uses: actions/setup-node@v4
         with:

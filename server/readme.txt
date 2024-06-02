@@ -12,7 +12,7 @@ Setup Server
     - disk: I took 20GB
     - allocate and associate an elastic IP to have a static IP (free when the machine is running; paying for the IP when the machine is down)
 - connect with command like:
-    ssh -X -L 8983:localhost:8983 -i "whatever.pem" ec2-user@ec2-54-157-58-145.compute-1.amazonaws.com
+    ssh -X -L 8983:localhost:8983 -i "Milon (EU).pem" ec2-user@ec2-18-159-236-82.eu-central-1.compute.amazonaws.com
     - allows using 'http://localhost:8983/solr/' ; GUI ; connect with .pem key file
 - update packages:
      sudo yum -y update

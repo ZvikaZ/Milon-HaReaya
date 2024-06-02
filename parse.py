@@ -2,17 +2,12 @@
 """ Currently, this is the 'main' module of this project.
 By default, it parses 'מילון הראיה.docx' (that contains Milon HaReaya's source Word file,
 creates 'html_docs_l' - internal representation of all the Milon,
-'subjects_db' which is used for searching (and is written as JSON file for the JS)
+'subjects_db' which is used for searching,
 and then creates 'output/' with a working HTML/CSS/JS site, and zips it to 'milon.zip'
-
-If then creates an Electron .exe NSIS installer, a .apk file (with Cordova),
-and pushes the APK (automatically) to Google Play.
 """
 
-# TODO: update search explanation and iphone
 # TODO: add waiting cursor
 # TODO: programmatically delete and create core; upload files; update solr index
-# TODO: update comments header in this file
 # TODO: add splash to android
 # TODO: Hebrew solr search
 

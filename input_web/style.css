@@ -6,12 +6,13 @@ a {
     word-wrap: break-word;
 }
 
-.jumbotron {
+.jumbo_background {
     background-color: #405081; /* indigo */
+    color: white;
 }
 
 .my_background {
-    background-color: #405081; /* indigo */
+    background-color: #405081;
     color: white;
 }
 

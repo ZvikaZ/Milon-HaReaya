@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { fetchData } from "./api.ts";
+import { Section } from "./section.tsx";
 
 interface SectionType {
   key: string;
@@ -11,19 +12,6 @@ interface SectionType {
 interface PageDataType {
   sections: SectionType[];
 }
-
-const Section: React.FC<{ title: string; content: string }> = ({
-  title,
-  content,
-}) => {
-  return (
-    <p>
-      כותרת: {title}
-      <br />
-      תוכן: {content}
-    </p>
-  );
-};
 
 export const Page: React.FC<{ pageKey: string }> = ({ pageKey }) => {
   console.log("page", pageKey);
@@ -44,7 +32,7 @@ export const Page: React.FC<{ pageKey: string }> = ({ pageKey }) => {
     <>
       {data &&
         data.sections.map((it) => (
-          <Section key={it.key} title={it.title} content={it.content} />
+          <Section key={it.key} content={it.content} />
         ))}
     </>
   );

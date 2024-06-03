@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { fetchData } from "./api.ts";
 import { TocItem } from "./tocItem.tsx";
+import { useState } from "react";
 
 interface TocItemType {
   key: string;
@@ -12,7 +13,9 @@ interface TocItemType {
 export const Toc: React.FC<{ setTocItem: (value: string) => void }> = ({
   setTocItem,
 }) => {
-  console.log("toc");
+  const INITIAL_SECTION = "ערכים כלליים"; //TODO change?
+  const [tocSection, setTocSection] = useState(INITIAL_SECTION);
+
   const { data, error, isLoading } = useQuery<TocItemType[]>({
     queryKey: ["Toc"],
     queryFn: () => fetchData("get_misc", { key: "toc" }),
@@ -36,6 +39,8 @@ export const Toc: React.FC<{ setTocItem: (value: string) => void }> = ({
             title={it.title}
             appear_in_toc={it.appear_in_toc}
             setTocItem={setTocItem}
+            tocSection={tocSection}
+            setTocSection={setTocSection}
           />
         ))}
     </>

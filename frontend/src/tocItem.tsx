@@ -5,11 +5,30 @@ export const TocItem: React.FC<{
   linkKey: string;
   appear_in_toc: boolean;
   setTocItem: (value: string) => void;
-}> = ({ title, linkKey, appear_in_toc, setTocItem }) => {
-  // TODO make it disappear according to appear_in_toc
-  // TODO what do we want for 'ערכים כלליים'?
+  tocSection: string;
+  setTocSection: (value: string) => void;
+}> = ({
+  title,
+  linkKey,
+  appear_in_toc,
+  setTocItem,
+  tocSection,
+  setTocSection,
+}) => {
+  function getSectionName() {
+    return appear_in_toc ? title : title[0];
+  }
+
+  if (!appear_in_toc && tocSection !== getSectionName()) return <></>;
+
   return (
-    <Button variant="subtle" onClick={() => setTocItem(linkKey)}>
+    <Button
+      variant="subtle"
+      onClick={() => {
+        setTocItem(linkKey);
+        setTocSection(getSectionName());
+      }}
+    >
       {appear_in_toc ? title : title[1]}
     </Button>
   );

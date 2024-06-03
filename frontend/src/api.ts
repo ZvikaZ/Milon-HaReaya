@@ -15,6 +15,7 @@ export const getToken = async () => {
   //TODO handle errors
 };
 
+//TODO cache data (can use toc's first item's _id as indicator if need to refresh cache)
 export const fetchData = async (endpoint: string, data: { key: string }) => {
   const url = `${import.meta.env.VITE_DB_ENDPOINT_URL}/${endpoint}`;
 

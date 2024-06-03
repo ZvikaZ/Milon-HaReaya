@@ -1,11 +1,19 @@
 import { SearchInput } from "./searchInput.tsx";
+import { Toc } from "./toc.tsx";
 
 export const Navbar: React.FC<{
   searchKey: string;
   setSearchKey: (value: string) => void;
   searchAlsoContent: boolean;
   setSearchAlsoContent: (value: boolean) => void;
-}> = ({ searchKey, setSearchKey, searchAlsoContent, setSearchAlsoContent }) => {
+  setTocItem: (value: string) => void;
+}> = ({
+  searchKey,
+  setSearchKey,
+  searchAlsoContent,
+  setSearchAlsoContent,
+  setTocItem,
+}) => {
   return (
     <>
       <SearchInput
@@ -15,8 +23,7 @@ export const Navbar: React.FC<{
         setSearchAlsoContent={setSearchAlsoContent}
       />
       <br />
-      <div>ראשון</div>
-      <div>שני</div>
+      <Toc setTocItem={setTocItem} />
     </>
   );
 };

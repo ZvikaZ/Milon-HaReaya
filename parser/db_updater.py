@@ -27,22 +27,21 @@ def fetch_data(endpoint, data):
         print("Error fetching data:", err)
 
 
-def upload(collection, pages):
-    print(f"inserting {len(pages)} documents...")
+def upload(collection, docs):
+    print(f"inserting {len(docs)} documents...")
     result = fetch_data("update", {
         "collection": collection,
-        "data": pages,
+        "data": docs,
     })
     print(result)
 
 
 def adapt_and_upload(pages):
     pages = [sectionize(page) for page in pages]
-    # for page in pages:
-    #     print("***************************")
-    #     print(page['name'])
-    #     print(page['appear_in_toc'])
-    #     print(page['footnote_ids'])
-    #     for section in page['items']:
-    #         print(section)
     upload('pages', pages)
+
+    toc = [{'title': p['name'],
+            'appear_in_toc': p['appear_in_toc'],
+            'key': p['key']
+            } for p in pages]
+    upload('toc', toc)

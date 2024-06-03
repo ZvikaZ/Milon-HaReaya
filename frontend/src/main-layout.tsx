@@ -12,6 +12,7 @@ const MainLayout = () => {
   const [opened, { toggle }] = useDisclosure();
   const [searchAlsoContent, setSearchAlsoContent] = useState(false);
   const [searchKey, setSearchKey] = useState("");
+  const [tocItem, setTocItem] = useState("ערכים כלליים-א__page_1");
 
   //TODO: maybe us Mantine's: Breadcrumbs , Anchor, Skeleton (w/ React Query)
   return (
@@ -35,12 +36,13 @@ const MainLayout = () => {
           setSearchKey={setSearchKey}
           searchAlsoContent={searchAlsoContent}
           setSearchAlsoContent={setSearchAlsoContent}
+          setTocItem={setTocItem}
         />
       </AppShell.Navbar>
 
       <AppShell.Main>
         {!searchKey ? (
-          <Page pageKey={"ערכים כלליים-א__page_1"} />
+          <Page pageKey={tocItem} />
         ) : (
           <Search searchKey={searchKey} />
         )}

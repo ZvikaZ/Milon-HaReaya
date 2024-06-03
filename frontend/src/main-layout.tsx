@@ -40,7 +40,7 @@ const MainLayout = () => {
 
       <AppShell.Main>
         {!searchKey ? (
-          <Page pageKey={"p_1"} />
+          <Page pageKey={"ערכים כלליים-א__page_1"} />
         ) : (
           <Search searchKey={searchKey} />
         )}

@@ -243,7 +243,11 @@ def is_need_new_section(para, prev_name):
                     result = text.strip()
                 return 'UPDATE_NAME', result
         elif type == "heading_letter":
-            return 'NEW_LETTER', text.strip()
+            try:
+                section, _ = prev_name
+            except ValueError:
+                section = prev_name
+            return 'NEW_LETTER', (section, text.strip())
 
     # if we're here - we didn't 'return text' with a heading
     heading_back_to_back = False
@@ -268,7 +272,7 @@ def parse(doc_file_name):
     def new_page(name, appear_in_toc=True):
         return {
             'name': name,
-            'sections': [],
+            'items': [],
             'appear_in_toc': appear_in_toc,
             'footnote_ids': [],
         }
@@ -374,15 +378,27 @@ def parse(doc_file_name):
                 else:
                     assert op is None and name is None
 
-                cur_page['sections'].extend(para)
+                cur_page['items'].extend(para)
             else:
                 para = [("new_line", "\n")]
-                cur_page['sections'].extend(para)
+                cur_page['items'].extend(para)
 
     if unknown_list:
         print("\n\nMissing:")
         print(unknown_list)
 
     for ind, page in enumerate(pages):
-        pages[ind]['sections'] = merge_paras(page['sections'])
+        pages[ind]['items'] = merge_paras(page['items'])
+        if pages[ind]['items'][0][0] == 'new_line':
+            pages[ind]['items'].pop(0)
+        try:
+            if pages[ind]['items'][-1][0] == 'new_line':
+                pages[ind]['items'].pop()
+        except IndexError:
+            pass
+
+    pages = [page for page in pages if page['items']]
+    # drop all pages that have only 1 section of new_line
+    pages = [page for page in pages if len(page['items']) > 1 or page['items'][0][0] != 'new_line']
+
     return pages

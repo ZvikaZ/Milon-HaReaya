@@ -1,4 +1,6 @@
+import os
 import re
+import shutil
 
 
 def uniqify(s):
@@ -42,3 +44,60 @@ def is_prev_meuyan(para, i):
 
 def is_subject_small_or_sub_subject(s):
     return s in ['subject_small', 'sub-subject_normal']
+
+
+keys = {}
+
+
+def create_key(page, cur_section):
+    try:
+        page_name_1, page_name_2 = page['name']
+        page_name = f'{page_name_1}-{page_name_2}'
+    except ValueError:
+        page_name = page['name']
+
+    key = f"{page_name.strip()}__{cur_section['title'].strip()}"
+    if key not in keys:
+        keys[key] = 0
+    keys[key] += 1
+    return f'{key}_{keys[key]}'
+
+
+def sectionize(page, keep_items=False):
+    page['key'] = create_key(page, {'title': 'page'})
+    print(page['key'])
+    page['sections'] = []
+    cur_section = {'title': '', 'content': []}
+    for kind, value in page['items']:
+        if kind == 'new_line' and value.count('\n') > 1:
+            cur_section['key'] = create_key(page, cur_section)
+            page['sections'].append(cur_section)
+            cur_section = {'title': '', 'content': []}
+        if 'heading' in kind:
+            assert cur_section['title'] == ''
+            cur_section['title'] = value
+        elif 'subject' in kind:
+            cur_section['title'] += value
+        cur_section['content'].append((kind, value))
+    cur_section['key'] = create_key(page, cur_section)
+    page['sections'].append(cur_section)
+
+    if not keep_items:
+        del page['items']
+
+    return page
+
+
+def create_dirs():
+    try:
+        shutil.rmtree("output")
+    except FileNotFoundError:
+        pass
+
+    try:
+        shutil.rmtree("tex")
+    except FileNotFoundError:
+        pass
+
+    os.mkdir("output")
+    os.mkdir("tex")

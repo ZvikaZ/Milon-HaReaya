@@ -6,7 +6,7 @@ import { Section } from "./section.tsx";
 interface SectionType {
   key: string;
   title: string;
-  content: string;
+  content: string[][];
 }
 
 interface PageDataType {

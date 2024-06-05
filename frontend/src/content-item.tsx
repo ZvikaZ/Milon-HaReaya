@@ -1,13 +1,11 @@
-const types = new Set(); //TODO remove
+import { Tooltip } from "@mantine/core";
+import { getSource } from "./books-acronyms.tsx";
 
 export const ContentItem: React.FC<{ type: string; value: string }> = ({
   type,
   value,
 }) => {
-  if (!types.has(type)) {
-    console.log("TYPE: ", type);
-    types.add(type);
-  }
+  const tooltipLabel = type.startsWith("source") ? getSource(value) : "";
   switch (type) {
     case "new_line":
       return value === "\n" ? <br /> : <p />;
@@ -24,13 +22,14 @@ export const ContentItem: React.FC<{ type: string; value: string }> = ({
       return <h5 className={type}>{value}</h5>;
 
     default:
-      return <span className={type}>{value}</span>;
-
-    //TODO use, or del
-    //   // eslint-disable-next-line no-case-declarations
-    //   const [typeKind, typeOrigin] = type.split("_");
-    //   // setKind(typeKind);
-    //   // setOrigin(typeOrigin);
-    //
+      return (
+        <Tooltip
+          label={tooltipLabel}
+          disabled={tooltipLabel === ""}
+          events={{ hover: true, touch: true, focus: false }}
+        >
+          <span className={type}>{value}</span>
+        </Tooltip>
+      );
   }
 };

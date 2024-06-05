@@ -29,6 +29,7 @@ export const Toc: React.FC<{ setTocItem: (value: string) => void }> = ({
     return <div>שגיאה: {error.message}</div>;
   }
 
+
   return (
     <>
       {data &&

@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// TODO cache it
 let accessToken = "";
 
 export const getToken = async () => {

@@ -1,3 +1,9 @@
+//TODO: linter
+//TODO: page route
+//TODO: fix mobile layout
+//TODO: PWABBuilder (for mobile installation)
+//TODO: lighthouse
+
 import "@mantine/core/styles.css";
 import { MantineProvider } from "@mantine/core";
 

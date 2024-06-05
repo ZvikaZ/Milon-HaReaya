@@ -82,16 +82,23 @@ const keys = sources.flatMap(Object.keys).sort((a, b) => b.length - a.length);
 
 export const getSource = (value: string): string => {
   const replacements: string[] = [];
+  const matchedKeys: string[] = [];
 
-  for (const source of sources) {
-    for (const key of keys) {
-      if (key in source && value.includes(key)) {
-        replacements.push(source[key]);
-        break; // Once a match is found, stop checking further sources for this key
+  for (const key of keys) {
+    if (
+      value.includes(key) &&
+      !matchedKeys.some((matchedKey) => matchedKey.includes(key))
+    ) {
+      for (const source of sources) {
+        if (key in source) {
+          replacements.push(source[key]);
+          matchedKeys.push(key);
+          break;
+        }
       }
     }
   }
 
   // TODO maybe return also whether it's harav, ratzia, or hanazir; and display it (font? italic? size?)
-  return replacements.length > 0 ? replacements.join("\n") : "";
+  return replacements.length > 0 ? replacements.join(" ; ") : "";
 };

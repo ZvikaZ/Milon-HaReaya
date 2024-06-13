@@ -73,9 +73,13 @@ def sectionize(page, keep_items=False):
             cur_section['key'] = create_key(page, cur_section)
             page['sections'].append(cur_section)
             cur_section = {'title': '', 'content': []}
-        if 'heading' in kind:
+        elif 'heading' in kind:
             assert cur_section['title'] == ''
             cur_section['title'] = value
+        elif 'footnote' in kind:
+            print(kind, value)  #TODO del
+            note = page['footnotes'][int(value)]
+            value = note
         elif 'subject' in kind:
             cur_section['title'] += value
         cur_section['content'].append((kind, value))

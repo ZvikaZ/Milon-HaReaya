@@ -1,7 +1,6 @@
 # this file will hold footnote analyzing code
 
 def get_style(run):
-
     # these are not working, because "docx_fork_ludoo" is on old fork :-(
     # however, currently they aren't needed.
     # let's hope this situation will continue...
@@ -16,7 +15,6 @@ def get_style(run):
     #     szCs = run.element.rPr.szCs.attrib.values()[0]
     # except:
     #     szCs = None
-
 
     if run.style == 's03' and run.bold != True:
         return "normal"
@@ -39,3 +37,14 @@ def get_style(run):
         if run.text.strip():
             print("FOOTNOTE undefined:", run.style, run.bold, " : ", run.text)
         return "normal"
+
+
+def analyze_footnote(note):
+    result = []
+    for (para) in note.paragraphs:
+        for (run) in para.runs:
+            result.append({
+                'text': run.text,
+                'style': "sub-subject_small" if get_style(run) == 'bolded' else "definition_small"
+            })
+    return result

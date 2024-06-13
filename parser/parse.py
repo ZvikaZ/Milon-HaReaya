@@ -3,6 +3,8 @@
 # in the meanwhile, I've hacked it locally
 import sys
 
+import footer
+
 sys.path.insert(0, r'C:\Zvika\PycharmProjects\python-docx')
 sys.path.insert(0, r'C:\Users\sdaudi\Github\python-docx')
 import docx  # from aforementioned path
@@ -274,7 +276,7 @@ def parse(doc_file_name):
             'name': name,
             'items': [],
             'appear_in_toc': appear_in_toc,
-            'footnote_ids': [],
+            'footnotes': {},
         }
 
     pages = []
@@ -355,13 +357,20 @@ def parse(doc_file_name):
                         footnote_references = footnote_run.footnote_references
                         if footnote_references:
                             for (note) in footnote_references:
-                                cur_page['footnote_ids'].append(note.id)
-                                relative_note_id = note.id - cur_page['footnote_ids'][0] + 1
-                                # TODO texer currently needs 'note.id' and not relative_note_id; keep this, fix in texer
+                                try:
+                                    relative_note_id = note.id - cur_page['footnotes'][1]['number_abs'] + 1
+                                except KeyError:
+                                    relative_note_id = 1
                                 para.append(('footnote', str(relative_note_id)))
+                                cur_page['footnotes'][relative_note_id] = {
+                                    'number_relative': relative_note_id,
+                                    'number_abs': note.id,
+                                    'content': footer.analyze_footnote(
+                                        word_doc_footnotes.footnotes_part.notes[note.id + 1]),
+                                }
 
-                    except:
-                        print("Failed footnote_references")
+                    except Exception as e:
+                        print("Failed footnote_references:", e)
 
                 para.append(("new_line", "\n"))
                 para = analyze_and_fix(para)

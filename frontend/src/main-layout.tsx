@@ -4,7 +4,7 @@ import { AppShell, Burger } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 
 import { Navbar } from "./navbar.tsx";
-import { Search } from "./search.tsx";
+import { Search } from "./search/search.tsx";
 import { useState } from "react";
 import { Page } from "./page.tsx";
 

@@ -1,6 +1,6 @@
 import { Tooltip } from "@mantine/core";
-import { getSource } from "./books-acronyms.tsx";
-import { Footnote } from "./footnote.tsx";
+import { getSource } from "./utils/books-acronyms.tsx";
+import { Footnote } from "./footnotes/footnote.tsx";
 
 export const ContentItem: React.FC<ContentType> = ({ type, value }) => {
   const tooltipLabel = type.startsWith("source")

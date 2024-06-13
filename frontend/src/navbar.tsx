@@ -1,5 +1,5 @@
-import { SearchInput } from "./searchInput.tsx";
-import { Toc } from "./toc.tsx";
+import { SearchInput } from "./search/searchInput.tsx";
+import { Toc } from "./toc/toc.tsx";
 
 export const Navbar: React.FC<{
   searchKey: string;

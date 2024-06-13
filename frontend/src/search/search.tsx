@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { fetchData } from "./api.ts";
+import { fetchData } from "../utils/api.ts";
 
 export const Search: React.FC<{ searchKey: string }> = ({ searchKey }) => {
   console.log("search", searchKey);

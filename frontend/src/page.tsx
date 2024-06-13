@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { fetchData } from "./api.ts";
+import { fetchData } from "./utils/api.ts";
 import { Section } from "./section.tsx";
 
 interface SectionType {

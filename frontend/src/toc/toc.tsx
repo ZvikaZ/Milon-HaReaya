@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { fetchData } from "./api.ts";
+import { fetchData } from "../utils/api.ts";
 import { TocItem } from "./tocItem.tsx";
 import { useState } from "react";
 

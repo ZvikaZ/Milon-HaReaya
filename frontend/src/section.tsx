@@ -1,6 +1,6 @@
 //TODO show sources tooltip on hover
 
-import "./style.css";
+import "./css/style.css";
 import { ContentItem } from "./content-item.tsx";
 
 export const Section: React.FC<{ content: string[][] }> = ({ content }) => {

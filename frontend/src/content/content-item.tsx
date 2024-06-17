@@ -1,8 +1,13 @@
 import { Tooltip } from "@mantine/core";
-import { getSource } from "./utils/books-acronyms.tsx";
-import { Footnote } from "./footnotes/footnote.tsx";
+import { getSource } from "../utils/books-acronyms.tsx";
+import { Footnote } from "../footnotes/footnote.tsx";
+import { ContentText } from "./content-text.tsx";
 
-export const ContentItem: React.FC<ContentType> = ({ type, value }) => {
+export const ContentItem: React.FC<ContentType> = ({
+  type,
+  value,
+  highlight,
+}) => {
   const tooltipLabel = type.startsWith("source")
     ? getSource(value as string)
     : "";
@@ -28,6 +33,7 @@ export const ContentItem: React.FC<ContentType> = ({ type, value }) => {
           number_relative={value.number_relative}
           number_abs={value.number_abs}
           content={value.content}
+          highlight={highlight}
         />
       );
 
@@ -38,7 +44,11 @@ export const ContentItem: React.FC<ContentType> = ({ type, value }) => {
           disabled={tooltipLabel === ""}
           events={{ hover: true, touch: true, focus: false }}
         >
-          <span className={type}>{value as string}</span>
+          <ContentText
+            className={type}
+            value={value as string}
+            highlight={highlight}
+          />
         </Tooltip>
       );
   }

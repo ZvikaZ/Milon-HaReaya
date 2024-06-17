@@ -32,7 +32,7 @@ export const Page: React.FC<{ pageKey: string }> = ({ pageKey }) => {
     <>
       {data &&
         data.sections.map((it) => (
-          <Section key={it.key} content={it.content} />
+          <Section key={it.key} content={it.content} highlight={""} />
         ))}
     </>
   );

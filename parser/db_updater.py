@@ -1,6 +1,6 @@
 import requests
 
-from helpers import sectionize
+from helpers import sectionize_in_pages, prepare_search
 from secret import TOKEN_URL, WRITE_API_KEY, API_URL
 
 
@@ -37,11 +37,16 @@ def upload(collection, docs):
 
 
 def adapt_and_upload(pages):
-    pages = [sectionize(page) for page in pages]
+    pages = [sectionize_in_pages(page) for page in pages]
+    sections = [section for page in pages for section in page['sections']]
+    sections = [prepare_search(section) for section in sections]
+
     upload('pages', pages)
+    upload('sections', sections)
+
 
     toc = [{'title': p['name'],
             'appear_in_toc': p['appear_in_toc'],
             'key': p['key']
             } for p in pages]
-    upload('toc', toc)
+    upload('misc', [{'key': 'toc', 'data': toc}])

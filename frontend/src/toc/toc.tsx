@@ -10,13 +10,18 @@ interface TocItemType {
   appear_in_toc: boolean;
 }
 
+interface TocQueryType {
+  key: string;
+  data: TocItemType[];
+}
+
 export const Toc: React.FC<{ setTocItem: (value: string) => void }> = ({
   setTocItem,
 }) => {
   const INITIAL_SECTION = "ערכים כלליים"; //TODO change?
   const [tocSection, setTocSection] = useState(INITIAL_SECTION);
 
-  const { data, error, isLoading } = useQuery<TocItemType[]>({
+  const { data, error, isLoading } = useQuery<TocQueryType>({
     queryKey: ["Toc"],
     queryFn: () => fetchData("get_misc", { key: "toc" }),
   });
@@ -29,10 +34,12 @@ export const Toc: React.FC<{ setTocItem: (value: string) => void }> = ({
     return <div>שגיאה: {error.message}</div>;
   }
 
+  const toc = data?.data;
+
   return (
     <>
-      {data &&
-        data.map((it) => (
+      {toc &&
+        toc.map((it) => (
           <TocItem
             key={it.key}
             linkKey={it.key}

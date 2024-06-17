@@ -2,6 +2,8 @@ import os
 import re
 import shutil
 
+# from rftokenizer import RFTokenizer   #TODO
+
 
 def uniqify(s):
     return "".join(set(s))
@@ -63,7 +65,7 @@ def create_key(page, cur_section):
     return f'{key}_{keys[key]}'
 
 
-def sectionize(page, keep_items=False):
+def sectionize_in_pages(page, keep_items=False):
     page['key'] = create_key(page, {'title': 'page'})
     print(page['key'])
     page['sections'] = []
@@ -77,7 +79,7 @@ def sectionize(page, keep_items=False):
             assert cur_section['title'] == ''
             cur_section['title'] = value
         elif 'footnote' in kind:
-            print(kind, value)  #TODO del
+            print(kind, value)  # TODO del
             note = page['footnotes'][int(value)]
             value = note
         elif 'subject' in kind:
@@ -105,3 +107,44 @@ def create_dirs():
 
     os.mkdir("output")
     os.mkdir("tex")
+
+
+def clean_non_letters(text):
+    text = ''.join(char if char.isalpha() or char.isspace() else ' ' for char in text)
+    text = ' '.join(text.split())
+    text += ' '
+    return text
+
+
+# TODO, use, or remove
+# tokenizer = RFTokenizer(model="heb")
+# print(tokenizer)
+#
+#
+# def tokenize(text):
+#     print('starting tokenization')
+#     print(text)
+#     result = tokenizer.rf_tokenize(text.replace(" ", "\n"))
+#     result = [re.sub(r'.*\|', '', s) for s in result] # not good if there is a Vav at end of word, it leaves only it
+#     print(result)
+#     print('finished tokenization')
+#     return result
+
+
+def prepare_search(section):
+    section['raw_subject'] = ""
+    section['raw_text'] = ""
+    section['raw_footnote'] = ""
+    for type, value in section['content']:
+        if 'subject' in type:
+            section['raw_subject'] += clean_non_letters(value)
+        elif 'footnote' in type:
+            for ft_part in value['content']:
+                section['raw_footnote'] += clean_non_letters(ft_part['text'])
+        elif 'source' not in type:
+            section['raw_text'] += clean_non_letters(value)
+    # TODO use, improve, or remove
+    # for f in ['raw_subject', 'raw_text', 'raw_footnote']:
+    #     section[f + '_tokens'] = tokenize(section[f]) if section[f] else ''
+
+    return section

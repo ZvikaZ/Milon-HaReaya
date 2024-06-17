@@ -1,14 +1,14 @@
 # TODO missing:
-#  footnotes,
-#  toc,
 #  letters links,
 #  search
 #    w/wo title
 #    w/ NLP tools
 #  static pages,
 #  verify and clean dict_check.docx,
-#  clean TEMP,
+#  clean TEMP and redundant files here,
 #  backup backend,
+# DOCX!!!   pip install python-docx
+# pip install flair==0.13.0 scikit-learn==1.3.2 pandas==2.1.2 xgboost==2.0.3 joblib==1.3.2 scipy==1.12 rftokenizer
 
 
 # TODO check TODOs in OLD-main.py

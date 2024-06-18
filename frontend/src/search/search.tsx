@@ -3,13 +3,13 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchData } from "../utils/api.ts";
 import { Section } from "../section.tsx";
 
-//TODO investiage why אב returns false results (such as אמיתיות מקובלות)
+//TODO if expression has few words, make then AND (currently it's OR)
 //TODO allow search only in titles
 //TODO make search results linkable
 //TODO show where the search result is from
 //TODO break large sections to smaller (such as אדם) (maybe not?)
 //TODO different weights for title, content, and footnotes
-//TODO NLP
+//TODO NLP (or maybe using N-gram indexing is simpler and good enough)
 //TODO retrieve footnotes and highlight them
 
 interface SearchQueryType {

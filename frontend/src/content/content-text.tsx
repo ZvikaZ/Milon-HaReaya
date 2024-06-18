@@ -1,8 +1,13 @@
-export const ContentText: React.FC<{
-  className: string;
-  value: string;
-  highlight: string | undefined;
-}> = ({ value, className, highlight }) => {
+import { forwardRef } from "react";
+
+export const ContentText = forwardRef<
+  HTMLSpanElement,
+  {
+    className: string;
+    value: string;
+    highlight: string | undefined;
+  }
+>(({ value, className, highlight }, ref) => {
   if (highlight) {
     const wordsToHighlight = highlight.split(/\s+/).filter((word) => word);
 
@@ -11,7 +16,7 @@ export const ContentText: React.FC<{
       const parts = value.split(regex);
 
       return (
-        <span className={className}>
+        <span ref={ref} className={className}>
           {parts.map((part, index) =>
             wordsToHighlight.some(
               (word) => word.toLowerCase() === part.toLowerCase(),
@@ -28,5 +33,9 @@ export const ContentText: React.FC<{
     }
   }
 
-  return <span className={className}>{value}</span>;
-};
+  return (
+    <span ref={ref} className={className}>
+      {value}
+    </span>
+  );
+});

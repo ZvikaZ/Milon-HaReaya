@@ -3,14 +3,15 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchData } from "../utils/api.ts";
 import { Section } from "../section.tsx";
 
-//TODO if expression has few words, make then AND (currently it's OR)
-//TODO allow search only in titles
+//TODO retrieve footnotes and highlight them
 //TODO make search results linkable
+//TODO allow search only in titles
 //TODO show where the search result is from
+//TODO move search bar above page
 //TODO break large sections to smaller (such as אדם) (maybe not?)
+//TODO more weight to complete word (אב should be better than אבנט)
 //TODO different weights for title, content, and footnotes
 //TODO NLP (or maybe using N-gram indexing is simpler and good enough)
-//TODO retrieve footnotes and highlight them
 
 interface SearchQueryType {
   key: string;
@@ -33,7 +34,8 @@ export const SearchResult: React.FC<{
   // );
 
   return (
-    <p>
+    // <p>
+    <div>
       <i>התאמה: {Math.round(result.score * 10)}</i>
       <Section
         key={result.key}
@@ -41,7 +43,8 @@ export const SearchResult: React.FC<{
         highlight={searchKey}
       />
       <hr />
-    </p>
+    </div>
+    // </p>
   );
 };
 
@@ -64,8 +67,8 @@ export const Search: React.FC<{ searchKey: string }> = ({ searchKey }) => {
   return (
     <>
       {data &&
-        data.map((result) => (
-          <SearchResult result={result} searchKey={searchKey} />
+        data.map((result, index) => (
+          <SearchResult key={index} result={result} searchKey={searchKey} />
         ))}
     </>
   );

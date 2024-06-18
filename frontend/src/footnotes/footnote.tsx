@@ -3,9 +3,9 @@ import { Anchor, Popover } from "@mantine/core";
 export const Footnote: React.FC<FootnoteValueType> = ({
   number_relative,
   content,
-  highlight,
+  // highlight,
 }) => {
-  console.log("TODO: implement highlight in footnote", highlight);
+  // console.log("TODO: implement highlight in footnote", highlight);
   return (
     <Popover shadow={"md"} width={"75%"} position={"bottom-start"}>
       <Popover.Target>

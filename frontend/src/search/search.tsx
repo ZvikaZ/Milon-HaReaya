@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchData } from "../utils/api.ts";
 import { Section } from "../section.tsx";
 
-//TODO retrieve footnotes and highlight them
 //TODO make search results linkable
 //TODO allow search only in titles
 //TODO show where the search result is from
@@ -34,7 +33,6 @@ export const SearchResult: React.FC<{
   // );
 
   return (
-    // <p>
     <div>
       <i>התאמה: {Math.round(result.score * 10)}</i>
       <Section
@@ -44,7 +42,6 @@ export const SearchResult: React.FC<{
       />
       <hr />
     </div>
-    // </p>
   );
 };
 

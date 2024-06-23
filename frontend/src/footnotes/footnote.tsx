@@ -1,13 +1,37 @@
-import { Anchor, Popover } from "@mantine/core";
+import { Anchor, Blockquote, Popover } from "@mantine/core";
+import { ContentText } from "../content/content-text.tsx";
 
 export const Footnote: React.FC<FootnoteValueType> = ({
   number_relative,
   content,
-  // highlight,
+  highlight,
 }) => {
-  // console.log("TODO: implement highlight in footnote", highlight);
-  return (
-    <Popover shadow={"md"} width={"75%"} position={"bottom-start"}>
+  const shouleBeOpened = highlight
+    ? content.some((item) => item.text.includes(highlight))
+    : false;
+
+  const footnoteContent = content ? (
+    content.map((item, index) => (
+      <ContentText
+        key={index}
+        className={item.style}
+        value={item.text}
+        highlight={highlight}
+      />
+    ))
+  ) : (
+    <span></span>
+  );
+
+  return shouleBeOpened ? (
+    <Blockquote>{footnoteContent}</Blockquote>
+  ) : (
+    <Popover
+      shadow={"md"}
+      width={"75%"}
+      position={"bottom-start"}
+      defaultOpened={shouleBeOpened}
+    >
       <Popover.Target>
         <Anchor>
           <sup>({number_relative})</sup>
@@ -23,11 +47,7 @@ export const Footnote: React.FC<FootnoteValueType> = ({
           padding: "10px",
         }}
       >
-        {content.map((item, index) => (
-          <span key={index} className={item.style}>
-            {item.text}
-          </span>
-        ))}
+        {footnoteContent}
       </Popover.Dropdown>
     </Popover>
   );

@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 
 import { fetchData } from "../utils/api.ts";
 import { TocItem } from "./tocItem.tsx";
@@ -40,15 +41,17 @@ export const Toc: React.FC<{ setTocItem: (value: string) => void }> = ({
     <>
       {toc &&
         toc.map((it) => (
-          <TocItem
-            key={it.key}
-            linkKey={it.key}
-            title={it.title}
-            appear_in_toc={it.appear_in_toc}
-            setTocItem={setTocItem}
-            tocSection={tocSection}
-            setTocSection={setTocSection}
-          />
+          <Link to={`/toc/${it.key}`}>
+            <TocItem
+              key={it.key}
+              linkKey={it.key}
+              title={it.title}
+              appear_in_toc={it.appear_in_toc}
+              setTocItem={setTocItem}
+              tocSection={tocSection}
+              setTocSection={setTocSection}
+            />
+          </Link>
         ))}
     </>
   );

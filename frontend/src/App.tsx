@@ -9,7 +9,7 @@ import { MantineProvider } from "@mantine/core";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { MainLayout } from "./main-layout.tsx";
+import { AppRoutes } from "./routes.tsx";
 
 const queryClient = new QueryClient();
 
@@ -17,7 +17,7 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <MantineProvider>
-        <MainLayout />
+        <AppRoutes />
       </MantineProvider>{" "}
     </QueryClientProvider>
   );

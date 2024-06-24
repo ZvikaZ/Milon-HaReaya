@@ -1,6 +1,7 @@
 import { rem, TextInput, Checkbox } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export const SearchInput: React.FC<{
   searchKey: string;
@@ -8,6 +9,8 @@ export const SearchInput: React.FC<{
   searchAlsoContent: boolean;
   setSearchAlsoContent: (value: boolean) => void;
 }> = ({ searchKey, setSearchKey, searchAlsoContent, setSearchAlsoContent }) => {
+  const navigate = useNavigate();
+
   return (
     <>
       <TextInput
@@ -17,7 +20,13 @@ export const SearchInput: React.FC<{
             : "חיפוש רק בשמות הערכים"
         }
         value={searchKey}
-        onChange={(e) => setSearchKey(e.target.value)}
+        onChange={(e) => {
+          const query = e.target.value.trim();
+          setSearchKey(query);
+          if (query) {
+            navigate(`/search/${query}`);
+          }
+        }}
         size="xs"
         leftSection={
           <IconSearch

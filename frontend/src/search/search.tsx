@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchData } from "../utils/api.ts";
 import { Section } from "../section.tsx";
 
+//TODO add React Route
 //TODO make search results linkable
 //TODO allow search only in titles
 //TODO show where the search result is from

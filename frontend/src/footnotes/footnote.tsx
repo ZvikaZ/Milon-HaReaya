@@ -24,7 +24,12 @@ export const Footnote: React.FC<FootnoteValueType> = ({
   );
 
   return shouleBeOpened ? (
-    <Blockquote>{footnoteContent}</Blockquote>
+    <>
+      <Blockquote>
+        <sup>({number_relative})</sup>
+        {footnoteContent}
+      </Blockquote>
+    </>
   ) : (
     <Popover
       shadow={"md"}

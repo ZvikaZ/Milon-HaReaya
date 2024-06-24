@@ -1,15 +1,11 @@
 import { rem, TextInput, Checkbox } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
-import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-export const SearchInput: React.FC<{
-  searchKey: string;
-  setSearchKey: (value: string) => void;
-  searchAlsoContent: boolean;
-  setSearchAlsoContent: (value: boolean) => void;
-}> = ({ searchKey, setSearchKey, searchAlsoContent, setSearchAlsoContent }) => {
+export const SearchInput = () => {
   const navigate = useNavigate();
+  const [searchAlsoContent, setSearchAlsoContent] = useState(false); //TODO connect to 'query' link
 
   return (
     <>
@@ -19,10 +15,8 @@ export const SearchInput: React.FC<{
             ? "חיפוש בשמות הערכים ובתוכנם"
             : "חיפוש רק בשמות הערכים"
         }
-        value={searchKey}
         onChange={(e) => {
           const query = e.target.value.trim();
-          setSearchKey(query);
           if (query) {
             navigate(`/search/${query}`);
           }
@@ -39,7 +33,7 @@ export const SearchInput: React.FC<{
         styles={{ section: { pointerEvents: "none" } }}
         mb="sm"
       />
-      <Checkbox
+      <Checkbox //TODO maybe modify to some other Mantine input
         label={"חיפוש בתוכן הערכים"}
         checked={searchAlsoContent}
         onChange={() => setSearchAlsoContent(!searchAlsoContent)}

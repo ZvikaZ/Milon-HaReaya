@@ -3,6 +3,8 @@
 //TODO: fix mobile layout
 //TODO: PWABBuilder (for mobile installation)
 //TODO: lighthouse
+//TODO: keep in git the mongo functions, for reference
+//TODO: give error to http://localhost:5173/Milon-HaReaya/toc/doesnt-exist
 
 import "@mantine/core/styles.css";
 import { MantineProvider } from "@mantine/core";

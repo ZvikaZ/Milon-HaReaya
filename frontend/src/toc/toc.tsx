@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 import { fetchData } from "../utils/api.ts";
 import { TocItem } from "./tocItem.tsx";
-import { useState } from "react";
 
 interface TocItemType {
   key: string;
@@ -16,12 +15,7 @@ interface TocQueryType {
   data: TocItemType[];
 }
 
-export const Toc: React.FC<{ setTocItem: (value: string) => void }> = ({
-  setTocItem,
-}) => {
-  const INITIAL_SECTION = "ערכים כלליים"; //TODO change?
-  const [tocSection, setTocSection] = useState(INITIAL_SECTION);
-
+export const Toc: React.FC<{ tocSectionKey: string }> = ({ tocSectionKey }) => {
   const { data, error, isLoading } = useQuery<TocQueryType>({
     queryKey: ["Toc"],
     queryFn: () => fetchData("get_misc", { key: "toc" }),
@@ -37,19 +31,20 @@ export const Toc: React.FC<{ setTocItem: (value: string) => void }> = ({
 
   const toc = data?.data;
 
+  const tocMap = toc
+    ? new Map(toc.map((item) => [item.key, item.title]))
+    : new Map();
+
   return (
     <>
       {toc &&
         toc.map((it) => (
-          <Link to={`/toc/${it.key}`}>
+          <Link key={it.key} to={`/toc/${it.key}`}>
             <TocItem
-              key={it.key}
               linkKey={it.key}
               title={it.title}
               appear_in_toc={it.appear_in_toc}
-              setTocItem={setTocItem}
-              tocSection={tocSection}
-              setTocSection={setTocSection}
+              tocSectionTitle={tocMap.get(tocSectionKey)}
             />
           </Link>
         ))}

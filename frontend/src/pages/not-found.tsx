@@ -1,5 +1,6 @@
 import React from "react";
 
+//TODO beautify this
 const NotFound: React.FC = () => {
   return (
     <>

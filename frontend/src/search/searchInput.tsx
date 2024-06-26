@@ -16,10 +16,7 @@ export const SearchInput = () => {
             : "חיפוש רק בשמות הערכים"
         }
         onChange={(e) => {
-          const query = e.target.value.trim();
-          if (query) {
-            navigate(`/search/${query}`);
-          }
+          navigate(`/search/${e.target.value.trim()}`);
         }}
         size="xs"
         leftSection={

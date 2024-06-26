@@ -3,13 +3,13 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchData } from "../utils/api.ts";
 import { Section } from "../section.tsx";
 
-//TODO when user deletes search query, return to original page
 //TODO make search results linkable
 //TODO allow search only in titles
 //TODO show where the search result is from
 //TODO move search bar above page
 //TODO break large sections to smaller (such as אדם) (maybe not?)
 //TODO more weight to complete word (אב should be better than אבנט)
+//TODO when user deletes search query, return to original page
 //TODO different weights for title, content, and footnotes
 //TODO NLP (or maybe using N-gram indexing is simpler and good enough)
 

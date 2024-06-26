@@ -17,7 +17,7 @@ const MainLayout = () => {
     type: string;
     id: string;
   }>();
-  if (!type && !id) {
+  if (!id) {
     type = "toc";
     id = defaultPage;
   }

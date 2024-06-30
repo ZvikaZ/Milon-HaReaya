@@ -2,7 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 
 import { fetchData } from "../utils/api.ts";
 import { Section } from "../section.tsx";
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
+import { Skeleton } from "@mantine/core";
+import { useScrollIntoView } from "@mantine/hooks";
 
 interface SectionType {
   key: string;
@@ -19,7 +21,8 @@ export const ContentPage: React.FC<{ id: string; type: string }> = ({
   type,
 }) => {
   console.log("ContentPage", type, id);
-  const currentSectionRef = useRef<HTMLDivElement | null>(null);
+  const [isScrolled, setIsScrolled] = useState(true);
+  const { scrollIntoView, targetRef } = useScrollIntoView<HTMLDivElement>();
 
   const { data, error, isLoading } = useQuery<PageDataType>({
     queryKey: ["ContentPage", id],
@@ -28,12 +31,15 @@ export const ContentPage: React.FC<{ id: string; type: string }> = ({
 
   useEffect(() => {
     if (data && data.sections.length > 0 && type === "section") {
-      currentSectionRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
+      scrollIntoView({ alignment: "center" });
+      setIsScrolled(true);
+      const timer = setTimeout(() => {
+        setIsScrolled(false);
+      }, 20);
+
+      return () => clearTimeout(timer);
     }
-  }, [type, data, id]);
+  }, [data, type, id, scrollIntoView]);
 
   if (isLoading) {
     return <div>טוען...</div>;
@@ -44,14 +50,24 @@ export const ContentPage: React.FC<{ id: string; type: string }> = ({
   }
 
   console.log(data);
+  //TODO: I dont like this skeleton, I prefer to use transition, but they start too late and that's looks bad.
+  // they also pop from nowhere, I'd like to keep a placeholder for them before they appear. skeleton does this well...
   return (
     <>
       {data &&
-        data.sections.map((it) => (
-          <div key={it.key} ref={it.key == id ? currentSectionRef : undefined}>
-            <Section content={it.content} highlight={""} />
-          </div>
-        ))}
+        data.sections.map((it) => {
+          return it.key === id ? (
+            <Skeleton key={it.key} visible={isScrolled}>
+              <div ref={targetRef}>
+                <Section content={it.content} highlight={""} />
+              </div>
+            </Skeleton>
+          ) : (
+            <div key={it.key}>
+              <Section content={it.content} highlight={""} />
+            </div>
+          );
+        })}
     </>
   );
 };

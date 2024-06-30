@@ -4,14 +4,13 @@ import { fetchData } from "../utils/api.ts";
 import { Section } from "../section.tsx";
 import { Link } from "react-router-dom";
 
-//TODO understand and fix: Warning: validateDOMNesting(...): <a> cannot appear as a descendant of <a>
-//TODO when scrolling to search result, highlight it
-//TODO focus on search input when search page is (re)loaded
 //TODO allow search only in titles
 //TODO show where the search result is from
 //TODO move search bar above page
 //TODO break large sections to smaller (such as אדם) (maybe not?)
 
+//TODO add little X in input search bar to delete the text
+//TODO (?) focus on search input when search page is (re)loaded
 //TODO when user deletes search query, return to original page
 //TODO more weight to complete word (אב should be better than אבנט)
 //TODO different weights for title, content, and footnotes

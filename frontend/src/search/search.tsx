@@ -2,14 +2,18 @@ import { useQuery } from "@tanstack/react-query";
 
 import { fetchData } from "../utils/api.ts";
 import { Section } from "../section.tsx";
+import { Link } from "react-router-dom";
 
-//TODO make search results linkable
+//TODO understand and fix: Warning: validateDOMNesting(...): <a> cannot appear as a descendant of <a>
+//TODO when scrolling to search result, highlight it
+//TODO focus on search input when search page is (re)loaded
 //TODO allow search only in titles
 //TODO show where the search result is from
 //TODO move search bar above page
 //TODO break large sections to smaller (such as אדם) (maybe not?)
-//TODO more weight to complete word (אב should be better than אבנט)
+
 //TODO when user deletes search query, return to original page
+//TODO more weight to complete word (אב should be better than אבנט)
 //TODO different weights for title, content, and footnotes
 //TODO NLP (or maybe using N-gram indexing is simpler and good enough)
 
@@ -34,15 +38,24 @@ export const SearchResult: React.FC<{
   // );
 
   return (
-    <div>
-      <i>התאמה: {Math.round(result.score * 10)}</i>
-      <Section
-        key={result.key}
-        content={result.content}
-        highlight={searchKey}
-      />
-      <hr />
-    </div>
+    <Link
+      to={`/section/${result.key}`}
+      style={{
+        textDecoration: "none",
+        color: "inherit",
+        fontWeight: "normal", // Override default link font-weight
+      }}
+    >
+      <div>
+        <i>התאמה: {Math.round(result.score * 10)}</i>
+        <Section
+          key={result.key}
+          content={result.content}
+          highlight={searchKey}
+        />
+        <hr />
+      </div>
+    </Link>
   );
 };
 

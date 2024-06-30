@@ -2,7 +2,7 @@ import { AppShell, Burger } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 
 import { Search } from "../search/search.tsx";
-import { Page } from "../page.tsx";
+import { ContentPage } from "./content-page.tsx";
 import { useParams } from "react-router-dom";
 import { NotFound } from "./not-found.tsx";
 import { SearchInput } from "../search/searchInput.tsx";
@@ -44,8 +44,8 @@ const MainLayout = () => {
       </AppShell.Navbar>
 
       <AppShell.Main>
-        {type === "toc" ? (
-          <Page pageKey={id as string} />
+        {type === "toc" || type === "section" ? (
+          <ContentPage type={type} id={id as string} />
         ) : type === "search" ? (
           <Search searchKey={id as string} />
         ) : (

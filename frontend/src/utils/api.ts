@@ -17,7 +17,10 @@ export const getToken = async () => {
 };
 
 //TODO cache data (can use toc's first item's _id as indicator if need to refresh cache)
-export const fetchData = async (endpoint: string, data: { key: string }) => {
+export const fetchData = async (
+  endpoint: string,
+  data: { key: string; searchAlsoContent?: boolean },
+) => {
   const url = `${import.meta.env.VITE_DB_ENDPOINT_URL}/${endpoint}`;
 
   if (!accessToken) {

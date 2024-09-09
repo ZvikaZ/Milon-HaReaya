@@ -1,11 +1,16 @@
 import { rem, TextInput, Checkbox } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const SearchInput = () => {
   const navigate = useNavigate();
-  const [searchAlsoContent, setSearchAlsoContent] = useState(false); //TODO connect to 'query' link
+
+  const location = useLocation();
+  const [, searchPathBase, searchTerm] = location.pathname.split("/");
+  let searchAlsoContent = searchPathBase === "search_all";
+
+  const getSearchPathBase = () =>
+    `search_${searchAlsoContent ? "all" : "titles"}`;
 
   return (
     <>
@@ -16,7 +21,7 @@ export const SearchInput = () => {
             : "חיפוש רק בשמות הערכים"
         }
         onChange={(e) => {
-          navigate(`/search/${e.target.value.trim()}`);
+          navigate(`/${getSearchPathBase()}/${e.target.value.trim()}`);
         }}
         size="xs"
         leftSection={
@@ -31,9 +36,12 @@ export const SearchInput = () => {
         mb="sm"
       />
       <Checkbox //TODO maybe modify to some other Mantine input
-        label={"חיפוש בתוכן הערכים"}
+        label={"חיפוש גם בתוכן הערכים"}
         checked={searchAlsoContent}
-        onChange={() => setSearchAlsoContent(!searchAlsoContent)}
+        onChange={() => {
+          searchAlsoContent = !searchAlsoContent;
+          navigate(`/${getSearchPathBase()}/${searchTerm}`);
+        }}
       />
     </>
   );

@@ -46,8 +46,11 @@ const MainLayout = () => {
       <AppShell.Main>
         {type === "toc" || type === "section" ? (
           <ContentPage type={type} id={id as string} />
-        ) : type === "search" ? (
-          <Search searchKey={id as string} />
+        ) : type?.startsWith("search") ? (
+          <Search
+            searchKey={id as string}
+            searchAlsoContent={type === "search_all"}
+          />
         ) : (
           <NotFound />
         )}

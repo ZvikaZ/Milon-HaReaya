@@ -4,17 +4,21 @@ import { fetchData } from "../utils/api.ts";
 import { Section } from "../section.tsx";
 import { Link } from "react-router-dom";
 
-//TODO allow search only in titles
+//TODO have searchInput text bar show current search term
+//TODO fix <a> warning in console
 //TODO show where the search result is from
 //TODO move search bar above page
 //TODO break large sections to smaller (such as אדם) (maybe not?)
+//TODO maybe replace the skeleton after loading section with highlighting the search result in there
 
+//TODO clicking the footnotes on search results - jumps to them - not good
 //TODO add little X in input search bar to delete the text
 //TODO (?) focus on search input when search page is (re)loaded
 //TODO when user deletes search query, return to original page
 //TODO more weight to complete word (אב should be better than אבנט)
 //TODO different weights for title, content, and footnotes
 //TODO NLP (or maybe using N-gram indexing is simpler and good enough)
+//TODO replace deprecated MongoDB HTTPS Endpoints (by September 2025)
 
 interface SearchQueryType {
   key: string;
@@ -58,11 +62,18 @@ export const SearchResult: React.FC<{
   );
 };
 
-export const Search: React.FC<{ searchKey: string }> = ({ searchKey }) => {
-  console.log("search", searchKey);
+export const Search: React.FC<{
+  searchKey: string;
+  searchAlsoContent: boolean;
+}> = ({ searchKey, searchAlsoContent }) => {
+  console.log("search", searchAlsoContent, searchKey);
   const { data, error, isLoading } = useQuery<SearchQueryType[]>({
-    queryKey: ["search", searchKey],
-    queryFn: () => fetchData("search", { key: searchKey ? searchKey : " " }),
+    queryKey: ["search", searchKey, searchAlsoContent],
+    queryFn: () =>
+      fetchData("search", {
+        key: searchKey ? searchKey : " ",
+        searchAlsoContent: searchAlsoContent,
+      }),
   });
 
   if (isLoading) {

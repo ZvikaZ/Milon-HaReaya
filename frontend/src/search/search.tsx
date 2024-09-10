@@ -4,7 +4,6 @@ import { fetchData } from "../utils/api.ts";
 import { Section } from "../section.tsx";
 import { Link } from "react-router-dom";
 
-//TODO have searchInput text bar show current search term
 //TODO fix <a> warning in console
 //TODO show where the search result is from
 //TODO move search bar above page
@@ -84,7 +83,6 @@ export const Search: React.FC<{
     return <div>שגיאה: {error.message}</div>;
   }
 
-  console.log(data);
   return (
     <>
       {data &&

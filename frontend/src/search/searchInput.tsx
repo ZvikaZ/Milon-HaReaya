@@ -6,7 +6,8 @@ export const SearchInput = () => {
   const navigate = useNavigate();
 
   const location = useLocation();
-  const [, searchPathBase, searchTerm] = location.pathname.split("/");
+  const [, searchPathBase, encodedSearchTerm] = location.pathname.split("/");
+  const searchTerm = decodeURIComponent(encodedSearchTerm || "");
   let searchAlsoContent = searchPathBase === "search_all";
 
   const getSearchPathBase = () =>
@@ -15,6 +16,7 @@ export const SearchInput = () => {
   return (
     <>
       <TextInput
+        value={searchTerm}
         placeholder={
           searchAlsoContent
             ? "חיפוש בשמות הערכים ובתוכנם"

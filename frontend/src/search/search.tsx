@@ -4,14 +4,13 @@ import { fetchData } from "../utils/api.ts";
 import { Section } from "../section.tsx";
 import { Link } from "react-router-dom";
 
-//TODO fix <a> warning in console
 //TODO show where the search result is from
 //TODO move search bar above page
 //TODO break large sections to smaller (such as אדם) (maybe not?)
 //TODO maybe replace the skeleton after loading section with highlighting the search result in there
 
 //TODO clicking the footnotes on search results - jumps to them - not good
-//TODO add little X in input search bar to delete the text
+//TODO fix <a> warning in console
 //TODO (?) focus on search input when search page is (re)loaded
 //TODO when user deletes search query, return to original page
 //TODO more weight to complete word (אב should be better than אבנט)

@@ -1,5 +1,5 @@
-import { rem, TextInput, Checkbox } from "@mantine/core";
-import { IconSearch } from "@tabler/icons-react";
+import { rem, TextInput, Checkbox, ActionIcon } from "@mantine/core";
+import { IconSearch, IconX } from "@tabler/icons-react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export const SearchInput = () => {
@@ -32,9 +32,21 @@ export const SearchInput = () => {
             stroke={1.5}
           />
         }
-        rightSectionWidth={70}
-        // rightSection={<Code className={classes.searchCode}>Ctrl + K</Code>}
-        styles={{ section: { pointerEvents: "none" } }}
+        rightSection={
+          searchTerm && (
+            <ActionIcon
+              size="xs"
+              radius="xl"
+              color="gray"
+              onClick={() => navigate(`/${getSearchPathBase()}/`)}
+              style={{ marginRight: rem(8) }}
+            >
+              <IconX size={11} />
+            </ActionIcon>
+          )
+        }
+        rightSectionWidth={40}
+        styles={{ section: { pointerEvents: "auto" } }}
         mb="sm"
       />
       <Checkbox //TODO maybe modify to some other Mantine input

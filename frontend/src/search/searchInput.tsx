@@ -7,7 +7,9 @@ export const SearchInput = () => {
 
   const location = useLocation();
   const [, searchPathBase, encodedSearchTerm] = location.pathname.split("/");
-  const searchTerm = decodeURIComponent(encodedSearchTerm || "");
+  const searchTerm = searchPathBase.startsWith("search")
+    ? decodeURIComponent(encodedSearchTerm || "")
+    : "";
   let searchAlsoContent = searchPathBase === "search_all";
 
   const getSearchPathBase = () =>

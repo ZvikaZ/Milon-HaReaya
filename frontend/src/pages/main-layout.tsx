@@ -1,4 +1,4 @@
-import { AppShell, Burger } from "@mantine/core";
+import { AppShell, Burger, Group } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 
 import { Search } from "../search/search.tsx";
@@ -33,13 +33,14 @@ const MainLayout = () => {
       padding="md"
     >
       <AppShell.Header>
-        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-        <span>מילון הראיה</span>
+        <Group align="stretch">
+          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+          {/*<span>מילון הראיה</span>*/}
+          <SearchInput />
+        </Group>
       </AppShell.Header>
 
       <AppShell.Navbar p="md">
-        <SearchInput />
-        <br />
         <Toc tocSectionKey={type === "toc" ? (id as string) : ""} />
       </AppShell.Navbar>
 

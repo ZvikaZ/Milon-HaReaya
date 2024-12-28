@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 //TODO break large sections to smaller (such as אדם) (maybe not?)
 //TODO maybe replace the skeleton after loading section with highlighting the search result in there
 
+//TODO searching אשה fails, maybe because of ניקוד
 //TODO clicking the footnotes on search results - jumps to them - not good
 //TODO fix <a> warning in console
 //TODO (?) focus on search input when search page is (re)loaded

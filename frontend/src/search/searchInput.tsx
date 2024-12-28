@@ -1,4 +1,4 @@
-import { rem, TextInput, Checkbox, ActionIcon } from "@mantine/core";
+import { rem, TextInput, ActionIcon, Group, Switch } from "@mantine/core";
 import { IconSearch, IconX } from "@tabler/icons-react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -16,7 +16,7 @@ export const SearchInput = () => {
     `search_${searchAlsoContent ? "all" : "titles"}`;
 
   return (
-    <>
+    <Group align="flex-start">
       <TextInput
         value={searchTerm}
         placeholder={
@@ -27,7 +27,8 @@ export const SearchInput = () => {
         onChange={(e) => {
           navigate(`/${getSearchPathBase()}/${e.target.value.trim()}`);
         }}
-        size="xs"
+        size="sm" // Set a more reasonable size for better appearance
+        style={{ flexGrow: 1 }} // Allows the TextInput to take more space
         leftSection={
           <IconSearch
             style={{ width: rem(12), height: rem(12) }}
@@ -51,14 +52,16 @@ export const SearchInput = () => {
         styles={{ section: { pointerEvents: "auto" } }}
         mb="sm"
       />
-      <Checkbox //TODO maybe modify to some other Mantine input
-        label={"חיפוש גם בתוכן הערכים"}
+      <Switch
+        onLabel={"חיפוש גם בתוכן הערכים"}
+        offLabel={"חיפוש רק בשמות הערכים"}
+        size="xl"
         checked={searchAlsoContent}
         onChange={() => {
           searchAlsoContent = !searchAlsoContent;
           navigate(`/${getSearchPathBase()}/${searchTerm}`);
         }}
       />
-    </>
+    </Group>
   );
 };

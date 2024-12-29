@@ -85,6 +85,13 @@
 
 
 %%%%%%%%%%%        FOOTNOTES    %%%%%%%%%%%
+
+% avoid splitting a footnote to 2 pages
+% default value is 100; lot of splits
+% value of 10000 completely avoid splitting (according to chatgpt),
+% which might cause too many blank spaces
+\interfootnotelinepenalty=5000
+
 \deffootnote[1.5em]{1.75em}{1.75em}{\makebox[1.5em][r]{\myfootnotesize{\thefootnotemark.\space}}}	% unindent footnotes, change footnote marker
 
 \setlength{\skip\footins}{2em} % vertical space between text body and footnote ruler

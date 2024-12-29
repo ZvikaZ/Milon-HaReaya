@@ -4,7 +4,6 @@
 % Stam font
 
 % ? fix redundant page between chapter and section - http://tex.stackexchange.com/questions/300320/when-2-newpages-in-raw-are-joined-and-when-not
-% ? footnote in wrong place - use \clearpage (maybe automatically? with 2 rounds?)
 % debug warning messages
 
 \documentclass[usegeometry,12pt]{scrbook}
@@ -72,6 +71,15 @@
 
 
 %%%%%%%%%%%        FOOTNOTES    %%%%%%%%%%%
+
+
+% avoid splitting a footnote to 2 pages
+% default value is 100; lot of splits
+% value of 10000 completely avoid splitting (according to chatgpt),
+% which might cause too many blank spaces
+\interfootnotelinepenalty=5000
+
+
 \deffootnote[1.5em]{1.75em}{1.75em}{\myfootnotesize{\thefootnotemark.\space}}	% unindent footnotes, change footnote marker
 
 \setlength{\skip\footins}{2em} % vertical space between text body and footnote ruler
@@ -225,6 +233,7 @@
 %%%%%%%%%%%        DATA        %%%%%%%%%%%
 
 \begin{document}
+
 \begin{multicols}{2}
 
 \include{content}

@@ -1,0 +1,10 @@
+[project]
+name = "Milon-HaReaya"
+version = "0.1.0"
+description = "Transpiles the Milon HaReaya word file to a Web site and to a PDF"
+#readme = "README.md"
+requires-python = ">=3.8, <3.9"
+dependencies = [
+    "python-docx>=1.1.2",
+    "requests>=2.32.3",
+]

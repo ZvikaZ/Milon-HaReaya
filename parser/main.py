@@ -16,6 +16,7 @@
 # TODO htmler.add_footnote_to_output(id, footnote.paragraphs)
 # TODO search_index
 # TODO get_heading_type
+# TODO update to modern Python
 
 from helpers import create_dirs
 from parse import parse

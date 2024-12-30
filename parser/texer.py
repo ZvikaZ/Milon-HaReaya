@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
-# hopefully, some day, this file will contain much more of tex-related code
-
 import os
+import shutil
 import subprocess
 import codecs
 import footer
@@ -58,12 +57,16 @@ def get_section_short_name(section):
     return reverse_words(current_section['section'])
 
 
-
-
 def open_latex():
-    pass
-    # nothing to do here...
-
+    os.chdir("../input_tex")
+    for f in (
+        "milon.tex",
+        "polythumbs.sty",
+        "hebcolumnbal.sty",
+        #  "hebrew-gymatria-fix.sty",     # Rav Kalner asked not to do it. Leaving it here for future reference...
+    ):
+        shutil.copyfile(f, os.path.join("../tex", f))
+    os.chdir("../")
 
 
 def latex_type(type):
@@ -396,3 +399,7 @@ def close_latex():
 #     os.startfile("milon.tex")
     os.chdir("..")
 
+
+def create_pdf(parsed_data):
+    open_latex()
+    close_latex()

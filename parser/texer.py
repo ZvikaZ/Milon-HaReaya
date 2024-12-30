@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import os
 import shutil
 import subprocess
@@ -28,6 +26,10 @@ class LatexProcessor:
         self.next_define_ends_moto = False
         self.moto_line_is_left = False
         self.moto_line_was_left = False
+
+    def is_bold(self, para):
+        print(para, "bolded?", "subject" in para["style"])  # TODO delete
+        return "subject" in para["style"]  # TODO is it good?
 
     def reverse_words(self, s):
         w1 = s.split()
@@ -70,7 +72,7 @@ class LatexProcessor:
         return self.reverse_words(self.current_section["section"])
 
     def open_latex(self):
-        os.chdir("../input_tex")
+        os.chdir("input_tex")
         for f in (
             "milon.tex",
             "polythumbs.sty",
@@ -218,9 +220,9 @@ class LatexProcessor:
         self.moto_line_is_left = False
         return "}"
 
-    def add_to_latex(self, para, word_doc_footnotes):
+    def add_to_latex(self, para):
         data = ""
-        for i, (type, text) in enumerate(para):
+        for i, (type, text) in enumerate(para["items"]):
             data = self.handle_moto(data, text, type)
             data = self.handle_intro(data, text, type)
 
@@ -326,18 +328,18 @@ class LatexProcessor:
 
             elif type == "footnote":
                 id = int(text)
-                footnote = word_doc_footnotes.footnotes_part.notes[id + 1]
-                assert footnote.id == id
+                footnote = para["footnotes"][text]
+                assert (
+                    footnote["number_relative"] == id
+                )  # TODO number_relative or number_abs?
 
                 all_runs_list = []
-                for para in footnote.paragraphs:
+                for foot_para in footnote["content"]:
                     foot_text = ""
-                    for run in para.runs:
-                        style = footer.get_style(run)
-                        if style == "bolded":
-                            foot_text += "\\%s{%s}" % ("textbf", run.text)
-                        else:
-                            foot_text += run.text
+                    if self.is_bold(foot_para):
+                        foot_text += "\\%s{%s}" % ("textbf", foot_para["text"])
+                    else:
+                        foot_text += foot_para["text"]
                     all_runs_list.append(foot_text)
 
                 all_runs_text = "\\newline\n".join(all_runs_list)
@@ -438,5 +440,5 @@ def create_pdf(parsed_data):
     processor = LatexProcessor()
     processor.open_latex()
     for para in parsed_data:
-        processor.add_to_latex(para, word_doc_footnotes)
+        processor.add_to_latex(para)
     processor.close_latex()

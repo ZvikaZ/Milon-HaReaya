@@ -1,10 +1,18 @@
-% missing:
+% problems:
+% Psukim - not recognized as MotoChapter
+% section_title_secondary:
+%   gets into page title - shouldn't be there
+%   gets into thumbs - shouldn't be there
+%   because of these, Stam font has been lost (probably because it's not ``Otiyut'' but ``otiut and friends''
+%   make sure no harm is done to other sections and to Web, when finished here
+%   make sure that it's correctly spelled
+%   make sure that it matches book
+%   then delete all ``ZZ'' and ``unite_lines'' prints
 
-% python(?) - restart footnotes at sections
-% Stam font
 
-% ? fix redundant page between chapter and section - http://tex.stackexchange.com/questions/300320/when-2-newpages-in-raw-are-joined-and-when-not
 % debug warning messages
+
+% https://www.ctan.org/pkg/addlines - might be useful in later stages (adding or subing line or few lines from specific pages to fix appearance)
 
 \documentclass[usegeometry,12pt]{scrbook}
 
@@ -23,8 +31,12 @@
 \pagestyle{fancy}
 \fancyhf{}
 
-\fancyhead[LO]{\thepage\PolythumbWrapperLeft}
-\fancyhead[RE]{\thepage\PolythumbWrapperRight}
+\newcommand{\fancyheadlo}{\mynormalsize{\PolythumbWrapperLeft\hspace{-1mm}\thepage}}
+\newcommand{\fancyheadre}{\mynormalsize{\thepage\PolythumbWrapperRight}}
+\newcommand{\setfancyheadtitleboth}[1] {\fancyhead[CE,CO]{\mynormalsize\removelinebreaks{#1}}}
+
+\fancyhead[LO]{\fancyheadlo}
+\fancyhead[RE]{\fancyheadre}
 
 \pagenumbering{alph}			% change page numbers to Hebrew letters
 \setcounter{page}{-1}			% make page 1 first
@@ -32,9 +44,9 @@
 
 %%%%%%%%%%%        HEADING - `plain' with page number only       %%%%%%%%%%%
 \fancypagestyle{plain}{%
-\fancyhf{}
-\fancyhead[LO]{\thepage\PolythumbWrapperLeft}
-\fancyhead[RE]{\thepage\PolythumbWrapperRight}
+    \fancyhf{}
+    \fancyhead[LO]{\fancyheadlo}
+    \fancyhead[RE]{\fancyheadre}
 }
 
 
@@ -45,7 +57,7 @@
 
 %%%%%%%%%%%        HEBREW        %%%%%%%%%%%
 \usepackage{polyglossia}		% allow Hebrew
-\setdefaultlanguage{hebrew}	
+\setdefaultlanguage{hebrew}
 \rightfootnoterule   			% move footnote ruler to the right, until https://github.com/reutenauer/polyglossia/issues/5 will be fixed
 
 
@@ -59,9 +71,11 @@
 \setkomafont{disposition}{\normalcolor}
 
 
+%%%%%%%%%%%%    Sections (etc.) heading style    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %\RedeclareSectionCommand[style=chapter]{subsubsection}
-\addtokomafont{subsubsection}{\center\Large}
-%\addtokomafont{chapter}{\normalfont\sffamily}
+\addtokomafont{subsubsection}{\center\large}
+\addtokomafont{chapter}{\fontsize{24}{54}\selectfont}
 \renewcommand*{\raggedsection}{\centering}
 
 \renewcommand*{\chapterheadendvskip}{\clearpage}
@@ -73,20 +87,24 @@
 %%%%%%%%%%%        FOOTNOTES    %%%%%%%%%%%
 
 
-% avoid splitting a footnote to 2 pages
-% default value is 100; lot of splits
-% value of 10000 completely avoid splitting (according to chatgpt),
-% which might cause too many blank spaces
-\interfootnotelinepenalty=5000
-
-
-\deffootnote[1.5em]{1.75em}{1.75em}{\myfootnotesize{\thefootnotemark.\space}}	% unindent footnotes, change footnote marker
+\deffootnote[1.5em]{1.75em}{1.75em}{\makebox[1.5em][r]{\myfootnotesize{\thefootnotemark.\space}}}	% unindent footnotes, change footnote marker
 
 \setlength{\skip\footins}{2em} % vertical space between text body and footnote ruler
 
 % based on http://tex.stackexchange.com/questions/59501/how-do-i-add-a-blank-line-between-the-footnote-line-and-the-footnotes?rq=1
 \let\oldfootnoterule\footnoterule
 \def\footnoterule{\oldfootnoterule \vskip1em\relax}      % vertical space between ruler and footnotes
+
+
+% keep all footnotes on same page. taken from https://tex.stackexchange.com/questions/32208/footnote-runs-onto-second-page
+% \interfootnotelinepenalty=10000
+% -
+% the previous setting solved that problem, but created new problem with strange spacing in beginning of ``Tora'' section.
+% trying to mitigate both, with lowering to 5000
+%\interfootnotelinepenalty=5000
+
+% define "reset footnote counte" command
+\newcommand{\resetfootnotecounter}{\setcounter{footnote}{0}}
 
 
 % Footnote mark in text - fix size
@@ -96,20 +114,35 @@
 
 %%%%%%%%%%%        MISC        %%%%%%%%%%%
 
-\usepackage[onehalfspacing]{setspace}            % instead of `linespread` - which caused strange footnotes spacing
+% commented, because Rav asked to make it denser. keeping for future reference...
+%\usepackage[onehalfspacing]{setspace}            % instead of `linespread` - which caused strange footnotes spacing 
 
-\setlength{\parskip}{1ex plus 0.2ex minus 0.2ex}		% increase spacing between paragraphs
+
+\setlength{\parskip}{0pt}
+
+
+\newcommand{\paragraphs}{
+    \par\vspace{1ex plus 0.2ex minus 0.2ex}
+}
 
 % for Moto's minipage centering
 \usepackage{adjustbox}
 
 
+% to make sure that subsubsection heading isn't at end of page
+\usepackage{needspace}
+
+
 %%%%%%%%%%%        FONTS        %%%%%%%%%%%
-% Font chosing
+% regular Hebrew fonts declarations
 \usepackage{fontspec}
-\newfontfamily\hebrewfont{Times New Roman}[Script=Hebrew]
-\newfontfamily\hebrewfontnarkisim{Narkisim}[Script=Hebrew]
-\newfontfamily\hebrewfonttt{Miriam}[Script=Hebrew]
+\newfontfamily\hebrewfont{Times New Roman}[Script=Hebrew,LetterSpace=3]
+\newfontfamily\hebrewfonttt{Miriam}[Script=Hebrew,AutoFakeBold=1.5]
+
+% declare new specific fonts (and new commands)
+\newfontfamily\hebrewfonthadassah{Hadassah Friedlaender}[Script=Hebrew]
+\newfontfamily\hebrewfontstam{Guttman Stam}[Script=Hebrew]
+
 
 % copied from https://tex.stackexchange.com/questions/23450/font-problems-hebrew-with-koma-document-classes-error-message?rq=1
 \setmainfont[Mapping=tex-text]{Times New Roman}
@@ -118,9 +151,11 @@
 
 
 %%%%%%%%%%%        COMMANDS        %%%%%%%%%%%
-\newcommand\mylarge{\fontsize{12}{12}\selectfont}
-\newcommand\mynormalsize{\fontsize{11}{12}\selectfont}
-\newcommand\mysmall{\fontsize{10}{12}\selectfont}
+\newcommand\mysectiontitlesecondarysize{\fontsize{18}{34}\selectfont}
+\newcommand\mystamsize{\fontsize{14}{14}\selectfont}              % used by Stam
+\newcommand\mylarge{\fontsize{11}{14}\selectfont}
+\newcommand\mynormalsize{\fontsize{10}{14}\selectfont}
+\newcommand\mysmall{\fontsize{9}{14}\selectfont}
 \newcommand\myfootnotesize{\fontsize{9}{12}\selectfont}
 
 \usepackage{xstring}
@@ -133,13 +168,15 @@
 \newcommand{\mybookname}[2]{
     \end{multicols}
 
-    \addtokomafont{part}{\hebrewfontnarkisim}    %TODO make it larger than \Huge (=default)
+    \addtokomafont{part}{\vspace{-3cm}\fontsize{35}{35}\hebrewfonthadassah}
+
     \part[#2]{#1}
+
     \addtokomafont{part}{\hebrewfont\Huge}
 
     \addPolythumb{#2}
 
-    \fancyhead[CE,CO]{\removelinebreaks{#1}}
+    \setfancyheadtitleboth{#1}
     \begin{multicols}{2}
 }
 
@@ -150,7 +187,8 @@
 
     \addPolythumb{#2}
 
-    \fancyhead[CE,CO]{\removelinebreaks{#1}}
+    \setfancyheadtitleboth{#1}
+    \resetfootnotecounter
     \begin{multicols}{2}
 }
 
@@ -160,10 +198,11 @@
 \newcommand{\mychapter}[2]{
     \end{multicols}
     \part[#2]{#1}
-    
+
     \addPolythumb{#2}
 
-    \fancyhead[CE,CO]{\removelinebreaks{#1}}
+    \setfancyheadtitleboth{#1}
+    \resetfootnotecounter
     \begin{multicols}{2}
 }
 
@@ -174,39 +213,102 @@
 
     \addPolythumb{#2}
 
-    \fancyhead[CE,CO]{\removelinebreaks{#1}}
+    \setfancyheadtitleboth{#1}
+    \resetfootnotecounter
     \begin{multicols}{2}
 }
+
+
+\newcommand{\myintrochapter}[2]{
+    \end{multicols}
+
+    \chapter[#2]{#1}
+    \thispagestyle{plain}
+
+    \addPolythumb{#2}
+
+    \setfancyheadtitleboth{#1, הגדרות מבוא}
+    \resetfootnotecounter
+    \begin{multicols}{2}
+}
+
 
 
 \newcommand{\mysubsection}[1]{
     \end{multicols}
     \subsection{#1}
-    \fancyhead[CE,CO]{#1}
+    \setfancyheadtitleboth{#1}
+    \resetfootnotecounter
     \begin{multicols}{2}
 }
+
+\newcommand{\myletterweaktitle}[1]{
+    \end{multicols}
+    \newpage
+    \thispagestyle{plain}
+
+    \vspace*{0.5cm}
+    \subsubsection{#1}
+
+    \resetfootnotecounter
+    \begin{multicols}{2}
+}
+
 
 \newcommand{\mylettertitle}[1]{
     \end{multicols}
     \newpage
     \thispagestyle{plain}
-   
+
     \vspace*{0.5cm}
     \subsubsection{#1}
+
+    % the following two are the diff between this, and \myletterweaktitle
     \replacePolythumb{#1}
-    \fancyhead[CO]{אות #1}
-    \setcounter{footnote}{0}     % reset footnote counter
+    \fancyhead[CO]{\mynormalsize{אות #1}}
+
+    \resetfootnotecounter
     \begin{multicols}{2}
 }
 
 \newcommand{\myletterslave}[1]{
     \end{multicols}
+    \needspace{3cm}
     \subsubsection{#1}
+    \resetfootnotecounter
     \begin{multicols}{2}
 }
 
 \newcommand{\myfootnote}[1]{\footnote{\myfootnotesize{#1}}}
-\newcommand{\mycircle}[1]{\mynormalsize{#1}}
+\newcommand{\mycircle}[1]{\textmd{\mynormalsize{#1}}}
+\newcommand{\hebrewmakaf}{\iffont{Miriam(0)}{\,\,־}{־}}       % Miriam font has bug, and needs another space before the Makaf, else just print regular Makaf
+
+% TODO solution of ChatGPT. maybe it's not good...
+% the problems was that just defining `\newcommand{\mynewline}{\\*}` caused problems in some places
+% maybe it's better solved in python?
+%\newcommand{\mynewline}{\ifhmode\\*\else\relax\fi}
+\newcommand{\mynewline}{
+
+}
+
+
+%%%%%%%%%%%%%%%
+% copied from https://tex.stackexchange.com/questions/14377/how-can-i-test-for-the-current-font
+
+\usepackage{ifthen}
+\makeatletter
+\newcommand{\showfont}{encoding: \f@encoding{},
+  family: \f@family{},
+  series: \f@series{}
+  shape: \f@shape{},
+  size: \f@size{}
+}
+\newcommand{\iffont}[3]{\ifthenelse{\equal{\f@family}{#1}}{#2}{#3}}
+\makeatother
+
+
+%%%%%%%%%%%%%%%
+
 
 \newcommand{\ערך}[1]{\textbf{{\mylarge #1}}}
 \newcommand{\משנה}[1]{\textbf{{\mynormalsize #1}}}
@@ -221,19 +323,26 @@
 \newcommand{\צמקור}[1]{{\myfootnotesize #1}}
 
 
-\newcommand{\תערך}[1]{\texttt{\צערך{#1}}}
+\newcommand{\תערך}[1]{\texttt{\ערך{#1}}}
 \newcommand{\תמשנה}[1]{\texttt{\צמשנה{#1}}}
 \newcommand{\תהגדרה}[1]{\texttt{\צהגדרה{#1}}}
 \newcommand{\תמקור}[1]{\texttt{\צמקור{#1}}}
 
 \newcommand{\מעוין}[1]{\mynormalsize{#1}}
+\newcommand{\מעויןמרכזי}[1]{
+
+     \centerline{\mynormalsize{#1}}
+     \vspace{2mm}
+}
+
+\newcommand{\stamletter}[1]{\mystamsize\hebrewfontstam{#1}\hebrewfont}
+
 
 %\newcommand{\תקלה}[1]{\הגדרה{#1}}
 \newcommand{\תקלה}[1]{#1}
 %%%%%%%%%%%        DATA        %%%%%%%%%%%
 
 \begin{document}
-
 \begin{multicols}{2}
 
 \include{content}

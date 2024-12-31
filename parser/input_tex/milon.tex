@@ -57,7 +57,7 @@
 
 %%%%%%%%%%%        HEBREW        %%%%%%%%%%%
 \usepackage{polyglossia}		% allow Hebrew
-\setdefaultlanguage{hebrew}	
+\setdefaultlanguage{hebrew}
 \rightfootnoterule   			% move footnote ruler to the right, until https://github.com/reutenauer/polyglossia/issues/5 will be fixed
 
 
@@ -101,11 +101,11 @@
 % -
 % the previous setting solved that problem, but created new problem with strange spacing in beginning of ``Tora'' section.
 % trying to mitigate both, with lowering to 5000
-\interfootnotelinepenalty=5000
+%\interfootnotelinepenalty=5000
 
 % define "reset footnote counte" command
 \newcommand{\resetfootnotecounter}{\setcounter{footnote}{0}}
-        
+
 
 % Footnote mark in text - fix size
 % based on https://tex.stackexchange.com/questions/47324/superscript-outside-math-mode/140703
@@ -117,7 +117,13 @@
 % commented, because Rav asked to make it denser. keeping for future reference...
 %\usepackage[onehalfspacing]{setspace}            % instead of `linespread` - which caused strange footnotes spacing 
 
-\setlength{\parskip}{1ex plus 0.2ex minus 0.2ex}		% increase spacing between paragraphs
+
+\setlength{\parskip}{0pt}
+
+
+\newcommand{\paragraphs}{
+    \par\vspace{1ex plus 0.2ex minus 0.2ex}
+}
 
 % for Moto's minipage centering
 \usepackage{adjustbox}
@@ -125,10 +131,6 @@
 
 % to make sure that subsubsection heading isn't at end of page
 \usepackage{needspace}
-
-
-% fixes column balancing - my packaging of https://tex.stackexchange.com/questions/471655/avoiding-parskip-at-end-of-column/472148?noredirect=1#comment1193617_472148
-\usepackage{hebcolumnbal}
 
 
 %%%%%%%%%%%        FONTS        %%%%%%%%%%%
@@ -166,7 +168,7 @@
 \newcommand{\mybookname}[2]{
     \end{multicols}
 
-    \addtokomafont{part}{\vspace{-3cm}\fontsize{35}{35}\hebrewfonthadassah}    
+    \addtokomafont{part}{\vspace{-3cm}\fontsize{35}{35}\hebrewfonthadassah}
 
     \part[#2]{#1}
 
@@ -196,7 +198,7 @@
 \newcommand{\mychapter}[2]{
     \end{multicols}
     \part[#2]{#1}
-    
+
     \addPolythumb{#2}
 
     \setfancyheadtitleboth{#1}
@@ -257,7 +259,7 @@
     \end{multicols}
     \newpage
     \thispagestyle{plain}
-   
+
     \vspace*{0.5cm}
     \subsubsection{#1}
 
@@ -281,11 +283,15 @@
 \newcommand{\mycircle}[1]{\textmd{\mynormalsize{#1}}}
 \newcommand{\hebrewmakaf}{\iffont{Miriam(0)}{\,\,־}{־}}       % Miriam font has bug, and needs another space before the Makaf, else just print regular Makaf
 
+
+% TODO delete this
 % TODO solution of ChatGPT. maybe it's not good...
 % the problems was that just defining `\newcommand{\mynewline}{\\*}` caused problems in some places
 % maybe it's better solved in python?
-\newcommand{\mynewline}{\ifhmode\\*\else\relax\fi}
+%\newcommand{\mynewline}{\ifhmode\\*\else\relax\fi}
+\newcommand{\mynewline}{
 
+}
 
 
 %%%%%%%%%%%%%%%

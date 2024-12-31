@@ -1,7 +1,13 @@
-# TODO get rid of footer
-# TODO fix? 'source' section split to new page
-# TODO fix? footnote 22 a lot of white space
-# TODO fix? last page only single column
+# TODO use the new 'paragraphs'
+# TODO source size אגרת רב שרירא גאון
+# TODO don't split sources to new page
+# TODO don't bold ע"ע גאונים, תקופת הגאונים ; ע במדור מונחי קבלה ונסתר
+# TODO font swap אוביקטיבי, ע' במדור הכרה
+# TODO font reference 11 before אור עליון
+# TODO lower the polythumb, similar to printed book
+# TODO decrease size of האידאליות הנשמתית
+# TODO too many hyphens on נקודת האמונה
+
 
 import os
 import shutil
@@ -81,7 +87,6 @@ class LatexProcessor:
         for f in (
             "milon.tex",
             "polythumbs.sty",
-            "hebcolumnbal.sty",
             #  "hebrew-gymatria-fix.sty",     # Rav Kalner asked not to do it. Leaving it here for future reference...
         ):
             shutil.copyfile(f, os.path.join("../tex", f))
@@ -290,7 +295,7 @@ class LatexProcessor:
                 ):
                     data += self.end_moto_left_line()
 
-                data = data.strip() + "\n\\mynewline"
+                data = data.strip() + "\n\n"
 
                 if (
                     self.next_define_ends_moto
@@ -340,10 +345,11 @@ class LatexProcessor:
                     data, "\\%s{%s}" % ("footref", text.strip())
                 )
 
-            # TODO if enabled, it sticks source together, which is good, but it causes strange empty lines
+            # # TODO if enabled, it sticks source together, which is good, but it causes strange behavior
             # elif "source" in type:
             #     data = self.add_line_to_data(
             #         data, "\\%s{%s}" % (self.latex_type(type), text.replace(" ", "~"))
+            #         # data, r"\samepage{\%s{%s}}" % (self.latex_type(type), text)
             #     )
 
             # elif is_subject(para, i):

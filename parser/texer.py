@@ -1,11 +1,12 @@
 # TODO get rid of footer
-# TODO fix 'source' section split to new page
+# TODO fix? 'source' section split to new page
+# TODO fix? footnote 22 a lot of white space
+# TODO fix? last page only single column
 
 import os
 import shutil
 import subprocess
 import codecs
-import footer
 import re
 
 
@@ -21,7 +22,6 @@ class LatexProcessor:
         }
         self.latex_data = ""
         self.prev_line = ""
-        self.latex_new_lines_in_raw = 0
         self.num_of_heading_titles = 0
         self.in_section_intro = False
         self.letters_section_current_letter = ""
@@ -338,6 +338,12 @@ class LatexProcessor:
                     data, "\\%s{%s}" % ("footref", text.strip())
                 )
 
+            # TODO if enabled, it sticks source together, which is good, but it causes strange empty lines
+            # elif "source" in type:
+            #     data = self.add_line_to_data(
+            #         data, "\\%s{%s}" % (self.latex_type(type), text.replace(" ", "~"))
+            #     )
+
             # elif is_subject(para, i):
             #     if not is_prev_subject(para, i):
             #         # tags.p()
@@ -349,9 +355,6 @@ class LatexProcessor:
                 data = self.add_line_to_data(
                     data, "\\%s{%s}" % (self.latex_type(type), text)
                 )
-
-            if type != "new_line":
-                self.latex_new_lines_in_raw = 0
 
         if self.moto_line_is_left and "leftline" not in data:
             data += self.end_moto_left_line()

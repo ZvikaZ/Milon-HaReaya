@@ -280,7 +280,13 @@
 \newcommand{\myfootnote}[1]{\footnote{\myfootnotesize{#1}}}
 \newcommand{\mycircle}[1]{\textmd{\mynormalsize{#1}}}
 \newcommand{\hebrewmakaf}{\iffont{Miriam(0)}{\,\,־}{־}}       % Miriam font has bug, and needs another space before the Makaf, else just print regular Makaf
-\newcommand{\mynewline}{\\*}
+
+% TODO solution of ChatGPT. maybe it's not good...
+% the problems was that just defining `\newcommand{\mynewline}{\\*}` caused problems in some places
+% maybe it's better solved in python?
+\makeatletter
+\newcommand{\mynewline}{\ifhmode\\*\else\@gobble\fi}
+\makeatother
 
 
 

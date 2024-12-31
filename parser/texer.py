@@ -1,5 +1,5 @@
-#TODO get rid of footer
-#TODO fix 'LaTeX Error: There's no line here to end.'
+# TODO get rid of footer
+# TODO fix Latex warnings
 
 import os
 import shutil
@@ -288,25 +288,7 @@ class LatexProcessor:
                 ):
                     data += self.end_moto_left_line()
 
-                self.latex_new_lines_in_raw += 1
-                if self.latex_new_lines_in_raw == 1:
-                    if data:
-                        data += "\n\\mynewline"
-                    else:
-                        # we ignore that 'new line', and not adding it to 'data' - so no need to count it
-                        self.latex_new_lines_in_raw = 0
-                elif self.latex_new_lines_in_raw == 2:
-                    # chop the "new line" symbol - not required before new paragraph
-                    assert self.latex_data.endswith(r"\mynewline") or data.endswith(
-                        r"\mynewline"
-                    )
-                    if data.endswith(r"\mynewline"):
-                        data = data[: -(len(r"\mynewline"))]
-                    elif self.latex_data.endswith(r"\mynewline"):
-                        self.latex_data = self.latex_data[: -(len(r"\mynewline"))]
-                    data += "\n\n"
-                else:
-                    pass
+                data = data.strip() + "\n\\mynewline"
 
                 if (
                     self.next_define_ends_moto
@@ -346,7 +328,7 @@ class LatexProcessor:
                     all_runs_list.append(foot_text)
 
                 # all_runs_text = "\\newline\n".join(all_runs_list)     #TODO when do we need newline?
-                all_runs_text = "".join(all_runs_list)  #TODO is it good?
+                all_runs_text = "".join(all_runs_list)  # TODO is it good?
                 data = self.add_line_to_data(
                     data, "\\%s{%s\\label{%s}}" % ("myfootnote", all_runs_text, id)
                 )
@@ -413,7 +395,9 @@ class LatexProcessor:
         return data
 
     def run_xelatex(self, f):
-        subprocess.run(["xelatex", "-file-line-error", "-interaction=nonstopmode", f], check=True)
+        subprocess.run(
+            ["xelatex", "-file-line-error", "-interaction=nonstopmode", f], check=True
+        )
 
     def close_latex(self):
         self.latex_data = self.latex_data.replace('"', "״")

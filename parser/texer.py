@@ -291,7 +291,7 @@ class LatexProcessor:
                 self.latex_new_lines_in_raw += 1
                 if self.latex_new_lines_in_raw == 1:
                     if data:
-                        data += r"\mynewline"
+                        data += "\n\\mynewline"
                     else:
                         # we ignore that 'new line', and not adding it to 'data' - so no need to count it
                         self.latex_new_lines_in_raw = 0

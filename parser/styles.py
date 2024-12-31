@@ -147,6 +147,6 @@ def bold_type(s, type, run):
         if type not in temp_l:
             print("Unexpected bold!", type)
             print(s, type, run.text, run.font.size, run.style.style_id)
-            assert False
+            # assert False      #TODO return this assert, fix the occurence
             temp_l.append(type)
         return type

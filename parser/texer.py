@@ -51,6 +51,8 @@ class LatexProcessor:
     # the output is 'reversed' due to some bug in 'fancytabs' that shows the words reversed in the string
     # TODO: report this bug...
     def get_section_short_name(self, section):
+        # TODO is all of this CSV relevant? there is no .csv file ; either create one, or delete all of this...
+
         # I'd prefer to use 'csv' package, but it doesn't behave well with Unicode...
         # with open(sections_csv_file, 'r') as csvfile:
 
@@ -313,7 +315,7 @@ class LatexProcessor:
 
             elif type == "footnote":
                 id = int(text)
-                footnote = para["footnotes"][text]
+                footnote = para["footnotes"][id]
                 assert footnote["number_relative"] == id
 
                 all_runs_list = []

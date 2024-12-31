@@ -38,7 +38,7 @@
 % also save box 255 content for recursion
 
 \patchcmd\multi@column@out
-   {\process@cols\mult@gfirstbox{%
+   {\process@cols\mult@firstbox{%
         \setbox\count@
             \vsplit\@cclv to\dimen@
             \set@keptmarks
@@ -73,7 +73,7 @@
 
 \def\hebrewissueprocessgalley{%
    \typeout{Hebrew process galley trial with size \the\dimen@ ...}%
-   \process@cols\mult@gfirstbox{%
+   \process@cols\mult@firstbox{%
         \setbox\count@
             \vsplit\@cclv to\dimen@
             \set@keptmarks

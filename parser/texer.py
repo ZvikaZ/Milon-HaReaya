@@ -1,3 +1,6 @@
+#TODO get rid of footer
+#TODO fix 'LaTeX Error: There's no line here to end.'
+
 import os
 import shutil
 import subprocess
@@ -343,7 +346,7 @@ class LatexProcessor:
                     all_runs_list.append(foot_text)
 
                 # all_runs_text = "\\newline\n".join(all_runs_list)     #TODO when do we need newline?
-                all_runs_text = " ".join(all_runs_list)
+                all_runs_text = "".join(all_runs_list)  #TODO is it good?
                 data = self.add_line_to_data(
                     data, "\\%s{%s\\label{%s}}" % ("myfootnote", all_runs_text, id)
                 )
@@ -410,7 +413,7 @@ class LatexProcessor:
         return data
 
     def run_xelatex(self, f):
-        subprocess.call(["xelatex", "-file-line-error", "-interaction=nonstopmode", f])
+        subprocess.run(["xelatex", "-file-line-error", "-interaction=nonstopmode", f], check=True)
 
     def close_latex(self):
         self.latex_data = self.latex_data.replace('"', "״")

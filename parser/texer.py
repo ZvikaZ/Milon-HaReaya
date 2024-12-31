@@ -1,5 +1,5 @@
 # TODO get rid of footer
-# TODO fix Latex warnings
+# TODO fix 'source' section split to new page
 
 import os
 import shutil
@@ -314,9 +314,7 @@ class LatexProcessor:
             elif type == "footnote":
                 id = int(text)
                 footnote = para["footnotes"][text]
-                assert (
-                    footnote["number_relative"] == id
-                )  # TODO number_relative or number_abs?
+                assert footnote["number_relative"] == id
 
                 all_runs_list = []
                 for foot_para in footnote["content"]:
@@ -330,7 +328,9 @@ class LatexProcessor:
                 # all_runs_text = "\\newline\n".join(all_runs_list)     #TODO when do we need newline?
                 all_runs_text = "".join(all_runs_list)  # TODO is it good?
                 data = self.add_line_to_data(
-                    data, "\\%s{%s\\label{%s}}" % ("myfootnote", all_runs_text, id)
+                    data,
+                    "\\%s{%s\\label{%s}}"
+                    % ("myfootnote", all_runs_text, footnote["number_abs"]),
                 )
 
             elif type == "footnote_recurrence":
@@ -394,9 +394,9 @@ class LatexProcessor:
             self.in_section_intro = False
         return data
 
-    def run_xelatex(self, f):
+    def run_xelatex(self, f, check=True):
         subprocess.run(
-            ["xelatex", "-file-line-error", "-interaction=nonstopmode", f], check=True
+            ["xelatex", "-file-line-error", "-interaction=nonstopmode", f], check=check
         )
 
     def close_latex(self):
@@ -409,7 +409,7 @@ class LatexProcessor:
             latex_file.write(self.latex_data)
 
         # twice because of thumb-indices
-        self.run_xelatex("milon.tex")
+        self.run_xelatex("milon.tex", check=False)
         self.run_xelatex("milon.tex")
         #        os.startfile("milon.pdf")
         #        os.startfile("milon.tex")

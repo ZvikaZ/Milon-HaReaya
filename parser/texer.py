@@ -1,5 +1,4 @@
 # TODO use the new 'paragraphs'
-# TODO source size אגרת רב שרירא גאון
 # TODO don't split sources to new page
 # TODO don't bold ע"ע גאונים, תקופת הגאונים ; ע במדור מונחי קבלה ונסתר
 # TODO font swap אוביקטיבי, ע' במדור הכרה

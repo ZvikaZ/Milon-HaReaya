@@ -1,4 +1,3 @@
-# TODO use the new 'paragraphs'
 # TODO don't split sources to new page
 # TODO don't bold ע"ע גאונים, תקופת הגאונים ; ע במדור מונחי קבלה ונסתר
 # TODO font swap אוביקטיבי, ע' במדור הכרה
@@ -295,6 +294,8 @@ class LatexProcessor:
                     data += self.end_moto_left_line()
 
                 data = data.strip() + "\n\n"
+                if text.count("\n") > 1:
+                    data += '\paragraphs\n\n'
 
                 if (
                     self.next_define_ends_moto

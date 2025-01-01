@@ -1,4 +1,3 @@
-# TODO don't split sources to new page
 # TODO waiting for .docx fix: font swap אוביקטיבי, ע' במדור הכרה
 
 
@@ -338,13 +337,6 @@ class LatexProcessor:
                 data = self.add_line_to_data(
                     data, "\\%s{%s}" % ("footref", text.strip())
                 )
-
-            # # TODO if enabled, it sticks source together, which is good, but it causes strange behavior
-            # elif "source" in type:
-            #     data = self.add_line_to_data(
-            #         data, "\\%s{%s}" % (self.latex_type(type), text.replace(" ", "~"))
-            #         # data, r"\samepage{\%s{%s}}" % (self.latex_type(type), text)
-            #     )
 
             # elif is_subject(para, i):
             #     if not is_prev_subject(para, i):

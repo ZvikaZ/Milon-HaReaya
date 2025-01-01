@@ -133,7 +133,7 @@ def bold_type(s, type, run):
     elif type == 'definition_light' and run.style.style_id == "s12" and run.font.size == 101600:
         return 'sub-subject_light'
     elif type == 'definition_light' and run.style.style_id == "s04" and run.font.size is None:
-        return 'subject-light'
+        return 'subject_light'
     elif type == 'definition_light' and run.style.style_id == "s12" and run.font.size is None:
         # TODO - verify that it's always OK
         return 'sub-subject_light'

@@ -1,6 +1,4 @@
 # TODO update output.golden.check
-# TODO fix unknown latex_type
-# TODO fix xelatex failure
 
 import os
 import shutil
@@ -119,8 +117,6 @@ class LatexProcessor:
             return "מעויןמרכזי"
         elif type == "section_title_secondary":
             return "my_section_title_secondary"
-        # elif type == "DefaultParagraphFont":
-        #    return #TODO: what??
         else:
             if type not in ("new_line", "footnote", "footnote_recurrence", "FootnoteReference") and "heading" not in type:
                 print("unknown latex_type: ", type)

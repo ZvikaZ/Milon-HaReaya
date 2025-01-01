@@ -146,45 +146,39 @@ def fix_unknown(run):
 
 
 def fix_DefaultParagraphFont(run):
-    # only if it's really a text
-    if run.text.strip():
-        if run.font.size == 330200:
-            return 'heading_section'
-        elif run.font.size == 177800 and run.font.cs_bold:
-            return 'subject_normal'
-        elif run.font.size == 152400 and run.font.cs_bold:
-            return 'sub-subject_normal'
-        elif run.font.size == 152400 and not run.font.cs_bold:
-            return 'definition_normal'
-        elif run.font.size == 139700 and run.font.cs_bold:
-            return 'subject_normal'
-        elif run.font.size == 139700 and not run.font.cs_bold:
-            return 'definition_normal'
-        elif run.font.size == 127000:
-            return 'definition_normal'
-        elif run.font.size == 114300 and run.font.cs_bold:
-            return 'sub-subject_normal'
-        elif run.font.size == 114300 and not run.font.cs_bold:
-            return 'source_normal'
-        elif run.font.size == 101600:
-            return 'source_small'
-        elif run.font.size == 88900:
-            return 'source_small'
-        elif run.font.size == 76200 and run.font.cs_bold is None:
-            return 'source_small'
-        elif run.font.size is None and run.font.cs_bold:
-            return 'sub-subject_normal'
-        elif run.font.size is None and not run.font.cs_bold:
-            return 'definition_normal'
-        else:
-            if run.text.strip() not in ("-", "(", ")", "[", "]", "'", '"', ","):
-                print("AH!", ":", run.text.strip(), ".", run.font.size, run.bold, run.font.cs_bold)
-                # print(paragraph.text)
-                assert False
-            # else:
-            #    return 'DefaultParagraphFont'
+    if run.font.size == 330200:
+        return 'heading_section'
+    elif run.font.size == 177800 and run.font.cs_bold:
+        return 'subject_normal'
+    elif run.font.size == 152400 and run.font.cs_bold:
+        return 'sub-subject_normal'
+    elif run.font.size == 152400 and not run.font.cs_bold:
+        return 'definition_normal'
+    elif run.font.size == 139700 and run.font.cs_bold:
+        return 'subject_normal'
+    elif run.font.size == 139700 and not run.font.cs_bold:
+        return 'definition_normal'
+    elif run.font.size == 127000:
+        return 'definition_normal'
+    elif run.font.size == 114300 and run.font.cs_bold:
+        return 'sub-subject_normal'
+    elif run.font.size == 114300 and not run.font.cs_bold:
+        return 'source_normal'
+    elif run.font.size == 101600:
+        return 'source_small'
+    elif run.font.size == 88900:
+        return 'source_small'
+    elif run.font.size == 76200 and run.font.cs_bold is None:
+        return 'source_small'
+    elif run.font.size is None and run.font.cs_bold:
+        return 'sub-subject_normal'
+    elif run.font.size is None and not run.font.cs_bold:
+        return 'definition_normal'
     else:
-        return 'DefaultParagraphFont'
+        if run.text.strip() not in ("-", "(", ")", "[", "]", "'", '"', ",", ""):
+            print("fix_DefaultParagraphFont failed:", run.text.strip(), ".", run.font.size, run.bold, run.font.cs_bold)
+            # print(paragraph.text)
+            assert False
 
 
 def fix_section_name(name):

@@ -327,7 +327,7 @@ class LatexProcessor:
                 data = self.add_line_to_data(
                     data,
                     "\\%s{%s\\label{%s}}"
-                    % ("myfootnote", all_runs_text, footnote["number_abs"]),
+                    % ("myfootnote", all_runs_text, footnote["number_relative"]),
                 )
 
             elif type in ("footnote_recurrence", "FootnoteReference"):

@@ -2,7 +2,6 @@
 # TODO font swap אוביקטיבי, ע' במדור הכרה
 # TODO font reference 11 before אור עליון
 # TODO lower the polythumb, similar to printed book
-# TODO too many hyphens on נקודת האמונה
 # TODO fix תקלה
 
 
@@ -410,7 +409,7 @@ class LatexProcessor:
     def close_latex(self):
         self.latex_data = self.latex_data.replace('"', "״")
         self.latex_data = self.latex_data.replace("'", "׳")
-        self.latex_data = self.latex_data.replace("־", "\\hebrewmakaf ")
+        self.latex_data = re.sub(r"־+", r"\\hebrewmakaf ", self.latex_data)
 
         os.chdir("tex")
         with open("content.tex", "a", encoding="utf-8") as latex_file:

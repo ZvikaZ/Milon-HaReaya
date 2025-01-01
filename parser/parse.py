@@ -270,7 +270,7 @@ def merge_paras(paras):
     return merged_paras
 
 
-def parse(doc_file_name):
+def parse(doc_file_name, percent):
     def new_page(name, appear_in_toc=True):
         return {
             'name': name,
@@ -287,8 +287,16 @@ def parse(doc_file_name):
 
     unknown_list = []
 
-    with open('output/debug.txt', 'w', encoding='utf-8') as debug_file:
-        for (paragraph, footnote_paragraph) in zip(word_doc.paragraphs, word_doc_footnotes.paragraphs):
+    with open("output/debug.txt", "w", encoding="utf-8") as debug_file:
+        limit = (len(word_doc.paragraphs) * percent) // 100 + 1
+
+        for idx, (paragraph, footnote_paragraph) in enumerate(
+            zip(word_doc.paragraphs, word_doc_footnotes.paragraphs)
+        ):
+            if idx > limit:
+                print(f"Stopping parsing after {idx} paragraphs out of {len(word_doc.paragraphs)}")
+                break
+
             if paragraph.text.strip():
                 # print "Paragraph:", paragraph.text, "$"
                 para = []

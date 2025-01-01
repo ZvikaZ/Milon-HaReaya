@@ -36,13 +36,19 @@ def main():
     parser.add_argument("--web", action="store_true", help="Update the Milon web site")
     parser.add_argument("--pdf", action="store_true", help="Create a PDF")
     parser.add_argument(
+        "--percent",
+        type=int,
+        default=100,
+        help="Percentage of .docx file to parse (default: all)",  # Help message
+    )
+    parser.add_argument(
         "--file",
         type=str,
-        default='dict_short.docx',
+        # default='dict_short.docx',
         # default = 'dict_few.docx'
         # default = 'dict_check.docx'
         # default = 'dict_footnotes.docx'
-        # default="מילון הראיה.docx",
+        default="מילון הראיה.docx",
         help="Path to the DOCX file (default: %(default)s)",
     )
     parser.add_argument(
@@ -62,7 +68,7 @@ def main():
             parsed_data = pickle.load(pickle_file)
         print(f"Loaded parsed data from {args.load}")
     else:
-        parsed_data = parse(args.file)
+        parsed_data = parse(args.file, args.percent)
         pickle_output_path = args.file.replace(".docx", ".pkl")
         with open(pickle_output_path, "wb") as pickle_file:
             pickle.dump(parsed_data, pickle_file)

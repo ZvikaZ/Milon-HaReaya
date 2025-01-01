@@ -1,10 +1,10 @@
 # TODO don't split sources to new page
-# TODO don't bold ע"ע גאונים, תקופת הגאונים ; ע במדור מונחי קבלה ונסתר
 # TODO font swap אוביקטיבי, ע' במדור הכרה
 # TODO font reference 11 before אור עליון
 # TODO lower the polythumb, similar to printed book
 # TODO decrease size of האידאליות הנשמתית
 # TODO too many hyphens on נקודת האמונה
+# TODO fix תקלה
 
 
 import os
@@ -91,16 +91,15 @@ class LatexProcessor:
         os.chdir("../")
 
     def latex_type(self, type):
-        if type in ("subject_normal", "fake_subject_normal"):
+        if type in ("subject_normal" ):
             return "ערך"
         elif type in (
             "sub-subject_normal",
             "subject_small",
-            "fake_subject_small",
             "fake_sub-subject_normal",
         ):
             return "משנה"
-        elif type in ("definition_normal", "fake_subject_small_normal"):
+        elif type in ("definition_normal", "fake_subject_small_normal","fake_subject_normal"):
             return "הגדרה"
         elif type == "source_normal":
             return "מקור"
@@ -108,7 +107,7 @@ class LatexProcessor:
             return "צמשנה"
         elif type == "fake_sub-subject_small":
             return "צהגדרהמודגשת"
-        elif type == "definition_small":
+        elif type in ("definition_small", "fake_subject_small"):
             return "צהגדרה"
         elif type == "source_small":
             return "צמקור"
@@ -129,7 +128,7 @@ class LatexProcessor:
         # elif type == "DefaultParagraphFont":
         #    return #TODO: what??
         else:
-            # print "TAKALA: ", type
+            print ("TAKALA: ", type)
             return "תקלה"
 
     def unite_lines(

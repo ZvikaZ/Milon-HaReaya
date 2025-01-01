@@ -21,6 +21,7 @@
 
 import argparse
 import pickle
+import json
 
 from helpers import create_dirs
 from parse import parse
@@ -66,6 +67,8 @@ def main():
         with open(pickle_output_path, "wb") as pickle_file:
             pickle.dump(parsed_data, pickle_file)
         print(f"Saved parsed data to {pickle_output_path}")
+
+    json.dump(parsed_data, open('debug.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=4)
 
     if args.web:
         adapt_and_upload(parsed_data)

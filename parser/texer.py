@@ -1,6 +1,6 @@
 # TODO don't split sources to new page
-# TODO font swap אוביקטיבי, ע' במדור הכרה
 # TODO lower the polythumb, similar to printed book
+# TODO waiting for .docx fix: font swap אוביקטיבי, ע' במדור הכרה
 
 
 import os

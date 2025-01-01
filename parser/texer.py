@@ -1,8 +1,6 @@
 # TODO don't split sources to new page
 # TODO font swap אוביקטיבי, ע' במדור הכרה
-# TODO font reference 11 before אור עליון
 # TODO lower the polythumb, similar to printed book
-# TODO fix תקלה
 
 
 import os
@@ -125,8 +123,9 @@ class LatexProcessor:
         # elif type == "DefaultParagraphFont":
         #    return #TODO: what??
         else:
-            print ("TAKALA: ", type)
-            return "תקלה"
+            if type not in ("new_line", "footnote", "footnote_recurrence", "FootnoteReference") and "heading" not in type:
+                print("unknown latex_type: ", type)
+            return "תקלה" + type
 
     def unite_lines(
         self, data, r_prev_line, r_line, prefix_to_new_line="", suffix_to_new_line=""
@@ -336,7 +335,7 @@ class LatexProcessor:
                     % ("myfootnote", all_runs_text, footnote["number_abs"]),
                 )
 
-            elif type == "footnote_recurrence":
+            elif type in ("footnote_recurrence", "FootnoteReference"):
                 data = self.add_line_to_data(
                     data, "\\%s{%s}" % ("footref", text.strip())
                 )
@@ -414,6 +413,8 @@ class LatexProcessor:
         os.chdir("tex")
         with open("content.tex", "a", encoding="utf-8") as latex_file:
             latex_file.write(self.latex_data)
+
+        assert not 'תקלה' in self.latex_data, "there is a תקלה in the tex file"
 
         # twice because of thumb-indices
         self.run_xelatex("milon.tex", check=False)

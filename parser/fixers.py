@@ -59,6 +59,8 @@ def fix_sz_cs(run, type):
         return 'definition_small'
     elif szCs == "20" and type == 'unknown_light':
         return 'definition_normal'
+    elif szCs == "20" and type == 'definition_small':
+        return 'definition_normal'
     elif szCs == "26" and type == 'subject_normal':
         ## wild guess, might break everything :-(
         ## be careful here...

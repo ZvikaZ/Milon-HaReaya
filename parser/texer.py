@@ -1,5 +1,6 @@
-# TODO waiting for .docx fix: font swap אוביקטיבי, ע' במדור הכרה
-
+# TODO update output.golden.check
+# TODO fix unknown latex_type
+# TODO fix xelatex failure
 
 import os
 import shutil

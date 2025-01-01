@@ -139,6 +139,10 @@ def bold_type(s, type, run):
         return 'sub-subject_light'
     elif type == 'source_normal':
         print("Strange 'source_normal' bold!")
+        return type
+    elif type == 'source_small':
+        print("Strange 'source_small' bold!")
+        return type
     elif 'subject' in type or 'heading' in type:
         return type
     elif uniqify(run.text.strip()) in ("◊", "-", ""):

@@ -117,10 +117,10 @@ def analyze_and_fix(para):
     new_para = []
     source_pattern = re.compile(r"(.*)(\[.*\])(\..*)")
     for (type, text) in para:
-        if source_pattern.match(text) and not 'source' in type:
+        if source_pattern.match(text) and 'source' not in type:
             g = source_pattern.match(text)
             new_para.append((type, g.group(1)))
-            if type in ['definition_small', 'fake_sub-subject_small']:
+            if type in ['definition_small', 'fake_sub-subject_small', 'fake_subject_normal']:
                 new_para.append(('source_normal', g.group(2)))
             elif type == 'definition_normal':
                 new_para.append(('source_small', g.group(2)))

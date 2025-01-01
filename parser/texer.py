@@ -2,7 +2,6 @@
 # TODO font swap אוביקטיבי, ע' במדור הכרה
 # TODO font reference 11 before אור עליון
 # TODO lower the polythumb, similar to printed book
-# TODO decrease size of האידאליות הנשמתית
 # TODO too many hyphens on נקודת האמונה
 # TODO fix תקלה
 

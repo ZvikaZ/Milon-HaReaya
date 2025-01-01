@@ -34,8 +34,7 @@ class LatexProcessor:
         self.moto_line_was_left = False
 
     def is_bold(self, para):
-        print(para, "bolded?", "subject" in para["style"])  # TODO delete
-        return "subject" in para["style"]  # TODO is it good?
+        return "subject" in para["style"]
 
     def reverse_words(self, s):
         w1 = s.split()

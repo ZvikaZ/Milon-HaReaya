@@ -188,3 +188,34 @@ def fix_section_name(name):
         return "ערכים כלליים"
     else:
         return name
+
+
+def fix_newlines_with_spaces_between(items):
+    'unite consecutive newlines with white spaces between them to a single newline'
+    result = []
+    section = []
+
+    for item in items:
+        # If we're currently building a section
+        if section:
+            if item[0] == "new_line":  # Section ends with new_line
+                newlines = sum(x[1].count("\n") for x in section) + item[1].count("\n")
+                result.append(["new_line", "\n" * newlines])
+                section = []
+            elif item[1].strip():  # Non-empty item breaks the section
+                result.extend(section)
+                result.append(item)
+                section = []
+            else:  # Empty item continues the section
+                section.append(item)
+        # Not in a section
+        elif item[0] == "new_line":  # Start new section
+            section = [item]
+        else:  # Regular item
+            result.append(item)
+
+    # Don't forget remaining items
+    if section:
+        result.extend(section)
+
+    return result

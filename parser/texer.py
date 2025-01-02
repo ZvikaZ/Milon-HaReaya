@@ -1,7 +1,3 @@
-# TODO missing spacing between some definitions דין דינים ; זוהר
-# TODO wrong spacing הזרחה
-
-
 import os
 import shutil
 import subprocess

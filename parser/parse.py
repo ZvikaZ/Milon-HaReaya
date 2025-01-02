@@ -13,7 +13,8 @@ import docx_fork_ludoo
 import re
 import os
 
-from fixers import fix_sz_cs, fix_b_cs, fix_misc_attrib, fix_unknown, fix_DefaultParagraphFont, fix_section_name
+from fixers import fix_sz_cs, fix_b_cs, fix_misc_attrib, fix_unknown, fix_DefaultParagraphFont, fix_section_name, \
+    fix_newlines_with_spaces_between
 from styles import styles, sizes, bold_type, run_style_id
 from helpers import is_subject, is_prev_subject, is_prev_newline, is_prev_meuyan, is_subject_small_or_sub_subject
 
@@ -413,6 +414,8 @@ def parse(doc_file_name, percent):
                 pages[ind]['items'].pop()
         except IndexError:
             pass
+
+        pages[ind]['items'] = fix_newlines_with_spaces_between(pages[ind]['items'])
 
     pages = [page for page in pages if page['items']]
     # drop all pages that have only 1 section of new_line

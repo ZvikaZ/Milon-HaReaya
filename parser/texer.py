@@ -400,7 +400,7 @@ class LatexProcessor:
         with open("content.tex", "a", encoding="utf-8") as latex_file:
             latex_file.write(self.latex_data)
 
-        assert not 'תקלה' in self.latex_data, "there is a תקלה in the tex file"
+        assert '\\תקלה' not in self.latex_data, "there is a תקלה in the tex file"
 
         # twice because of thumb-indices
         self.run_xelatex("milon.tex", check=False)

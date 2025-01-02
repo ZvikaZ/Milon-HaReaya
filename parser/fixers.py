@@ -162,6 +162,8 @@ def fix_DefaultParagraphFont(run):
         return 'definition_normal'
     elif run.font.size == 114300 and run.font.cs_bold:
         return 'sub-subject_normal'
+    elif run.font.size == 114300 and run.font.bold:
+        return 'definition_normal'
     elif run.font.size == 114300 and not run.font.cs_bold:
         return 'source_normal'
     elif run.font.size == 101600:

@@ -54,10 +54,12 @@
 \usepackage{multicol}		% allow using 2 columns
 \setlength{\columnsep}{1.5pc}	% increase space between columns
 
-%%%%%%%%%%%        Avoid widow/orphan single lines      %%%%%%%%%%%
+%%%%%%%%%%%        Avoid widow single lines      %%%%%%%%%%%
 % it also helps to avoid splitting Source to new page
-\usepackage[all]{nowidow}
-
+\usepackage{nowidow}
+% at first I used the option "all", which calls this and `\noclub` to avoid orphans
+% - but the orphans avoiding caused unbalanced columns, e.g., at the end of letter ז
+\setnowidow
 
 %%%%%%%%%%%        HEBREW        %%%%%%%%%%%
 \usepackage{polyglossia}		% allow Hebrew

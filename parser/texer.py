@@ -1,4 +1,11 @@
-# TODO update output.golden.check
+# TODO meyuan should be in center
+# TODO excess spacing between some paragraph groups דבקות
+# TODO missing spacing between some definitions דין דינים ; זוהר
+# TODO wrong spacing הזרחה
+# TODO? too narrow spacing at end of letter ה
+# TODO too small font definition זהירות הפנימית
+# TODO? unbalanced columns at end of letter ז
+
 
 import os
 import shutil

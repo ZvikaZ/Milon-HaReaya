@@ -54,6 +54,10 @@
 \usepackage{multicol}		% allow using 2 columns
 \setlength{\columnsep}{1.5pc}	% increase space between columns
 
+%%%%%%%%%%%        Avoid widow/orphan single lines      %%%%%%%%%%%
+% it also helps to avoid splitting Source to new page
+\usepackage[all]{nowidow}
+
 
 %%%%%%%%%%%        HEBREW        %%%%%%%%%%%
 \usepackage{polyglossia}		% allow Hebrew
@@ -156,6 +160,7 @@
 \newcommand\mylarge{\fontsize{11}{14}\selectfont}
 \newcommand\mynormalsize{\fontsize{10}{14}\selectfont}
 \newcommand\mysmall{\fontsize{9}{14}\selectfont}
+\newcommand\mytiny{\fontsize{8}{14}\selectfont}
 \newcommand\myfootnotesize{\fontsize{9}{12}\selectfont}
 
 \usepackage{xstring}
@@ -283,14 +288,6 @@
 \newcommand{\mycircle}[1]{\textmd{\mynormalsize{#1}}}
 \newcommand{\hebrewmakaf}{\iffont{Miriam(0)}{\,\,־}{־}}       % Miriam font has bug, and needs another space before the Makaf, else just print regular Makaf
 
-% TODO solution of ChatGPT. maybe it's not good...
-% the problems was that just defining `\newcommand{\mynewline}{\\*}` caused problems in some places
-% maybe it's better solved in python?
-%\newcommand{\mynewline}{\ifhmode\\*\else\relax\fi}
-\newcommand{\mynewline}{
-
-}
-
 
 %%%%%%%%%%%%%%%
 % copied from https://tex.stackexchange.com/questions/14377/how-can-i-test-for-the-current-font
@@ -320,12 +317,12 @@
 \newcommand{\צמשנה}[1]{\textbf{{\mynormalsize #1}}}
 \newcommand{\צהגדרה}[1]{{\mysmall #1}}
 \newcommand{\צהגדרהמודגשת}[1]{\textbf{{\mysmall #1}}}
-\newcommand{\צמקור}[1]{{\myfootnotesize #1}}
+\newcommand{\צמקור}[1]{{\mytiny #1}}
 
 
 \newcommand{\תערך}[1]{\texttt{\ערך{#1}}}
-\newcommand{\תמשנה}[1]{\texttt{\צמשנה{#1}}}
 \newcommand{\תהגדרה}[1]{\texttt{\צהגדרה{#1}}}
+\newcommand{\תמשנה}[1]{\textbf{\תהגדרה{#1}}}
 \newcommand{\תמקור}[1]{\texttt{\צמקור{#1}}}
 
 \newcommand{\מעוין}[1]{\mynormalsize{#1}}

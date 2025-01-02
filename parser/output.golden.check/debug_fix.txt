@@ -15,7 +15,7 @@ new_line:
  new_line:
 .
  ---------------
-ERROR_definition_normal:ע' במדור מונחי קבלה ונסתר, .
+definition_normal:ע' במדור מונחי קבלה ונסתר, .
  definition_small:מתקלא..
  new_line:
 .
@@ -36,7 +36,7 @@ ERROR_definition_normal:ע' במדור מונחי קבלה ונסתר, .
  new_line:
 .
  ---------------
-subject-light:חילוני .
+subject_light:חילוני .
  definition_light:- .
  sub-subject_light:נשמה חילונית .
  definition_light:- זרם ההויה הבא מצד המשך ההויה שאנחנו קוראים .
@@ -94,8 +94,7 @@ subject_normal:גאונים .
  ---------------
 fake_sub-subject_normal:גדול הוא קידוש השם מחלול השם.
  footnote:1.
- DefaultParagraphFont: .
- fake_sub-subject_normal:- .
+ fake_sub-subject_normal: - .
  source_small:צד קידוש השם הוא הגדול המכריע והמחייב כשבאותו ענין יש צד קידוש השם וצד חילול השם, ואין אומרים ספיקא ושב ואל תעשה [עפ"י שי' ה 88]..
  new_line:
 .
@@ -457,8 +456,7 @@ subject_small:אהבה לעומת טוב .
  ---------------
 subject_normal:"מאן דנטיר ברית° אתקרי צדיק°".
  footnote:11.
- DefaultParagraphFont: .
- definition_normal:- כשבקשת העמדת המשפחה היא נאורה ומובנת באלהיותה, ועל כן מקימה בקרבו צביון של טהרת רעיון ומנוחת לב. וכשתכסיס החיים כולו נעשה מובן, מיושב ומיושר, על פי הזוהר של ההמתקה של הנועם האלהי, נעשים  המעשים כולם מיושרים בתכלית המוסר והטוהר .
+ definition_normal: - כשבקשת העמדת המשפחה היא נאורה ומובנת באלהיותה, ועל כן מקימה בקרבו צביון של טהרת רעיון ומנוחת לב. וכשתכסיס החיים כולו נעשה מובן, מיושב ומיושר, על פי הזוהר של ההמתקה של הנועם האלהי, נעשים  המעשים כולם מיושרים בתכלית המוסר והטוהר .
  definition_small:.
  source_normal:[קבצ' ב קעו].
  definition_small:. .
@@ -719,9 +717,7 @@ subject_normal:אור הגלוי .
  new_line:
 .
  ---------------
-fake_sub-subject_small:◊◊◊.
- new_line:
-.
+centered_meuyan:◊◊◊.
  ---------------
 fake_subject_normal:פרצופים: .
  new_line:

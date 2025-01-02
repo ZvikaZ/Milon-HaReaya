@@ -43,7 +43,7 @@ def analyze_and_fix(para):
     new_para = []
     for (raw_type, text_raw) in para:
         text = text_raw.replace("@", "")
-        if text == "◊":
+        if re.fullmatch(r"◊+", text):
             if prev_text == "":
                 # new paragraph with meuayn
                 type = "centered_meuyan"

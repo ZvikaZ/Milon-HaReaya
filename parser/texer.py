@@ -1,4 +1,3 @@
-# TODO meyuan should be in center
 # TODO missing spacing between some definitions דין דינים ; זוהר
 # TODO wrong spacing הזרחה
 # TODO too small font definition זהירות הפנימית

@@ -39,7 +39,7 @@ def main():
         "--percent",
         type=int,
         default=100,
-        help="Percentage of .docx file to parse (default: all)",  # Help message
+        help="Percentage of .docx file to parse (default: all)",
     )
     parser.add_argument(
         "--file",
@@ -66,12 +66,17 @@ def main():
         print(f"Loaded parsed data from {args.load}")
     else:
         parsed_data = parse(args.file, args.percent)
-        pickle_output_path = f'dict_{args.percent}.pkl'
+        pickle_output_path = f"dict_{args.percent}.pkl"
         with open(pickle_output_path, "wb") as pickle_file:
             pickle.dump(parsed_data, pickle_file)
         print(f"Saved parsed data to {pickle_output_path}")
 
-    json.dump(parsed_data, open('debug.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=4)
+    json.dump(
+        parsed_data,
+        open("debug.json", "w", encoding="utf-8"),
+        ensure_ascii=False,
+        indent=4,
+    )
 
     if args.web:
         adapt_and_upload(parsed_data)

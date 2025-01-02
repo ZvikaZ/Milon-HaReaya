@@ -1,3 +1,12 @@
+#TODO my rejects for 30%:
+#TODO investigate LaTeX Warning: Label `1' multiply defined.
+#TODO after last page of ת , there's a blank page with thumb and empty footnote
+#TODO מדורים - is it correct size?
+#TODO thumbnails - verical spacing from ת to תורה - maybe it's too much?
+#TODO empty column before שמוש תלמידי חכמים
+#TODO section should be 2 lines? מדתם ועניינם הרוחני של אישי התנך - in title, and in running header/thumbs should be shorter (probably CSV)
+#TODO wrong section name אברהם יצחק ויעקב
+
 import os
 import shutil
 import subprocess
@@ -231,7 +240,7 @@ class LatexProcessor:
                     else:
                         command = "\\mytitle"
                     data = self.add_line_to_data(
-                        data,
+                        data + "\n",
                         "%s{%s}{%s}" % (command, text, self.current_section["section"]),
                     )
                     self.num_of_heading_titles += 1

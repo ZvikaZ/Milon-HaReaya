@@ -148,3 +148,7 @@ def prepare_search(section):
     #     section[f + '_tokens'] = tokenize(section[f]) if section[f] else ''
 
     return section
+
+
+def is_paren_or_space(s):
+    return s.strip() in ("-", "(", ")", "[", "]", "'", '"', ",", ".", "")

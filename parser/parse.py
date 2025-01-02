@@ -16,7 +16,8 @@ import os
 from fixers import fix_sz_cs, fix_b_cs, fix_misc_attrib, fix_unknown, fix_DefaultParagraphFont, fix_section_name, \
     fix_newlines_with_spaces_between
 from styles import styles, sizes, bold_type, run_style_id
-from helpers import is_subject, is_prev_subject, is_prev_newline, is_prev_meuyan, is_subject_small_or_sub_subject
+from helpers import is_subject, is_prev_subject, is_prev_newline, is_prev_meuyan, is_subject_small_or_sub_subject, \
+    is_paren_or_space
 
 
 def is_footnote_recurrence(run, type):
@@ -109,7 +110,13 @@ def analyze_and_fix(para):
                 new_para.append(("fake_" + type, text))
         elif 'subject' in type:
             # it's got a subject, but 'is_subject' failed
-            new_para.append(("fake_" + type, text))
+            # use 'fake' only if there's real text
+            if not is_paren_or_space(text):
+                new_para.append(("fake_" + type, text))
+            else:
+                # take prev type of it's nothing special, otherwise take generic type, as it doesn't really matter
+                new_type = new_para[-1][0] if "definition" in new_para[-1][0] or "source" in new_para[-1][0] else "definition_normal"
+                new_para.append((new_type, text))
         else:
             new_para.append((type, text))
 

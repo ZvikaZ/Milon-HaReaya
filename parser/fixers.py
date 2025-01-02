@@ -1,3 +1,6 @@
+from helpers import is_paren_or_space
+
+
 def get_fonts(run):
     try:
         return run.element.rPr.rFonts.attrib.get('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}cs',
@@ -177,7 +180,7 @@ def fix_DefaultParagraphFont(run):
     elif run.font.size is None and not run.font.cs_bold:
         return 'definition_normal'
     else:
-        if run.text.strip() not in ("-", "(", ")", "[", "]", "'", '"', ",", ""):
+        if not is_paren_or_space(run.text.strip()):
             print("fix_DefaultParagraphFont failed:", run.text.strip(), ".", run.font.size, run.bold, run.font.cs_bold)
             # print(paragraph.text)
             assert False

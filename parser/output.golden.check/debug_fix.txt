@@ -3,6 +3,14 @@ heading_title:מילון הראיה.
  ---------------
 heading_letter:א.
  ---------------
+subject_normal:זהירות הפנימית -.
+ definition_normal: חסימת התאוה הבהמית, (ופקיחת) [וסקירת] העינים על כל העשוי בכל חוג הבשר והחומר .
+ definition_small:.
+ source_normal:[א"ק ד תכט (קובץ ה לז)].
+ definition_small:..
+ new_line:
+.
+ ---------------
 new_line:
 .
  subject_normal:משקל עליון .
@@ -52,7 +60,7 @@ subject_normal:אבוקה .
  definition_normal:- .
  sub-subject_normal:(בעולם השכלי, לעומת אור ירח° ואור השמש°).
  footnote:2.
- fake_sub-subject_normal: .
+ definition_normal: .
  definition_normal:- החכמה ההקשית הבנויה מהרכבת הקדמות עיוניות .
  definition_small:.
  source_normal:[ע"א ב ז נג].
@@ -92,9 +100,9 @@ subject_normal:גאונים .
  new_line:
 .
  ---------------
-fake_sub-subject_normal:גדול הוא קידוש השם מחלול השם.
+sub-subject_normal:גדול הוא קידוש השם מחלול השם.
  footnote:1.
- fake_sub-subject_normal: - .
+ definition_normal: - .
  source_small:צד קידוש השם הוא הגדול המכריע והמחייב כשבאותו ענין יש צד קידוש השם וצד חילול השם, ואין אומרים ספיקא ושב ואל תעשה [עפ"י שי' ה 88]..
  new_line:
 .
@@ -187,7 +195,7 @@ subject_normal:לי .
  ---------------
 subject_small:"יורו" שנאמר ביחס ל"בין קדש לחֹל" לעומת "יוֹדִעֻם" שנאמר ביחס ל"בין טמא לטהור".
  footnote:3.
- fake_subject_small: .
+ definition_normal: .
  definition_small:- לפי שיש הבדל במצב.
  new_line:
 .
@@ -201,7 +209,7 @@ new_line:
  ---------------
 subject_normal:עזי פנים.
  footnote:4.
- fake_subject_normal: .
+ definition_normal: .
  definition_normal:- הם העומדים בכל דור נגד יסוד התפשטותה של .
  definition_normal:הקדושה־העליונה°.
  definition_normal: .
@@ -273,7 +281,7 @@ subject_normal:אמונה .
  definition_normal:- .
  sub-subject_normal:"אֹמֶן".
  footnote:6.
- fake_sub-subject_normal: .
+ definition_normal: .
  definition_normal:- .
  definition_normal:החפש°.
  definition_normal:, .
@@ -324,7 +332,7 @@ subject_normal:תֹּם .
  ---------------
 subject_normal:שם טוב.
  footnote:7.
- fake_subject_normal: .
+ definition_normal: .
  definition_normal:- .
  fake_sub-subject_normal:תואר שם טוב .
  definition_normal:- ההשלמה שפועל על זולתו כפי ערכו .
@@ -381,7 +389,7 @@ subject_small:קדושה .
  ---------------
 subject_normal:"בני אדם שהן ערומין בדעת ומשימין עצמן כבהמה".
  footnote:9.
- fake_sub-subject_normal: .
+ definition_normal: .
  definition_small:- .
  fake_subject_small:בני אדם שערומים° בדעת .
  definition_normal:- הם .
@@ -444,11 +452,11 @@ definition_normal:ע' במדור זה, "תורתם אוֹמנותם"..
  ---------------
 subject_small:אהבה לעומת טוב .
  definition_small:- הטוב הוא בגדר "בכח", כי הוא נקודת הטוב האידיאלית הפנימית, הטוב האוביקטיבי, .
- fake_sub-subject_small:-.
+ definition_small:-.
  definition_small: בהבדל מן "מיטיב" שהוא ביחש לאחרים, שכבר יש עם מה להיטיב, .
- fake_sub-subject_small:-.
+ definition_small:-.
  definition_small: והאהבה היא לעומת זה בעיקרה בגדר "בפעל", אם יש אהבה בהכרח יש נאהבים, משא"כ במציאות הטוב, אינו מוכרח שיהיו מוטבים, מקבלים, .
- fake_sub-subject_small:-.
+ definition_small:-.
  definition_small: אלא ממציאות "מיטיב". ומלבד זה בעצם תכונתם ואפים שונים וחלוקים הם המושגים האלה .
  source_small:[צ"צ כג]..
  new_line:
@@ -494,7 +502,7 @@ subject_normal:שכינה .
  ---------------
 subject_normal:אֶבֶן דִי לָא בִיְדַיִן.
  footnote:13.
- fake_subject_normal: .
+ definition_normal: .
  definition_normal:- .
  fake_sub-subject_normal:די לא בידין .
  definition_normal:- .
@@ -902,7 +910,7 @@ definition_normal:.
  definition_normal:נשמת־העולמים°.
  definition_normal: .
  definition_small:[קבצ' ב קנה.
- fake_sub-subject_normal:].
+ definition_small:].
  definition_small:..
  new_line:
 .
@@ -1065,7 +1073,7 @@ heading_letter:ב.
  ---------------
 subject_normal:""בבגדו בה" בגין דבגדו בעבודה זרה".
  footnote:1.
- fake_subject_normal: .
+ definition_normal: .
  definition_normal:- ההסרה .
  definition_normal:מעבודה־זרה°.
  definition_normal: שבתכונה החפצה בחיי .

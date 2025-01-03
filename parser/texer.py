@@ -1,3 +1,10 @@
+#TODO rav rejects
+# wrong font size on Talmid , טבע
+# sub-subject normal size אורות
+# subject too small חושך, חטא, חכמת ישראל האמיתית
+# sub-subject missing bold and too small חיים של אמת
+# unbalanced columns הטוב האידאלי האלוקי
+
 #TODO my rejects for 30%:
 #TODO investigate LaTeX Warning: Label `1' multiply defined.
 #TODO after last page of ת , there's a blank page with thumb and empty footnote

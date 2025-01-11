@@ -49,6 +49,14 @@ def fix_sz_cs(run, type):
         return 'source_small'
     elif szCs == "14" and type == 'source_normal' and hint_cs:
         return 'source_small'
+    elif szCs == "18" and get_fonts(run) == "Miriam" and run.font.cs_bold:
+        return 'subject_light'
+    elif szCs == "16" and get_fonts(run) == "Miriam" and run.font.cs_bold:
+        return 'sub-subject_light'
+    elif szCs == "16" and get_fonts(run) == "Miriam":
+        return 'definition_light'
+    elif szCs == "14" and get_fonts(run) == "Miriam":
+        return 'source_light'
     elif szCs == "18" and type == 'definition_normal':
         return 'definition_small'
     elif szCs == "18" and type == 'sub-subject_normal':
@@ -141,7 +149,7 @@ def fix_unknown(run):
     elif run.font.size is None and run.style.style_id == 's04':
         return 'definition_light'
     elif run.font.size == 88900 and run.style.style_id == 's04':
-        return 'source_light'
+        return 'definition_light'
     else:
         if run.text != '◊':
             print("UNKNOWN: ", run.text)

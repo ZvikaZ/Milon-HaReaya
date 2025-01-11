@@ -1,5 +1,4 @@
 #TODO rav rejects
-# wrong font size on Talmid , טבע
 # subject too small חושך, חטא, חכמת ישראל האמיתית
 # sub-subject missing bold and too small חיים של אמת
 # unbalanced columns הטוב האידאלי האלוקי

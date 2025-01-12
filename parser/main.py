@@ -44,8 +44,8 @@ def main():
     parser.add_argument(
         "--file",
         type=str,
-        default = 'dict_check.docx',
-        # default="מילון הראיה.docx",
+        # default = 'dict_check.docx',
+        default="מילון הראיה.docx",
         help="Path to the DOCX file (default: %(default)s)",
     )
     parser.add_argument(

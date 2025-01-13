@@ -114,7 +114,9 @@ temp_l = []
 
 
 def bold_type(s, type, run):
-    if type == 'definition_normal':
+    if type == 'definition_normal' and run.font.size == 139700:
+        return 'subject_normal'
+    elif type == 'definition_normal':
         return 'subject_small'
     elif type == 'source_normal' and run.style.style_id == "s03":
         return 'sub-subject_small'

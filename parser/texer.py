@@ -1,5 +1,4 @@
 #TODO rav rejects
-# subject too small חטא,
 # sub-subject missing bold and too small חיים של אמת
 # unbalanced columns הטוב האידאלי האלוקי
 

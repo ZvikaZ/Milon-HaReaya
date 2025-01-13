@@ -1,8 +1,8 @@
 #TODO rav rejects
-# sub-subject missing bold and too small חיים של אמת
 # unbalanced columns הטוב האידאלי האלוקי
 
 #TODO my rejects for 30%:
+#TODO clean: Strange 'source_small' bold!
 #TODO investigate LaTeX Warning: Label `1' multiply defined.
 #TODO after last page of ת , there's a blank page with thumb and empty footnote
 #TODO מדורים - is it correct size?
@@ -102,15 +102,17 @@ class LatexProcessor:
             "fake_sub-subject_normal",
         ):
             return "משנה"
+        elif type == "fake_subject_small":
+            return "הגדרהמודגשת"
         elif type in ("definition_normal", "fake_subject_small_normal","fake_subject_normal"):
             return "הגדרה"
         elif type == "source_normal":
             return "מקור"
         elif type == "sub-subject_small":
             return "צמשנה"
-        elif type == "fake_sub-subject_small":
+        elif type in "fake_sub-subject_small":
             return "צהגדרהמודגשת"
-        elif type in ("definition_small", "fake_subject_small"):
+        elif type in ("definition_small"):
             return "צהגדרה"
         elif type == "source_small":
             return "צמקור"

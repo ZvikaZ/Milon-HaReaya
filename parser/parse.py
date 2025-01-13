@@ -323,11 +323,11 @@ def parse(doc_file_name, percent):
                         # print paragraph.style.style_id, run.bold, run.font.size, s
 
                     # elif run.bold:          #20.11.16 - Trying to fix 'fake' bold in Appendix
-                    if run.font.cs_bold:
+                    if run.font.cs_bold and run.text.strip():
                         type = bold_type(s, type, run)
 
                     # single run & alignment is CENTER and ...-> letter heading
-                    if paragraph.alignment is not None and int(paragraph.alignment) == 1 and "heading" not in type:
+                    if run.text.strip() and paragraph.alignment is not None and int(paragraph.alignment) == 1 and "heading" not in type:
                         if len(paragraph.runs) <= 2 and run.text.isalnum():
                             size_kind = "heading_letter"
                             type = size_kind

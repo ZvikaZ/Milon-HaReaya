@@ -57,6 +57,8 @@ def fix_sz_cs(run, type):
         return 'sub-subject_light'
     elif szCs == "16" and get_fonts(run) == "Miriam":
         return 'definition_light'
+    elif szCs == "16" and run.style.style_id == "s16":
+        return 'sub-subject_light'
     elif szCs == "14" and get_fonts(run) == "Miriam":
         return 'source_light'
     elif szCs == "18" and type == 'definition_normal':

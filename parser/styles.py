@@ -29,7 +29,7 @@ styles = {
 
     's149': 'subject_light',
     's14': 'subject_light',
-    's16': 'sub-subject_light',
+    's16': 'subject_light',
     's12_bold': 'sub-subject_light',
     's168': 'sub-subject_light',
     's048': 'definition_light',

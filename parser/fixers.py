@@ -33,6 +33,8 @@ def fix_sz_cs(run, type):
             return 'subject_small'
     elif szCs == "22" and run.style.style_id == "s02" and hint_cs and run.bold and run.font.cs_bold:
         return 'subject_normal'
+    elif szCs == "22" and run.style.style_id == "s03" and hint_cs and run.bold:
+        return 'subject_normal'
     elif szCs == "22" and type == 'definition_normal':
         return 'subject_normal'
     elif szCs == "22" and type == 'sub-subject_normal':

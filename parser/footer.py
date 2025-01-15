@@ -1,5 +1,3 @@
-# this file will hold footnote analyzing code
-
 def get_style(run):
     return 'bolded' if run.bold else 'normal'
 
@@ -13,7 +11,11 @@ def analyze_footnote(note):
                 'text': run.text,
                 'style': "sub-subject_small" if get_style(run) == 'bolded' else "definition_small"
             })
-        if i < len(note.paragraphs) - 1:
+        if result[-1]['style'] != 'new_line':
+            # dont add at the end ; dont add two consecutive new_lines
             result.append({'text': '\n', 'style': 'new_line'})
+
+    while result and result[-1]['style'] == 'new_line':
+        result.pop()
 
     return result

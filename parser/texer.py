@@ -1,12 +1,12 @@
 #TODO rav rejects
-# (rejects3.pdf)
+# (rejects3.pdf) - all fixed
 
 #TODO my rejects for 30%:
-#TODO clean: Strange 'source_small' bold!
-#TODO investigate LaTeX Warning: Label `1' multiply defined.
+#TODO clean: "Strange 'source_small' bold!"
+#TODO investigate "LaTeX Warning: Label `1' multiply defined"
 #TODO after last page of ת , there's a blank page with thumb and empty footnote
 #TODO מדורים - is it correct size?
-#TODO thumbnails - verical spacing from ת to תורה - maybe it's too much?
+#TODO thumbnails - vertical spacing from ת to תורה - maybe it's too much?
 #TODO empty column before שמוש תלמידי חכמים
 #TODO section should be 2 lines? מדתם ועניינם הרוחני של אישי התנך - in title, and in running header/thumbs should be shorter (probably CSV)
 #TODO wrong section name אברהם יצחק ויעקב

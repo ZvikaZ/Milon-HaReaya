@@ -6,10 +6,14 @@ def get_style(run):
 
 def analyze_footnote(note):
     result = []
-    for (para) in note.paragraphs:
-        for (run) in para.runs:
+
+    for i, para in enumerate(note.paragraphs):
+        for run in para.runs:
             result.append({
                 'text': run.text,
                 'style': "sub-subject_small" if get_style(run) == 'bolded' else "definition_small"
             })
+        if i < len(note.paragraphs) - 1:
+            result.append({'text': '\n', 'style': 'new_line'})
+
     return result

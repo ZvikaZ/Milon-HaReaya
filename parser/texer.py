@@ -331,6 +331,8 @@ class LatexProcessor:
                     foot_text = ""
                     if self.is_bold(foot_para):
                         foot_text += "\\%s{%s}" % ("textbf", foot_para["text"])
+                    elif foot_para['style'] == 'new_line':
+                        foot_text += "\n\n\\noindent "
                     else:
                         foot_text += foot_para["text"]
                     all_runs_list.append(foot_text)

@@ -1,5 +1,5 @@
 #TODO rav rejects
-# unbalanced columns הטוב האידאלי האלוקי (letter ט)
+# (rejects3.pdf)
 
 #TODO my rejects for 30%:
 #TODO clean: Strange 'source_small' bold!

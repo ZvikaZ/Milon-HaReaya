@@ -124,11 +124,11 @@
 %\usepackage[onehalfspacing]{setspace}            % instead of `linespread` - which caused strange footnotes spacing 
 
 
-\setlength{\parskip}{0pt}
-
+% without the plus minus flexibilty here and in \paragraphs, we get unbalanced columns
+\setlength{\parskip}{0pt plus 1pt}
 
 \newcommand{\paragraphs}{
-    \par\vspace{1ex plus 0.05ex minus 0.05ex}
+    \par\vspace{1ex plus 0.1ex minus 0.1ex}
 }
 
 % for Moto's minipage centering

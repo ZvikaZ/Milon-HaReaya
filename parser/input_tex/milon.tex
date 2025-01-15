@@ -117,6 +117,11 @@
 % based on https://tex.stackexchange.com/questions/47324/superscript-outside-math-mode/140703
 \deffootnotemark{\scriptsize{$^{\mathrm{\thefootnotemark}}$}}
 
+% fix footnote appearing in the page before it's required
+% this fix is from a comment at `multicol' doc
+% if there are more problems, either try -3, or add local `\pagebreak'
+\setcounter{collectmore}{-2}
+
 
 %%%%%%%%%%%        MISC        %%%%%%%%%%%
 

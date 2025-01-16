@@ -4,7 +4,6 @@
 #TODO my rejects for 30%:
 #TODO clean: "Strange 'source_small' bold!"
 #TODO investigate "LaTeX Warning: Label `1' multiply defined"
-#TODO after last page of ת , there's a blank page with thumb and empty footnote
 #TODO מדורים - is it correct size?
 #TODO thumbnails - vertical spacing from ת to תורה - maybe it's too much?
 #TODO empty column before שמוש תלמידי חכמים
@@ -405,7 +404,7 @@ class LatexProcessor:
 
     def run_xelatex(self, f, check=True):
         subprocess.run(
-            ["xelatex", "-file-line-error", "-interaction=nonstopmode", f], check=check
+            ["xelatex", "-file-line-error", "-max-print-line=200", "-interaction=nonstopmode", f], check=check
         )
 
     def close_latex(self):

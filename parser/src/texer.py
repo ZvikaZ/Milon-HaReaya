@@ -7,8 +7,8 @@
 #TODO מדורים - is it correct size?
 #TODO thumbnails - vertical spacing from ת to תורה - maybe it's too much?
 #TODO empty column before שמוש תלמידי חכמים
-#TODO section should be 2 lines? מדתם ועניינם הרוחני של אישי התנך - in title, and in running header/thumbs should be shorter (probably CSV)
-#TODO wrong section name אברהם יצחק ויעקב
+#TODO section should be 2 lines? מדתם ועניינם הרוחני של אישי התנך - in title (or at least w/ space)
+#TODO long thumbnails: doesnt fit ; words are reversed
 
 import os
 import shutil
@@ -40,11 +40,6 @@ class LatexProcessor:
     def is_bold(self, para):
         return "subject" in para["style"]
 
-    def reverse_words(self, s):
-        w1 = s.split()
-        w2 = reversed(w1)
-        return " ".join(w2)
-
     def get_bool_from_csv(self, cell):
         if cell == "" or cell.lower() == "no":
             return False
@@ -54,33 +49,43 @@ class LatexProcessor:
             print("Illegal value in CSV: ", cell)
             assert False
 
-    # the output is 'reversed' due to some bug in 'fancytabs' that shows the words reversed in the string
-    # TODO: report this bug...
     def get_section_short_name(self, section):
-        # TODO is all of this CSV relevant? there is no .csv file ; either create one, or delete all of this...
-
+        # TODO is it still true?? I assume not...
         # I'd prefer to use 'csv' package, but it doesn't behave well with Unicode...
         # with open(sections_csv_file, 'r') as csvfile:
+
+        # the output is 'reversed' due to some bug in 'fancytabs' that shows the words reversed in the string
+        # TODO: report this bug...
+        def reverse_words(s):
+            w1 = s.split()
+            w2 = reversed(w1)
+            return " ".join(w2)
+
+        def remove_quotes_and_spaces(s):
+            return s.replace('"', "").strip().replace(' ','')
+
+        def sanitize(s):
+            return s.strip().strip('"').replace('""','"')
 
         # the "-sig" is required to ignore BOM (=some sort of Unicode white space)
         csvfile = codecs.open(self.sections_csv_file, encoding="utf-8-sig")
         for row in csvfile:
             s = row.strip().split(",")
-            if s[0].replace('"', "").strip() == section.replace('"', "").strip():
-                self.current_section["section"] = s[1].strip()
+            if remove_quotes_and_spaces(s[0]) == remove_quotes_and_spaces(section):
+                self.current_section["section"] = sanitize(s[1])
                 self.current_section["moto"] = self.get_bool_from_csv(s[2])
                 self.current_section["intro"] = self.get_bool_from_csv(s[3])
-                self.current_section["end_of_intro:type"] = s[4].strip()
-                self.current_section["end_of_intro:text"] = s[5].strip()
+                self.current_section["end_of_intro:type"] = sanitize(s[4])
+                self.current_section["end_of_intro:text"] = sanitize(s[5])
                 print("CSV found: ", s[1], self.current_section)
-                return self.reverse_words(self.current_section["section"])
+                return reverse_words(self.current_section["section"])
         print("CSV failed search for: ", section)
         self.current_section["section"] = section
         self.current_section["moto"] = False
         self.current_section["intro"] = False
         self.current_section["end_of_intro:type"] = ""
         self.current_section["end_of_intro:text"] = ""
-        return self.reverse_words(self.current_section["section"])
+        return reverse_words(self.current_section["section"])
 
     def open_latex(self):
         os.chdir("input_tex")

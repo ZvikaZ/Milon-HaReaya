@@ -1,3 +1,5 @@
+% !TEX program = xelatex
+
 % problems:
 % Psukim - not recognized as MotoChapter
 % section_title_secondary:
@@ -119,7 +121,11 @@
 
 % fix footnote appearing in the page before it's required
 % this fix is from a comment at `multicol' doc
-% if there are more problems, either try -3, or add local `\pagebreak'
+% if there are more problems:
+%  * using -2 solved them, but caused unbalanced columns on תורה with hugh footnotes
+%  * maybe swap between -2 and -1 from texer.py according to footnote size?
+%  * maybe using package `bigfoot' would help (but it has sometimes many many warnings)
+%  * maybe manually add local `\pagebreak'
 \setcounter{collectmore}{-2}
 
 

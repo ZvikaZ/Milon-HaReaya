@@ -1,14 +1,13 @@
-#TODO rav rejects
+# TODO rav rejects
 # (rejects3.pdf) - all fixed
 
-#TODO my rejects for 30%:
-#TODO clean: "Strange 'source_small' bold!"
-#TODO investigate "LaTeX Warning: Label `1' multiply defined"
-#TODO מדורים - is it correct size?
-#TODO thumbnails - vertical spacing from ת to תורה - maybe it's too much?
-#TODO empty column before שמוש תלמידי חכמים
-#TODO section should be 2 lines? מדתם ועניינם הרוחני של אישי התנך - in title (or at least w/ space)
-#TODO long thumbnails: doesnt fit ; words are reversed
+# TODO my rejects for 30%:
+# TODO clean: "Strange 'source_small' bold!"
+# TODO מדורים - is it correct size?
+# TODO thumbnails - vertical spacing from ת to תורה - maybe it's too much?
+# TODO empty column before שמוש תלמידי חכמים
+# TODO section should be 2 lines? מדתם ועניינם הרוחני של אישי התנך - in title (or at least w/ space)
+# TODO long thumbnails: doesnt fit ; words are reversed
 
 import os
 import shutil
@@ -62,10 +61,10 @@ class LatexProcessor:
             return " ".join(w2)
 
         def remove_quotes_and_spaces(s):
-            return s.replace('"', "").strip().replace(' ','')
+            return s.replace('"', "").strip().replace(" ", "")
 
         def sanitize(s):
-            return s.strip().strip('"').replace('""','"')
+            return s.strip().strip('"').replace('""', '"')
 
         # the "-sig" is required to ignore BOM (=some sort of Unicode white space)
         csvfile = codecs.open(self.sections_csv_file, encoding="utf-8-sig")
@@ -98,7 +97,7 @@ class LatexProcessor:
         os.chdir("../")
 
     def latex_type(self, type):
-        if type in ("subject_normal" ):
+        if type in ("subject_normal"):
             return "ערך"
         elif type in (
             "sub-subject_normal",
@@ -108,7 +107,11 @@ class LatexProcessor:
             return "משנה"
         elif type == "fake_subject_small":
             return "הגדרהמודגשת"
-        elif type in ("definition_normal", "fake_subject_small_normal","fake_subject_normal"):
+        elif type in (
+            "definition_normal",
+            "fake_subject_small_normal",
+            "fake_subject_normal",
+        ):
             return "הגדרה"
         elif type == "source_normal":
             return "מקור"
@@ -135,7 +138,16 @@ class LatexProcessor:
         elif type == "section_title_secondary":
             return "my_section_title_secondary"
         else:
-            if type not in ("new_line", "footnote", "footnote_recurrence", "FootnoteReference") and "heading" not in type:
+            if (
+                type
+                not in (
+                    "new_line",
+                    "footnote",
+                    "footnote_recurrence",
+                    "FootnoteReference",
+                )
+                and "heading" not in type
+            ):
                 print("unknown latex_type: ", type)
             return "תקלה" + type
 
@@ -302,7 +314,7 @@ class LatexProcessor:
 
                 data = data.strip() + "\n\n"
                 if text.count("\n") > 1:
-                    data += '\paragraphs\n\n'
+                    data += "\paragraphs\n\n"
 
                 if (
                     self.next_define_ends_moto
@@ -335,7 +347,7 @@ class LatexProcessor:
                     foot_text = ""
                     if self.is_bold(foot_para):
                         foot_text += "\\%s{%s}" % ("textbf", foot_para["text"])
-                    elif foot_para['style'] == 'new_line':
+                    elif foot_para["style"] == "new_line":
                         foot_text += "\n\n\\noindent "
                     else:
                         foot_text += foot_para["text"]
@@ -345,14 +357,11 @@ class LatexProcessor:
                 all_runs_text = "".join(all_runs_list)  # TODO is it good?
                 data = self.add_line_to_data(
                     data,
-                    "\\%s{%s\\label{%s}}"
-                    % ("myfootnote", all_runs_text, footnote["number_relative"]),
+                    f"\\myfootnote{{{footnote['number_relative']}}}{{{all_runs_text}}}",
                 )
 
             elif type in ("footnote_recurrence", "FootnoteReference"):
-                data = self.add_line_to_data(
-                    data, "\\%s{%s}" % ("footref", text.strip())
-                )
+                data = self.add_line_to_data(data, f"\\footnotemark{{{text.strip()}}}")
 
             # elif is_subject(para, i):
             #     if not is_prev_subject(para, i):
@@ -409,7 +418,14 @@ class LatexProcessor:
 
     def run_xelatex(self, f, check=True):
         subprocess.run(
-            ["xelatex", "-file-line-error", "-max-print-line=200", "-interaction=nonstopmode", f], check=check
+            [
+                "xelatex",
+                "-file-line-error",
+                "-max-print-line=200",
+                "-interaction=nonstopmode",
+                f,
+            ],
+            check=check,
         )
 
     def close_latex(self):
@@ -421,7 +437,7 @@ class LatexProcessor:
         with open("content.tex", "a", encoding="utf-8") as latex_file:
             latex_file.write(self.latex_data)
 
-        assert '\\תקלה' not in self.latex_data, "there is a תקלה in the tex file"
+        assert "\\תקלה" not in self.latex_data, "there is a תקלה in the tex file"
 
         # twice because of thumb-indices
         self.run_xelatex("milon.tex", check=False)

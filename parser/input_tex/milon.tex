@@ -297,7 +297,8 @@
     \begin{multicols}{2}
 }
 
-\newcommand{\myfootnote}[1]{\footnote{\myfootnotesize{#1}}}
+
+\newcommand{\myfootnote}[2]{\footnote[#1]{\myfootnotesize{#2}}}
 \newcommand{\mycircle}[1]{\textmd{\mynormalsize{#1}}}
 \newcommand{\hebrewmakaf}{\iffont{Miriam(0)}{\,\,־}{־}}       % Miriam font has bug, and needs another space before the Makaf, else just print regular Makaf
 

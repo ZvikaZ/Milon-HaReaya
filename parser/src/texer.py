@@ -1,8 +1,9 @@
-# TODO rav rejects
-# (rejects3.pdf) - all fixed
+# TODO rav rejects4.pdf:
+# sub-subject: small font האור הנשגב
+# missing space between lines אורה
+
 
 # TODO my rejects for 30%:
-# TODO clean: "Strange 'source_small' bold!"
 # TODO מדורים - is it correct size?
 # TODO thumbnails - vertical spacing from ת to תורה - maybe it's too much?
 # TODO empty column before שמוש תלמידי חכמים - need to add patching mechanism: \setcounter{collectmore}{0} ; \interfootnotelinepenalty=0 % and \columnbreak / \clearpage near footnote 80

@@ -139,15 +139,15 @@ def bold_type(s, type, run):
     elif type == 'definition_light' and run.style.style_id == "s12" and run.font.size is None:
         # TODO - verify that it's always OK
         return 'sub-subject_light'
+    elif uniqify(run.text.strip()) in ("◊", "-", ""):
+        return type
+    elif 'subject' in type or 'heading' in type:
+        return type
     elif type == 'source_normal':
         print("Strange 'source_normal' bold!")
         return type
     elif type == 'source_small':
         print("Strange 'source_small' bold!")
-        return type
-    elif 'subject' in type or 'heading' in type:
-        return type
-    elif uniqify(run.text.strip()) in ("◊", "-", ""):
         return type
     else:
         if type not in temp_l:

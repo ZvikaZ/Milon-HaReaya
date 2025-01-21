@@ -74,6 +74,8 @@ def fix_sz_cs(run, type):
         return 'definition_small'
     elif szCs == "18" and type == 'source_normal':
         return 'definition_small'
+    elif szCs == "18" and type == 'source_small':
+        return 'definition_small'
     elif szCs == "20" and type == 'unknown_light':
         return 'definition_normal'
     elif szCs == "20" and type == 'definition_small':
@@ -83,7 +85,7 @@ def fix_sz_cs(run, type):
         ## be careful here...
         print("ZZ: Fixed to 'section_title_secondary': ", run.text.strip())
         return 'section_title_secondary'
-    elif run.text.strip():
+    elif run.text.strip() and run.text.strip() not in ['◊', '°']:
         # print("fix_sz_cs::Unsupported value: ", szCs, "type:", type, ". At: ", run.text)    #TODO: clean this!!!
         pass
     else:
@@ -183,6 +185,8 @@ def fix_DefaultParagraphFont(run):
         return 'definition_normal'
     elif run.font.size == 114300 and not run.font.cs_bold:
         return 'source_normal'
+    elif run.font.size == 101600 and run.font.bold and run.font.cs_bold:
+        return 'subject_small'
     elif run.font.size == 101600:
         return 'source_small'
     elif run.font.size == 88900:

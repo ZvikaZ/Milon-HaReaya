@@ -23,14 +23,10 @@ def fix_sz_cs(run, type):
     except:
         hint_cs = False
 
-    if szCs == "20" and 'subject' in type:
-        if run.style.style_id == "s01":
-            # s = "!Fixed!szCs=%s:%s!bCs=%s!" % (szCs, run.text, run.element.rPr.bCs.attrib.values()[0])
-            # s = "!Fixed!szCs=%s:%s!" % (szCs, run.text)
-            # # print s
-            # debug_file.write(s + ' ')
-            # return 'definition_normal'
-            return 'subject_small'
+    if szCs == "20" and "subject" in type and run.style.style_id == "s01":
+        return "subject_small"
+    elif szCs == "20" and run.style.style_id == "s03" and hint_cs and run.bold and run.font.cs_bold:
+        return "sub-subject_normal"
     elif szCs == "22" and run.style.style_id == "s02" and hint_cs and run.bold and run.font.cs_bold:
         return 'subject_normal'
     elif szCs == "22" and run.style.style_id == "s03" and hint_cs and run.bold:

@@ -1,5 +1,4 @@
 # TODO rav rejects4.pdf:
-# sub-subject: small font האור הנשגב
 # missing space between lines אורה
 
 

@@ -5,7 +5,7 @@
 # TODO clean: "Strange 'source_small' bold!"
 # TODO מדורים - is it correct size?
 # TODO thumbnails - vertical spacing from ת to תורה - maybe it's too much?
-# TODO empty column before שמוש תלמידי חכמים
+# TODO empty column before שמוש תלמידי חכמים - need to add patching mechanism: \setcounter{collectmore}{0} ; \interfootnotelinepenalty=0 % and \columnbreak / \clearpage near footnote 80
 # TODO section should be 2 lines? מדתם ועניינם הרוחני של אישי התנך - in title (or at least w/ space)
 # TODO long thumbnails: doesnt fit ; words are reversed
 
@@ -361,7 +361,7 @@ class LatexProcessor:
                 )
 
             elif type in ("footnote_recurrence", "FootnoteReference"):
-                data = self.add_line_to_data(data, f"\\footnotemark{{{text.strip()}}}")
+                data = self.add_line_to_data(data, f"\\footnotemark[{text.strip()}]")
 
             # elif is_subject(para, i):
             #     if not is_prev_subject(para, i):

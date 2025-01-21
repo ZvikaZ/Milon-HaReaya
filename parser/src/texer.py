@@ -1,13 +1,9 @@
-# TODO rav rejects4.pdf:
-# missing space between lines אורה
-
-
 # TODO my rejects for 30%:
 # TODO מדורים - is it correct size?
-# TODO thumbnails - vertical spacing from ת to תורה - maybe it's too much?
-# TODO empty column before שמוש תלמידי חכמים - need to add patching mechanism: \setcounter{collectmore}{0} ; \interfootnotelinepenalty=0 % and \columnbreak / \clearpage near footnote 80
 # TODO section should be 2 lines? מדתם ועניינם הרוחני של אישי התנך - in title (or at least w/ space)
+# TODO thumbnails - vertical spacing from ת to תורה - maybe it's too much?
 # TODO long thumbnails: doesnt fit ; words are reversed
+# TODO empty column before שמוש תלמידי חכמים - need to add patching mechanism: \setcounter{collectmore}{0} ; \interfootnotelinepenalty=0 % and \columnbreak / \clearpage near footnote 80
 
 import os
 import shutil

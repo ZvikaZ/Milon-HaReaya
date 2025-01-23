@@ -201,7 +201,11 @@
 \newcommand{\mytitle}[2]{
     \end{multicols}
 
+    \addtokomafont{part}{\fontsize{32}{32}}
+
     \part[#2]{#1}
+
+    \addtokomafont{part}{\hebrewfont\Huge}
 
     \addPolythumb{#2}
 

@@ -1,5 +1,4 @@
 # TODO my rejects for 30%:
-# TODO מדורים - is it correct size?
 # TODO section should be 2 lines? מדתם ועניינם הרוחני של אישי התנך - in title (or at least w/ space)
 # TODO thumbnails - vertical spacing from ת to תורה - maybe it's too much?
 # TODO long thumbnails: doesnt fit ; words are reversed
@@ -250,6 +249,7 @@ class LatexProcessor:
             data = self.handle_intro(data, text, type)
 
             if "heading" in type and text.strip():
+                data += '\n'
                 # TODO: adjust headings
                 if type == "heading_title":
                     self.get_section_short_name(text)

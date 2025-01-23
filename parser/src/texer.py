@@ -1,7 +1,6 @@
 # TODO my rejects for 30%:
-# TODO section should be 2 lines? מדתם ועניינם הרוחני של אישי התנך - in title (or at least w/ space)
-# TODO thumbnails - vertical spacing from ת to תורה - maybe it's too much?
 # TODO long thumbnails: doesnt fit ; words are reversed
+# TODO thumbnails - vertical spacing from ת to תורה - maybe it's too much?
 # TODO empty column before שמוש תלמידי חכמים - need to add patching mechanism: \setcounter{collectmore}{0} ; \interfootnotelinepenalty=0 % and \columnbreak / \clearpage near footnote 80
 
 import os
@@ -250,9 +249,11 @@ class LatexProcessor:
 
             if "heading" in type and text.strip():
                 data += '\n'
+                clean_text = text.strip().replace("\n", " ")
+                text = text.replace('\n', r'\\ ')
                 # TODO: adjust headings
                 if type == "heading_title":
-                    self.get_section_short_name(text)
+                    self.get_section_short_name(clean_text)
                     if self.num_of_heading_titles == 0:
                         command = "\\mybookname"
                     else:
@@ -263,7 +264,7 @@ class LatexProcessor:
                     )
                     self.num_of_heading_titles += 1
                 elif type == "heading_section":
-                    self.get_section_short_name(text)
+                    self.get_section_short_name(clean_text)
                     assert not (
                         self.current_section["moto"] and self.current_section["intro"]
                     )

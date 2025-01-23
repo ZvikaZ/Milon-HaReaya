@@ -271,6 +271,8 @@ def merge_paras(paras):
         prev_kind, prev_value = merged_paras[-1]
 
         if prev_kind == kind:
+            if 'heading' in kind:
+                prev_value += '\n'
             merged_paras[-1] = (kind, prev_value + value)
         elif value:
             merged_paras.append((kind, value))

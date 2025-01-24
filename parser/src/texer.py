@@ -1,5 +1,4 @@
 # TODO my rejects for 30%:
-# TODO thumbnails - vertical spacing from ת to תורה - maybe it's too much?
 # TODO empty column before שמוש תלמידי חכמים - need to add patching mechanism: \setcounter{collectmore}{0} ; \interfootnotelinepenalty=0 % and \columnbreak / \clearpage near footnote 80
 
 import os

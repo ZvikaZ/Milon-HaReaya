@@ -1,17 +1,16 @@
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
 \ProvidesPackage{polythumbs}
-    [2016/03/27 Thumbs Index, compatible with RTL language and polyglossia]
+    [2025/01/24 Thumbs Index, compatible with RTL language and polyglossia]
 
-\RequirePackage{fancytabs}    %TODO: require specific version [2016/3/..]
-
-\usepackage{fancytabs}
+% I'm using the [2016/03/29] versoin, but they have a bug and the version isn't registered
+% this version has another bug, that in Hebrew the words are reversed, therefore we use \reversewords
+% TODO report these bugs
+\RequirePackage{fancytabs}
 
 % default style, can be easily overriden
 \fancytabsStyle{\color{white}}
-%\fancytabsWidth{2.1cm}
-%\fancytabsHeight{0.7cm}
 
-\fancytabsWidth{1.3cm}
+\fancytabsWidth{1.9cm}
 \fancytabsHeight{0.5cm}
 
 \fancytabsCount{40}
@@ -26,6 +25,20 @@
 \setcounter{PolythumbCounter}{1}
 
 
+% Custom command to reverse words in a string
+\newcommand{\reversewords}[1]{%
+  \StrCount{#1}{ }[\numspaces]% Count the number of spaces
+  \IfEq{\numspaces}{0}{% If no spaces, return the word as is
+    #1%
+  }{%
+    \StrBehind[\numspaces]{#1}{ }[\lastword]% Extract the last word
+    \StrBefore[\numspaces]{#1}{ }[\remainingwords]% Extract the remaining words
+    \lastword\ % Print the last word
+    \reversewords{\remainingwords}% Recursively reverse the remaining words
+  }%
+}
+
+
 % commands
 \newcommand{\PolythumbWrapperLeft}{}
 \newcommand{\PolythumbWrapperRight}{}
@@ -38,10 +51,10 @@
 
 \newcommand{\replacePolythumb}[1]{
     \renewcommand{\PolythumbWrapperLeft}{
-	    \fancytab[LEFT]{#1}{\value{PolythumbCounter}}
+	    \fancytab[LEFT]{\reversewords{#1}}{\value{PolythumbCounter}}
 	}
     \renewcommand{\PolythumbWrapperRight}{
-	    \fancytab[RIGHT]{#1}{\value{PolythumbCounter}}
+	    \fancytab[RIGHT]{\reversewords{#1}}{\value{PolythumbCounter}}
 	}
 }
 

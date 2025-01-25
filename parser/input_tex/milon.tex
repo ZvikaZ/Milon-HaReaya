@@ -78,6 +78,9 @@
 \renewcommand*{\chapterpagestyle}{empty}     % remove page number from chapter
 \setkomafont{disposition}{\normalcolor}
 
+% remove all titles numbering
+\setcounter{secnumdepth}{0}
+
 
 %%%%%%%%%%%%    Sections (etc.) heading style    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -259,9 +262,11 @@
 
 \newcommand{\mysubsection}[1]{
     \end{multicols}
+
     \subsection{#1}
     \setfancyheadtitleboth{#1}
     \resetfootnotecounter
+
     \begin{multicols}{2}
 }
 

@@ -4,37 +4,53 @@
 import sys
 
 import footer
+from styles_table import StylesTable
 
-sys.path.insert(0, r'C:\Zvika\PycharmProjects\python-docx')
-sys.path.insert(0, r'C:\Users\sdaudi\Github\python-docx')
+sys.path.insert(0, r"C:\Zvika\PycharmProjects\python-docx")
+sys.path.insert(0, r"C:\Users\sdaudi\Github\python-docx")
 import docx  # from aforementioned path
 
 import docx_fork_ludoo
 import re
 import os
 
-from fixers import fix_sz_cs, fix_b_cs, fix_misc_attrib, fix_unknown, fix_DefaultParagraphFont, fix_section_name, \
-    fix_newlines_with_spaces_between
+from fixers import (
+    fix_sz_cs,
+    fix_b_cs,
+    fix_misc_attrib,
+    fix_unknown,
+    fix_DefaultParagraphFont,
+    fix_section_name,
+    fix_newlines_with_spaces_between,
+    get_fonts,
+)
 from styles import styles, sizes, bold_type, run_style_id
-from helpers import is_subject, is_prev_subject, is_prev_newline, is_prev_meuyan, is_subject_small_or_sub_subject, \
-    is_paren_or_space
+from helpers import (
+    is_subject,
+    is_prev_subject,
+    is_prev_newline,
+    is_prev_meuyan,
+    is_subject_small_or_sub_subject,
+    is_paren_or_space,
+)
 
 
 def is_footnote_recurrence(run, type):
     # a number in superscript, that's not defined as a footnote
     try:
-        return \
-                run.element.rPr.vertAlign is not None \
-                and type != 'footnote' \
-                and run.text.strip().isdigit() \
-                and list(run.element.rPr.vertAlign.values())[0] == 'superscript'
+        return (
+            run.element.rPr.vertAlign is not None
+            and type != "footnote"
+            and run.text.strip().isdigit()
+            and list(run.element.rPr.vertAlign.values())[0] == "superscript"
+        )
     except AttributeError:
         return False
 
 
 def make_sub_subject(subj):
-    if subj == 'subject_small':
-        return 'sub-subject_normal'
+    if subj == "subject_small":
+        return "sub-subject_normal"
     else:
         return subj
 
@@ -43,7 +59,7 @@ def analyze_and_fix(para):
     # unite splitted adjacent similar types
     prev_type, prev_text = None, ""
     new_para = []
-    for (raw_type, text_raw) in para:
+    for raw_type, text_raw in para:
         text = text_raw.replace("@", "")
         if re.fullmatch(r"◊+", text):
             if prev_text == "":
@@ -56,10 +72,18 @@ def analyze_and_fix(para):
         else:
             type = raw_type
         if prev_type:
-            if (type == prev_type) or \
-                    (is_subject_small_or_sub_subject(type) and is_subject_small_or_sub_subject(prev_type)) or \
-                    (prev_type != "footnote" and prev_type != "footnote_recurrence" and text.strip() in (
-                            "", "°", "־", ",")):
+            if (
+                (type == prev_type)
+                or (
+                    is_subject_small_or_sub_subject(type)
+                    and is_subject_small_or_sub_subject(prev_type)
+                )
+                or (
+                    prev_type != "footnote"
+                    and prev_type != "footnote_recurrence"
+                    and text.strip() in ("", "°", "־", ",")
+                )
+            ):
                 prev_text += text
             elif prev_type == "centered_meuyan" and type == "s02Symbol":
                 prev_text += text
@@ -73,10 +97,10 @@ def analyze_and_fix(para):
     # make new_lines stand on their own
     para = new_para
     new_para = []
-    for (type, text) in para:
+    for type, text in para:
         lines = text.split("\n")
         if len(lines) > 1:
-            for (i, line) in enumerate(lines):
+            for i, line in enumerate(lines):
                 if line:
                     new_para.append((type, line))
                 if i + 1 < len(lines):
@@ -87,7 +111,7 @@ def analyze_and_fix(para):
     # fix wrong subjects
     para = new_para
     new_para = []
-    for (index, (type, text)) in enumerate(para):
+    for index, (type, text) in enumerate(para):
         # if 'subject' in type:
         if is_subject(para, index):
             # real subject is either:
@@ -96,26 +120,34 @@ def analyze_and_fix(para):
             # after subject,"-"
             # after Meuyan
             # second, and after '"'
-            if (index == 0) or (is_prev_newline(para, index)) or (is_prev_meuyan(para, index)):
+            if (
+                (index == 0)
+                or (is_prev_newline(para, index))
+                or (is_prev_meuyan(para, index))
+            ):
                 new_para.append((type, text))
-            elif (is_prev_subject(para, index)):
+            elif is_prev_subject(para, index):
                 new_para.append((make_sub_subject(type), text))
-            elif new_para[index - 1][0] in ('sub-subject_normal', 'subject_small'):
+            elif new_para[index - 1][0] in ("sub-subject_normal", "subject_small"):
                 new_para.append((make_sub_subject(type), text))
             elif index == 1 and new_para[0][1] == '"':
                 # get rid of the wrong '"'
-                new_para[0] = ('', '')
+                new_para[0] = ("", "")
                 new_para.append((type, '"' + text))
             else:
                 new_para.append(("fake_" + type, text))
-        elif 'subject' in type:
+        elif "subject" in type:
             # it's got a subject, but 'is_subject' failed
             # use 'fake' only if there's real text
             if not is_paren_or_space(text):
                 new_para.append(("fake_" + type, text))
             else:
                 # take prev type of it's nothing special, otherwise take generic type, as it doesn't really matter
-                new_type = new_para[-1][0] if "definition" in new_para[-1][0] or "source" in new_para[-1][0] else "definition_normal"
+                new_type = (
+                    new_para[-1][0]
+                    if "definition" in new_para[-1][0] or "source" in new_para[-1][0]
+                    else "definition_normal"
+                )
                 new_para.append((new_type, text))
         else:
             new_para.append((type, text))
@@ -124,18 +156,22 @@ def analyze_and_fix(para):
     para = new_para
     new_para = []
     source_pattern = re.compile(r"(.*)(\[.*\])(\..*)")
-    for (type, text) in para:
-        if source_pattern.match(text) and 'source' not in type:
+    for type, text in para:
+        if source_pattern.match(text) and "source" not in type:
             g = source_pattern.match(text)
             new_para.append((type, g.group(1)))
-            if type in ['definition_small', 'fake_sub-subject_small', 'fake_subject_normal']:
-                new_para.append(('source_normal', g.group(2)))
-            elif type == 'definition_normal':
-                new_para.append(('source_small', g.group(2)))
-            elif 'light' in type:
-                new_para.append(('source_light', g.group(2)))
+            if type in [
+                "definition_small",
+                "fake_sub-subject_small",
+                "fake_subject_normal",
+            ]:
+                new_para.append(("source_normal", g.group(2)))
+            elif type == "definition_normal":
+                new_para.append(("source_small", g.group(2)))
+            elif "light" in type:
+                new_para.append(("source_light", g.group(2)))
             else:
-                print("Fix missing 'source's, unknown type: ", end='')
+                print("Fix missing 'source's, unknown type: ", end="")
                 print(type, g.group(2))
                 new_para.append((type, g.group(2)))
             new_para.append((type, g.group(3)))
@@ -146,10 +182,10 @@ def analyze_and_fix(para):
     para = new_para
     new_para = []
     pattern = re.compile("([\S־]*\S+°)", re.UNICODE)
-    for (type, text) in para:
+    for type, text in para:
         # don't do this for subjects - it complicates their own link name...
-        if "°" in text and 'subject' not in type:
-            for (chunk) in pattern.split(text):
+        if "°" in text and "subject" not in type:
+            for chunk in pattern.split(text):
                 new_para.append((type, chunk))
         else:
             new_para.append((type, text))
@@ -158,8 +194,8 @@ def analyze_and_fix(para):
     para = new_para
     new_para = []
     ignore_new_line = False
-    for (type, text) in para:
-        if 'heading' in type:
+    for type, text in para:
+        if "heading" in type:
             ignore_new_line = True
             new_para.append((type, text))
         elif type == "new_line" and ignore_new_line:
@@ -170,11 +206,11 @@ def analyze_and_fix(para):
     # scan for 'empty subjects' ...
     has_subject = False
     has_definition = False
-    for (type, text) in para:
-        if 'subject' in type and 'fake' not in type and text.strip():
+    for type, text in para:
+        if "subject" in type and "fake" not in type and text.strip():
             has_subject = True
             has_definition = False
-        elif 'definition' in type:
+        elif "definition" in type:
             has_definition = True
 
     # ... and fix 'em if required
@@ -183,16 +219,16 @@ def analyze_and_fix(para):
         # TODO - might be caused by 'heading' interpreted as subject
         para = new_para
         new_para = []
-        for (type, text) in para:
-            if 'subject' in type and 'fake' not in type:
-                new_para.append(('fake_' + type, text))
+        for type, text in para:
+            if "subject" in type and "fake" not in type:
+                new_para.append(("fake_" + type, text))
             else:
                 new_para.append((type, text))
 
     # 'centered_meuyan' is legal only if it's the only "heavy" thing in the paragraph, otherwise, it's a regular 'meuyan"
     found_centered_meuyan = False
     should_replace_centered_meuayn = False
-    for (type, text) in para:
+    for type, text in para:
         if type == "centered_meuyan":
             found_centered_meuyan = True
         elif type != "new_line" and found_centered_meuyan:
@@ -201,14 +237,14 @@ def analyze_and_fix(para):
         para = new_para
         new_para = []
         if should_replace_centered_meuayn:
-            for (type, text) in para:
+            for type, text in para:
                 if type == "centered_meuyan":
                     new_para.append(("s02Symbol", text))
                 else:
                     new_para.append((type, text))
         else:
             # it's a centered meuyan, and should stay such; but we don't need anything else in it
-            for (type, text) in para:
+            for type, text in para:
                 if type == "centered_meuyan":
                     new_para.append((type, text))
                 elif type == "new_line":
@@ -219,11 +255,11 @@ def analyze_and_fix(para):
                     print(type, text)
                     assert False
 
-    with open('output/debug_fix.txt', 'a', encoding='utf-8') as debug_file:
+    with open("output/debug_fix.txt", "a", encoding="utf-8") as debug_file:
         debug_file.write("---------------\n")
-        for (type, text) in new_para:
+        for type, text in new_para:
             s = "%s:%s.\n" % (type, text)
-            debug_file.write(s + ' ')
+            debug_file.write(s + " ")
 
     # fix
     return new_para
@@ -239,11 +275,11 @@ heading_back_to_back = False
 #  ('NEW_LETTER', string) - if needs a new section, but w/o putting it in the main TOC
 def is_need_new_section(para, prev_name):
     global heading_back_to_back
-    for (type, text) in para:
+    for type, text in para:
         if type in ("heading_title", "heading_section"):
             if not heading_back_to_back:
                 heading_back_to_back = True
-                return 'NEW_SECTION', text.strip()
+                return "NEW_SECTION", text.strip()
             else:
                 # the previous, and this, are headings - unite them
                 if prev_name != "מדורים":
@@ -251,13 +287,13 @@ def is_need_new_section(para, prev_name):
                 else:
                     # in the special case of 'Section' heading - we don't need it
                     result = text.strip()
-                return 'UPDATE_NAME', result
+                return "UPDATE_NAME", result
         elif type == "heading_letter":
             try:
                 section, _ = prev_name
             except ValueError:
                 section = prev_name
-            return 'NEW_LETTER', (section, text.strip())
+            return "NEW_LETTER", (section, text.strip())
 
     # if we're here - we didn't 'return text' with a heading
     heading_back_to_back = False
@@ -271,8 +307,8 @@ def merge_paras(paras):
         prev_kind, prev_value = merged_paras[-1]
 
         if prev_kind == kind:
-            if 'heading' in kind:
-                prev_value += '\n'
+            if "heading" in kind:
+                prev_value += "\n"
             merged_paras[-1] = (kind, prev_value + value)
         elif value:
             merged_paras.append((kind, value))
@@ -280,22 +316,62 @@ def merge_paras(paras):
     return merged_paras
 
 
+def lookup_run(styles_table, run):
+    try:
+        eastAsia = 'eastAsia' in list(run.element.rPr.rFonts.attrib.values())
+    except AttributeError:
+        eastAsia = False
+
+    try:
+        hint_cs = 'cs' in list(run.element.rPr.rFonts.attrib.values())
+    except AttributeError:
+        hint_cs = False
+
+    try:
+        bCs = list(run.element.rPr.bCs.attrib.values())[0]
+    except (AttributeError, IndexError):
+        bCs = False
+
+    try:
+        szCs = list(run.element.rPr.szCs.attrib.values())[0]
+    except AttributeError:
+        szCs = False
+
+    return styles_table.lookup(
+        {
+            "style": run.style.style_id,
+            "bold": run.bold,
+            "cs_bold": run.font.cs_bold,
+            "bCs": bCs,
+            "font_size": run.font.size,
+            "szCs": szCs,
+            "font": get_fonts(run),
+            "eastAsia": eastAsia,
+            "hint_cs": hint_cs,
+        }, run.text,
+    )
+
+
 def parse(doc_file_name, percent):
     def new_page(name, appear_in_toc=True):
         return {
-            'name': name,
-            'items': [],
-            'appear_in_toc': appear_in_toc,
-            'footnotes': {},
+            "name": name,
+            "items": [],
+            "appear_in_toc": appear_in_toc,
+            "footnotes": {},
         }
 
     pages = []
     cur_page = new_page(name=None)
 
-    word_doc = docx.Document(os.path.join('input_dict', doc_file_name))
-    word_doc_footnotes = docx_fork_ludoo.Document(os.path.join('input_dict', doc_file_name))
+    word_doc = docx.Document(os.path.join("input_dict", doc_file_name))
+    word_doc_footnotes = docx_fork_ludoo.Document(
+        os.path.join("input_dict", doc_file_name)
+    )
 
     unknown_list = []
+
+    styles_table = StylesTable()
 
     with open("output/debug.txt", "w", encoding="utf-8") as debug_file:
         limit = (len(word_doc.paragraphs) * percent) // 100 + 1
@@ -304,20 +380,27 @@ def parse(doc_file_name, percent):
             zip(word_doc.paragraphs, word_doc_footnotes.paragraphs)
         ):
             if idx > limit:
-                print(f"Stopping parsing after {idx} paragraphs out of {len(word_doc.paragraphs)}")
+                print(
+                    f"Stopping parsing after {idx} paragraphs out of {len(word_doc.paragraphs)}"
+                )
                 break
 
             if paragraph.text.strip():
                 # print "Paragraph:", paragraph.text, "$"
                 para = []
                 debug_file.write("\n\nNEW_PARA:\n------\n")
-                for (run, footnote_run) in zip(paragraph.runs, footnote_paragraph.runs):
-                    s = "!%s.%s:%s$" % (run.style.style_id, styles.get(run_style_id(run), run_style_id(run)), run.text)
+                for run, footnote_run in zip(paragraph.runs, footnote_paragraph.runs):
+                    robust_style = lookup_run(styles_table, run)
+                    s = "!%s.%s:%s$" % (
+                        run.style.style_id,
+                        styles.get(run_style_id(run), run_style_id(run)),
+                        run.text,
+                    )
                     # print "!%s:%s$" % (styles.get(run.style.style_id, run.style.style_id), run.text)
-                    debug_file.write(s + ' ')
+                    debug_file.write(s + " ")
                     type = styles.get(run_style_id(run), "unknown")
 
-                    if 'unknown' in type and run.text.strip():
+                    if "unknown" in type and run.text.strip():
                         type = fix_unknown(run)
 
                     if type == "DefaultParagraphFont":
@@ -329,17 +412,30 @@ def parse(doc_file_name, percent):
                         type = bold_type(s, type, run)
 
                     # single run & alignment is CENTER and ...-> letter heading
-                    if run.text.strip() and paragraph.alignment is not None and int(paragraph.alignment) == 1 and "heading" not in type:
+                    if (
+                        run.text.strip()
+                        and paragraph.alignment is not None
+                        and int(paragraph.alignment) == 1
+                        and "heading" not in type
+                    ):
                         if len(paragraph.runs) <= 2 and run.text.isalnum():
                             size_kind = "heading_letter"
                             type = size_kind
 
                         if run.font.size and run.text.strip():
                             size_kind = sizes.match(run.font.size)
-                            if size_kind == 'unknown':
-                                print("!%s. Size: %d, Bool: %s, %s:%s$" % (
-                                    size_kind, run.font.size, run.font.cs_bold, type, run.text))
-                            if size_kind not in ('normal', 'unknown'):
+                            if size_kind == "unknown":
+                                print(
+                                    "!%s. Size: %d, Bool: %s, %s:%s$"
+                                    % (
+                                        size_kind,
+                                        run.font.size,
+                                        run.font.cs_bold,
+                                        type,
+                                        run.text,
+                                    )
+                                )
+                            if size_kind not in ("normal", "unknown"):
                                 type = size_kind
 
                     try:
@@ -358,7 +454,7 @@ def parse(doc_file_name, percent):
                     # NOTE: this footnote number need no fix.
                     # it is a recurrence, therefore it has no id.
                     if is_footnote_recurrence(run, type):
-                        type = 'footnote_recurrence'
+                        type = "footnote_recurrence"
 
                     para.append((type, run.text))
 
@@ -368,23 +464,30 @@ def parse(doc_file_name, percent):
                             print(paragraph.text)
                             s = "\nMissing: !%s:%s$\n\n" % (run_style_id(run), run.text)
                             print(s)
-                            debug_file.write(s + ' ')
+                            debug_file.write(s + " ")
 
                     try:
                         # if run.footnote_references:
                         footnote_references = footnote_run.footnote_references
                         if footnote_references:
-                            for (note) in footnote_references:
+                            for note in footnote_references:
                                 try:
-                                    relative_note_id = note.id - cur_page['footnotes'][1]['number_abs'] + 1
+                                    relative_note_id = (
+                                        note.id
+                                        - cur_page["footnotes"][1]["number_abs"]
+                                        + 1
+                                    )
                                 except KeyError:
                                     relative_note_id = 1
-                                para.append(('footnote', str(relative_note_id)))
-                                cur_page['footnotes'][relative_note_id] = {
-                                    'number_relative': relative_note_id,
-                                    'number_abs': note.id,
-                                    'content': footer.analyze_footnote(
-                                        word_doc_footnotes.footnotes_part.notes[note.id + 1]),
+                                para.append(("footnote", str(relative_note_id)))
+                                cur_page["footnotes"][relative_note_id] = {
+                                    "number_relative": relative_note_id,
+                                    "number_abs": note.id,
+                                    "content": footer.analyze_footnote(
+                                        word_doc_footnotes.footnotes_part.notes[
+                                            note.id + 1
+                                        ]
+                                    ),
                                 }
 
                     except Exception as e:
@@ -393,41 +496,47 @@ def parse(doc_file_name, percent):
                 para.append(("new_line", "\n"))
                 para = analyze_and_fix(para)
 
-                op, name = is_need_new_section(para, cur_page['name'])
-                if op == 'UPDATE_NAME':
-                    cur_page['name'] = name
-                elif op == 'NEW_LETTER':
+                op, name = is_need_new_section(para, cur_page["name"])
+                if op == "UPDATE_NAME":
+                    cur_page["name"] = name
+                elif op == "NEW_LETTER":
                     pages.append(cur_page)
                     cur_page = new_page(name, appear_in_toc=False)
-                elif op == 'NEW_SECTION':
+                elif op == "NEW_SECTION":
                     pages.append(cur_page)
                     cur_page = new_page(fix_section_name(name))
                 else:
                     assert op is None and name is None
 
-                cur_page['items'].extend(para)
+                cur_page["items"].extend(para)
             else:
                 para = [("new_line", "\n")]
-                cur_page['items'].extend(para)
+                cur_page["items"].extend(para)
+
+    styles_table.save()
 
     if unknown_list:
         print("\n\nMissing:")
         print(unknown_list)
 
     for ind, page in enumerate(pages):
-        pages[ind]['items'] = merge_paras(page['items'])
-        if pages[ind]['items'][0][0] == 'new_line':
-            pages[ind]['items'].pop(0)
+        pages[ind]["items"] = merge_paras(page["items"])
+        if pages[ind]["items"][0][0] == "new_line":
+            pages[ind]["items"].pop(0)
         try:
-            if pages[ind]['items'][-1][0] == 'new_line':
-                pages[ind]['items'].pop()
+            if pages[ind]["items"][-1][0] == "new_line":
+                pages[ind]["items"].pop()
         except IndexError:
             pass
 
-        pages[ind]['items'] = fix_newlines_with_spaces_between(pages[ind]['items'])
+        pages[ind]["items"] = fix_newlines_with_spaces_between(pages[ind]["items"])
 
-    pages = [page for page in pages if page['items']]
+    pages = [page for page in pages if page["items"]]
     # drop all pages that have only 1 section of new_line
-    pages = [page for page in pages if len(page['items']) > 1 or page['items'][0][0] != 'new_line']
+    pages = [
+        page
+        for page in pages
+        if len(page["items"]) > 1 or page["items"][0][0] != "new_line"
+    ]
 
     return pages

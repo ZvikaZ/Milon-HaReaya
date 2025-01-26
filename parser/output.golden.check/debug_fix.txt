@@ -161,9 +161,7 @@ subject_normal:נקודים .
  definition_normal:- העולמים והבריות לאין תכלית, הכחות .
  definition_normal:בפירודם°.
  definition_normal: ובהתגברותם, האינדיוידואליות המתאדרת, החיים בכל שאונם הנחמד .
- definition_small:.
- source_normal:[א"ק א קפט].
- definition_small:..
+ source_normal:[א"ק א קפט]..
  new_line:
 .
  new_line:

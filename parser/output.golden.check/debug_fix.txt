@@ -149,7 +149,7 @@ subject_normal:גאונים .
  new_line:
 .
  ---------------
-sub-subject_normal:גדול הוא קידוש השם מחלול השם.
+subject_small:גדול הוא קידוש השם מחלול השם.
  footnote:1.
  definition_normal: - .
  definition_small:צד קידוש השם הוא הגדול המכריע והמחייב כשבאותו ענין יש צד קידוש השם וצד חילול השם, ואין אומרים ספיקא ושב ואל תעשה.

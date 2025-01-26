@@ -76,7 +76,7 @@ $
 NEW_PARA:
 ------
 !DefaultParagraphFont.DefaultParagraphFont:
-$ !DefaultParagraphFont.DefaultParagraphFont:- הוראת התכנסות הנושא אל המקום הראוי ע"י תנועה מוקדמת $ !DefaultParagraphFont.DefaultParagraphFont:[ר"מ $ !DefaultParagraphFont.DefaultParagraphFont:קכח$ !DefaultParagraphFont.DefaultParagraphFont:].$ !DefaultParagraphFont.DefaultParagraphFont:
+$ !DefaultParagraphFont.DefaultParagraphFont:[ר"מ $ !DefaultParagraphFont.DefaultParagraphFont:קכח$ !DefaultParagraphFont.DefaultParagraphFont:].$ !DefaultParagraphFont.DefaultParagraphFont:
 $ 
 
 NEW_PARA:
@@ -89,11 +89,11 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!DefaultParagraphFont.DefaultParagraphFont:גדול הוא קידוש השם מחלול השם$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:- $ !DefaultParagraphFont.DefaultParagraphFont:צד קידוש השם הוא הגדול המכריע והמחייב כשבאותו ענין יש צד קידוש השם וצד חילול השם, ואין אומרים $ !DefaultParagraphFont.DefaultParagraphFont:ספיקא$ !DefaultParagraphFont.DefaultParagraphFont: ושב ואל תעשה$ !DefaultParagraphFont.DefaultParagraphFont: [עפ"י שי' ה 88].$ 
+!DefaultParagraphFont.DefaultParagraphFont: $ 
 
 NEW_PARA:
 ------
-!DefaultParagraphFont.DefaultParagraphFont:נקודים$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:- העולמים והבריות לאין תכלית, $ !DefaultParagraphFont.DefaultParagraphFont:הכחות$ !DefaultParagraphFont.DefaultParagraphFont: בפירודם$ !DefaultParagraphFont.DefaultParagraphFont:°$ !DefaultParagraphFont.DefaultParagraphFont: ובהתגברותם, $ !DefaultParagraphFont.DefaultParagraphFont:האינדיוידואליות$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:המתאדרת$ !DefaultParagraphFont.DefaultParagraphFont:, החיים בכל שאונם הנחמד $ !DefaultParagraphFont.DefaultParagraphFont:[א"ק א $ !DefaultParagraphFont.DefaultParagraphFont:קפט$ !DefaultParagraphFont.DefaultParagraphFont:].$ !DefaultParagraphFont.DefaultParagraphFont:
+!DefaultParagraphFont.DefaultParagraphFont:נקודים$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:- העולמים והבריות לאין תכלית, $ !DefaultParagraphFont.DefaultParagraphFont:הכחות$ !DefaultParagraphFont.DefaultParagraphFont: בפירודם$ !DefaultParagraphFont.DefaultParagraphFont: ובהתגברותם, $ !DefaultParagraphFont.DefaultParagraphFont:האינדיוידואליות$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:המתאדרת$ !DefaultParagraphFont.DefaultParagraphFont:, החיים בכל שאונם הנחמד $ !DefaultParagraphFont.DefaultParagraphFont:[א"ק א $ !DefaultParagraphFont.DefaultParagraphFont:קפט$ !DefaultParagraphFont.DefaultParagraphFont:].$ !DefaultParagraphFont.DefaultParagraphFont:
 $ 
 
 NEW_PARA:
@@ -194,7 +194,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s01.subject_normal:"$ !s01.subject_normal:"$ !s02.definition_normal:$ !s11.sub-subject_normal: $ !DefaultParagraphFont.DefaultParagraphFont:-$ !DefaultParagraphFont.DefaultParagraphFont: $ !s17.subject_small:בני אדם שערומים$ !s02.definition_normal:°$ !s17.subject_small: בדעת$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:הם $ !DefaultParagraphFont.DefaultParagraphFont:מושגחים$ !DefaultParagraphFont.DefaultParagraphFont: מאד בעצמם, מצד שלמותם הפרטית, $ !s17.subject_small:ומשימים עצמם כבהמה$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont: מבטלים את עצמם אל הכלל, כאילו לא $ !DefaultParagraphFont.DefaultParagraphFont:היתה$ !DefaultParagraphFont.DefaultParagraphFont: להם תכלית פרטית כלל$ !DefaultParagraphFont.DefaultParagraphFont: $ !s03.definition_small:[$ !s03.definition_small:מ"ש$ !s03.definition_small: $ !s03.definition_small:קיח־ט$ !s03.definition_small:].$ 
+!s01.subject_normal:"$ !s01.subject_normal:"$ !s02.definition_normal:$ !s11.sub-subject_normal: $ !DefaultParagraphFont.DefaultParagraphFont:-$ !DefaultParagraphFont.DefaultParagraphFont: $ !s17.subject_small:בני אדם שערומים$ !s02.definition_normal:°$ !s17.subject_small: בדעת$ !s17.subject_small:ומשימים עצמם כבהמה$ !DefaultParagraphFont.DefaultParagraphFont: $ !s03.definition_small:[$ !s03.definition_small:מ"ש$ !s03.definition_small: $ !s03.definition_small:קיח־ט$ !s03.definition_small:].$ 
 
 NEW_PARA:
 ------
@@ -226,7 +226,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!DefaultParagraphFont.DefaultParagraphFont:צדיק $ !DefaultParagraphFont.DefaultParagraphFont:דנטיר$ !DefaultParagraphFont.DefaultParagraphFont: ברית $ !DefaultParagraphFont.DefaultParagraphFont: מי שבא עד למדה העליונה, שהחפץ $ !DefaultParagraphFont.DefaultParagraphFont:האלהי$ !DefaultParagraphFont.DefaultParagraphFont: הוא גדול ומכריע בקדושתו גם את הנטיה המינית$ !DefaultParagraphFont.DefaultParagraphFont:, <הכרעה זו באה, לא בדרך עקירת הטבע הרוחני והגופני, כי אם ברוממותה אל התעודה השכלית, $ !DefaultParagraphFont.DefaultParagraphFont:המוארה$ !DefaultParagraphFont.DefaultParagraphFont: באורה $ !DefaultParagraphFont.DefaultParagraphFont:האלהית$ !DefaultParagraphFont.DefaultParagraphFont:> $ !DefaultParagraphFont.DefaultParagraphFont:[קובץ א $ !DefaultParagraphFont.DefaultParagraphFont:שכט$ !DefaultParagraphFont.DefaultParagraphFont:]. $ 
+!DefaultParagraphFont.DefaultParagraphFont:צדיק $ !DefaultParagraphFont.DefaultParagraphFont:דנטיר$ !DefaultParagraphFont.DefaultParagraphFont: ברית $ !DefaultParagraphFont.DefaultParagraphFont:[קובץ א $ !DefaultParagraphFont.DefaultParagraphFont:שכט$ !DefaultParagraphFont.DefaultParagraphFont:]. $ 
 
 NEW_PARA:
 ------
@@ -349,7 +349,7 @@ $
 
 NEW_PARA:
 ------
-!s01.subject_normal:@$ !DefaultParagraphFont.DefaultParagraphFont: גל$ !DefaultParagraphFont.DefaultParagraphFont: עז$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:הגבורה$ !DefaultParagraphFont.DefaultParagraphFont:האלהית$ !DefaultParagraphFont.DefaultParagraphFont: הפועלת את $ !DefaultParagraphFont.DefaultParagraphFont:הכל$ !DefaultParagraphFont.DefaultParagraphFont: למען הרוממות האצילית, המסוקרת אך לפני $ !DefaultParagraphFont.DefaultParagraphFont:כסא$ !DefaultParagraphFont.DefaultParagraphFont:כבודו$ !DefaultParagraphFont.DefaultParagraphFont: של בורא כל העולמים ברוך הוא. ההופעה $ !DefaultParagraphFont.DefaultParagraphFont:העזיזה$ !DefaultParagraphFont.DefaultParagraphFont: החודרת מרום הגובה העליון עד שפל המדרגה של אדם על הארץ$ !DefaultParagraphFont.DefaultParagraphFont:°$ !s03.definition_small:[עפ"י ע"א ד ט קד].$ !s03.definition_small: $ 
+!s01.subject_normal:@$ !DefaultParagraphFont.DefaultParagraphFont:°$ !s03.definition_small:[עפ"י ע"א ד ט קד].$ !s03.definition_small: $ 
 
 NEW_PARA:
 ------
@@ -427,7 +427,7 @@ $
 
 NEW_PARA:
 ------
-!DefaultParagraphFont.DefaultParagraphFont:באהבה$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:חפץ פנימי והכרה עצמית $ !s03.definition_small:[ל"ה 55].$ !s03.definition_small: $ !s03.definition_small:
+!DefaultParagraphFont.DefaultParagraphFont:באהבה$ !s03.definition_small:[ל"ה 55].$ !s03.definition_small: $ !s03.definition_small:
 $ !s02.definition_normal:כח העבודה מאהבה$ !s02.definition_normal: - $ !s02.definition_normal:◊$ !s02.definition_normal: $ !s02.definition_normal:אינו בא כ$ !s02.definition_normal:י $ !s02.definition_normal:א$ !s02.definition_normal:ם$ !s02.definition_normal: לפי מדת הידיעה$ !s02.definition_normal: $ !s02.definition_normal:הבאה בלימוד של קביעות ועשירות רב$ !s02.definition_normal:ה $ !s02.definition_normal:במקצעו$ !s02.definition_normal:ת $ !s02.definition_normal:השונים של תורת המוסר$ !s02.definition_normal:°$ !s02.definition_normal: והיראה$ !s02.definition_normal:°$ !s02.definition_normal:, $ !s02.definition_normal:ש$ !s02.definition_normal:אי אפשר כלל להמצא$ !s02.definition_normal: $ !s02.definition_normal:מבלעדי לימוד בסדר נכון$ !s02.definition_normal:,$ !s02.definition_normal: $ !s02.definition_normal:למגר$ !s02.definition_normal:ס$ !s02.definition_normal: תח$ !s02.definition_normal:י$ !s02.definition_normal:לה בבקיאות מלמטה למעלה$ !s02.definition_normal:,$ !s02.definition_normal: ואח$ !s02.definition_normal:ר $ !s02.definition_normal:כ$ !s02.definition_normal:ך$ !s02.definition_normal: למס$ !s02.definition_normal:ב$ !s02.definition_normal:ר בעומק עיון ודעה$ !s02.definition_normal: שלמה $ !s03.definition_small:[ל$ !s03.definition_small:"$ !s03.definition_small:ה 188].$ !s03.definition_small:
 $ !s02.definition_normal:ע"ע$ !s02.definition_normal: עבודה מאהבה$ !s02.definition_normal:, עבודת ד' מאהבה ותלמוד $ !s02.definition_normal:תורה$ !s02.definition_normal:־$ !s02.definition_normal:לשמה$ !s02.definition_normal:.$ 
 

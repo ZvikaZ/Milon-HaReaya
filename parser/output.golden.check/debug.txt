@@ -38,7 +38,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:-$ !s03.definition_small:[$ !s03.definition_small:א"ק ד $ !s03.definition_small:תכט$ !s03.definition_small: ($ !s03.definition_small:קובץ ה $ !s03.definition_small:לז$ !s03.definition_small:)$ !s03.definition_small:]$ !s03.definition_small:.$ 
+!DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:-$ 
 
 NEW_PARA:
 ------
@@ -353,7 +353,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s01.subject_normal:־$ !s02.definition_normal:°$ !s03.definition_small:[$ !s03.definition_small:קבצ$ !s03.definition_small:' ב קנה$ !s11.sub-subject_normal:]$ 
+!s01.subject_normal:־$ !s02.definition_normal:°$ !s11.sub-subject_normal:]$ 
 
 NEW_PARA:
 ------

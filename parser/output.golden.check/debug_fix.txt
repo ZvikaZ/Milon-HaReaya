@@ -55,9 +55,7 @@ subject_small:"אורות" .
  ---------------
 subject_normal:זהירות הפנימית -.
  definition_normal: חסימת התאוה הבהמית, (ופקיחת) [וסקירת] העינים על כל העשוי בכל חוג הבשר והחומר .
- definition_small:.
- source_normal:[א"ק ד תכט (קובץ ה לז)].
- definition_small:..
+ source_normal:[א"ק ד תכט (קובץ ה לז)]..
  new_line:
 .
  ---------------
@@ -954,8 +952,8 @@ subject_normal:אור ד' המהוה הישות .
 definition_normal:.
  definition_normal:נשמת־העולמים°.
  definition_normal: .
- definition_small:[קבצ' ב קנה.
- definition_small:].
+ source_normal:[קבצ' ב קנה.
+ source_normal:].
  definition_small:..
  new_line:
 .

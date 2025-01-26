@@ -123,10 +123,8 @@ subject_normal:אבוקה .
 subject_light:אשא דעי למרחוק ולפועלי אתן צדק.
  footnote:3.
  definition_normal: - .
- fake_sub-subject_light:להבין בחינת מה מהצדק העליון, נחוץ להתרומם בסולם הדעות מרחק רב מאד, הרחק הרחק ממדת הצדק שלנו .
- fake_subject_light:.
- source_light:[נ"א ה 29].
- fake_subject_light:..
+ definition_light:להבין בחינת מה מהצדק העליון, נחוץ להתרומם בסולם הדעות מרחק רב מאד, הרחק הרחק ממדת הצדק שלנו .
+ source_light:[נ"א ה 29]..
  new_line:
 .
  ---------------

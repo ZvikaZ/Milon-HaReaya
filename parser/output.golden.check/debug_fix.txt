@@ -234,9 +234,7 @@ subject_normal:לי .
  definition_normal:, .
  definition_normal:לאור־פני־מלך־חיים°.
  definition_normal: .
- definition_small:.
- source_normal:[ע"ר א קכט].
- definition_small:..
+ source_normal:[ע"ר א קכט]..
  new_line:
 .
  ---------------

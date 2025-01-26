@@ -13,7 +13,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:[$ !DefaultParagraphFont.DefaultParagraphFont:קבצ$ !DefaultParagraphFont.DefaultParagraphFont:'$ !DefaultParagraphFont.DefaultParagraphFont: ג $ !DefaultParagraphFont.DefaultParagraphFont:טז$ !DefaultParagraphFont.DefaultParagraphFont:].$ 
+!DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:קבצ$ !DefaultParagraphFont.DefaultParagraphFont:'$ 
 
 NEW_PARA:
 ------
@@ -38,7 +38,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:-$ !DefaultParagraphFont.DefaultParagraphFont:($ !DefaultParagraphFont.DefaultParagraphFont:)$ !DefaultParagraphFont.DefaultParagraphFont:[וסקירת] $ !DefaultParagraphFont.DefaultParagraphFont:מר$ !s03.definition_small:[$ !s03.definition_small:א"ק ד $ !s03.definition_small:תכט$ !s03.definition_small: ($ !s03.definition_small:קובץ ה $ !s03.definition_small:לז$ !s03.definition_small:)$ !s03.definition_small:]$ !s03.definition_small:.$ 
+!DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:-$ !s03.definition_small:[$ !s03.definition_small:א"ק ד $ !s03.definition_small:תכט$ !s03.definition_small: ($ !s03.definition_small:קובץ ה $ !s03.definition_small:לז$ !s03.definition_small:)$ !s03.definition_small:]$ !s03.definition_small:.$ 
 
 NEW_PARA:
 ------
@@ -100,8 +100,8 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s05.definition_small:;$ !s03.definition_small:[$ !s03.definition_small:פנק' ג $ !s03.definition_small:רסד$ !s03.definition_small: ($ !s03.definition_small:מא"ה$ !s03.definition_small: ב שטו$ !s03.definition_small:,$ !s03.definition_small: $ !s03.definition_small:ב"ר$ !s03.definition_small: שמא)]$ !s03.definition_small:. $ !s03.definition_small:
-$ !s03.definition_small: - כתב $ !s03.definition_small:במס"י$ !s03.definition_small:: כי $ !s03.definition_small: לא יעיק הגוף לנשמה, ודרכי החומר לא יתגברו על השכל, אבל $ !s03.definition_small: הגוף עוזר לנשמה, ותוכו מקודש מקדושתה $ !s03.definition_small:[פנק' ג $ !s03.definition_small:קכו$ !s03.definition_small:].$ 
+!s03.definition_small:[$ !s03.definition_small:פנק' ג $ !s03.definition_small:רסד$ !s03.definition_small: ($ !s03.definition_small:מא"ה$ !s03.definition_small: ב שטו$ !s03.definition_small:,$ !s03.definition_small: $ !s03.definition_small:ב"ר$ !s03.definition_small: שמא)]$ !s03.definition_small:. $ !s03.definition_small:
+$ !s03.definition_small:[פנק' ג $ !s03.definition_small:קכו$ !s03.definition_small:].$ 
 
 NEW_PARA:
 ------
@@ -111,12 +111,12 @@ $
 
 NEW_PARA:
 ------
-!s12.sub-subject_light:($ !s12.sub-subject_light:רצון$ !s03.definition_small:־$ !s12.sub-subject_light:פשוט$ !s12.definition_light: $ !s12.sub-subject_light:בלשון $ !s12.sub-subject_light:חכמי$ !s02.definition_normal:־$ !s12.sub-subject_light:האמת$ !s12.sub-subject_light:)$ !s03.definition_small:$ !s03.definition_small: $ !s12.definition_light:
+!s12.sub-subject_light:($ !s12.sub-subject_light:רצון$ !s03.definition_small:־$ !s12.sub-subject_light:פשוט$ !s12.definition_light: $ !s12.sub-subject_light:בלשון $ !s12.sub-subject_light:חכמי$ !s12.sub-subject_light:האמת$ !s12.sub-subject_light:)$ !s03.definition_small:$ !s03.definition_small: $ !s12.definition_light:
 $ 
 
 NEW_PARA:
 ------
-!s02.definition_normal:אמונה$ !s03.sub-subject_small:אמת$ !s03.definition_small: $ !s03.sub-subject_small:האמונה$ !s03.definition_small:$ !s03.definition_small: $ !s03.definition_small:הידיעה$ !s03.definition_small: $ !s03.definition_small:ההכרה$ !s03.definition_small: $ !s03.definition_small:ההבנה$ !s03.definition_small: $ !s03.definition_small:הברורה$ !s03.definition_small: $ !s03.definition_small:הפשוטה$ !s03.definition_small: $ !s03.definition_small:שכל$ !s03.definition_small: $ !s03.definition_small:הנמצאים$ !s03.definition_small: $ !s03.definition_small:שבעולם$ !s03.definition_small: $ !s03.definition_small:כולם$ !s03.definition_small: $ !s03.definition_small:נמשכים$ !s03.definition_small: $ !s03.definition_small:ומתגלים$ !s03.definition_small: $ !s03.definition_small:לנו$ !s03.definition_small: $ !s03.definition_small:מתוך$ !s03.definition_small: $ !s03.definition_small:מקור$ !s03.definition_small: $ !s03.definition_small:המציאות$ !s03.definition_small:, $ !s03.definition_small:וכלשונו$ !s03.definition_small: $ !s03.definition_small:של$ !s03.definition_small: $ !s03.definition_small:הרמב$ !s03.definition_small:"$ !s03.definition_small:ם$ !s03.definition_small: $ !s03.definition_small:שכל$ !s03.definition_small: $ !s03.definition_small:הנמצאים$ !s03.definition_small: $ !s03.definition_small:הם$ !s03.definition_small: $ !s03.definition_small:מתוך$ !s03.definition_small: $ !s03.definition_small:אמתת$ !s03.definition_small: $ !s03.definition_small:מציאותו$ !s03.definition_small: $ !s03.definition_small:[$ !s03.definition_small:אגרת$ !s03.definition_small: $ !s03.definition_small:רבינו$ !s03.definition_small:, $ !s03.definition_small:מי$ !s03.definition_small:"$ !s03.definition_small:ז$ !s03.definition_small: $ !s03.definition_small:בכסלו$ !s03.definition_small: $ !s03.definition_small:תשל$ !s03.definition_small:"$ !s03.definition_small:ז$ !s03.definition_small:. $ !s03.definition_small:מובא ב$ !s03.definition_small:שי$ !s03.definition_small:'$ !s03.definition_small: $ !s03.definition_small:ג$ !s03.definition_small: 241, $ !s03.definition_small:הערה$ !s03.definition_small: 89$ !s03.definition_small:].$ 
+!s02.definition_normal:אמונה$ !s03.sub-subject_small:אמת$ !s03.definition_small: $ !s03.sub-subject_small:האמונה$ !s03.definition_small:$ !s03.definition_small: $ !s03.definition_small:הידיעה$ !s03.definition_small: $ !s03.definition_small:ההכרה$ !s03.definition_small: $ !s03.definition_small:ההבנה$ !s03.definition_small: $ !s03.definition_small:הברורה$ !s03.definition_small: $ !s03.definition_small:הפשוטה$ !s03.definition_small: $ !s03.definition_small:שכל$ !s03.definition_small: $ !s03.definition_small:הנמצאים$ !s03.definition_small: $ !s03.definition_small:שבעולם$ !s03.definition_small: $ !s03.definition_small:כולם$ !s03.definition_small: $ !s03.definition_small:נמשכים$ !s03.definition_small: $ !s03.definition_small:ומתגלים$ !s03.definition_small: $ !s03.definition_small:לנו$ !s03.definition_small: $ !s03.definition_small:מתוך$ !s03.definition_small: $ !s03.definition_small:מקור$ !s03.definition_small: $ !s03.definition_small:המציאות$ !s03.definition_small:, $ !s03.definition_small:וכלשונו$ !s03.definition_small: $ !s03.definition_small:של$ !s03.definition_small: $ !s03.definition_small:הרמב$ !s03.definition_small:"$ !s03.definition_small:ם$ !s03.definition_small: $ !s03.definition_small:שכל$ !s03.definition_small: $ !s03.definition_small:הנמצאים$ !s03.definition_small: $ !s03.definition_small:הם$ !s03.definition_small: $ !s03.definition_small:מתוך$ !s03.definition_small: $ !s03.definition_small:אמתת$ !s03.definition_small: $ !s03.definition_small:מציאותו$ !s03.definition_small: $ !s03.definition_small:[$ !s03.definition_small: $ !s03.definition_small:, $ !s03.definition_small:"$ !s03.definition_small: $ !s03.definition_small: $ !s03.definition_small:"$ !s03.definition_small:. $ !s03.definition_small:מובא ב$ !s03.definition_small:'$ !s03.definition_small: $ !s03.definition_small:ג$ !s03.definition_small: 241, $ !s03.definition_small:הערה$ !s03.definition_small: 89$ !s03.definition_small:].$ 
 
 NEW_PARA:
 ------
@@ -124,7 +124,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!DefaultParagraphFont.DefaultParagraphFont:לי $ !DefaultParagraphFont.DefaultParagraphFont:°$ !DefaultParagraphFont.DefaultParagraphFont:°$ !DefaultParagraphFont.DefaultParagraphFont:[$ !DefaultParagraphFont.DefaultParagraphFont:ע"ר$ !DefaultParagraphFont.DefaultParagraphFont: א $ !DefaultParagraphFont.DefaultParagraphFont:קכט$ !DefaultParagraphFont.DefaultParagraphFont:].$ 
+!DefaultParagraphFont.DefaultParagraphFont:לי $ !DefaultParagraphFont.DefaultParagraphFont:°$ !DefaultParagraphFont.DefaultParagraphFont:°$ 
 
 NEW_PARA:
 ------
@@ -142,7 +142,7 @@ $
 
 NEW_PARA:
 ------
-!s1510.subject_small:ֹ$ !s05.definition_small:-$ !s038.source_small:[$ !s038.source_small:ח"ר$ !s038.source_small: $ !s038.source_small:34$ !s038.source_small:]. $ !s038.source_small:
+!s1510.subject_small:ֹ$ !s038.source_small:[$ !s038.source_small:ח"ר$ !s038.source_small: $ !s038.source_small:34$ !s038.source_small:]. $ !s038.source_small:
 $ 
 
 NEW_PARA:
@@ -151,8 +151,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s11.sub-subject_normal:- $ !s11.sub-subject_normal:ע' $ !s11.sub-subject_normal:במדור$ !s02.definition_normal: $ !s02.definition_normal:
-$ 
+!s11.sub-subject_normal:- $ !s11.sub-subject_normal:ע' $ !s11.sub-subject_normal:במדור$ 
 
 NEW_PARA:
 ------
@@ -257,7 +256,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s11.sub-subject_normal:◊$ !s11.sub-subject_normal: $ !s03.definition_small:[ע"א ב ח ו]. $ 
+!s11.sub-subject_normal:◊$ !s03.definition_small:[ע"א ב ח ו]. $ 
 
 NEW_PARA:
 ------
@@ -480,15 +479,15 @@ $
 
 NEW_PARA:
 ------
-!s05.definition_small: - $ !s05.sub-subject_small:(נערכת) $ !s05.definition_small:- <לא רק במידת הכמות של ידיעותיהם ושל התועלת הרוחנית שהם מביאים בלמוד ובמעשה; אלא בעיקר> בערך האיכות של סגולת$ !s03.definition_small:°$ !s05.definition_small: אישיותם העצמית, הנקבעת ע"י מעלת התורה $ 
+!s03.definition_small:°$ 
 
 NEW_PARA:
 ------
-!s05.definition_small: <לא לפי מדת הידיעות של התורה אלא> לפי הערך של הקשור הנפשי אל התורה $ 
+
 
 NEW_PARA:
 ------
-!s05.definition_small: - $ !s05.definition_small: - באופי הנפשי, בקישור לתורה, בשאיפת החיים בתכונת בינת הלב וכשרון הדעת $ 
+
 
 NEW_PARA:
 ------
@@ -514,20 +513,20 @@ $
 
 NEW_PARA:
 ------
-!s05.definition_small:אמיתותה$ !s05.definition_small: של ה$ !s05.definition_small: $ 
+!s05.definition_small: $ 
 
 NEW_PARA:
 ------
-!s05.sub-subject_small:ו$ !DefaultParagraphFont.DefaultParagraphFont:.$ !DefaultParagraphFont.DefaultParagraphFont: הדיוק בצפיית העתיד של התורה. ב$ !s03.definition_small:ע$ !s03.definition_small:ה קנא$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:"$ !DefaultParagraphFont.DefaultParagraphFont:אמנם$ !DefaultParagraphFont.DefaultParagraphFont: איזה $ !DefaultParagraphFont.DefaultParagraphFont:אומה$ !DefaultParagraphFont.DefaultParagraphFont: תוכל לשאת $ !DefaultParagraphFont.DefaultParagraphFont:עליה$ !DefaultParagraphFont.DefaultParagraphFont: ברמה $ !DefaultParagraphFont.DefaultParagraphFont:את$ !DefaultParagraphFont.DefaultParagraphFont: הדגל של $ !DefaultParagraphFont.DefaultParagraphFont:עבודת$ !DefaultParagraphFont.DefaultParagraphFont: האלהים האידיאלית? $ !DefaultParagraphFont.DefaultParagraphFont:וכו$ !DefaultParagraphFont.DefaultParagraphFont:'. $ !DefaultParagraphFont.DefaultParagraphFont:רק $ !DefaultParagraphFont.DefaultParagraphFont:אומה$ !DefaultParagraphFont.DefaultParagraphFont: כזאת, שיש לה $ !DefaultParagraphFont.DefaultParagraphFont:תורה$ !DefaultParagraphFont.DefaultParagraphFont: שקפלה $ !DefaultParagraphFont.DefaultParagraphFont:את$ !DefaultParagraphFont.DefaultParagraphFont: מהלכה $ !DefaultParagraphFont.DefaultParagraphFont:על$ !DefaultParagraphFont.DefaultParagraphFont:־$ !DefaultParagraphFont.DefaultParagraphFont:פי $ !DefaultParagraphFont.DefaultParagraphFont:התגלות$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:דעת$ !DefaultParagraphFont.DefaultParagraphFont: אלהים כזאת, של אספקלריא $ !DefaultParagraphFont.DefaultParagraphFont:המאירה$ !DefaultParagraphFont.DefaultParagraphFont:, של "$ !DefaultParagraphFont.DefaultParagraphFont:פה$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:אל$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:פה$ !DefaultParagraphFont.DefaultParagraphFont: אדבר $ !DefaultParagraphFont.DefaultParagraphFont:בו$ !DefaultParagraphFont.DefaultParagraphFont:", שהציבה $ !DefaultParagraphFont.DefaultParagraphFont:את$ !DefaultParagraphFont.DefaultParagraphFont: העתיד שלה בכל בהירותו, בכל $ !DefaultParagraphFont.DefaultParagraphFont:דיוקיו$ !DefaultParagraphFont.DefaultParagraphFont: היותר פרטיים, מראשית הויתה עד כל נפילותיה ושיבתה לתחיה באחרית הימים, ברום $ !DefaultParagraphFont.DefaultParagraphFont:מעלה$ !DefaultParagraphFont.DefaultParagraphFont: ואורה נפלאה$ !DefaultParagraphFont.DefaultParagraphFont:"$ !s05.definition_small: אמנם $ !s05.definition_small:סעיף זה הוא $ !s05.definition_small:ף$ !s05.definition_small: כאן.$ 
+!DefaultParagraphFont.DefaultParagraphFont:.$ !s03.definition_small:ע$ !s03.definition_small:ה קנא$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:אמנם$ !DefaultParagraphFont.DefaultParagraphFont:אומה$ !DefaultParagraphFont.DefaultParagraphFont:עליה$ !DefaultParagraphFont.DefaultParagraphFont:את$ !DefaultParagraphFont.DefaultParagraphFont:עבודת$ !DefaultParagraphFont.DefaultParagraphFont:אומה$ !DefaultParagraphFont.DefaultParagraphFont:תורה$ !DefaultParagraphFont.DefaultParagraphFont:את$ !DefaultParagraphFont.DefaultParagraphFont:על$ !DefaultParagraphFont.DefaultParagraphFont:התגלות$ !DefaultParagraphFont.DefaultParagraphFont:דעת$ !DefaultParagraphFont.DefaultParagraphFont:המאירה$ !DefaultParagraphFont.DefaultParagraphFont:פה$ !DefaultParagraphFont.DefaultParagraphFont:אל$ !DefaultParagraphFont.DefaultParagraphFont:פה$ !DefaultParagraphFont.DefaultParagraphFont:בו$ !DefaultParagraphFont.DefaultParagraphFont:את$ !DefaultParagraphFont.DefaultParagraphFont:דיוקיו$ !DefaultParagraphFont.DefaultParagraphFont:מעלה$ 
 
 NEW_PARA:
 ------
-!DefaultParagraphFont.DefaultParagraphFont:ז$ !s05.sub-subject_small:.$ !s05.definition_small: המ$ !s05.definition_small:ו$ !s05.definition_small:י$ !s05.definition_small:ות שלנו לתורה$ !s05.definition_small:נובעת מ$ !s05.definition_small:נו$ !s05.definition_small:ע' $ !s05.definition_small:שם $ !s05.definition_small: אמנם $ !s05.definition_small:סעיף זה הוא $ !s05.definition_small:, אך $ !DefaultParagraphFont.DefaultParagraphFont:מ"מ נ"ל דיש לחלק עפ"י בירורו של מו"ר הרב יצחק$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:שילת$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:($ !DefaultParagraphFont.DefaultParagraphFont:בס' בין הכוזרי והרמב"ם, פרק סגולת ישראל$ !DefaultParagraphFont.DefaultParagraphFont:)$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:את ה$ !DefaultParagraphFont.DefaultParagraphFont:חילוק בין $ !DefaultParagraphFont.DefaultParagraphFont:הסברת$ !DefaultParagraphFont.DefaultParagraphFont: הרמב"ם $ !DefaultParagraphFont.DefaultParagraphFont:להסברת $ !DefaultParagraphFont.DefaultParagraphFont:ריה"ל$ !DefaultParagraphFont.DefaultParagraphFont: במושג 'סגולת ישראל'. שלשיטתו של הרמב"ם 'סגולת ישראל' היא ה$ !DefaultParagraphFont.DefaultParagraphFont:פלא $ !DefaultParagraphFont.DefaultParagraphFont:ה$ !DefaultParagraphFont.DefaultParagraphFont:אלהי$ !DefaultParagraphFont.DefaultParagraphFont: היוצר סבירות סטטיסטית גבוהה יותר להופעת מידות נעלות ודעות אמיתיות בישראל מאשר באומות העולם; $ !DefaultParagraphFont.DefaultParagraphFont:ול$ !DefaultParagraphFont.DefaultParagraphFont:ריה"ל$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:בכוזרי, '$ !DefaultParagraphFont.DefaultParagraphFont:סגולת$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:ישראל$ !DefaultParagraphFont.DefaultParagraphFont:'$ !DefaultParagraphFont.DefaultParagraphFont: באה לידי ביטוי במציאות שפע העניין $ !DefaultParagraphFont.DefaultParagraphFont:האלהי$ !DefaultParagraphFont.DefaultParagraphFont: המתגבש לכלל הראויות לשמיעת הדיבור $ !DefaultParagraphFont.DefaultParagraphFont:האלהי$ !DefaultParagraphFont.DefaultParagraphFont: שהיא עניין אחד עם מגמ$ !DefaultParagraphFont.DefaultParagraphFont:ת$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:ההוויה$ !DefaultParagraphFont.DefaultParagraphFont: הכללית המתרכזת ומתגלה $ !DefaultParagraphFont.DefaultParagraphFont:בהסתוריה$ !DefaultParagraphFont.DefaultParagraphFont: הישראלית. $ !DefaultParagraphFont.DefaultParagraphFont:קווי ההסברה השונים האלה הם הקווים השונים גם בין שני ההסברים $ !DefaultParagraphFont.DefaultParagraphFont:בסוגיין$ !DefaultParagraphFont.DefaultParagraphFont:, בין העולה מסעיף ב המתאים לקו ההסברתי של $ !DefaultParagraphFont.DefaultParagraphFont:ריה"ל$ !DefaultParagraphFont.DefaultParagraphFont:, לבין סעיף ז $ !DefaultParagraphFont.DefaultParagraphFont:שיכול ל$ !DefaultParagraphFont.DefaultParagraphFont:התאים לאופי הסברת הרמב"ם.$ !DefaultParagraphFont.DefaultParagraphFont: נופך מיוחד מעניק לאוריינטציה זו פרופ' ברוך $ !DefaultParagraphFont.DefaultParagraphFont:קורצוויל$ !DefaultParagraphFont.DefaultParagraphFont: בספרו במאבק על ערכי היהדות, בפרק: $ !DefaultParagraphFont.DefaultParagraphFont:פלוראליזם$ !DefaultParagraphFont.DefaultParagraphFont: האנורמליות כיסוד הקיום היהודי, ע"ש עמ' 206-213.$ 
+!DefaultParagraphFont.DefaultParagraphFont:ז$ 
 
 NEW_PARA:
 ------
-!s03.definition_small:ע'$ !s01.subject_normal:במדור$ !s03.definition_small: הכרה והשכלה והפכן,$ !s05.definition_small:98 $ !s05.definition_small:ע' $ !s03.definition_small:במדור$ !s05.definition_small: קבלה ונסתר,$ !s05.definition_small:ובס' הוד הקרח הנורא עמ' $ !s05.definition_small:מה־מו$ !s05.definition_small: הרחבתי בהסברת $ !s05.definition_small:הענין$ !s05.definition_small:.$ 
+!s01.subject_normal:במדור$ !s05.definition_small:98 $ !s03.definition_small:במדור$ 
 
 NEW_PARA:
 ------
-!s01.subject_normal: $ !s01.subject_normal:-$ !s01.subject_normal: $ !s01.subject_normal:משמעות מלים אלו והטיותיהן איננה המשמעות השגורה של הכנה ועריכת פרטים שונים המקובצים במסגרת מסוימת,  מאוחדת טכנית או חברתית, כי אם - $ !s01.subject_normal:אורגני$ !s01.subject_normal:ות, כלליות $ !s01.subject_normal:נשמתית$ !s01.subject_normal:, יחוד (ע' במדור זה אחדות ויחוד), אחדות חיה עליונה. $ !s03.definition_small:ע"א ד $ !s03.definition_small:יג$ !s03.definition_small: י$ !s02.definition_normal:: לעומת $ !s11.sub-subject_normal:כשאחד מן האחים מת $ !s02.definition_normal:שאז$ !s02.definition_normal: $ !s02.definition_normal:ידאגו, כלומר, $ !s02.definition_normal:ירגישו את החסרון של העדר כח אחד מ$ !s02.definition_normal: הכללי הטבעי שלהם, $ !s02.definition_normal:[...] $ !s02.definition_normal:לתקן את הפרצה של החלל$ !s02.definition_normal:,$ !s02.definition_normal: אשר הונח בתוך האחדות האורגנית שלהם$ !s02.definition_normal:,$ !s02.definition_normal: על ידי מיתתו של האחד מן האחים$ !s02.definition_normal:;$ !s02.definition_normal: $ !s11.sub-subject_normal:כשאחד מבני החבורה מת $ !s02.definition_normal:- תדאג כל החבורה כולה לחפש דרך של תיקון, איך לבצר את היסוד האחדותי שנבנה בקיבוץ בכוחות שהתאחדו, שנהרס על ידי מיתתו של אחד מהחבורה$ !s02.definition_normal:.$ !s02.definition_normal: $ !DefaultParagraphFont.DefaultParagraphFont:קובץ ב $ !DefaultParagraphFont.DefaultParagraphFont:שמ$ !DefaultParagraphFont.DefaultParagraphFont::$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:בהמעטה של אורה, מהופעה אלוהית לעולם האלהות, באה השלשלת של הסיבות והמסובבים, העולמות הפרצופיים המאורגנים. $ !DefaultParagraphFont.DefaultParagraphFont:קובץ ד $ !DefaultParagraphFont.DefaultParagraphFont:קיז$ !DefaultParagraphFont.DefaultParagraphFont:: $ !DefaultParagraphFont.DefaultParagraphFont:הנשמות כולן $ !DefaultParagraphFont.DefaultParagraphFont: הן זה בזה, פועלות זה על זה כאברי המכונה, וכחלקי הגוף היחידי, וככוחות הנפש הפרטית. קובץ ג $ !DefaultParagraphFont.DefaultParagraphFont:קפג$ !DefaultParagraphFont.DefaultParagraphFont:: $ !DefaultParagraphFont.DefaultParagraphFont:באור הישר $ !DefaultParagraphFont.DefaultParagraphFont:האלהי$ !DefaultParagraphFont.DefaultParagraphFont: בכל המצוי ה$ !DefaultParagraphFont.DefaultParagraphFont:מאורגן$ !DefaultParagraphFont.DefaultParagraphFont: באחדות וכוון מעולה. $ !DefaultParagraphFont.DefaultParagraphFont:קובץ ה $ !DefaultParagraphFont.DefaultParagraphFont:קעה$ !DefaultParagraphFont.DefaultParagraphFont:: $ !DefaultParagraphFont.DefaultParagraphFont:הפלוסופיה$ !DefaultParagraphFont.DefaultParagraphFont: אינה משתרעת כי אם על חלק ידוע של העולם הרוחני, בטבעה היא נתוקה ממה שהוא חוץ לגבולותיה, ובזה עצמו היא מפורדת בפנימיותה פירוד מהותי. סיגול ההכרה, איך כל הדעות הרגשות והנטיות כולם מקטנם ועד גדלם מחוברים זה בזה, ואיך הם פועלים זה על זה, ואיך עולמות נפרדים $ !DefaultParagraphFont.DefaultParagraphFont:מאורגנים$ !DefaultParagraphFont.DefaultParagraphFont: יחד, זה אין בכחה לצייר$ !DefaultParagraphFont.DefaultParagraphFont:.$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:קובץ ו $ !DefaultParagraphFont.DefaultParagraphFont:רכט$ !DefaultParagraphFont.DefaultParagraphFont:: אינו דומה בעל $ !DefaultParagraphFont.DefaultParagraphFont:נשמה חטובה $ !DefaultParagraphFont.DefaultParagraphFont:מאורגנת,$ !DefaultParagraphFont.DefaultParagraphFont: שיצירותיה הפנימיות בוקעות שחקי השכל הדמיון והרגש, ורצונה מקיף עולמים, לנשמה מוגבלת בחוגה, ופרודה בחלקיה, שלא יתקשרו עדיין, מפני שהיא מבקשת עוד $ !DefaultParagraphFont.DefaultParagraphFont:את השתלמות צורתה $ !DefaultParagraphFont.DefaultParagraphFont:האורגנית$ !DefaultParagraphFont.DefaultParagraphFont:. $ !DefaultParagraphFont.DefaultParagraphFont:א"ק א $ !DefaultParagraphFont.DefaultParagraphFont:רטז$ !DefaultParagraphFont.DefaultParagraphFont:: $ !DefaultParagraphFont.DefaultParagraphFont:והאמונה והמוסר, $ !DefaultParagraphFont.DefaultParagraphFont:הבקרת$ !DefaultParagraphFont.DefaultParagraphFont: והמסה $ !DefaultParagraphFont.DefaultParagraphFont:(הולך) [$ !DefaultParagraphFont.DefaultParagraphFont:הול$ !DefaultParagraphFont.DefaultParagraphFont:כים]$ !DefaultParagraphFont.DefaultParagraphFont: הלוך $ !DefaultParagraphFont.DefaultParagraphFont:(ומשתכלל) [$ !DefaultParagraphFont.DefaultParagraphFont:ו$ !DefaultParagraphFont.DefaultParagraphFont:ה$ !DefaultParagraphFont.DefaultParagraphFont:שתכלל$ !DefaultParagraphFont.DefaultParagraphFont:]$ !DefaultParagraphFont.DefaultParagraphFont:, $ !DefaultParagraphFont.DefaultParagraphFont:(הולך) $ !DefaultParagraphFont.DefaultParagraphFont:הלוך $ !DefaultParagraphFont.DefaultParagraphFont:(ומתאגד) [$ !DefaultParagraphFont.DefaultParagraphFont:ו$ !DefaultParagraphFont.DefaultParagraphFont:ה$ !DefaultParagraphFont.DefaultParagraphFont:תאגד$ !DefaultParagraphFont.DefaultParagraphFont:]$ !DefaultParagraphFont.DefaultParagraphFont:,$ !DefaultParagraphFont.DefaultParagraphFont: (ומתארגן) [$ !DefaultParagraphFont.DefaultParagraphFont:ומתארג$ !DefaultParagraphFont.DefaultParagraphFont:נים$ !DefaultParagraphFont.DefaultParagraphFont:]$ !DefaultParagraphFont.DefaultParagraphFont: ביחד, בחטיבה חיה וקימה. $ 
+!s01.subject_normal: $ !s03.definition_small:ע"א ד $ !s03.definition_small:יג$ !s03.definition_small: י$ !DefaultParagraphFont.DefaultParagraphFont:נים$ 

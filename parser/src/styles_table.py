@@ -135,9 +135,8 @@ class StylesTable:
             self.all_key_names.update(key_dict.keys())
 
         fieldnames = (
-            ["kind", "first_text", "first_strings"]
-            + list(self.all_key_names)
-            + ["occurrences"]
+            ["kind", "first_text", "first_strings","occurrences"]
+            + sorted(list(self.all_key_names))
         )
 
         # Save known keys

@@ -135,9 +135,9 @@ class StylesTable:
             self.all_key_names.update(key_dict.keys())
 
         fieldnames = (
-            ["kind"]
+            ["kind", "first_text", "first_strings"]
             + list(self.all_key_names)
-            + ["occurrences", "first_text", "first_strings"]
+            + ["occurrences"]
         )
 
         # Save known keys
@@ -177,7 +177,8 @@ class StylesTable:
                             "first_strings": data["first_strings"],
                         }
                     )
-                    writer.writerow(row_data)
+                    if data["first_strings"]:
+                        writer.writerow(row_data)
         else:
             # Append unknown keys to the same file
             with open(self.csv_file, mode="a", newline="", encoding="utf-8") as file:

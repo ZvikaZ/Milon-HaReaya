@@ -439,11 +439,11 @@ subject_normal:"בני אדם שהן ערומין בדעת ומשימין עצמ
  footnote:9.
  definition_normal: .
  definition_small:- .
- fake_subject_small:בני אדם שערומים° בדעת .
+ fake_sub-subject_normal:בני אדם שערומים° בדעת .
  definition_normal:- הם .
  definition_normal:מושגחים°.
  definition_normal: מאד בעצמם, מצד שלמותם הפרטית, .
- fake_subject_small:ומשימים עצמם כבהמה .
+ fake_sub-subject_normal:ומשימים עצמם כבהמה .
  definition_normal:- מבטלים את עצמם אל הכלל, כאילו לא היתה להם תכלית פרטית כלל .
  definition_small:.
  source_normal:[מ"ש קיח־ט].

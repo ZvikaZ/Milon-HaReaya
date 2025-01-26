@@ -112,7 +112,7 @@ $
 
 NEW_PARA:
 ------
-!s02.definition_normal:- $ !s12.sub-subject_light:($ !s12.sub-subject_light:רצון$ !s03.definition_small:־$ !s12.sub-subject_light:פשוט$ !s03.definition_small:°$ !s12.definition_light: $ !s12.sub-subject_light:בלשון $ !s12.sub-subject_light:חכמי$ !s02.definition_normal:־$ !s12.sub-subject_light:האמת$ !s03.definition_small:°$ !s12.sub-subject_light:)$ !s03.definition_small:$ !s03.definition_small: $ !s02.definition_normal:-$ !s12.definition_light: בלי שום הרכבה ושום הכרח $ !s12.definition_light:[עפ"י נ"א ה 18].$ !s12.definition_light: $ !s12.definition_light:
+!s02.definition_normal:- $ !s12.sub-subject_light:($ !s12.sub-subject_light:רצון$ !s03.definition_small:־$ !s12.sub-subject_light:פשוט$ !s03.definition_small:°$ !s12.definition_light: $ !s12.sub-subject_light:בלשון $ !s12.sub-subject_light:חכמי$ !s02.definition_normal:־$ !s12.sub-subject_light:האמת$ !s03.definition_small:°$ !s12.sub-subject_light:)$ !s03.definition_small:$ !s03.definition_small: $ !s02.definition_normal:-$ !s12.definition_light:
 $ 
 
 NEW_PARA:
@@ -133,11 +133,11 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s01.subject_normal:"מעשים" $ !s02.definition_normal:- $ !s02.definition_normal:ע' במדור מצוות, הלכות, מנהגים $ !s02.definition_normal:וטעמיהן, $ !s02.definition_normal:הגדרות מבוא$ !s01.subject_normal:מצוות$ !s02.definition_normal: $ !s11.sub-subject_normal:מעשה המצוות$ !s11.sub-subject_normal:.$ 
+!s01.subject_normal:"מעשים" $ !s02.definition_normal:- $ !s02.definition_normal:ע' במדור מצוות, הלכות, מנהגים $ !s02.definition_normal:וטעמיהן, $ !s02.definition_normal:הגדרות מבוא$ !s01.subject_normal:מצוות$ !s02.definition_normal: $ !s11.sub-subject_normal:.$ 
 
 NEW_PARA:
 ------
-!s02.definition_normal:$ !s02.definition_normal:- הם העומדים בכל דור נגד יסוד התפשטותה של $ !s02.definition_normal:הקדושה־העליונה$ !s02.definition_normal:° $ !s02.definition_normal:ודעת־ד$ !s02.definition_normal:'־בעולם°, הם $ !s02.definition_normal:הם$ !s02.definition_normal: הנפשות הבאות $ !s02.definition_normal:מאותם הדורות, שהיו ראויים להיות לפני $ !s02.definition_normal:מתן־תורה$ !s02.definition_normal:°, $ !s11.sub-subject_normal:אשר קומטו בלא עת$ !s02.definition_normal:, כלומר, אלה שהם בכל מהותם נגד התורה° והשפעת קדושתה בעולם. המשוללים מכל הכרה טהורה° וקדושה°, ומכל עול קדוש וראוי $ !s03.definition_small:[$ !s03.definition_small:ע"ר$ !s03.definition_small: א $ !s03.definition_small:פ־פא$ !s03.definition_small:, מ"ר $ !s03.definition_small:84$ !s03.definition_small:]. $ !s03.definition_small:
+!s02.definition_normal:$ !s02.definition_normal:- הם העומדים בכל דור נגד יסוד התפשטותה של $ !s02.definition_normal:הקדושה־העליונה$ !s02.definition_normal:° $ !s02.definition_normal:ודעת־ד$ !s02.definition_normal:'־בעולם°, הם $ !s02.definition_normal:הם$ !s02.definition_normal: הנפשות הבאות $ !s02.definition_normal:מאותם הדורות, שהיו ראויים להיות לפני $ !s02.definition_normal:מתן־תורה$ !s02.definition_normal:°, $ !s02.definition_normal:, כלומר, אלה שהם בכל מהותם נגד התורה° והשפעת קדושתה בעולם. המשוללים מכל הכרה טהורה° וקדושה°, ומכל עול קדוש וראוי $ !s03.definition_small:[$ !s03.definition_small:ע"ר$ !s03.definition_small: א $ !s03.definition_small:פ־פא$ !s03.definition_small:, מ"ר $ !s03.definition_small:84$ !s03.definition_small:]. $ !s03.definition_small:
 $ !s02.definition_normal:מנגדי התורה, בכל דור ודור $ !s03.definition_small:[ה' $ !s03.definition_small:ריט$ !s03.definition_small:]. $ !s03.definition_small:
 $ 
 
@@ -184,15 +184,15 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s1510.subject_small:יפה שעה אחת בתשובה ומעשים טובים בעולם הזה$ !s1510.subject_small:,$ !s1510.subject_small: מכל חיי העולם הבא. ויפה שעה אחת של קורת רוח בעולם הבא$ !s1510.subject_small:,$ !s1510.subject_small: מכל חיי העולם הזה$ !s02.definition_normal:$ !s02.definition_normal: $ !s03.definition_small:- (שעה אחת של) חיים אידיאליים והגונים מקימי רצון הבורא ומגמת הבריאה, $ !s03.definition_small:היא $ !s03.sub-subject_small:־$ !s03.definition_small:כשלעצמם. ו$ !s03.definition_small: מהחיוניות הפנימית האדירה, מהאור והנעם הגדול והנשגב הממלא את ה"טרקלין", $ !s03.definition_small: כשלעצמם $ !s038.source_small:[עפ"י ל"י ב (מהדורת בית אל תשס"ז) $ !s038.source_small:שמ$ !s038.source_small:].$ 
+!s1510.subject_small:,$ !s1510.subject_small:,$ !s02.definition_normal:$ !s02.definition_normal: $ !s03.definition_small:- (שעה אחת של) חיים אידיאליים והגונים מקימי רצון הבורא ומגמת הבריאה, $ !s03.definition_small:היא $ !s03.sub-subject_small:־$ !s03.definition_small:כשלעצמם. ו$ !s03.definition_small: מהחיוניות הפנימית האדירה, מהאור והנעם הגדול והנשגב הממלא את ה"טרקלין", $ !s03.definition_small: כשלעצמם $ 
 
 NEW_PARA:
 ------
-!s17.subject_small:מהותה $ !s038.source_small:[$ !s038.source_small:צ"צ$ !s038.source_small: $ !s038.source_small:קסו$ !s038.source_small:].$ 
+!s17.subject_small:מהותה $ !s038.source_small:[$ !s038.source_small:צ"צ$ !s038.source_small:].$ 
 
 NEW_PARA:
 ------
-!s01.subject_normal:"$ !s01.subject_normal:"$ !s02.definition_normal:$ !s11.sub-subject_normal: $ !DefaultParagraphFont.DefaultParagraphFont:-$ !DefaultParagraphFont.DefaultParagraphFont: $ !s17.subject_small:בני אדם שערומים$ !s02.definition_normal:°$ !s17.subject_small: בדעת$ !s17.subject_small:ומשימים עצמם כבהמה$ !DefaultParagraphFont.DefaultParagraphFont: $ !s03.definition_small:[$ !s03.definition_small:מ"ש$ !s03.definition_small: $ !s03.definition_small:קיח־ט$ !s03.definition_small:].$ 
+!s01.subject_normal:"$ !s01.subject_normal:"$ !s02.definition_normal:$ !s11.sub-subject_normal: $ !DefaultParagraphFont.DefaultParagraphFont:-$ !DefaultParagraphFont.DefaultParagraphFont: $ !s02.definition_normal:°$ !DefaultParagraphFont.DefaultParagraphFont: $ !s03.definition_small:[$ !s03.definition_small:מ"ש$ !s03.definition_small: $ !s03.definition_small:קיח־ט$ !s03.definition_small:].$ 
 
 NEW_PARA:
 ------
@@ -486,15 +486,15 @@ $ !s02.definition_normal:ר' במדור זה, תלמידי חכמים.$ !s02.def
 
 NEW_PARA:
 ------
-!s05.definition_small: - $ !s05.sub-subject_small:(נערכת) $ !s05.definition_small:- <לא רק במידת הכמות של ידיעותיהם ושל התועלת הרוחנית שהם מביאים בלמוד ובמעשה; אלא בעיקר> בערך האיכות של סגולת$ !s03.definition_small:°$ !s05.definition_small: אישיותם העצמית, הנקבעת ע"י מעלת התורה $ !s038.source_small:[ל"י ב (מהדורת בית אל תשס"ג) $ !s038.source_small:עא$ !s038.source_small:].$ 
+!s05.definition_small: - $ !s05.sub-subject_small:(נערכת) $ !s05.definition_small:- <לא רק במידת הכמות של ידיעותיהם ושל התועלת הרוחנית שהם מביאים בלמוד ובמעשה; אלא בעיקר> בערך האיכות של סגולת$ !s03.definition_small:°$ !s05.definition_small: אישיותם העצמית, הנקבעת ע"י מעלת התורה $ 
 
 NEW_PARA:
 ------
-!s03.definition_small:-$ !s03.definition_small:-$ !s05.definition_small: <לא לפי מדת הידיעות של התורה אלא> לפי הערך של הקשור הנפשי אל התורה $ !s038.source_small:[עפ"י ל"י ב (מהדורת בית אל תשס"ז) $ !s038.source_small:קכד$ !s038.source_small:].$ 
+!s03.definition_small:-$ !s03.definition_small:-$ !s05.definition_small: <לא לפי מדת הידיעות של התורה אלא> לפי הערך של הקשור הנפשי אל התורה $ 
 
 NEW_PARA:
 ------
-!s05.definition_small: - $ !s05.definition_small: - באופי הנפשי, בקישור לתורה, בשאיפת החיים בתכונת בינת הלב וכשרון הדעת $ !s038.source_small:[עפ"י ל"י ב (מהדורת בית אל תשס"ז) $ !s038.source_small:קכב$ !s038.source_small:].$ 
+!s05.definition_small: - $ !s05.definition_small: - באופי הנפשי, בקישור לתורה, בשאיפת החיים בתכונת בינת הלב וכשרון הדעת $ 
 
 NEW_PARA:
 ------

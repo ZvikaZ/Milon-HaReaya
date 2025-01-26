@@ -73,8 +73,7 @@ new_line:
  new_line:
 .
  ---------------
-definition_normal:ע' במדור מונחי קבלה ונסתר, .
- definition_small:מתקלא..
+definition_normal:ע' במדור מונחי קבלה ונסתר, מתקלא..
  new_line:
 .
  new_line:

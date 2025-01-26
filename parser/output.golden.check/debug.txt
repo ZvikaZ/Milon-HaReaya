@@ -47,7 +47,7 @@ $ !s03.definition_small:[$ !s03.definition_small:רצי"ה$ !s03.definition_smal
 
 NEW_PARA:
 ------
-!s03.definition_small: $ !s03.definition_small:מתקלא$ !s03.definition_small:.$ !s03.definition_small:
+!s03.definition_small:
 $ 
 
 NEW_PARA:
@@ -57,7 +57,7 @@ $
 
 NEW_PARA:
 ------
-!s04.s04_bold:חילוני$ !s04.unknown_light: $ !s04.unknown_light: $ !s04.s04_bold:נשמה$ !s01.subject_normal: $ !s04.s04_bold:חילונית$ !s01.subject_normal: $ !s04.unknown_light:°, ההשגה של $ !s04.unknown_light:אוה$ !s04.unknown_light:°$ 
+!s04.s04_bold:חילוני$ !s04.unknown_light: $ !s04.unknown_light: $ !s01.subject_normal: $ !s01.subject_normal: $ 
 
 NEW_PARA:
 ------
@@ -92,7 +92,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!DefaultParagraphFont.DefaultParagraphFont:נקודים$ !DefaultParagraphFont.DefaultParagraphFont: $ 
+!DefaultParagraphFont.DefaultParagraphFont: $ 
 
 NEW_PARA:
 ------
@@ -132,7 +132,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s01.subject_normal:"מעשים" $ !s01.subject_normal:מצוות$ !s11.sub-subject_normal:.$ 
+!s01.subject_normal:"מעשים" $ !s11.sub-subject_normal:.$ 
 
 NEW_PARA:
 ------
@@ -315,12 +315,12 @@ $
 
 NEW_PARA:
 ------
-!DefaultParagraphFont.DefaultParagraphFont:מונחי קבלה ונסתר$ 
+
 
 NEW_PARA:
 ------
 !s03.definition_small:
-$ !s04.s04_bold:חילוני$ !s04.unknown_light: $ !s04.unknown_light: $ !s04.s04_bold:נשמה$ !s01.subject_normal: $ !s04.s04_bold:חילונית$ !s01.subject_normal: $ !s04.unknown_light:°, ההשגה של $ !s04.unknown_light:אוה$ !s04.unknown_light:°$ 
+$ !s04.s04_bold:חילוני$ !s04.unknown_light: $ !s04.unknown_light: $ !s01.subject_normal: $ !s01.subject_normal: $ 
 
 NEW_PARA:
 ------
@@ -419,7 +419,7 @@ $
 
 NEW_PARA:
 ------
-!DefaultParagraphFont.DefaultParagraphFont:באהבה$ !s03.definition_small: $ !s03.definition_small:
+!s03.definition_small: $ !s03.definition_small:
 $ !s02.definition_normal:◊$ !s02.definition_normal: $ !s03.definition_small:"$ !s03.definition_small:
 $ 
 
@@ -445,7 +445,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s01.subject_normal:צדקה תרומם גוי$ !s01.subject_normal:,$ !s01.subject_normal: וחסד $ !DefaultParagraphFont.DefaultParagraphFont:לאֻמים$ !DefaultParagraphFont.DefaultParagraphFont: $ !s01.subject_normal:חטאת$ !s01.subject_normal: $ 
+!s01.subject_normal:צדקה תרומם גוי$ !s01.subject_normal:,$ !s01.subject_normal: וחסד $ !DefaultParagraphFont.DefaultParagraphFont: $ !s01.subject_normal:חטאת$ !s01.subject_normal: $ 
 
 NEW_PARA:
 ------
@@ -501,15 +501,15 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!DefaultParagraphFont.DefaultParagraphFont:קליפתה התאונית של נטית המין המביאה את החיים למציאות $ 
+
 
 NEW_PARA:
 ------
-!s01.subject_normal:מחקרים, באורים$ 
+
 
 NEW_PARA:
 ------
-!s01.subject_normal:והשוואות להגדרות ולמושגים$ !s01.subject_normal:
+!s01.subject_normal:
 $ 
 
 NEW_PARA:
@@ -526,8 +526,8 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s03.definition_small:ע'$ !DefaultParagraphFont.DefaultParagraphFont: $ !s01.subject_normal:במדור$ !s03.definition_small: הכרה והשכלה והפכן,$ !s05.definition_small:98 $ !s05.definition_small:ע' $ !s03.definition_small:במדור$ !s05.definition_small: קבלה ונסתר,$ !s05.definition_small:ובס' הוד הקרח הנורא עמ' $ !s05.definition_small:מה־מו$ !s05.definition_small: הרחבתי בהסברת $ !s05.definition_small:הענין$ !s05.definition_small:.$ 
+!s03.definition_small:ע'$ !s01.subject_normal:במדור$ !s03.definition_small: הכרה והשכלה והפכן,$ !s05.definition_small:98 $ !s05.definition_small:ע' $ !s03.definition_small:במדור$ !s05.definition_small: קבלה ונסתר,$ !s05.definition_small:ובס' הוד הקרח הנורא עמ' $ !s05.definition_small:מה־מו$ !s05.definition_small: הרחבתי בהסברת $ !s05.definition_small:הענין$ !s05.definition_small:.$ 
 
 NEW_PARA:
 ------
-!s01.subject_normal: $ !s01.subject_normal:-$ !s01.subject_normal: $ !s01.subject_normal:משמעות מלים אלו והטיותיהן איננה המשמעות השגורה של הכנה ועריכת פרטים שונים המקובצים במסגרת מסוימת,  מאוחדת טכנית או חברתית, כי אם - $ !s01.subject_normal:אורגני$ !s01.subject_normal:ות, כלליות $ !s01.subject_normal:נשמתית$ !s01.subject_normal:, יחוד (ע' במדור זה אחדות ויחוד), אחדות חיה עליונה. $ !s03.definition_small:ע"א ד $ !s03.definition_small:יג$ !s03.definition_small: י$ !s02.definition_normal:: לעומת $ !s11.sub-subject_normal:כשאחד מן האחים מת $ !s02.definition_normal:שאז$ !s02.definition_normal: $ !s02.definition_normal:ידאגו, כלומר, $ !s02.definition_normal:ירגישו את החסרון של העדר כח אחד מ$ !s02.definition_normal:האירגון$ !s02.definition_normal: הכללי הטבעי שלהם, $ !s02.definition_normal:[...] $ !s02.definition_normal:לתקן את הפרצה של החלל$ !s02.definition_normal:,$ !s02.definition_normal: אשר הונח בתוך האחדות האורגנית שלהם$ !s02.definition_normal:,$ !s02.definition_normal: על ידי מיתתו של האחד מן האחים$ !s02.definition_normal:;$ !s02.definition_normal: $ !s11.sub-subject_normal:כשאחד מבני החבורה מת $ !s02.definition_normal:- תדאג כל החבורה כולה לחפש דרך של תיקון, איך לבצר את היסוד האחדותי שנבנה בקיבוץ בכוחות שהתאחדו, שנהרס על ידי מיתתו של אחד מהחבורה$ !s02.definition_normal:.$ !s02.definition_normal: $ !DefaultParagraphFont.DefaultParagraphFont:קובץ ב $ !DefaultParagraphFont.DefaultParagraphFont:שמ$ !DefaultParagraphFont.DefaultParagraphFont::$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:בהמעטה של אורה, מהופעה אלוהית לעולם האלהות, באה השלשלת של הסיבות והמסובבים, העולמות הפרצופיים המאורגנים. $ !DefaultParagraphFont.DefaultParagraphFont:קובץ ד $ !DefaultParagraphFont.DefaultParagraphFont:קיז$ !DefaultParagraphFont.DefaultParagraphFont:: $ !DefaultParagraphFont.DefaultParagraphFont:הנשמות כולן $ !DefaultParagraphFont.DefaultParagraphFont:מאורגנות$ !DefaultParagraphFont.DefaultParagraphFont: הן זה בזה, פועלות זה על זה כאברי המכונה, וכחלקי הגוף היחידי, וככוחות הנפש הפרטית. קובץ ג $ !DefaultParagraphFont.DefaultParagraphFont:קפג$ !DefaultParagraphFont.DefaultParagraphFont:: $ !DefaultParagraphFont.DefaultParagraphFont:באור הישר $ !DefaultParagraphFont.DefaultParagraphFont:האלהי$ !DefaultParagraphFont.DefaultParagraphFont: בכל המצוי ה$ !DefaultParagraphFont.DefaultParagraphFont:מאורגן$ !DefaultParagraphFont.DefaultParagraphFont: באחדות וכוון מעולה. $ !DefaultParagraphFont.DefaultParagraphFont:קובץ ה $ !DefaultParagraphFont.DefaultParagraphFont:קעה$ !DefaultParagraphFont.DefaultParagraphFont:: $ !DefaultParagraphFont.DefaultParagraphFont:הפלוסופיה$ !DefaultParagraphFont.DefaultParagraphFont: אינה משתרעת כי אם על חלק ידוע של העולם הרוחני, בטבעה היא נתוקה ממה שהוא חוץ לגבולותיה, ובזה עצמו היא מפורדת בפנימיותה פירוד מהותי. סיגול ההכרה, איך כל הדעות הרגשות והנטיות כולם מקטנם ועד גדלם מחוברים זה בזה, ואיך הם פועלים זה על זה, ואיך עולמות נפרדים $ !DefaultParagraphFont.DefaultParagraphFont:מאורגנים$ !DefaultParagraphFont.DefaultParagraphFont: יחד, זה אין בכחה לצייר$ !DefaultParagraphFont.DefaultParagraphFont:.$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:קובץ ו $ !DefaultParagraphFont.DefaultParagraphFont:רכט$ !DefaultParagraphFont.DefaultParagraphFont:: אינו דומה בעל $ !DefaultParagraphFont.DefaultParagraphFont:נשמה חטובה $ !DefaultParagraphFont.DefaultParagraphFont:מאורגנת,$ !DefaultParagraphFont.DefaultParagraphFont: שיצירותיה הפנימיות בוקעות שחקי השכל הדמיון והרגש, ורצונה מקיף עולמים, לנשמה מוגבלת בחוגה, ופרודה בחלקיה, שלא יתקשרו עדיין, מפני שהיא מבקשת עוד $ !DefaultParagraphFont.DefaultParagraphFont:את השתלמות צורתה $ !DefaultParagraphFont.DefaultParagraphFont:האורגנית$ !DefaultParagraphFont.DefaultParagraphFont:. $ !DefaultParagraphFont.DefaultParagraphFont:א"ק א $ !DefaultParagraphFont.DefaultParagraphFont:רטז$ !DefaultParagraphFont.DefaultParagraphFont:: $ !DefaultParagraphFont.DefaultParagraphFont:והאמונה והמוסר, $ !DefaultParagraphFont.DefaultParagraphFont:הבקרת$ !DefaultParagraphFont.DefaultParagraphFont: והמסה $ !DefaultParagraphFont.DefaultParagraphFont:(הולך) [$ !DefaultParagraphFont.DefaultParagraphFont:הול$ !DefaultParagraphFont.DefaultParagraphFont:כים]$ !DefaultParagraphFont.DefaultParagraphFont: הלוך $ !DefaultParagraphFont.DefaultParagraphFont:(ומשתכלל) [$ !DefaultParagraphFont.DefaultParagraphFont:ו$ !DefaultParagraphFont.DefaultParagraphFont:ה$ !DefaultParagraphFont.DefaultParagraphFont:שתכלל$ !DefaultParagraphFont.DefaultParagraphFont:]$ !DefaultParagraphFont.DefaultParagraphFont:, $ !DefaultParagraphFont.DefaultParagraphFont:(הולך) $ !DefaultParagraphFont.DefaultParagraphFont:הלוך $ !DefaultParagraphFont.DefaultParagraphFont:(ומתאגד) [$ !DefaultParagraphFont.DefaultParagraphFont:ו$ !DefaultParagraphFont.DefaultParagraphFont:ה$ !DefaultParagraphFont.DefaultParagraphFont:תאגד$ !DefaultParagraphFont.DefaultParagraphFont:]$ !DefaultParagraphFont.DefaultParagraphFont:,$ !DefaultParagraphFont.DefaultParagraphFont: (ומתארגן) [$ !DefaultParagraphFont.DefaultParagraphFont:ומתארג$ !DefaultParagraphFont.DefaultParagraphFont:נים$ !DefaultParagraphFont.DefaultParagraphFont:]$ !DefaultParagraphFont.DefaultParagraphFont: ביחד, בחטיבה חיה וקימה. $ 
+!s01.subject_normal: $ !s01.subject_normal:-$ !s01.subject_normal: $ !s01.subject_normal:משמעות מלים אלו והטיותיהן איננה המשמעות השגורה של הכנה ועריכת פרטים שונים המקובצים במסגרת מסוימת,  מאוחדת טכנית או חברתית, כי אם - $ !s01.subject_normal:אורגני$ !s01.subject_normal:ות, כלליות $ !s01.subject_normal:נשמתית$ !s01.subject_normal:, יחוד (ע' במדור זה אחדות ויחוד), אחדות חיה עליונה. $ !s03.definition_small:ע"א ד $ !s03.definition_small:יג$ !s03.definition_small: י$ !s02.definition_normal:: לעומת $ !s11.sub-subject_normal:כשאחד מן האחים מת $ !s02.definition_normal:שאז$ !s02.definition_normal: $ !s02.definition_normal:ידאגו, כלומר, $ !s02.definition_normal:ירגישו את החסרון של העדר כח אחד מ$ !s02.definition_normal: הכללי הטבעי שלהם, $ !s02.definition_normal:[...] $ !s02.definition_normal:לתקן את הפרצה של החלל$ !s02.definition_normal:,$ !s02.definition_normal: אשר הונח בתוך האחדות האורגנית שלהם$ !s02.definition_normal:,$ !s02.definition_normal: על ידי מיתתו של האחד מן האחים$ !s02.definition_normal:;$ !s02.definition_normal: $ !s11.sub-subject_normal:כשאחד מבני החבורה מת $ !s02.definition_normal:- תדאג כל החבורה כולה לחפש דרך של תיקון, איך לבצר את היסוד האחדותי שנבנה בקיבוץ בכוחות שהתאחדו, שנהרס על ידי מיתתו של אחד מהחבורה$ !s02.definition_normal:.$ !s02.definition_normal: $ !DefaultParagraphFont.DefaultParagraphFont:קובץ ב $ !DefaultParagraphFont.DefaultParagraphFont:שמ$ !DefaultParagraphFont.DefaultParagraphFont::$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:בהמעטה של אורה, מהופעה אלוהית לעולם האלהות, באה השלשלת של הסיבות והמסובבים, העולמות הפרצופיים המאורגנים. $ !DefaultParagraphFont.DefaultParagraphFont:קובץ ד $ !DefaultParagraphFont.DefaultParagraphFont:קיז$ !DefaultParagraphFont.DefaultParagraphFont:: $ !DefaultParagraphFont.DefaultParagraphFont:הנשמות כולן $ !DefaultParagraphFont.DefaultParagraphFont: הן זה בזה, פועלות זה על זה כאברי המכונה, וכחלקי הגוף היחידי, וככוחות הנפש הפרטית. קובץ ג $ !DefaultParagraphFont.DefaultParagraphFont:קפג$ !DefaultParagraphFont.DefaultParagraphFont:: $ !DefaultParagraphFont.DefaultParagraphFont:באור הישר $ !DefaultParagraphFont.DefaultParagraphFont:האלהי$ !DefaultParagraphFont.DefaultParagraphFont: בכל המצוי ה$ !DefaultParagraphFont.DefaultParagraphFont:מאורגן$ !DefaultParagraphFont.DefaultParagraphFont: באחדות וכוון מעולה. $ !DefaultParagraphFont.DefaultParagraphFont:קובץ ה $ !DefaultParagraphFont.DefaultParagraphFont:קעה$ !DefaultParagraphFont.DefaultParagraphFont:: $ !DefaultParagraphFont.DefaultParagraphFont:הפלוסופיה$ !DefaultParagraphFont.DefaultParagraphFont: אינה משתרעת כי אם על חלק ידוע של העולם הרוחני, בטבעה היא נתוקה ממה שהוא חוץ לגבולותיה, ובזה עצמו היא מפורדת בפנימיותה פירוד מהותי. סיגול ההכרה, איך כל הדעות הרגשות והנטיות כולם מקטנם ועד גדלם מחוברים זה בזה, ואיך הם פועלים זה על זה, ואיך עולמות נפרדים $ !DefaultParagraphFont.DefaultParagraphFont:מאורגנים$ !DefaultParagraphFont.DefaultParagraphFont: יחד, זה אין בכחה לצייר$ !DefaultParagraphFont.DefaultParagraphFont:.$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:קובץ ו $ !DefaultParagraphFont.DefaultParagraphFont:רכט$ !DefaultParagraphFont.DefaultParagraphFont:: אינו דומה בעל $ !DefaultParagraphFont.DefaultParagraphFont:נשמה חטובה $ !DefaultParagraphFont.DefaultParagraphFont:מאורגנת,$ !DefaultParagraphFont.DefaultParagraphFont: שיצירותיה הפנימיות בוקעות שחקי השכל הדמיון והרגש, ורצונה מקיף עולמים, לנשמה מוגבלת בחוגה, ופרודה בחלקיה, שלא יתקשרו עדיין, מפני שהיא מבקשת עוד $ !DefaultParagraphFont.DefaultParagraphFont:את השתלמות צורתה $ !DefaultParagraphFont.DefaultParagraphFont:האורגנית$ !DefaultParagraphFont.DefaultParagraphFont:. $ !DefaultParagraphFont.DefaultParagraphFont:א"ק א $ !DefaultParagraphFont.DefaultParagraphFont:רטז$ !DefaultParagraphFont.DefaultParagraphFont:: $ !DefaultParagraphFont.DefaultParagraphFont:והאמונה והמוסר, $ !DefaultParagraphFont.DefaultParagraphFont:הבקרת$ !DefaultParagraphFont.DefaultParagraphFont: והמסה $ !DefaultParagraphFont.DefaultParagraphFont:(הולך) [$ !DefaultParagraphFont.DefaultParagraphFont:הול$ !DefaultParagraphFont.DefaultParagraphFont:כים]$ !DefaultParagraphFont.DefaultParagraphFont: הלוך $ !DefaultParagraphFont.DefaultParagraphFont:(ומשתכלל) [$ !DefaultParagraphFont.DefaultParagraphFont:ו$ !DefaultParagraphFont.DefaultParagraphFont:ה$ !DefaultParagraphFont.DefaultParagraphFont:שתכלל$ !DefaultParagraphFont.DefaultParagraphFont:]$ !DefaultParagraphFont.DefaultParagraphFont:, $ !DefaultParagraphFont.DefaultParagraphFont:(הולך) $ !DefaultParagraphFont.DefaultParagraphFont:הלוך $ !DefaultParagraphFont.DefaultParagraphFont:(ומתאגד) [$ !DefaultParagraphFont.DefaultParagraphFont:ו$ !DefaultParagraphFont.DefaultParagraphFont:ה$ !DefaultParagraphFont.DefaultParagraphFont:תאגד$ !DefaultParagraphFont.DefaultParagraphFont:]$ !DefaultParagraphFont.DefaultParagraphFont:,$ !DefaultParagraphFont.DefaultParagraphFont: (ומתארגן) [$ !DefaultParagraphFont.DefaultParagraphFont:ומתארג$ !DefaultParagraphFont.DefaultParagraphFont:נים$ !DefaultParagraphFont.DefaultParagraphFont:]$ !DefaultParagraphFont.DefaultParagraphFont: ביחד, בחטיבה חיה וקימה. $ 

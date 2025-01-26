@@ -212,7 +212,7 @@ subject_light:פשוט .
  new_line:
 .
  ---------------
-subject_small:אמונה.
+sub-subject_normal:אמונה.
  definition_small: - .
  sub-subject_small:אמת האמונה.
  footnote:2.
@@ -1031,7 +1031,7 @@ subject_normal:אהבה .
  new_line:
 .
  ---------------
-subject_small:שלימות האהבה.
+sub-subject_normal:שלימות האהבה.
  definition_normal: - השמחה הגמורה ואור הנפש, שעמה כל טוב ואושר ובה כלולים נועם החכמה וההשגה ואהבתה .
  definition_small:.
  source_normal:[ע"א א ד לו].

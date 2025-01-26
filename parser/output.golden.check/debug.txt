@@ -9,7 +9,7 @@ $
 
 NEW_PARA:
 ------
-!s01.subject_normal:א$ 
+
 
 NEW_PARA:
 ------
@@ -42,27 +42,23 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s03.definition_small:
-$ !s03.definition_small:[$ !s03.definition_small:רצי"ה$ !s03.definition_small: א"ש יא הערה $ !s03.definition_small:18$ !s03.definition_small:].$ 
+!s03.definition_small:18$ 
 
 NEW_PARA:
 ------
-!s03.definition_small:
-$ 
+
 
 NEW_PARA:
 ------
-!s01.subject_normal:"$ !s03.definition_small:[עפ"י מ"ר $ !s03.definition_small:396$ !s03.definition_small:]. $ !s03.definition_small:
-$ 
+!s03.definition_small:396$ 
 
 NEW_PARA:
 ------
-!s04.s04_bold:חילוני$ !s04.unknown_light: $ !s04.unknown_light: $ !s01.subject_normal: $ !s01.subject_normal: $ 
+!s04.s04_bold:חילוני$ !s04.unknown_light: $ !s04.unknown_light: $ !s01.subject_normal: $ 
 
 NEW_PARA:
 ------
-!s03.definition_small:[ע"א ב ז $ !s03.definition_small:נג$ !s03.definition_small:]. $ !s03.definition_small:
-$ 
+
 
 NEW_PARA:
 ------
@@ -80,11 +76,11 @@ $
 
 NEW_PARA:
 ------
-!s01.subject_normal:ג$ 
+
 
 NEW_PARA:
 ------
-!s01.subject_normal:גאונים$ !s01.subject_normal: $ 
+!s01.subject_normal: $ 
 
 NEW_PARA:
 ------
@@ -111,12 +107,12 @@ $
 
 NEW_PARA:
 ------
-!s12.sub-subject_light:($ !s12.sub-subject_light:רצון$ !s03.definition_small:־$ !s12.sub-subject_light:פשוט$ !s12.definition_light: $ !s12.sub-subject_light:בלשון $ !s12.sub-subject_light:חכמי$ !s12.sub-subject_light:האמת$ !s12.sub-subject_light:)$ !s03.definition_small:$ !s03.definition_small: $ !s12.definition_light:
+!s12.definition_light: $ !s12.definition_light:
 $ 
 
 NEW_PARA:
 ------
-!s02.definition_normal:אמונה$ !s03.sub-subject_small:אמת$ !s03.definition_small: $ !s03.sub-subject_small:האמונה$ !s03.definition_small:$ !s03.definition_small: $ !s03.definition_small:הידיעה$ !s03.definition_small: $ !s03.definition_small:ההכרה$ !s03.definition_small: $ !s03.definition_small:ההבנה$ !s03.definition_small: $ !s03.definition_small:הברורה$ !s03.definition_small: $ !s03.definition_small:הפשוטה$ !s03.definition_small: $ !s03.definition_small:שכל$ !s03.definition_small: $ !s03.definition_small:הנמצאים$ !s03.definition_small: $ !s03.definition_small:שבעולם$ !s03.definition_small: $ !s03.definition_small:כולם$ !s03.definition_small: $ !s03.definition_small:נמשכים$ !s03.definition_small: $ !s03.definition_small:ומתגלים$ !s03.definition_small: $ !s03.definition_small:לנו$ !s03.definition_small: $ !s03.definition_small:מתוך$ !s03.definition_small: $ !s03.definition_small:מקור$ !s03.definition_small: $ !s03.definition_small:המציאות$ !s03.definition_small:, $ !s03.definition_small:וכלשונו$ !s03.definition_small: $ !s03.definition_small:של$ !s03.definition_small: $ !s03.definition_small:הרמב$ !s03.definition_small:"$ !s03.definition_small:ם$ !s03.definition_small: $ !s03.definition_small:שכל$ !s03.definition_small: $ !s03.definition_small:הנמצאים$ !s03.definition_small: $ !s03.definition_small:הם$ !s03.definition_small: $ !s03.definition_small:מתוך$ !s03.definition_small: $ !s03.definition_small:אמתת$ !s03.definition_small: $ !s03.definition_small:מציאותו$ !s03.definition_small: $ !s03.definition_small:[$ !s03.definition_small: $ !s03.definition_small:, $ !s03.definition_small:"$ !s03.definition_small: $ !s03.definition_small: $ !s03.definition_small:"$ !s03.definition_small:. $ !s03.definition_small:מובא ב$ !s03.definition_small:'$ !s03.definition_small: $ !s03.definition_small:ג$ !s03.definition_small: 241, $ !s03.definition_small:הערה$ !s03.definition_small: 89$ !s03.definition_small:].$ 
+!s03.sub-subject_small:אמת$ !s03.definition_small: $ !s03.sub-subject_small:האמונה$ !s03.definition_small:[$ !s03.definition_small: $ !s03.definition_small:, $ !s03.definition_small:"$ !s03.definition_small: $ !s03.definition_small: $ !s03.definition_small:"$ !s03.definition_small:. $ !s03.definition_small:מובא ב$ !s03.definition_small:'$ !s03.definition_small: $ !s03.definition_small:ג$ !s03.definition_small: 241, $ !s03.definition_small:הערה$ !s03.definition_small: 89$ !s03.definition_small:].$ 
 
 NEW_PARA:
 ------
@@ -132,13 +128,11 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s01.subject_normal:"מעשים" $ !s11.sub-subject_normal:.$ 
+!s11.sub-subject_normal:.$ 
 
 NEW_PARA:
 ------
-!s03.definition_small:[$ !s03.definition_small:ע"ר$ !s03.definition_small: א $ !s03.definition_small:פ־פא$ !s03.definition_small:, מ"ר $ !s03.definition_small:84$ !s03.definition_small:]. $ !s03.definition_small:
-$ !s03.definition_small:[ה' $ !s03.definition_small:ריט$ !s03.definition_small:]. $ !s03.definition_small:
-$ 
+!s03.definition_small:84$ 
 
 NEW_PARA:
 ------
@@ -159,8 +153,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s11.sub-subject_normal:ֹ$ !s03.definition_small:[עפ"י א"א $ !s03.definition_small:128$ !s03.definition_small:, שם $ !s03.definition_small:17$ !s03.definition_small:, ($ !s03.definition_small:77$ !s03.definition_small:)]. $ !s03.definition_small:
-$ 
+!s11.sub-subject_normal:ֹ$ !s03.definition_small:128$ !s03.definition_small:17$ !s03.definition_small:77$ 
 
 NEW_PARA:
 ------
@@ -168,16 +161,15 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s01.subject_normal:ֹ$ !s11.sub-subject_normal:ֹ$ !s03.definition_small:[א' $ !s03.definition_small:כט$ !s03.definition_small:].$ 
+!s01.subject_normal:ֹ$ !s11.sub-subject_normal:ֹ$ 
 
 NEW_PARA:
 ------
-!s03.definition_small:[ע"א א ב $ !s03.definition_small:נג$ !s03.definition_small:]. $ !s03.definition_small:
-$ 
+
 
 NEW_PARA:
 ------
-!s11.sub-subject_normal:אז$ !s03.definition_small:מאמרי$ !s03.definition_small: הראיה $ !s03.definition_small:165: $ !s03.definition_small:כי $ !s03.sub-subject_small:אז$ !s03.sub-subject_small:, $ !s03.sub-subject_small:דוקא$ !s03.definition_small: $ !s03.sub-subject_small:אז$ !s03.definition_small:, כאשר עוד הפעם כיום $ !s03.definition_small:צאתינו$ !s03.definition_small: ממצרים נעמוד על רגלי עצמנו בעצמה $ !s03.definition_small:הנשמתית$ !s03.definition_small:, להיות דורכים על במתי $ !s03.definition_small:ארץ$ !s03.definition_small: בגאון $ !s03.definition_small:ד$ !s03.definition_small:' צור $ !s03.definition_small:ישראל$ !s03.definition_small:, $ !s03.definition_small:אז$ !s03.definition_small: יראו כל העמים צדקנו, ומשפט $ !s03.definition_small:חירותינו$ !s03.definition_small: יגלה ויראה על $ !s03.definition_small:פני$ !s03.definition_small: כל מלא $ !s03.definition_small:עולם$ !s03.definition_small:. $ !s03.definition_small:ש$ !s03.definition_small:ק$ !s03.definition_small:קובץ א תפח$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:,$ !DefaultParagraphFont.DefaultParagraphFont:,$ !DefaultParagraphFont.DefaultParagraphFont:"$ !s03.definition_small:חידוש הסנהדרין, עיכובים שבזמננו$ !s03.definition_small:א$ !s03.definition_small:ה$ !s03.definition_small: ב$ !s03.definition_small:לח$ !DefaultParagraphFont.DefaultParagraphFont: "$ !DefaultParagraphFont.DefaultParagraphFont:ד$ !DefaultParagraphFont.DefaultParagraphFont:,$ !DefaultParagraphFont.DefaultParagraphFont:,$ !DefaultParagraphFont.DefaultParagraphFont:". $ 
+!s11.sub-subject_normal:אז$ !s03.definition_small:165: $ !s03.sub-subject_small:אז$ !s03.sub-subject_small:, $ !s03.sub-subject_small:דוקא$ !s03.definition_small: $ !s03.sub-subject_small:אז$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:,$ !DefaultParagraphFont.DefaultParagraphFont:,$ !DefaultParagraphFont.DefaultParagraphFont:"$ !DefaultParagraphFont.DefaultParagraphFont: "$ !DefaultParagraphFont.DefaultParagraphFont:ד$ !DefaultParagraphFont.DefaultParagraphFont:,$ !DefaultParagraphFont.DefaultParagraphFont:,$ !DefaultParagraphFont.DefaultParagraphFont:". $ 
 
 NEW_PARA:
 ------
@@ -189,15 +181,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s01.subject_normal:"$ !s01.subject_normal:"$ !s11.sub-subject_normal: $ !DefaultParagraphFont.DefaultParagraphFont:-$ !DefaultParagraphFont.DefaultParagraphFont: $ 
-
-NEW_PARA:
-------
-!s01.subject_normal: $ 
-
-NEW_PARA:
-------
-!s01.subject_normal: $ 
+!s11.sub-subject_normal: $ !DefaultParagraphFont.DefaultParagraphFont:-$ !DefaultParagraphFont.DefaultParagraphFont: $ 
 
 NEW_PARA:
 ------
@@ -205,7 +189,15 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s01.subject_normal:בני אדם$ !s01.subject_normal:רה כולה$ !s03.definition_small:האדם$ !s03.definition_small: $ !s03.definition_small:שכבר$ !s03.definition_small: $ !s03.definition_small:התעלה$ !s03.definition_small: $ !s03.definition_small:להכשר$ !s03.definition_small: $ !s03.definition_small:השכלתה$ !s03.definition_small: $ !s03.definition_small:של$ !s03.definition_small: $ !s03.definition_small:תורה$ !s03.definition_small:, $ !s03.definition_small:שבא$ !s03.definition_small: $ !s03.definition_small:למדה$ !s03.definition_small: $ !s03.definition_small:זו$ !s03.definition_small: $ !s03.definition_small:שיודע$ !s03.definition_small: $ !s03.definition_small:את$ !s03.definition_small: $ !s03.definition_small:קונו$ !s03.definition_small:, $ !s03.definition_small:ומשיג$ !s03.definition_small: $ !s03.definition_small:את$ !s03.definition_small: $ !s03.definition_small:החפץ$ !s03.definition_small: $ !s03.definition_small:העליון$ !s03.definition_small: $ !s03.definition_small:המבוקש$ !s03.definition_small: $ !s03.definition_small:בכללותה$ !s03.definition_small: $ !s03.definition_small:של$ !s03.definition_small: $ !s03.definition_small:תורה$ !s03.definition_small:, $ !s03.definition_small:והכח$ !s03.definition_small: $ !s03.definition_small:הגנוז$ !s03.definition_small: $ !s03.definition_small:המתפרט$ !s03.definition_small: $ !s03.definition_small:בפרטיה$ !s03.definition_small: $ !s03.definition_small:מאור$ !s03.definition_small: $ !s03.definition_small:העליון$ !s03.definition_small:, $ !s03.definition_small:הוא$ !s03.definition_small: $ !s03.definition_small:משתמש$ !s03.definition_small: $ !s03.definition_small:בכל$ !s03.definition_small: $ !s03.definition_small:עניני$ !s03.definition_small: $ !s03.definition_small:התורה$ !s03.definition_small: $ !s03.definition_small:המצות$ !s03.definition_small: $ !s03.definition_small:וכונותיהם$ !s03.definition_small: $ !s03.definition_small:כשימוש$ !s03.definition_small: $ !s03.definition_small:האותיות$ !s03.definition_small: $ !s03.definition_small:הכוללים$ !s03.definition_small: $ !s03.definition_small:כל$ !s03.definition_small: $ !s03.definition_small:הצירופים$ !s03.definition_small: $ !s03.definition_small:שבעולם$ !s03.definition_small:, $ !s03.definition_small:להביע$ !s03.definition_small: $ !s03.definition_small:בהם$ !s03.definition_small: $ !s03.definition_small:המון$ !s03.definition_small: $ !s03.definition_small:מחשבות$ !s03.definition_small: $ !s03.definition_small:ורגשות$ !s03.definition_small: $ !s03.definition_small:לאין$ !s03.definition_small: $ !s03.definition_small:תכלית$ !s03.definition_small:. $ 
+
+
+NEW_PARA:
+------
+
+
+NEW_PARA:
+------
+
 
 NEW_PARA:
 ------
@@ -217,7 +209,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s01.subject_normal:"מאן $ !s01.subject_normal:דנטיר$ !s01.subject_normal: ברית$ !s01.subject_normal: $ !s01.subject_normal:אתקרי$ !s01.subject_normal: צדיק$ !s01.subject_normal:"$ !DefaultParagraphFont.DefaultParagraphFont:[$ !DefaultParagraphFont.DefaultParagraphFont:קבצ$ !DefaultParagraphFont.DefaultParagraphFont:' ב $ !DefaultParagraphFont.DefaultParagraphFont:קעו$ !DefaultParagraphFont.DefaultParagraphFont:]. $ 
+!DefaultParagraphFont.DefaultParagraphFont:[$ !DefaultParagraphFont.DefaultParagraphFont:קבצ$ !DefaultParagraphFont.DefaultParagraphFont:' ב $ !DefaultParagraphFont.DefaultParagraphFont:קעו$ !DefaultParagraphFont.DefaultParagraphFont:]. $ 
 
 NEW_PARA:
 ------
@@ -225,38 +217,35 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s11.sub-subject_normal:"$ !s03.definition_small:[$ !s03.definition_small:ע"ר$ !s03.definition_small: א פח]. $ !s03.definition_small:
-$ 
+!s11.sub-subject_normal:"$ 
 
 NEW_PARA:
 ------
-!s01.subject_normal:א$ !s02.definition_normal:◊$ !s11.sub-subject_normal:°$ !s03.definition_small:[$ !s03.definition_small:מ"ש$ !s03.definition_small: $ !s03.definition_small:רעז־ח$ !s03.definition_small:].$ 
+!s02.definition_normal:◊$ !s11.sub-subject_normal:°$ 
 
 NEW_PARA:
 ------
-!s11.sub-subject_normal:־$ !s03.definition_small:[$ !s03.definition_small:ע"ר$ !s03.definition_small: א כ, ועפ"י שם ב עד].$ 
+!s11.sub-subject_normal:־$ 
 
 NEW_PARA:
 ------
-!s03.definition_small:א$ !s03.definition_small:ק$ !s03.definition_small:ג$ !s03.definition_small:יט$ !s03.definition_small: $ !s03.definition_small:
-$ !s01.subject_normal: $ 
+!s01.subject_normal: $ 
 
 NEW_PARA:
 ------
-!s11.sub-subject_normal:°$ !s03.definition_small:[$ !s03.definition_small:ע"ר$ !s03.definition_small: א סד]. $ !s03.definition_small:
-$ 
+!s11.sub-subject_normal:°$ 
 
 NEW_PARA:
 ------
-!s03.definition_small:°$ !s03.definition_small:־פי הודעת $ !s03.definition_small:דבר$ !s03.definition_small:°$ !s03.definition_small:°$ 
+
 
 NEW_PARA:
 ------
-!s01.subject_normal:,$ !s01.subject_normal: $ !s03.definition_small: $ 
+!s01.subject_normal:,$ 
 
 NEW_PARA:
 ------
-!s11.sub-subject_normal:◊$ !s03.definition_small:[ע"א ב ח ו]. $ 
+!s11.sub-subject_normal:◊$ 
 
 NEW_PARA:
 ------
@@ -264,31 +253,29 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s01.subject_normal:תורה $ !s02.definition_normal:בעצמיות$ !s02.definition_normal:מהות$ !s02.definition_normal:הפנימית$ !s02.definition_normal:הצורתית$ !s02.definition_normal:של$ !s02.definition_normal:התורה$ 
+
 
 NEW_PARA:
 ------
-!s03.definition_small:°$ !s038.source_small:[עפ"י ל"י א $ !s038.source_small:מז$ !s038.source_small:]. $ !s038.source_small:
+!s038.source_small:[עפ"י ל"י א $ !s038.source_small:מז$ !s038.source_small:]. $ !s038.source_small:
 $ 
 
 NEW_PARA:
 ------
-!s04.unknown_light: $ !s03.definition_small:-$ !s12.definition_light:[עפ"י $ !s12.definition_light:ב"ר$ !s12.definition_light: $ !s12.definition_light:שצז$ !s12.definition_light:]. $ !s12.definition_light:
+!s04.unknown_light: $ !s12.definition_light:[עפ"י $ !s12.definition_light:ב"ר$ !s12.definition_light: $ !s12.definition_light:שצז$ !s12.definition_light:]. $ !s12.definition_light:
 $ !s038.source_small:[ב"א $ !s038.source_small:10$ !s038.source_small:]. $ 
 
 NEW_PARA:
 ------
-!s03.definition_small:[$ !s03.definition_small:ע"ר$ !s03.definition_small: א רנו]. $ !s03.definition_small:
-$ 
+
 
 NEW_PARA:
 ------
-!s03.definition_small:[עפ"י $ !s03.definition_small:ע"ר$ !s03.definition_small: א מ].$ !s03.definition_small:
-$ 
+
 
 NEW_PARA:
 ------
-!s01.subject_normal:אור $ !s01.subject_normal:ח$ !s01.subject_normal:י$ !s01.subject_normal:־$ !s01.subject_normal:העולמים$ !s01.subject_normal: $ 
+!s01.subject_normal:־$ 
 
 NEW_PARA:
 ------
@@ -296,8 +283,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s02.definition_normal:הגלוי$ !s03.definition_small:[$ !s03.definition_small:מא"ה$ !s03.definition_small: ג (מהדורת תשס"ד) $ !s03.definition_small:קכג$ !s03.definition_small:, $ !s03.definition_small:קכה$ !s03.definition_small:]. $ !s03.definition_small:
-$ 
+!s02.definition_normal:הגלוי$ 
 
 NEW_PARA:
 ------
@@ -305,11 +291,11 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s01.subject_normal::$ 
+
 
 NEW_PARA:
 ------
-!s03.definition_small:החיות $ !s03.definition_small:האלהית$ !s03.definition_small: העולמית והאחדות הכוללת$ !s038.source_small:[ק"ה $ !s038.source_small:רכ$ !s038.source_small:]. $ !s038.source_small:
+!s038.source_small:[ק"ה $ !s038.source_small:רכ$ !s038.source_small:]. $ !s038.source_small:
 $ 
 
 NEW_PARA:
@@ -318,8 +304,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s03.definition_small:
-$ !s04.s04_bold:חילוני$ !s04.unknown_light: $ !s04.unknown_light: $ !s01.subject_normal: $ !s01.subject_normal: $ 
+!s04.s04_bold:חילוני$ !s04.unknown_light: $ !s04.unknown_light: $ !s01.subject_normal: $ 
 
 NEW_PARA:
 ------
@@ -327,32 +312,28 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s03.definition_small:-$ !s04.unknown_light: $ !s12.definition_light:[עפ"י $ !s12.definition_light:ב"ר$ !s12.definition_light: $ !s12.definition_light:שצז$ !s12.definition_light:]. $ !s12.definition_light:
+!s04.unknown_light: $ !s12.definition_light:[עפ"י $ !s12.definition_light:ב"ר$ !s12.definition_light: $ !s12.definition_light:שצז$ !s12.definition_light:]. $ !s12.definition_light:
 $ 
 
 NEW_PARA:
 ------
-!s01.subject_normal:אב $ 
+
 
 NEW_PARA:
 ------
-!s03.definition_small:
-$ !s03.definition_small:[עפ"י ר"מ פה]. $ !s03.definition_small:
-$ 
+
 
 NEW_PARA:
 ------
-!s01.subject_normal:@$ !DefaultParagraphFont.DefaultParagraphFont:°$ !s03.definition_small: $ 
+!DefaultParagraphFont.DefaultParagraphFont:°$ 
 
 NEW_PARA:
 ------
-!s03.definition_small:[ר"מ $ !s03.definition_small:קכ$ !s03.definition_small:]. $ !s03.definition_small:
-$ 
+
 
 NEW_PARA:
 ------
-!s11.sub-subject_normal:־$ !s11.sub-subject_normal:°$ !s03.definition_small:[עפ"י ע"א ג ב נ]. $ !s03.definition_small:
-$ 
+!s11.sub-subject_normal:־$ !s11.sub-subject_normal:°$ 
 
 NEW_PARA:
 ------
@@ -360,22 +341,19 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s01.subject_normal:אור $ !s01.subject_normal:ח$ !s01.subject_normal:י$ !s02.definition_normal:־$ !s01.subject_normal:העולמים$ !s01.subject_normal: $ 
+!s02.definition_normal:־$ 
 
 NEW_PARA:
 ------
-!s03.definition_small:[עפ"י א"ש פרק ב]. $ !s03.definition_small:
-$ 
+
 
 NEW_PARA:
 ------
-!s03.definition_small:[עפ"י א"ק ב תקל]. $ !s03.definition_small:
-$ !s03.definition_small:[שם ג לט]. $ !s03.definition_small:
-$ !s01.subject_normal: $ 
+!s01.subject_normal: $ 
 
 NEW_PARA:
 ------
-!s01.subject_normal:־$ !s02.definition_normal:°$ !s01.subject_normal: $ !s03.definition_small:[$ !s03.definition_small:קבצ$ !s03.definition_small:' ב קנה$ !s11.sub-subject_normal:]$ 
+!s01.subject_normal:־$ !s02.definition_normal:°$ !s03.definition_small:[$ !s03.definition_small:קבצ$ !s03.definition_small:' ב קנה$ !s11.sub-subject_normal:]$ 
 
 NEW_PARA:
 ------
@@ -383,7 +361,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s01.subject_normal:אב$ !DefaultParagraphFont.DefaultParagraphFont: $ !s03.definition_small:ע$ 
+!DefaultParagraphFont.DefaultParagraphFont: $ 
 
 NEW_PARA:
 ------
@@ -395,36 +373,11 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s03.definition_small:[עפ"י $ !s03.definition_small:ע"ר$ !s03.definition_small: א רפו]. $ !s03.definition_small:
-$ 
-
-NEW_PARA:
-------
-!s11.sub-subject_normal:־$ !s11.sub-subject_normal:"$ !FootnoteReference.FootnoteReference:$ !s03.definition_small:[ע"א ג ב קנא]. $ !s03.definition_small:
-$ 
-
-NEW_PARA:
-------
 
 
 NEW_PARA:
 ------
-!s02.definition_normal:שלימות$ !s02.definition_normal:האהבה$ !DefaultParagraphFont.DefaultParagraphFont: $ !s03.definition_small:ע$ !s03.definition_small:א$ !s03.definition_small:א$ !s03.definition_small:לו$ !s03.definition_small:.$ 
-
-NEW_PARA:
-------
-!s02.definition_normal:◊$ !s03.definition_small:[א' סט]. $ !s03.definition_small:
-$ 
-
-NEW_PARA:
-------
-!s03.definition_small: $ !s03.definition_small:
-$ !s02.definition_normal:◊$ !s02.definition_normal: $ !s03.definition_small:"$ !s03.definition_small:
-$ 
-
-NEW_PARA:
-------
-!s01.subject_normal: $ !s02.definition_normal: $ 
+!s11.sub-subject_normal:־$ !s11.sub-subject_normal:"$ !FootnoteReference.FootnoteReference:$ 
 
 NEW_PARA:
 ------
@@ -432,19 +385,39 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s01.subject_normal:־$ !s03.definition_small:[עפ"י א"ק ב $ !s03.definition_small:תקלב־ג$ !s03.definition_small:].$ 
+!DefaultParagraphFont.DefaultParagraphFont: $ 
 
 NEW_PARA:
 ------
-!s01.subject_normal:ב$ 
+!s02.definition_normal:◊$ 
 
 NEW_PARA:
 ------
-!s01.subject_normal:""$ !s01.subject_normal:"$ !s01.subject_normal: $ !s03.definition_small:285$ 
+!s02.definition_normal:◊$ !s02.definition_normal: $ 
 
 NEW_PARA:
 ------
-!s01.subject_normal:צדקה תרומם גוי$ !s01.subject_normal:,$ !s01.subject_normal: וחסד $ !DefaultParagraphFont.DefaultParagraphFont: $ !s01.subject_normal:חטאת$ !s01.subject_normal: $ 
+!s02.definition_normal: $ 
+
+NEW_PARA:
+------
+
+
+NEW_PARA:
+------
+!s01.subject_normal:־$ 
+
+NEW_PARA:
+------
+
+
+NEW_PARA:
+------
+!s03.definition_small:285$ 
+
+NEW_PARA:
+------
+!s01.subject_normal:,$ !DefaultParagraphFont.DefaultParagraphFont: $ 
 
 NEW_PARA:
 ------
@@ -460,17 +433,16 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s01.subject_normal:הגדרות מבוא:$ 
+
 
 NEW_PARA:
 ------
 !s15.subject_small:אישיות$ !s038.source_small:[ל"י ב ז]. $ !s038.source_small:
-$ !s03.definition_small:קובץ א $ !s03.definition_small:רנא$ !s03.definition_small:.$ 
+$ 
 
 NEW_PARA:
 ------
-!s03.definition_small:[א"ק ג $ !s03.definition_small:קכג$ !s03.definition_small:].$ !s03.definition_small:
-$ 
+
 
 NEW_PARA:
 ------
@@ -479,10 +451,6 @@ $
 
 NEW_PARA:
 ------
-!s03.definition_small:°$ 
-
-NEW_PARA:
-------
 
 
 NEW_PARA:
@@ -491,12 +459,15 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s03.definition_small:[עפ"י ע"א ב ט שמד]. $ !s03.definition_small:
-$ 
+
 
 NEW_PARA:
 ------
-!s01.subject_normal:ערלה$ !FootnoteReference.FootnoteReference:$ !DefaultParagraphFont.DefaultParagraphFont: [$ !DefaultParagraphFont.DefaultParagraphFont:ע"ר$ !DefaultParagraphFont.DefaultParagraphFont: א $ !DefaultParagraphFont.DefaultParagraphFont:שצז$ !DefaultParagraphFont.DefaultParagraphFont:].  $ 
+
+
+NEW_PARA:
+------
+!FootnoteReference.FootnoteReference:$ !DefaultParagraphFont.DefaultParagraphFont: [$ !DefaultParagraphFont.DefaultParagraphFont:ע"ר$ !DefaultParagraphFont.DefaultParagraphFont: א $ !DefaultParagraphFont.DefaultParagraphFont:שצז$ !DefaultParagraphFont.DefaultParagraphFont:].  $ 
 
 NEW_PARA:
 ------
@@ -517,7 +488,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!DefaultParagraphFont.DefaultParagraphFont:.$ !s03.definition_small:ע$ !s03.definition_small:ה קנא$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:אמנם$ !DefaultParagraphFont.DefaultParagraphFont:אומה$ !DefaultParagraphFont.DefaultParagraphFont:עליה$ !DefaultParagraphFont.DefaultParagraphFont:את$ !DefaultParagraphFont.DefaultParagraphFont:עבודת$ !DefaultParagraphFont.DefaultParagraphFont:אומה$ !DefaultParagraphFont.DefaultParagraphFont:תורה$ !DefaultParagraphFont.DefaultParagraphFont:את$ !DefaultParagraphFont.DefaultParagraphFont:על$ !DefaultParagraphFont.DefaultParagraphFont:התגלות$ !DefaultParagraphFont.DefaultParagraphFont:דעת$ !DefaultParagraphFont.DefaultParagraphFont:המאירה$ !DefaultParagraphFont.DefaultParagraphFont:פה$ !DefaultParagraphFont.DefaultParagraphFont:אל$ !DefaultParagraphFont.DefaultParagraphFont:פה$ !DefaultParagraphFont.DefaultParagraphFont:בו$ !DefaultParagraphFont.DefaultParagraphFont:את$ !DefaultParagraphFont.DefaultParagraphFont:דיוקיו$ !DefaultParagraphFont.DefaultParagraphFont:מעלה$ 
+!DefaultParagraphFont.DefaultParagraphFont:.$ 
 
 NEW_PARA:
 ------
@@ -525,7 +496,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s01.subject_normal:במדור$ !s05.definition_small:98 $ !s03.definition_small:במדור$ 
+!s01.subject_normal:במדור$ !s05.definition_small:98 $ 
 
 NEW_PARA:
 ------

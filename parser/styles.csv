@@ -91,3 +91,4 @@ definition_small,,[],0,False,,,True,,,False,s03,False
 definition_small,,[],0,False,,,True,,114300,False,DefaultParagraphFont,18
 definition_small,,[],0,False,,,False,,,False,s03,False
 sub-subject_light,,[],0,False,,True,False,,,False,s12,False
+sub-subject_normal,,[],0,False,True,True,True,,,False,s02,False

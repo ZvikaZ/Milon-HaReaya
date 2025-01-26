@@ -222,7 +222,7 @@ subject_small:אמונה.
  new_line:
 .
  ---------------
-subject_small:פר (ענינו בקרבנות) .
+sub-subject_normal:פר (ענינו בקרבנות) .
  definition_normal:- כח המפעל.
  new_line:
 .
@@ -1063,7 +1063,7 @@ sub-subject_normal:באהבה.
  definition_small:. .
  new_line:
 .
- subject_small:כח העבודה מאהבה.
+ sub-subject_normal:כח העבודה מאהבה.
  definition_normal: - .
  s02Symbol:◊ .
  definition_normal:אינו בא כי אם לפי מדת הידיעה הבאה בלימוד של קביעות ועשירות רבה במקצעות השונים של תורת .

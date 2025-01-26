@@ -393,6 +393,19 @@ def parse(doc_file_name, percent):
                     robust_style = lookup_run(styles_table, run)
                     if robust_style:
                         type = robust_style
+
+                        # single run & alignment is CENTER and ...-> letter heading
+                        if (
+                            run.text.strip()
+                            and paragraph.alignment is not None
+                            and int(paragraph.alignment) == 1
+                            and "heading" not in type
+                        ):
+                            if len(paragraph.runs) <= 2 and run.text.isalnum():
+                                size_kind = "heading_letter"
+                                type = size_kind
+
+
                     else:
                         s = "!%s.%s:%s$" % (
                             run.style.style_id,

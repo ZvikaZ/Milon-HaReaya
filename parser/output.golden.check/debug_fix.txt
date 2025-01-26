@@ -3,6 +3,56 @@ heading_title:מילון הראיה.
  ---------------
 heading_letter:א.
  ---------------
+subject_normal:חושך .
+ definition_normal:- הניגוד המסובך והסתירה המבולבלת .
+ definition_small:.
+ source_normal:[קבצ' ג טז].
+ definition_small:..
+ new_line:
+.
+ ---------------
+subject_light:טבע .
+ definition_light:- זרם מצד המשך ההויה, מהאמצעים .
+ definition_light:מהסיבות°.
+ definition_light: .
+ source_light:[עפ"י נ"א ה 31]. .
+ new_line:
+.
+ ---------------
+definition_light:הסיבות והמסובבים.
+ source_light: [נ"א ה 29]..
+ new_line:
+.
+ ---------------
+subject_light:טבע .
+ definition_light:- .
+ sub-subject_light:(במובן המדעי הרגיל) .
+ definition_light:- חוקי ברזל, החוקיות .
+ definition_light:העיוורת°.
+ definition_light: השולטת במציאות .
+ definition_light:(שהקדושה°.
+ definition_light: לוחמת כנגדה) .
+ source_light:[עפ"י ב"ר שצז]. .
+ new_line:
+.
+ new_line:
+.
+ ---------------
+definition_light:השירה בשעה שהיא מתפרצת מתוכיותה, מעצמיותה, משטף יצירתה וזרמה הנשמתי כשהיא באה לידי ביטוי .
+ source_light:[מא"ה ב רסא]. .
+ new_line:
+.
+ new_line:
+.
+ ---------------
+subject_small:"אורות" .
+ definition_small:- .
+ sub-subject_small:(עניינו של ספר אורות) .
+ definition_small:- שלמות גילוי אמתת קדושת עצמיותם של ישראל וערכם האלהי העליון הנצחי.
+ source_small: [א' קפז]..
+ new_line:
+.
+ ---------------
 subject_normal:זהירות הפנימית -.
  definition_normal: חסימת התאוה הבהמית, (ופקיחת) [וסקירת] העינים על כל העשוי בכל חוג הבשר והחומר .
  definition_small:.
@@ -70,12 +120,13 @@ subject_normal:אבוקה .
  new_line:
 .
  ---------------
-sub-subject_light:אשא דעי למרחוק ולפועלי אתן צדק.
+subject_light:אשא דעי למרחוק ולפועלי אתן צדק.
  footnote:3.
  definition_normal: - .
  fake_sub-subject_light:להבין בחינת מה מהצדק העליון, נחוץ להתרומם בסולם הדעות מרחק רב מאד, הרחק הרחק ממדת הצדק שלנו .
+ fake_subject_light:.
  source_light:[נ"א ה 29].
- fake_sub-subject_light:..
+ fake_subject_light:..
  new_line:
 .
  ---------------
@@ -103,7 +154,8 @@ subject_normal:גאונים .
 sub-subject_normal:גדול הוא קידוש השם מחלול השם.
  footnote:1.
  definition_normal: - .
- source_small:צד קידוש השם הוא הגדול המכריע והמחייב כשבאותו ענין יש צד קידוש השם וצד חילול השם, ואין אומרים ספיקא ושב ואל תעשה [עפ"י שי' ה 88]..
+ definition_small:צד קידוש השם הוא הגדול המכריע והמחייב כשבאותו ענין יש צד קידוש השם וצד חילול השם, ואין אומרים ספיקא ושב ואל תעשה.
+ source_small: [עפ"י שי' ה 88]..
  new_line:
 .
  ---------------

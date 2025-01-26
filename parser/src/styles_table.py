@@ -30,25 +30,28 @@ class StylesTable:
             row (dict): A CSV row dictionary
 
         Returns:
-            tuple: (key_dict, kind, occurrences, first_text, first_strings)
+            tuple: (key_dict, kind, occurrences, first_text)
         """
+        # Normalize all values to strings
         key_dict = {
-            k: row[k]
+            k: str(row.get(k, ""))  # Convert all values to strings
             for k in self.all_key_names
-            if row[k]
-            and k not in ["kind", "occurrences", "first_text", "first_strings"]
+            if k not in ["kind", "occurrences", "first_text", "first_strings"]
         }
         key_str = json.dumps(key_dict, sort_keys=True)
 
-        # Deserialize first_strings from JSON
-        first_strings = json.loads(row.get("first_strings", "[]"))
+        # Handle missing or null values for metadata fields
+        kind = str(row.get("kind", "")).strip()  # Default to empty string if missing
+        occurrences = int(row.get("occurrences", 0))  # Default to 0 if missing
+        first_text = str(
+            row.get("first_text", "")
+        ).strip()  # Default to empty string if missing
 
         return (
             key_str,
-            row.get("kind", ""),
-            int(row.get("occurrences", 0)),
-            row.get("first_text", ""),
-            first_strings,
+            kind,
+            occurrences,
+            first_text,
         )
 
     def load_known_keys(self):
@@ -57,6 +60,11 @@ class StylesTable:
         if os.path.exists(self.csv_file):
             with open(self.csv_file, mode="r", newline="", encoding="utf-8") as file:
                 reader = csv.DictReader(file)
+                if reader.fieldnames is None:
+                    raise ValueError(
+                        f"CSV file {self.csv_file} is empty or improperly formatted."
+                    )
+
                 self.all_key_names.update(
                     key
                     for key in reader.fieldnames
@@ -64,16 +72,23 @@ class StylesTable:
                 )
 
                 for row in reader:
-                    key_str, kind, occurrences, first_text, first_strings = (
-                        self._parse_row(row)
-                    )
-                    if kind:  # Only load known keys
-                        self.known_keys[key_str] = {
-                            "kind": kind,
-                            "occurrences": 0,  # Reset occurrences
-                            "first_text": "",  # Reset first_text
-                            "first_strings": first_strings,  # Keep first_strings
+                    try:
+                        # Normalize row: replace None values with empty strings
+                        normalized_row = {
+                            k: ("" if v is None else v) for k, v in row.items()
                         }
+                        key_str, kind, occurrences, first_text = self._parse_row(
+                            normalized_row
+                        )
+                        if kind:  # Only load known keys
+                            self.known_keys[key_str] = {
+                                "kind": kind,
+                                "occurrences": 0,  # Reset occurrences
+                                "first_text": "",  # Reset first_text
+                                "first_strings": [],
+                            }
+                    except Exception as e:
+                        print(f"Error parsing row: {row}. Error: {e}")
 
         # Load and merge known keys from the unknown CSV file
         if self.separate_files and os.path.exists(self.unknown_csv_file):
@@ -81,6 +96,11 @@ class StylesTable:
                 self.unknown_csv_file, mode="r", newline="", encoding="utf-8"
             ) as file:
                 reader = csv.DictReader(file)
+                if reader.fieldnames is None:
+                    raise ValueError(
+                        f"CSV file {self.unknown_csv_file} is empty or improperly formatted."
+                    )
+
                 self.all_key_names.update(
                     key
                     for key in reader.fieldnames
@@ -88,16 +108,23 @@ class StylesTable:
                 )
 
                 for row in reader:
-                    key_str, kind, occurrences, first_text, first_strings = (
-                        self._parse_row(row)
-                    )
-                    if kind:  # If the row has a kind, treat it as a known key
-                        self.known_keys[key_str] = {
-                            "kind": kind,
-                            "occurrences": 0,  # Reset occurrences
-                            "first_text": "",  # Reset first_text
-                            "first_strings": first_strings,  # Keep first_strings
+                    try:
+                        # Normalize row: replace None values with empty strings
+                        normalized_row = {
+                            k: ("" if v is None else v) for k, v in row.items()
                         }
+                        key_str, kind, occurrences, first_text = self._parse_row(
+                            normalized_row
+                        )
+                        if kind:  # If the row has a kind, treat it as a known key
+                            self.known_keys[key_str] = {
+                                "kind": kind,
+                                "occurrences": 0,  # Reset occurrences
+                                "first_text": "",  # Reset first_text
+                                "first_strings": [],
+                            }
+                    except Exception as e:
+                        print(f"Error parsing row: {row}. Error: {e}")
 
     def save_csv_files(self):
         """Save data to the CSV files."""
@@ -119,6 +146,8 @@ class StylesTable:
             writer.writeheader()
             for key_str, data in self.known_keys.items():
                 row_data = json.loads(key_str)
+                # Ensure all values are strings
+                row_data = {k: str(v) for k, v in row_data.items()}
                 row_data.update(
                     {
                         "kind": data["kind"],
@@ -138,6 +167,8 @@ class StylesTable:
                 writer.writeheader()
                 for key_str, data in self.unknown_keys.items():
                     row_data = json.loads(key_str)
+                    # Ensure all values are strings
+                    row_data = {k: str(v) for k, v in row_data.items()}
                     row_data.update(
                         {
                             "kind": "",
@@ -153,6 +184,8 @@ class StylesTable:
                 writer = csv.DictWriter(file, fieldnames=fieldnames)
                 for key_str, data in self.unknown_keys.items():
                     row_data = json.loads(key_str)
+                    # Ensure all values are strings
+                    row_data = {k: str(v) for k, v in row_data.items()}
                     row_data.update(
                         {
                             "kind": "",
@@ -165,16 +198,22 @@ class StylesTable:
 
     def _contains_hebrew_or_english(self, text):
         """
-        Check if the text contains at least 3 Hebrew or English characters.
+        Check if the text contains at least one Hebrew or English character
+        and has a total length of at least 3 characters.
 
         Args:
             text (str): The text to check.
 
         Returns:
-            bool: True if the text contains at least 3 Hebrew or English characters, False otherwise.
+            bool: True if the text contains at least one Hebrew or English character
+                  and has a length of at least 3, False otherwise.
         """
-        # Regex to match at least 3 consecutive Hebrew or English characters
-        hebrew_english_pattern = re.compile(r"([\u0590-\u05FFa-zA-Z]{3,})")
+        # Check if the text length is at least 3
+        if len(text) < 3:
+            return False
+
+        # Regex to match at least one Hebrew or English character
+        hebrew_english_pattern = re.compile(r"[\u0590-\u05FFa-zA-Z]")
         return bool(hebrew_english_pattern.search(text))
 
     def lookup(self, key_dict, first_text=""):
@@ -182,7 +221,13 @@ class StylesTable:
         Look up a key in the known keys.
         If not found, record it in the unknown keys table.
         """
-        key_str = json.dumps(key_dict, sort_keys=True)
+        # Normalize key_dict: convert all values to strings
+        normalized_key_dict = {
+            k: str(v) if v is not None else "" for k, v in key_dict.items()
+        }
+
+        # Convert the normalized dictionary to a JSON string
+        key_str = json.dumps(normalized_key_dict, sort_keys=True)
         self.all_key_names.update(key_dict.keys())
 
         if key_str in self.known_keys:

@@ -391,65 +391,68 @@ def parse(doc_file_name, percent):
                 debug_file.write("\n\nNEW_PARA:\n------\n")
                 for run, footnote_run in zip(paragraph.runs, footnote_paragraph.runs):
                     robust_style = lookup_run(styles_table, run)
-                    s = "!%s.%s:%s$" % (
-                        run.style.style_id,
-                        styles.get(run_style_id(run), run_style_id(run)),
-                        run.text,
-                    )
-                    # print "!%s:%s$" % (styles.get(run.style.style_id, run.style.style_id), run.text)
-                    debug_file.write(s + " ")
-                    type = styles.get(run_style_id(run), "unknown")
+                    if robust_style:
+                        type = robust_style
+                    else:
+                        s = "!%s.%s:%s$" % (
+                            run.style.style_id,
+                            styles.get(run_style_id(run), run_style_id(run)),
+                            run.text,
+                        )
+                        # print "!%s:%s$" % (styles.get(run.style.style_id, run.style.style_id), run.text)
+                        debug_file.write(s + " ")
+                        type = styles.get(run_style_id(run), "unknown")
 
-                    if "unknown" in type and run.text.strip():
-                        type = fix_unknown(run)
+                        if "unknown" in type and run.text.strip():
+                            type = fix_unknown(run)
 
-                    if type == "DefaultParagraphFont":
-                        type = fix_DefaultParagraphFont(run)
-                        # print paragraph.style.style_id, run.bold, run.font.size, s
+                        if type == "DefaultParagraphFont":
+                            type = fix_DefaultParagraphFont(run)
+                            # print paragraph.style.style_id, run.bold, run.font.size, s
 
-                    # elif run.bold:          #20.11.16 - Trying to fix 'fake' bold in Appendix
-                    if run.font.cs_bold and run.text.strip():
-                        type = bold_type(s, type, run)
+                        # elif run.bold:          #20.11.16 - Trying to fix 'fake' bold in Appendix
+                        if run.font.cs_bold and run.text.strip():
+                            type = bold_type(s, type, run)
 
-                    # single run & alignment is CENTER and ...-> letter heading
-                    if (
-                        run.text.strip()
-                        and paragraph.alignment is not None
-                        and int(paragraph.alignment) == 1
-                        and "heading" not in type
-                    ):
-                        if len(paragraph.runs) <= 2 and run.text.isalnum():
-                            size_kind = "heading_letter"
-                            type = size_kind
-
-                        if run.font.size and run.text.strip():
-                            size_kind = sizes.match(run.font.size)
-                            if size_kind == "unknown":
-                                print(
-                                    "!%s. Size: %d, Bool: %s, %s:%s$"
-                                    % (
-                                        size_kind,
-                                        run.font.size,
-                                        run.font.cs_bold,
-                                        type,
-                                        run.text,
-                                    )
-                                )
-                            if size_kind not in ("normal", "unknown"):
+                        # single run & alignment is CENTER and ...-> letter heading
+                        if (
+                            run.text.strip()
+                            and paragraph.alignment is not None
+                            and int(paragraph.alignment) == 1
+                            and "heading" not in type
+                        ):
+                            if len(paragraph.runs) <= 2 and run.text.isalnum():
+                                size_kind = "heading_letter"
                                 type = size_kind
 
-                    try:
-                        if run.element.rPr.szCs is not None and run.text.strip():
-                            type = fix_sz_cs(run, type)
+                            if run.font.size and run.text.strip():
+                                size_kind = sizes.match(run.font.size)
+                                if size_kind == "unknown":
+                                    print(
+                                        "!%s. Size: %d, Bool: %s, %s:%s$"
+                                        % (
+                                            size_kind,
+                                            run.font.size,
+                                            run.font.cs_bold,
+                                            type,
+                                            run.text,
+                                        )
+                                    )
+                                if size_kind not in ("normal", "unknown"):
+                                    type = size_kind
 
-                        if run.element.rPr.bCs is not None and run.text.strip():
-                            type = fix_b_cs(run, type)
+                        try:
+                            if run.element.rPr.szCs is not None and run.text.strip():
+                                type = fix_sz_cs(run, type)
 
-                    except:
-                        pass
+                            if run.element.rPr.bCs is not None and run.text.strip():
+                                type = fix_b_cs(run, type)
 
-                    if run.text.strip():
-                        type = fix_misc_attrib(run, type)
+                        except:
+                            pass
+
+                        if run.text.strip():
+                            type = fix_misc_attrib(run, type)
 
                     # NOTE: this footnote number need no fix.
                     # it is a recurrence, therefore it has no id.

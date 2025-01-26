@@ -2,7 +2,7 @@
 
 NEW_PARA:
 ------
-!s02.definition_normal:מילון הראיה$ !s02.definition_normal:
+!s02.definition_normal:
 $ !s02.definition_normal:
 $ !s02.definition_normal:
 $ 
@@ -10,6 +10,32 @@ $
 NEW_PARA:
 ------
 !s01.subject_normal:א$ 
+
+NEW_PARA:
+------
+!DefaultParagraphFont.DefaultParagraphFont:חושך$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:- הניגוד המסובך והסתירה המבולבלת$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:[$ !DefaultParagraphFont.DefaultParagraphFont:קבצ$ !DefaultParagraphFont.DefaultParagraphFont:'$ !DefaultParagraphFont.DefaultParagraphFont: ג $ !DefaultParagraphFont.DefaultParagraphFont:טז$ !DefaultParagraphFont.DefaultParagraphFont:].$ 
+
+NEW_PARA:
+------
+!DefaultParagraphFont.DefaultParagraphFont:טבע $ !DefaultParagraphFont.DefaultParagraphFont:- זרם מצד המשך $ !DefaultParagraphFont.DefaultParagraphFont:ההויה$ !DefaultParagraphFont.DefaultParagraphFont:, מהאמצעים מהסיבות°$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:[עפ"י נ"א ה 31]. $ 
+
+NEW_PARA:
+------
+!DefaultParagraphFont.DefaultParagraphFont:הסיבות והמסובבים$ !DefaultParagraphFont.DefaultParagraphFont: [נ$ !DefaultParagraphFont.DefaultParagraphFont:"א ה$ !DefaultParagraphFont.DefaultParagraphFont: 29$ !DefaultParagraphFont.DefaultParagraphFont:].$ 
+
+NEW_PARA:
+------
+!DefaultParagraphFont.DefaultParagraphFont:טבע $ !DefaultParagraphFont.DefaultParagraphFont:-$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:(במובן המדעי הרגיל) $ !DefaultParagraphFont.DefaultParagraphFont:-$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:חוקי ברזל, החוקיות העיוורת° השולטת במציאות (שהקדושה° לוחמת כנגדה)$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:[עפ"י $ !DefaultParagraphFont.DefaultParagraphFont:ב"ר$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:שצז$ !DefaultParagraphFont.DefaultParagraphFont:]. $ !DefaultParagraphFont.DefaultParagraphFont:
+$ 
+
+NEW_PARA:
+------
+!s04.unknown_light:השירה בשעה שהיא מתפרצת מתוכיותה, מעצמיותה, משטף יצירתה וזרמה הנשמתי כשהיא באה לידי ביטוי $ !s12.definition_light:[$ !s12.definition_light:מא"ה$ !s12.definition_light: ב $ !s12.definition_light:רסא$ !s12.definition_light:]. $ !s12.definition_light:
+$ 
+
+NEW_PARA:
+------
+!s02.definition_normal:"אורות" $ !s03.definition_small:- $ !s03.sub-subject_small:(עניינו של ספר אורות) $ !s03.definition_small:- שלמות גילוי $ !s03.definition_small:אמתת$ !s03.definition_small: קדושת עצמיותם של ישראל וערכם $ !s03.definition_small:האלהי$ !s03.definition_small: העליון הנצחי$ !s03.definition_small: [א' $ !s03.definition_small:קפז$ !s03.definition_small:].$ 
 
 NEW_PARA:
 ------
@@ -41,7 +67,7 @@ $
 
 NEW_PARA:
 ------
-!s16.sub-subject_light:אשא דעי למרחוק ולפועלי אתן צדק$ !s02.definition_normal:$ !s02.definition_normal: $ !s02.definition_normal:-$ !s16.sub-subject_light: $ !s16.sub-subject_light:להבין בחינת מה מהצדק העליון, נחוץ להתרומם בסולם הדעות מרחק רב מאד, הרחק הרחק ממדת הצדק שלנו $ !s16.sub-subject_light:[נ"א ה 29].$ 
+!s16.subject_light:אשא דעי למרחוק ולפועלי אתן צדק$ !s02.definition_normal:$ !s02.definition_normal: $ !s02.definition_normal:-$ !s16.subject_light: $ !s16.subject_light:להבין בחינת מה מהצדק העליון, נחוץ להתרומם בסולם הדעות מרחק רב מאד, הרחק הרחק ממדת הצדק שלנו $ !s16.subject_light:[נ"א ה 29].$ 
 
 NEW_PARA:
 ------
@@ -68,7 +94,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!DefaultParagraphFont.DefaultParagraphFont:נקודים$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:- העולמים והבריות לאין תכלית, הכחות בפירודם$ !DefaultParagraphFont.DefaultParagraphFont:°$ !DefaultParagraphFont.DefaultParagraphFont: ובהתגברותם, $ !DefaultParagraphFont.DefaultParagraphFont:האינדיוידואליות$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:המתאדרת$ !DefaultParagraphFont.DefaultParagraphFont:, החיים בכל שאונם הנחמד $ !DefaultParagraphFont.DefaultParagraphFont:[א"ק א $ !DefaultParagraphFont.DefaultParagraphFont:קפט$ !DefaultParagraphFont.DefaultParagraphFont:].$ !DefaultParagraphFont.DefaultParagraphFont:
+!DefaultParagraphFont.DefaultParagraphFont:נקודים$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:- העולמים והבריות לאין תכלית, $ !DefaultParagraphFont.DefaultParagraphFont:הכחות$ !DefaultParagraphFont.DefaultParagraphFont: בפירודם$ !DefaultParagraphFont.DefaultParagraphFont:°$ !DefaultParagraphFont.DefaultParagraphFont: ובהתגברותם, $ !DefaultParagraphFont.DefaultParagraphFont:האינדיוידואליות$ !DefaultParagraphFont.DefaultParagraphFont: $ !DefaultParagraphFont.DefaultParagraphFont:המתאדרת$ !DefaultParagraphFont.DefaultParagraphFont:, החיים בכל שאונם הנחמד $ !DefaultParagraphFont.DefaultParagraphFont:[א"ק א $ !DefaultParagraphFont.DefaultParagraphFont:קפט$ !DefaultParagraphFont.DefaultParagraphFont:].$ !DefaultParagraphFont.DefaultParagraphFont:
 $ 
 
 NEW_PARA:
@@ -88,7 +114,7 @@ $
 
 NEW_PARA:
 ------
-!s14.subject_light:פשוט $ !s02.definition_normal:- $ !s12.sub-subject_light:($ !s12.sub-subject_light:רצון$ !s03.definition_small:־$ !s12.sub-subject_light:פשוט$ !s03.definition_small:°$ !s12.definition_light: $ !s12.sub-subject_light:בלשון $ !s12.sub-subject_light:חכמי$ !s02.definition_normal:־$ !s12.sub-subject_light:האמת$ !s03.definition_small:°$ !s12.sub-subject_light:)$ !s03.definition_small:$ !s03.definition_small: $ !s02.definition_normal:-$ !s12.definition_light: בלי שום הרכבה ושום הכרח $ !s12.definition_light:[עפ"י נ"א ה 18].$ !s12.definition_light: $ !s12.definition_light:
+!s02.definition_normal:- $ !s12.sub-subject_light:($ !s12.sub-subject_light:רצון$ !s03.definition_small:־$ !s12.sub-subject_light:פשוט$ !s03.definition_small:°$ !s12.definition_light: $ !s12.sub-subject_light:בלשון $ !s12.sub-subject_light:חכמי$ !s02.definition_normal:־$ !s12.sub-subject_light:האמת$ !s03.definition_small:°$ !s12.sub-subject_light:)$ !s03.definition_small:$ !s03.definition_small: $ !s02.definition_normal:-$ !s12.definition_light: בלי שום הרכבה ושום הכרח $ !s12.definition_light:[עפ"י נ"א ה 18].$ !s12.definition_light: $ !s12.definition_light:
 $ 
 
 NEW_PARA:
@@ -114,7 +140,7 @@ $ !s01.subject_normal:"מעשים" $ !s02.definition_normal:- $ !s02.definition_
 
 NEW_PARA:
 ------
-!s01.subject_normal:עזי פנים$ !s02.definition_normal:$ !s01.subject_normal: $ !s02.definition_normal:- הם העומדים בכל דור נגד יסוד התפשטותה של $ !s02.definition_normal:הקדושה־העליונה$ !s02.definition_normal:° $ !s02.definition_normal:ודעת־ד$ !s02.definition_normal:'־בעולם°, הם $ !s02.definition_normal:הם$ !s02.definition_normal: הנפשות הבאות מאותם הדורות, שהיו ראויים להיות לפני $ !s02.definition_normal:מתן־תורה$ !s02.definition_normal:°, $ !s11.sub-subject_normal:אשר קומטו בלא עת$ !s02.definition_normal:, כלומר, אלה שהם בכל מהותם נגד התורה° והשפעת קדושתה בעולם. המשוללים מכל הכרה טהורה° וקדושה°, ומכל עול קדוש וראוי $ !s03.definition_small:[$ !s03.definition_small:ע"ר$ !s03.definition_small: א $ !s03.definition_small:פ־פא$ !s03.definition_small:, מ"ר $ !s03.definition_small:84$ !s03.definition_small:]. $ !s03.definition_small:
+!s01.subject_normal:עזי פנים$ !s02.definition_normal:$ !s01.subject_normal: $ !s02.definition_normal:- הם העומדים בכל דור נגד יסוד התפשטותה של $ !s02.definition_normal:הקדושה־העליונה$ !s02.definition_normal:° $ !s02.definition_normal:ודעת־ד$ !s02.definition_normal:'־בעולם°, הם $ !s02.definition_normal:הם$ !s02.definition_normal: הנפשות הבאות $ !s02.definition_normal:מאותם הדורות, שהיו ראויים להיות לפני $ !s02.definition_normal:מתן־תורה$ !s02.definition_normal:°, $ !s11.sub-subject_normal:אשר קומטו בלא עת$ !s02.definition_normal:, כלומר, אלה שהם בכל מהותם נגד התורה° והשפעת קדושתה בעולם. המשוללים מכל הכרה טהורה° וקדושה°, ומכל עול קדוש וראוי $ !s03.definition_small:[$ !s03.definition_small:ע"ר$ !s03.definition_small: א $ !s03.definition_small:פ־פא$ !s03.definition_small:, מ"ר $ !s03.definition_small:84$ !s03.definition_small:]. $ !s03.definition_small:
 $ !s02.definition_normal:מנגדי התורה, בכל דור ודור $ !s03.definition_small:[ה' $ !s03.definition_small:ריט$ !s03.definition_small:]. $ !s03.definition_small:
 $ 
 
@@ -254,7 +280,7 @@ $
 
 NEW_PARA:
 ------
-!s14.subject_light:טבע $ !s02.definition_normal:-$ !s04.unknown_light: $ !s16.sub-subject_light:(במובן המדעי הרגיל) $ !s03.definition_small:-$ !s04.unknown_light: חוקי ברזל, החוקיות העיוורת° השולטת במציאות (שהקדושה° לוחמת כנגדה) $ !s12.definition_light:[עפ"י $ !s12.definition_light:ב"ר$ !s12.definition_light: $ !s12.definition_light:שצז$ !s12.definition_light:]. $ !s12.definition_light:
+!s02.definition_normal:-$ !s04.unknown_light: $ !s16.subject_light:(במובן המדעי הרגיל) $ !s03.definition_small:-$ !s04.unknown_light: חוקי ברזל, החוקיות העיוורת° השולטת במציאות (שהקדושה° לוחמת כנגדה) $ !s12.definition_light:[עפ"י $ !s12.definition_light:ב"ר$ !s12.definition_light: $ !s12.definition_light:שצז$ !s12.definition_light:]. $ !s12.definition_light:
 $ !s1510.subject_small:טבעיות $ !s05.definition_small:- היציבות המסודרת של התופעות $ !s038.source_small:[ב"א $ !s038.source_small:10$ !s038.source_small:]. $ 
 
 NEW_PARA:
@@ -309,7 +335,7 @@ NEW_PARA:
 
 NEW_PARA:
 ------
-!s14.subject_light:טבע $ !s02.definition_normal:-$ !s04.unknown_light: החוקיות הכוללת את האדם והעולם. חוקיות החורזת את כל סדרי המציאות $ !s03.definition_small:-$ !s04.unknown_light: האדם, הדורות, $ !s04.unknown_light:ההויה$ !s04.unknown_light: $ !s04.unknown_light:וההסתוריה$ !s04.unknown_light:, שמים וארץ. חוקיות המארגנת את כל הברואים והיצורים לחטיבה אחת$ !s04.unknown_light: $ !s12.definition_light:[עפ"י $ !s12.definition_light:ב"ר$ !s12.definition_light: $ !s12.definition_light:שצז$ !s12.definition_light:]. $ !s12.definition_light:
+!s02.definition_normal:-$ !s04.unknown_light: החוקיות הכוללת את האדם והעולם. חוקיות החורזת את כל סדרי המציאות $ !s03.definition_small:-$ !s04.unknown_light: האדם, הדורות, $ !s04.unknown_light:ההויה$ !s04.unknown_light: $ !s04.unknown_light:וההסתוריה$ !s04.unknown_light:, שמים וארץ. חוקיות המארגנת את כל הברואים והיצורים לחטיבה אחת$ !s04.unknown_light: $ !s12.definition_light:[עפ"י $ !s12.definition_light:ב"ר$ !s12.definition_light: $ !s12.definition_light:שצז$ !s12.definition_light:]. $ !s12.definition_light:
 $ 
 
 NEW_PARA:

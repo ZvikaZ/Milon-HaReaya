@@ -145,3 +145,5 @@ source_normal,,[],0,0,True,False,False,,114300,True,s11,18
 sub-subject_normal,,[],0,False,True,,False,,114300,False,s01,20
 subject_light,,[],0,False,,,False,,,False,s16,False
 definition_normal,,[],0,False,True,,False,,,True,DefaultParagraphFont,False
+source_small,,[],0,False,,,False,,114300,True,s03,16
+subject_small,,[],0,False,,,False,,114300,True,s01,20

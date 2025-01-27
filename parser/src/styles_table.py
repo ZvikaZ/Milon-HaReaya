@@ -246,8 +246,8 @@ class StylesTable:
             return self.known_keys[key_str]["kind"]
 
         # Strip whitespace from first_text and context
-        first_text = first_text.strip()
-        context = context.strip()
+        first_text = first_text.strip().replace('\n', '\t')
+        context = context.strip().replace('\n', '\t')
 
         # Save first_text only if it contains at least 3 Hebrew or English characters
         if not self._contains_hebrew_or_english(first_text):

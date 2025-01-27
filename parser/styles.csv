@@ -110,3 +110,11 @@ definition_normal,,[],0,0,True,False,False,,139700,True,s01,20
 sub-subject_normal,,[],0,False,True,True,False,,139700,True,s03,20
 source_small,,[],0,False,,,False,,101600,True,s05,16
 subject_light,,[],0,False,,,False,,,False,s149,False
+definition_small,,[],0,False,,,True,,,False,s05,False
+definition_light,,[],0,False,,,False,,,False,s048,False
+sub-subject_light,,[],0,False,,,False,,,False,s168,False
+source_light,,[],0,False,,,False,,,False,s127,False
+sub-subject_normal,,[],0,False,,,True,,,False,s11,False
+definition_normal,,[],0,False,,,False,,152400,False,s02,False
+source_small,,[],0,False,,,False,,101600,True,s02,16
+sub-subject_small,,[],0,False,True,True,False,,,False,s03,False

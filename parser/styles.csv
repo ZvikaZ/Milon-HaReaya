@@ -154,3 +154,6 @@ sub-subject_normal,,,,0,False,,,False,,127000,False,s11,False
 definition_normal,,,,0,False,,,False,,,False,s03,20
 subject_normal,,,,0,False,,,False,,139700,False,s11,22
 definition_light,,,,0,False,,,False,,,True,s048,False
+subject_small,,,,0,False,,,True,,,False,s1510,False
+subject_normal,,,,0,False,True,True,False,,139700,False,DefaultParagraphFont,22
+subject_normal,,,,0,False,,,False,,139700,False,s1510,22

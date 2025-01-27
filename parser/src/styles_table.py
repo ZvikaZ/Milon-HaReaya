@@ -30,28 +30,30 @@ class StylesTable:
             row (dict): A CSV row dictionary
 
         Returns:
-            tuple: (key_dict, kind, occurrences, first_text)
+            tuple: (key_dict, kind, occurrences, first_text, first_strings, context)
         """
         # Normalize all values to strings
         key_dict = {
             k: str(row.get(k, ""))  # Convert all values to strings
             for k in self.all_key_names
-            if k not in ["kind", "occurrences", "first_text", "first_strings"]
+            if k not in ["kind", "occurrences", "first_text", "first_strings", "context"]
         }
         key_str = json.dumps(key_dict, sort_keys=True)
 
         # Handle missing or null values for metadata fields
         kind = str(row.get("kind", "")).strip()  # Default to empty string if missing
         occurrences = int(row.get("occurrences", 0))  # Default to 0 if missing
-        first_text = str(
-            row.get("first_text", "")
-        ).strip()  # Default to empty string if missing
+        first_text = str(row.get("first_text", "")).strip()  # Default to empty string if missing
+        first_strings = row.get("first_strings", "").split("|") if row.get("first_strings") else []  # Split by delimiter
+        context = row.get("context", "").split("|") if row.get("context") else []  # Split by delimiter
 
         return (
             key_str,
             kind,
             occurrences,
             first_text,
+            first_strings,
+            context,
         )
 
     def load_known_keys(self):
@@ -68,7 +70,7 @@ class StylesTable:
                 self.all_key_names.update(
                     key
                     for key in reader.fieldnames
-                    if key not in ["kind", "occurrences", "first_text", "first_strings"]
+                    if key not in ["kind", "occurrences", "first_text", "first_strings", "context"]
                 )
 
                 for row in reader:
@@ -77,7 +79,7 @@ class StylesTable:
                         normalized_row = {
                             k: ("" if v is None else v) for k, v in row.items()
                         }
-                        key_str, kind, occurrences, first_text = self._parse_row(
+                        key_str, kind, occurrences, first_text, first_strings, context = self._parse_row(
                             normalized_row
                         )
                         if kind:  # Only load known keys
@@ -85,7 +87,8 @@ class StylesTable:
                                 "kind": kind,
                                 "occurrences": 0,  # Reset occurrences
                                 "first_text": "",  # Reset first_text
-                                "first_strings": [],
+                                "first_strings": [],  # Reset first_strings
+                                "context": [],  # Reset context
                             }
                     except Exception as e:
                         print(f"Error parsing row: {row}. Error: {e}")
@@ -104,7 +107,7 @@ class StylesTable:
                 self.all_key_names.update(
                     key
                     for key in reader.fieldnames
-                    if key not in ["kind", "occurrences", "first_text", "first_strings"]
+                    if key not in ["kind", "occurrences", "first_text", "first_strings", "context"]
                 )
 
                 for row in reader:
@@ -113,7 +116,7 @@ class StylesTable:
                         normalized_row = {
                             k: ("" if v is None else v) for k, v in row.items()
                         }
-                        key_str, kind, occurrences, first_text = self._parse_row(
+                        key_str, kind, occurrences, first_text, first_strings, context = self._parse_row(
                             normalized_row
                         )
                         if kind:  # If the row has a kind, treat it as a known key
@@ -121,7 +124,8 @@ class StylesTable:
                                 "kind": kind,
                                 "occurrences": 0,  # Reset occurrences
                                 "first_text": "",  # Reset first_text
-                                "first_strings": [],
+                                "first_strings": [],  # Reset first_strings
+                                "context": [],  # Reset context
                             }
                     except Exception as e:
                         print(f"Error parsing row: {row}. Error: {e}")
@@ -135,7 +139,7 @@ class StylesTable:
             self.all_key_names.update(key_dict.keys())
 
         fieldnames = (
-            ["kind", "first_text", "first_strings","occurrences"]
+            ["kind", "first_text", "first_strings", "context", "occurrences"]
             + sorted(list(self.all_key_names))
         )
 
@@ -152,7 +156,8 @@ class StylesTable:
                         "kind": data["kind"],
                         "occurrences": data["occurrences"],
                         "first_text": data["first_text"],
-                        "first_strings": data["first_strings"],
+                        "first_strings": "|".join(data["first_strings"]),  # Join with delimiter
+                        "context": "|".join(data["context"]),  # Join with delimiter
                     }
                 )
                 writer.writerow(row_data)
@@ -173,7 +178,8 @@ class StylesTable:
                             "kind": "",
                             "occurrences": data["occurrences"],
                             "first_text": data["first_text"],
-                            "first_strings": data["first_strings"],
+                            "first_strings": "|".join(data["first_strings"]),  # Join with delimiter
+                            "context": "|".join(data["context"]),  # Join with delimiter
                         }
                     )
                     if data["first_strings"]:
@@ -191,7 +197,8 @@ class StylesTable:
                             "kind": "",
                             "occurrences": data["occurrences"],
                             "first_text": data["first_text"],
-                            "first_strings": data["first_strings"],
+                            "first_strings": "|".join(data["first_strings"]),  # Join with delimiter
+                            "context": "|".join(data["context"]),  # Join with delimiter
                         }
                     )
                     writer.writerow(row_data)
@@ -216,10 +223,15 @@ class StylesTable:
         hebrew_english_pattern = re.compile(r"[\u0590-\u05FFa-zA-Z]")
         return bool(hebrew_english_pattern.search(text))
 
-    def lookup(self, key_dict, first_text=""):
+    def lookup(self, key_dict, first_text="", context=""):
         """
         Look up a key in the known keys.
         If not found, record it in the unknown keys table.
+
+        Args:
+            key_dict (dict): The key dictionary to look up.
+            first_text (str): The first text associated with the key.
+            context (str): Additional context provided by the user.
         """
         # Normalize key_dict: convert all values to strings
         normalized_key_dict = {
@@ -233,8 +245,9 @@ class StylesTable:
         if key_str in self.known_keys:
             return self.known_keys[key_str]["kind"]
 
-        # Strip whitespace from first_text
+        # Strip whitespace from first_text and context
         first_text = first_text.strip()
+        context = context.strip()
 
         # Save first_text only if it contains at least 3 Hebrew or English characters
         if not self._contains_hebrew_or_english(first_text):
@@ -244,6 +257,7 @@ class StylesTable:
             self.unknown_keys[key_str] = {
                 "first_text": first_text,
                 "first_strings": [],  # Initialize list of first strings
+                "context": [],  # Initialize list of context strings
                 "occurrences": 0,
             }
 
@@ -251,6 +265,8 @@ class StylesTable:
         if first_text and first_text not in self.unknown_keys[key_str]["first_strings"]:
             if len(self.unknown_keys[key_str]["first_strings"]) < 20:
                 self.unknown_keys[key_str]["first_strings"].append(first_text)
+                # Add context at the same index
+                self.unknown_keys[key_str]["context"].append(context)
 
         self.unknown_keys[key_str]["occurrences"] += 1
         return None

@@ -316,7 +316,7 @@ def merge_paras(paras):
     return merged_paras
 
 
-def lookup_run(styles_table, run):
+def lookup_run(styles_table, run, context):
     try:
         eastAsia = 'eastAsia' in list(run.element.rPr.rFonts.attrib.values())
     except AttributeError:
@@ -348,7 +348,7 @@ def lookup_run(styles_table, run):
             "font": get_fonts(run),
             "eastAsia": eastAsia,
             "hint_cs": hint_cs,
-        }, run.text,
+        }, run.text, context
     )
 
 
@@ -390,7 +390,7 @@ def parse(doc_file_name, percent):
                 para = []
                 debug_file.write("\n\nNEW_PARA:\n------\n")
                 for run, footnote_run in zip(paragraph.runs, footnote_paragraph.runs):
-                    robust_style = lookup_run(styles_table, run)
+                    robust_style = lookup_run(styles_table, run, paragraph.text)
                     if robust_style:
                         type = robust_style
 

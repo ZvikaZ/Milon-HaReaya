@@ -163,3 +163,8 @@ subject_normal,,,,0,False,True,,False,,,False,s01,False
 sub-subject_normal,,,,0,False,True,True,True,,,False,DefaultParagraphFont,False
 subject_normal,,,,0,False,True,True,False,,139700,True,s03,22
 sub-subject_small,,,,0,False,True,True,True,,,False,s03,False
+definition_small,,,,0,False,,,True,,,False,DefaultParagraphFont,18
+definition_normal,,,,0,0,,False,False,,,False,s01,20
+definition_normal,,,,0,False,,,True,,127000,False,s02,False
+definition_normal,,,,0,False,True,,False,,,False,s02,False
+sub-subject_normal,,,,0,False,True,True,False,Times New Roman,,False,DefaultParagraphFont,False

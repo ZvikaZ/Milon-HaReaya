@@ -157,3 +157,9 @@ definition_light,,,,0,False,,,False,,,True,s048,False
 subject_small,,,,0,False,,,True,,,False,s1510,False
 subject_normal,,,,0,False,True,True,False,,139700,False,DefaultParagraphFont,22
 subject_normal,,,,0,False,,,False,,139700,False,s1510,22
+definition_normal,,,,0,False,,,False,,152400,True,s02,False
+subject_light,,,,0,False,True,True,False,,,True,s04,False
+subject_normal,,,,0,False,True,,False,,,False,s01,False
+sub-subject_normal,,,,0,False,True,True,True,,,False,DefaultParagraphFont,False
+subject_normal,,,,0,False,True,True,False,,139700,True,s03,22
+sub-subject_small,,,,0,False,True,True,True,,,False,s03,False

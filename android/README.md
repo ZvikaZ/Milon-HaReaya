@@ -88,7 +88,7 @@ android/
 - **Upload Status**: Google Play upload uses official Gradle plugin with APK format
 - **WebView Configuration**: App loads `http://18.159.236.82/milon` with JavaScript enabled
 - **Minimum SDK**: Android API 26 (Android 8.0+)
-- **Target SDK**: Android API 35
+- **Target SDK**: Android API 34 (Android 14)
 
 ## Troubleshooting
 

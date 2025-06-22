@@ -16,9 +16,9 @@ android {
     defaultConfig {
         applicationId "com.haramaty.zvika.milon"
         minSdk 26
-        targetSdk 35
-        versionCode 400
-        versionName "2.0"
+        targetSdk 34
+        versionCode 401
+        versionName "2.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

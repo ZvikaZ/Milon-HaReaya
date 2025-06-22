@@ -35,3 +35,6 @@ local.properties
 # Keystore files
 *.jks
 *.keystore
+*.p12
+*.json
+keystore.properties

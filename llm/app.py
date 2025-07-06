@@ -6,12 +6,25 @@ load_dotenv()
 
 st.set_page_config(page_title="מילון הראיה", page_icon="📖", layout="wide")
 
-# Proper RTL setup using HTML lang and dir attributes
+# RTL CSS for Hebrew
 st.markdown("""
-<script>
-document.documentElement.lang = 'he';
-document.documentElement.dir = 'rtl';
-</script>
+<style>
+.main .block-container {
+    direction: rtl;
+    text-align: right;
+}
+.stChatMessage {
+    direction: rtl;
+    text-align: right;
+}
+.stChatInput {
+    direction: rtl;
+}
+.stMarkdown {
+    direction: rtl;
+    text-align: right;
+}
+</style>
 """, unsafe_allow_html=True)
 
 

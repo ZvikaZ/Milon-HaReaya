@@ -81,9 +81,9 @@ class LatexProcessor:
     def open_latex(self):
         os.chdir("input_tex")
         for f in (
-            "milon.tex",
-            "polythumbs.sty",
-            #  "hebrew-gymatria-fix.sty",     # Rav Kalner asked not to do it. Leaving it here for future reference...
+                "milon.tex",
+                "polythumbs.sty",
+                #  "hebrew-gymatria-fix.sty",     # Rav Kalner asked not to do it. Leaving it here for future reference...
         ):
             shutil.copyfile(f, os.path.join("../tex", f))
         os.chdir("../")
@@ -92,18 +92,18 @@ class LatexProcessor:
         if type in ("subject_normal"):
             return "ערך"
         elif type in (
-            "sub-subject_normal",
-            "subject_small",
-            "fake_sub-subject_normal",
+                "sub-subject_normal",
+                "subject_small",
+                "fake_sub-subject_normal",
         ):
             return "משנה"
-        elif type == "fake_subject_small":
-            return "הגדרהמודגשת"
         elif type in (
-            "definition_normal",
-            "fake_subject_small_normal",
-            "fake_subject_normal",
+                "fake_subject_small",
+                "fake_subject_small_normal",
+                "fake_subject_normal",
         ):
+            return "הגדרהמודגשת"
+        elif type == "definition_normal":
             return "הגדרה"
         elif type == "source_normal":
             return "מקור"
@@ -133,20 +133,20 @@ class LatexProcessor:
             return "my_section_title_secondary"
         else:
             if (
-                type
-                not in (
+                    type
+                    not in (
                     "new_line",
                     "footnote",
                     "footnote_recurrence",
                     "FootnoteReference",
-                )
-                and "heading" not in type
+            )
+                    and "heading" not in type
             ):
                 print("unknown latex_type: ", type)
             return "תקלה" + type
 
     def unite_lines(
-        self, data, r_prev_line, r_line, prefix_to_new_line="", suffix_to_new_line=""
+            self, data, r_prev_line, r_line, prefix_to_new_line="", suffix_to_new_line=""
     ):
         print("unite_lines. removing: ", self.prev_line)
 
@@ -157,11 +157,11 @@ class LatexProcessor:
         # create united line
         if r_prev_line is not None:
             name = (
-                r_prev_line.group(2)
-                + " \protect\\\\ "
-                + prefix_to_new_line
-                + r_line.group(2)
-                + suffix_to_new_line
+                    r_prev_line.group(2)
+                    + " \protect\\\\ "
+                    + prefix_to_new_line
+                    + r_line.group(2)
+                    + suffix_to_new_line
             )
             simple_name = r_prev_line.group(2) + " " + r_line.group(2)
             line = "\\my%s{%s}{%s}" % (
@@ -193,13 +193,13 @@ class LatexProcessor:
         r_prev_line = r.match(self.prev_line)
 
         if (
-            line.startswith("\\my")
-            and self.prev_line.startswith("\\my")
-            and line.split("{")[0] == self.prev_line.split("{")[0]
+                line.startswith("\\my")
+                and self.prev_line.startswith("\\my")
+                and line.split("{")[0] == self.prev_line.split("{")[0]
         ):
             if (
-                r_line.group(1) == r_prev_line.group(1)
-                and r_prev_line.group(2) != "מדורים"
+                    r_line.group(1) == r_prev_line.group(1)
+                    and r_prev_line.group(2) != "מדורים"
             ):
                 # we need to unite prev_line and line
                 (data, line) = self.unite_lines(data, r_prev_line, r_line)
@@ -266,7 +266,7 @@ class LatexProcessor:
                 elif type == "heading_section":
                     self.get_section_short_name(clean_text)
                     assert not (
-                        self.current_section["moto"] and self.current_section["intro"]
+                            self.current_section["moto"] and self.current_section["intro"]
                     )
                     self.next_define_is_moto = self.current_section["moto"]
                     if self.next_define_is_moto:
@@ -303,9 +303,9 @@ class LatexProcessor:
 
             elif type == "new_line":
                 if (
-                    self.next_define_ends_moto
-                    and self.moto_line_is_left
-                    and type == "new_line"
+                        self.next_define_ends_moto
+                        and self.moto_line_is_left
+                        and type == "new_line"
                 ):
                     data += self.end_moto_left_line()
 
@@ -314,19 +314,19 @@ class LatexProcessor:
                     data += "\paragraphs\n\n"
 
                 if (
-                    self.next_define_ends_moto
-                    and not self.moto_line_is_left
-                    and not self.moto_line_was_left
-                    and type == "new_line"
+                        self.next_define_ends_moto
+                        and not self.moto_line_is_left
+                        and not self.moto_line_was_left
+                        and type == "new_line"
                 ):
                     # inside Moto - got to Left section
                     data += self.begin_moto_left_line()
 
             elif (
-                self.current_section["section"] == "אותיות"
-                and not self.in_section_intro
-                and type == "subject_normal"
-                and text.strip() != self.letters_section_current_letter
+                    self.current_section["section"] == "אותיות"
+                    and not self.in_section_intro
+                    and type == "subject_normal"
+                    and text.strip() != self.letters_section_current_letter
             ):
                 self.letters_section_current_letter = text.strip()
                 data += "\\stamletter{%s}" % text[0]
@@ -386,7 +386,7 @@ class LatexProcessor:
             self.moto_line_is_left = False
             self.moto_line_was_left = False
         elif (
-            ("heading" in type and text.strip()) or self.latex_type(type) == "ערך"
+                ("heading" in type and text.strip()) or self.latex_type(type) == "ערך"
         ) and self.next_define_ends_moto:
             # ending Moto
             data += self.end_moto()
@@ -402,9 +402,9 @@ class LatexProcessor:
 
     def handle_intro(self, data, text, type):
         if (
-            self.in_section_intro
-            and type == self.current_section["end_of_intro:type"]
-            and self.csv_text_compare(text, self.current_section["end_of_intro:text"])
+                self.in_section_intro
+                and type == self.current_section["end_of_intro:type"]
+                and self.csv_text_compare(text, self.current_section["end_of_intro:text"])
         ):
             # print "end of intro: ", current_section['section']
             data += r"\newpage"

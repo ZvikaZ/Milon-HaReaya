@@ -143,11 +143,14 @@ def analyze_and_fix(para):
                 new_para.append(("fake_" + type, text))
             else:
                 # take prev type of it's nothing special, otherwise take generic type, as it doesn't really matter
-                new_type = (
-                    new_para[-1][0]
-                    if "definition" in new_para[-1][0] or "source" in new_para[-1][0]
-                    else "definition_normal"
-                )
+                try:
+                    new_type = (
+                        new_para[-1][0]
+                        if "definition" in new_para[-1][0] or "source" in new_para[-1][0]
+                        else "definition_normal"
+                    )
+                except IndexError:
+                    new_type = "definition_normal"
                 new_para.append((new_type, text))
         else:
             new_para.append((type, text))

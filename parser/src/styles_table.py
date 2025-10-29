@@ -22,6 +22,55 @@ class StylesTable:
         self.all_key_names = set()
         self.load_known_keys()
 
+    def _normalize_value(self, value):
+        """
+        Normalize a value to a consistent string representation for DOCX format.
+
+        Rules for DOCX Office Open XML:
+        - Boolean False/None/'0'/0/'false' → '0'
+        - Boolean True/'1'/1/'true' → '1'
+        - Everything else → str(value)
+
+        Args:
+            value: The value to normalize (can be bool, int, str, None, etc.)
+
+        Returns:
+            str: The normalized string representation
+        """
+        # Handle None
+        if value is None:
+            return '0'
+
+        # Handle empty strings - treat as false for boolean attributes
+        if value == '':
+            return '0'
+
+        # Handle Python booleans
+        if isinstance(value, bool):
+            return '1' if value else '0'
+
+        # Handle integer 0 and 1
+        if value == 0:
+            return '0'
+        if value == 1:
+            return '1'
+
+        # Handle string representations of booleans
+        if isinstance(value, str):
+            lower_val = value.lower()
+            if lower_val in ('false', 'off', 'no'):
+                return '0'
+            if lower_val in ('true', 'on', 'yes'):
+                return '1'
+            # For '0' and '1' strings, keep as-is
+            if value == '0':
+                return '0'
+            if value == '1':
+                return '1'
+
+        # Everything else (font names, sizes, etc.) → string
+        return str(value)
+
     def _parse_row(self, row):
         """
         Parse a CSV row into a key dictionary and metadata.
@@ -32,9 +81,9 @@ class StylesTable:
         Returns:
             tuple: (key_dict, kind, occurrences, first_text, first_strings, context)
         """
-        # Normalize all values to strings
+        # Normalize all values using DOCX-compliant normalization
         key_dict = {
-            k: str(row.get(k, ""))  # Convert all values to strings
+            k: self._normalize_value(row.get(k, ""))
             for k in self.all_key_names
             if k not in ["kind", "occurrences", "first_text", "first_strings", "context"]
         }
@@ -233,9 +282,9 @@ class StylesTable:
             first_text (str): The first text associated with the key.
             context (str): Additional context provided by the user.
         """
-        # Normalize key_dict: convert all values to strings
+        # Normalize key_dict using DOCX-compliant normalization
         normalized_key_dict = {
-            k: str(v) if v is not None else "" for k, v in key_dict.items()
+            k: self._normalize_value(v) for k, v in key_dict.items()
         }
 
         # Convert the normalized dictionary to a JSON string

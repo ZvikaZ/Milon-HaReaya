@@ -18,6 +18,7 @@
 # TODO get_heading_type
 # TODO update to modern Python
 # TODO replace prints with logger
+# TODO bold_definition_light - make sure it's supported in HTML
 
 import argparse
 import pickle

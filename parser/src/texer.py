@@ -121,6 +121,8 @@ class LatexProcessor:
             return "תמשנה"
         elif type in ("definition_light", "unknown_light"):
             return "תהגדרה"
+        elif type == "bold_definition_light":
+            return "תהגדרהמודגשת"
         elif type == "source_light":
             return "תמקור"
         elif type == "s02Symbol":

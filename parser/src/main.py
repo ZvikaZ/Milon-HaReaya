@@ -20,6 +20,9 @@
 # TODO replace prints with logger
 # TODO bold_definition_light - make sure it's supported in HTML
 
+# TODO pdf - רציה titles like normal
+# TODO Meyuan - fix
+
 import argparse
 import pickle
 import json

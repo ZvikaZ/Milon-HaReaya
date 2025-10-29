@@ -18,10 +18,10 @@
 # TODO get_heading_type
 # TODO update to modern Python
 # TODO replace prints with logger
-# TODO bold_definition_light - make sure it's supported in HTML
+# TODO bold_definition_light, bold_definition_normal - make sure they're supported in HTML
 
 # TODO pdf - רציה titles like normal
-# TODO Meyuan - fix
+# TODO Dark Meyuan - make sure it's OK
 
 import argparse
 import pickle

@@ -101,6 +101,7 @@ class LatexProcessor:
                 "fake_subject_small",
                 "fake_subject_small_normal",
                 "fake_subject_normal",
+                "bold_definition_normal"
         ):
             return "הגדרהמודגשת"
         elif type == "definition_normal":

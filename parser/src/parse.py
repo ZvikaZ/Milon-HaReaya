@@ -396,6 +396,7 @@ def parse(doc_file_name, percent):
                     robust_style = lookup_run(styles_table, run, paragraph.text)
                     if robust_style:
                         type = robust_style
+                        debug_file.write(f'R:{run.text}:{type}. ')
 
                         # single run & alignment is CENTER and ...-> letter heading
                         if (

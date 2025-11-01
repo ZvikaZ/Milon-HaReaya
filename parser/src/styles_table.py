@@ -2,6 +2,9 @@ import csv
 import json
 import os
 import re
+from logger_config import get_logger
+
+logger = get_logger(__name__)
 
 
 class StylesTable:
@@ -20,6 +23,7 @@ class StylesTable:
         self.known_keys = {}
         self.unknown_keys = {}
         self.all_key_names = set()
+        logger.info(f"Initializing StylesTable with csv_file='{csv_file}', separate_files={separate_files}")
         self.load_known_keys()
 
     def _normalize_value(self, value):
@@ -109,6 +113,7 @@ class StylesTable:
         """Load data from the known keys CSV file and merge known keys from the unknown CSV file."""
         # Load known keys from the primary CSV file
         if os.path.exists(self.csv_file):
+            logger.info(f"Loading known keys from '{self.csv_file}'")
             with open(self.csv_file, mode="r", newline="", encoding="utf-8") as file:
                 reader = csv.DictReader(file)
                 if reader.fieldnames is None:
@@ -140,10 +145,16 @@ class StylesTable:
                                 "context": [],  # Reset context
                             }
                     except Exception as e:
-                        print(f"Error parsing row: {row}. Error: {e}")
+                        logger.error(f"Error parsing row: {row}. Error: {e}")
+
+            logger.info(f"Loaded {len(self.known_keys)} known keys from '{self.csv_file}'")
+        else:
+            logger.info(f"Known keys file '{self.csv_file}' not found, starting fresh")
 
         # Load and merge known keys from the unknown CSV file
         if self.separate_files and os.path.exists(self.unknown_csv_file):
+            logger.info(f"Loading known keys from '{self.unknown_csv_file}'")
+            keys_before = len(self.known_keys)
             with open(
                 self.unknown_csv_file, mode="r", newline="", encoding="utf-8"
             ) as file:
@@ -177,7 +188,10 @@ class StylesTable:
                                 "context": [],  # Reset context
                             }
                     except Exception as e:
-                        print(f"Error parsing row: {row}. Error: {e}")
+                        logger.error(f"Error parsing row: {row}. Error: {e}")
+
+            keys_added = len(self.known_keys) - keys_before
+            logger.info(f"Loaded {keys_added} additional known keys from '{self.unknown_csv_file}'")
 
     def save_csv_files(self):
         """Save data to the CSV files."""
@@ -292,7 +306,11 @@ class StylesTable:
         self.all_key_names.update(key_dict.keys())
 
         if key_str in self.known_keys:
-            return self.known_keys[key_str]["kind"]
+            kind = self.known_keys[key_str]["kind"]
+            logger.debug(f"Lookup: {key_str} first_text='{first_text[:50]}' → FOUND kind='{kind}'")
+            return kind
+
+        logger.debug(f"Lookup: {key_str} first_text='{first_text[:50]}' → NOT FOUND (recording as unknown)")
 
         # Strip whitespace from first_text and context
         first_text = first_text.strip().replace('\n', '\t')
@@ -322,17 +340,19 @@ class StylesTable:
 
     def save(self):
         """Save the current state to the CSV files."""
+        logger.info(f"Saving styles table: {len(self.known_keys)} known keys, {len(self.unknown_keys)} unknown keys")
         self.save_csv_files()
         if self.separate_files:
-            print(f"Known keys saved to {self.csv_file}")
-            print(f"Unknown keys saved to {self.unknown_csv_file}")
+            logger.info(f"Known keys saved to '{self.csv_file}'")
+            logger.info(f"Unknown keys saved to '{self.unknown_csv_file}'")
         else:
-            print(f"All keys saved to {self.csv_file}")
+            logger.info(f"All keys saved to '{self.csv_file}'")
 
     def load(self):
         """Reload the known keys CSV file to reflect any offline edits."""
+        logger.info(f"Reloading styles table from files")
         self.known_keys = {}
         self.unknown_keys = {}
         self.all_key_names = set()
         self.load_known_keys()
-        print(f"Known keys reloaded from {self.csv_file}")
+        logger.info(f"Reload complete: {len(self.known_keys)} known keys loaded")

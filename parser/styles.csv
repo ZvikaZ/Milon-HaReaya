@@ -125,7 +125,7 @@ subject_light,,,,0,0,0,0,0,0,114300,0,s14,0
 definition_light,,,,0,0,0,0,0,0,0,1,s12,0
 source_light,,,,0,0,0,0,0,0,88900,1,s12,14
 source_light,,,,0,0,0,0,0,0,88900,0,s04,14
-definition_normal,,,,0,0,1,0,0,0,114300,1,s01,20
+sub-subject_normal,,,,0,0,1,0,0,0,114300,1,s01,20
 source_small,,,,0,0,0,0,0,0,101600,1,DefaultParagraphFont,16
 sub-subject_normal,,,,0,0,0,0,0,0,114300,0,s15,0
 definition_normal,,,,0,0,0,0,0,0,139700,0,DefaultParagraphFont,0
@@ -133,7 +133,7 @@ source_light,,,,0,0,0,0,0,0,0,0,s12,14
 source_small,,,,0,0,1,0,0,0,88900,1,s01,16
 bold_definition_normal,,,,0,0,1,0,0,0,0,1,s11,0
 sub-subject_small,,,,0,0,1,1,0,0,0,0,s05,0
-subject_small,,,,0,0,0,0,0,0,114300,0,s01,20
+definition_normal,,,,0,0,0,0,0,0,114300,0,s01,20
 definition_normal,,,,0,0,0,0,0,0,152400,1,s03,20
 definition_normal,,,,0,0,1,0,0,0,139700,0,DefaultParagraphFont,0
 definition_small,,,,0,0,0,0,0,0,101600,0,DefaultParagraphFont,18

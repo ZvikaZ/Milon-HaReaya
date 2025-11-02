@@ -64,9 +64,7 @@
 % creating ugly spacing by over-stretching glue between paragraphs/entries.
 % Solution: Lower value rejects overly-stretched solutions, preferring unbalanced
 % columns over ugly spacing. Range: 0 (strict) to 10000 (tolerant).
-% Current value (1000) works with reduced stretch in \parskip and \paragraphs below.
-% If too much stretching: lower to 500. If too many unbalanced columns: raise to 2000.
-\setcounter{columnbadness}{1000}
+\setcounter{columnbadness}{100}
 
 %%%%%%%%%%%        Avoid widow single lines      %%%%%%%%%%%
 % it also helps to avoid splitting Source to new page
@@ -152,23 +150,23 @@
 
 % Control vertical spacing stretch for column balancing
 % Without the plus/minus flexibility here and in \paragraphs, we get unbalanced columns.
-% Reduced stretch from 1pt to 0.5pt to limit ugly spacing when balancing.
+% Reduced stretch from 0.5pt to 0.1pt and from 0.05ex to 0.01ex (2025-11-02).
 %
 % How this works together with columnbadness above:
 % 1. Less stretch available → Balancing requires higher badness sooner
-% 2. columnbadness=1000 → Rejects solutions with badness > 1000
+% 2. columnbadness=500 → Rejects solutions with badness > 500
 % 3. Result: multicol gives up on balancing more often, producing unbalanced columns
 %    instead of ugly spacing
 %
 % Tuning guide:
-% - If still too much stretching: reduce to 0.25pt and 0.025ex, or lower columnbadness to 500
-% - If too many unbalanced columns: increase to 0.75pt and 0.075ex, or raise columnbadness to 2000
-% - Note: "plus 0.5pt" doesn't mean "max 0.5pt stretch" - TeX can stretch infinitely,
+% - If still too much stretching: reduce to 0.05pt and 0.005ex, or lower columnbadness
+% - If too many unbalanced columns: increase to 0.5pt and 0.05ex, or raise columnbadness
+% - Note: "plus 0.25pt" doesn't mean "max 0.25pt stretch" - TeX can stretch infinitely,
 %   but higher stretch = higher badness, which columnbadness will eventually reject
-\setlength{\parskip}{0pt plus 0.5pt}
+\setlength{\parskip}{0pt plus 0.1pt}
 
 \newcommand{\paragraphs}{
-    \par\vspace{1ex plus 0.05ex minus 0.05ex}
+    \par\vspace{1ex plus 0.025ex minus 0.01ex}
 }
 
 % for Moto's minipage centering

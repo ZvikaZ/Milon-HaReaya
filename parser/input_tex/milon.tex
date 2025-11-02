@@ -33,8 +33,10 @@
 \pagestyle{fancy}
 \fancyhf{}
 
-\newcommand{\fancyheadlo}{\mynormalsize{\PolythumbWrapperLeft\hspace{-1mm}\thepage}}
-\newcommand{\fancyheadre}{\mynormalsize{\thepage\PolythumbWrapperRight}}
+% Move page numbers outward without extending the header line
+% Use \hspace* with negative values to shift content, not \fancyheadoffset which extends the box
+\newcommand{\fancyheadlo}{\hspace*{-0.4cm}\mynormalsize{\PolythumbWrapperLeft\hspace{-1mm}\thepage}}
+\newcommand{\fancyheadre}{\mynormalsize{\thepage\PolythumbWrapperRight}\hspace*{-0.5cm}}
 \newcommand{\setfancyheadtitleboth}[1] {\fancyhead[CE,CO]{\mynormalsize\removelinebreaks{#1}}}
 
 \fancyhead[LO]{\fancyheadlo}

@@ -245,7 +245,9 @@ class StylesTable:
                             "context": "|".join(data["context"]),  # Join with delimiter
                         }
                     )
-                    if data["first_strings"]:
+                    # Write entry only if it has some content (not just whitespace)
+                    # Keep entries with punctuation like ') ' but filter truly empty ones
+                    if data["first_strings"] or data["first_text"]:
                         writer.writerow(row_data)
         else:
             # Append unknown keys to the same file
@@ -264,7 +266,9 @@ class StylesTable:
                             "context": "|".join(data["context"]),  # Join with delimiter
                         }
                     )
-                    writer.writerow(row_data)
+                    # Write entry only if it has some content (not just whitespace)
+                    if data["first_strings"] or data["first_text"]:
+                        writer.writerow(row_data)
 
     def _contains_hebrew_or_english(self, text):
         """
@@ -313,12 +317,10 @@ class StylesTable:
         logger.debug(f"Lookup: {key_str} first_text='{first_text[:50]}' → NOT FOUND (recording as unknown)")
 
         # Strip whitespace from first_text and context
+        # After stripping, empty or whitespace-only text becomes ""
+        # But punctuation, parentheses, numbers, etc. are preserved
         first_text = first_text.strip().replace('\n', '\t')
         context = context.strip().replace('\n', '\t')
-
-        # Save first_text only if it contains at least 3 Hebrew or English characters
-        if not self._contains_hebrew_or_english(first_text):
-            first_text = ""
 
         if key_str not in self.unknown_keys:
             self.unknown_keys[key_str] = {

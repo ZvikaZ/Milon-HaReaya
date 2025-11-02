@@ -56,6 +56,16 @@
 \usepackage{multicol}		% allow using 2 columns
 \setlength{\columnsep}{1.5pc}	% increase space between columns
 
+% Control column balancing tolerance
+% Problem: At \end{multicols}, LaTeX tries very hard to balance columns equally.
+% With default columnbadness=10000, it accepts extremely underfull columns,
+% creating ugly spacing by over-stretching glue between paragraphs/entries.
+% Solution: Lower value rejects overly-stretched solutions, preferring unbalanced
+% columns over ugly spacing. Range: 0 (strict) to 10000 (tolerant).
+% Current value (1000) works with reduced stretch in \parskip and \paragraphs below.
+% If too much stretching: lower to 500. If too many unbalanced columns: raise to 2000.
+\setcounter{columnbadness}{1000}
+
 %%%%%%%%%%%        Avoid widow single lines      %%%%%%%%%%%
 % it also helps to avoid splitting Source to new page
 \usepackage{nowidow}
@@ -138,11 +148,25 @@
 %\usepackage[onehalfspacing]{setspace}            % instead of `linespread` - which caused strange footnotes spacing 
 
 
-% without the plus minus flexibilty here and in \paragraphs, we get unbalanced columns
-\setlength{\parskip}{0pt plus 1pt}
+% Control vertical spacing stretch for column balancing
+% Without the plus/minus flexibility here and in \paragraphs, we get unbalanced columns.
+% Reduced stretch from 1pt to 0.5pt to limit ugly spacing when balancing.
+%
+% How this works together with columnbadness above:
+% 1. Less stretch available → Balancing requires higher badness sooner
+% 2. columnbadness=1000 → Rejects solutions with badness > 1000
+% 3. Result: multicol gives up on balancing more often, producing unbalanced columns
+%    instead of ugly spacing
+%
+% Tuning guide:
+% - If still too much stretching: reduce to 0.25pt and 0.025ex, or lower columnbadness to 500
+% - If too many unbalanced columns: increase to 0.75pt and 0.075ex, or raise columnbadness to 2000
+% - Note: "plus 0.5pt" doesn't mean "max 0.5pt stretch" - TeX can stretch infinitely,
+%   but higher stretch = higher badness, which columnbadness will eventually reject
+\setlength{\parskip}{0pt plus 0.5pt}
 
 \newcommand{\paragraphs}{
-    \par\vspace{1ex plus 0.1ex minus 0.1ex}
+    \par\vspace{1ex plus 0.05ex minus 0.05ex}
 }
 
 % for Moto's minipage centering
